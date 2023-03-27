@@ -1,5 +1,6 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
+import MerchCart from "../components/MerchCart"
 
 export default function Merch() {
   return (
@@ -36,10 +37,10 @@ export default function Merch() {
             </Box>
           </Box>
           <Box sx={{display:"flex"}}>
-            <Box sx={{flexWrap:"wrap", display:"flex", flexDirection:"row", width:"70%", border:"1px solid red"}}>
-                <Box></Box>
+            <Box sx={{flexWrap:"wrap", display:"flex", flexDirection:"row", width:"80%", border:"1px solid red"}}>
+                <MerchCart/>
             </Box>
-            <Box sx={{paddingLeft:"40px", paddingRight:"40px", width:"30%", border:"1px solid blue"}}>
+            <Box sx={{paddingLeft:"40px", paddingRight:"40px", width:"20%", border:"1px solid blue"}}>
                 <Box sx={{padding:"8px"}}>Төрлөөр шүүх</Box>
                 <Box></Box>
             </Box>
