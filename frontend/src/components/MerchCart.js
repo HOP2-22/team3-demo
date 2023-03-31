@@ -12,11 +12,11 @@ export default function MerchCart(props) {
     <Box
       sx={{
         width: {
-          xs: "337px",
-          sx: "337px",
-          md: "337px",
-          lg: "337px",
-          xl: "337px",
+          xs: "45%",
+          sm: "45%",
+          md: "30%",
+          lg: "30%",
+          xl: "30%",
         },
       }}
     >
@@ -24,8 +24,14 @@ export default function MerchCart(props) {
         <CardMedia
           image={image}
           sx={{
-            width: "337px",
-            height: "337px",
+            width: "100%",
+            height: {
+              xs: "180px",
+              sm: "280px",
+              md: "337px",
+              lg: "337px",
+              xl: "337px",
+            },
           }}
         />
         <Checkbox {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} sx={{position:"absolute", top:"8px"}} ></Checkbox>
