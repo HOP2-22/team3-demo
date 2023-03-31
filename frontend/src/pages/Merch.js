@@ -4,9 +4,12 @@ import MerchCart from "../components/MerchCart";
 import { useEffect, useState } from "react";
 import Axios from "axios";
 import Checkbox from "@mui/material/Checkbox";
+import Stack from "@mui/material/Stack";
+import IconButton from "@mui/material/IconButton";
 
 export default function Merch() {
   const [data, setData] = useState();
+  const [count, setCount] = useState();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   const instance = Axios.create({
@@ -20,8 +23,9 @@ export default function Merch() {
     const fetchProps = async () => {
       try {
         const res = await instance.get("/");
-        setData([res.data.data][0].slice(0, 6));
-        console.log(slicedData);
+        setData([res.data.data][0].slice(0, 12));
+        setCount([res.data.data][0].length);
+        console.log(count);
       } catch (err) {
         console.log(err);
       }
@@ -81,9 +85,15 @@ export default function Merch() {
                 flexWrap: "wrap",
                 display: "flex",
                 flexDirection: "row",
-                width: "75%",
+                width: {
+                  xs: "100%",
+                  sx: "100%",
+                  md: "100%",
+                  lg: "100%",
+                  xl: "75%",
+                },
                 gap: "10px",
-                justifyContent: "center",
+                justifyContent: "space-between",
                 alignItems: "center",
               }}
             >
@@ -97,29 +107,36 @@ export default function Merch() {
                 paddingRight: "40px",
                 width: "25%",
                 height: "894.167px",
-                display: "flex",
-                flexDirection:"column",
+                display: {
+                  xs: "none",
+                  sx: "none",
+                  md: "none",
+                  lg: "flex",
+                  xl: "flex",
+                },
+                flexDirection: "column",
               }}
             >
               <Box
                 sx={{
                   top: "20px",
                   position: "sticky",
-                  padding: "10px",
-                  fontWeight: "bold",
-                  fontSize: "20px",
                 }}
               >
-                Төрлөөр шүүх
-              </Box>
-              <Box sx={{ display: "flex" }}>
-                <Checkbox {...label} />
-                <Box sx={{ display: "flex", alignItems: "center" }}>Бүгд</Box>
-              </Box>
-              <Box sx={{ display: "flex" }}>
-                <Checkbox {...label} />
-                <Box sx={{ display: "flex", alignItems: "center" }}>
-                  пудволк
+                <Box
+                  sx={{ padding: "10px", fontWeight: "bold", fontSize: "20px" }}
+                >
+                  Төрлөөр шүүх
+                </Box>
+                <Box sx={{ display: "flex" }}>
+                  <Checkbox {...label} />
+                  <Box sx={{ display: "flex", alignItems: "center" }}>Бүгд</Box>
+                </Box>
+                <Box sx={{ display: "flex" }}>
+                  <Checkbox {...label} />
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                    пудволк
+                  </Box>
                 </Box>
               </Box>
             </Box>
