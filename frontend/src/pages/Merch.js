@@ -47,12 +47,31 @@ export default function Merch() {
             }}
           >
             <Box sx={{ display: "flex", alignSelf: "self-start" }}>
-              <Box sx={{ fontSize: "96px", fontWeight: "bold" }}>MERCH</Box>
+              <Box
+                sx={{
+                  fontSize: {
+                    xs: "70px",
+                    sm: "85px",
+                    md: "85px",
+                    lg: "90px",
+                    xl: "96px",
+                  },
+                  fontWeight: "bold",
+                }}
+              >
+                MERCH
+              </Box>
               <Box
                 sx={{
                   color: "rgb(205, 30, 59)",
                   fontWeight: "bold",
-                  fontSize: "36px",
+                  fontSize: {
+                    xs: "25px",
+                    sm: "30px",
+                    md: "30px",
+                    lg: "30px",
+                    xl: "36px",
+                  },
                 }}
               >
                 751
