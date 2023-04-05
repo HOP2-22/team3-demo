@@ -14,9 +14,9 @@ export default function MerchCart(props) {
         width: {
           xs: "45%",
           sm: "45%",
-          md: "30%",
-          lg: "30%",
-          xl: "30%",
+          md: "32%",
+          lg: "32%",
+          xl: "32%",
         },
       }}
     >

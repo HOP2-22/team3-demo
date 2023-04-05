@@ -34,7 +34,7 @@ export default function Merch() {
   }, []);
 
   return (
-    <Box sx={{ marginTop: "70px" }}>
+    <Box sx={{ marginTop: "100px" }}>
       <Container maxWidth="xl">
         <Box>
           <Box
@@ -125,20 +125,20 @@ export default function Merch() {
                 paddingLeft: "40px",
                 paddingRight: "40px",
                 width: "25%",
-                height: "894.167px",
-                display: {
-                  xs: "none",
-                  sx: "none",
-                  md: "none",
-                  lg: "flex",
-                  xl: "flex",
-                },
+                height: "1700px",
+                // display: {
+                //   xs: "none",
+                //   sx: "none",
+                //   md: "none",
+                //   lg: "flex",
+                //   xl: "flex",
+                // },
                 flexDirection: "column",
               }}
             >
               <Box
                 sx={{
-                  top: "20px",
+                  top: "50px",
                   position: "sticky",
                 }}
               >
@@ -150,6 +150,24 @@ export default function Merch() {
                 <Box sx={{ display: "flex" }}>
                   <Checkbox {...label} />
                   <Box sx={{ display: "flex", alignItems: "center" }}>Бүгд</Box>
+                </Box>
+                <Box sx={{ display: "flex" }}>
+                  <Checkbox {...label} />
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                    пудволк
+                  </Box>
+                </Box>
+                <Box sx={{ display: "flex" }}>
+                  <Checkbox {...label} />
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                    пудволк
+                  </Box>
+                </Box>
+                <Box sx={{ display: "flex" }}>
+                  <Checkbox {...label} />
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                    пудволк
+                  </Box>
                 </Box>
                 <Box sx={{ display: "flex" }}>
                   <Checkbox {...label} />
