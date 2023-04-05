@@ -2,7 +2,7 @@ import Container from "@mui/material/Container";
 
 export default function Footer() {
   return (
-    <div className="bg-[#1b1927] mb-[60px] pb-[100px] md:pb-[60px] ">
+    <div className="bg-[#1b1927] mb-[60px] pb-[100px] md:pb-[60px] mt-[200px]">
       <Container>
         <div className="flex flex-col ">
           <div className="w-full grid grid-cols-12 h-[500px] pt-[50px] md:pt-[150px] gap-y-[50px]">
