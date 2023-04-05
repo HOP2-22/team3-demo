@@ -23,11 +23,13 @@ export default function Header() {
 
   return (
     <div className="flex flex-col">
-      <Container className="flex justify-between h-[75px] items-center">
+      <Container
+        maxWidth="xl"
+        className="flex justify-between h-[75px] items-center">
         <div className="flex items-center gap-5 md:gap-5 w-[100%]">
           <div className="text-[30px] font-bold">Geru</div>
           <input
-            className="outline-none h-[40px] w-[60%] md:w-[100%] x:hidden font-bold"
+            className="outline-none h-[40px] w-[60%] md:w-[100%] xl:hidden font-bold"
             placeholder="Мэрч, Артист, Коллекц хайх ..."
           />
         </div>
