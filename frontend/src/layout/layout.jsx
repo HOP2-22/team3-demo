@@ -8,7 +8,6 @@ function Layout({ children }) {
     <div className="">
       <Header />
       {children}
-      <div className="w-full h-[1500px] bg-red-900">fdfgfd</div>
 
       <HeaderHidden />
       <Footer />
