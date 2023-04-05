@@ -1,10 +1,9 @@
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import { Avatar } from "@mui/material";
-import Collection from "../components/Collection";
 
 export default function Face() {
   return (
-    <Box sx={{ backgroundColor: "#edf2f4" }}>
+    <Box sx={{ backgroundColor: "#edf2f4", padding: "24px" }}>
       <Box sx={styles.position}>
         <Stack flex={2.5} sx={{ padding: "40px" }}>
           <img
@@ -30,18 +29,15 @@ export default function Face() {
           <Typography sx={{ color: "rgba(0,0,0,.7)" }}>
             Хаана ч , хэзээ ч , хэнтэй ч ...
           </Typography>
+          <Box sx={styles.paddingtop} variant="text">
+            <Box sx={styles.padding}>
+              <p>Хамтарсан уран бүтээлчид:</p>
+              <Box sx={{ paddingLeft: "16px", paddingRight: "16px" }}>
+                <Avatar src="https://res.cloudinary.com/urlan/image/upload/v1675159396/geru-store/khongorzul/328598489_1163549884324212_1668282332485989101_n_1_1_wduowu.jpg" />
+              </Box>
+            </Box>
+          </Box>
           <Box sx={{ paddingTop: "24px", paddingBottom: "24px" }}>
-            {/* <Button
-              sx={{
-                fontFamily: "Manrope",
-                width: "100%",
-                padding: "12px",
-                backgroundColor: "#1b1927",
-              }}
-              variant="contained"
-            >
-              Илүү Ихийг
-            </Button> */}
             <Button
               sx={{
                 fontFamily: "Manrope",
