@@ -1,126 +1,90 @@
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
-import { Avatar } from "@mui/material";
+import { Typography, Box, Stack, } from "@mui/material";
 
-const Partner = () => {
+const mapp = [1, 2, 3];
+
+const artistIcon =
+  "https://res.cloudinary.com/urlan/image/upload/v1677916165/geru-store/beernight/Group_13_2_pcuojj.jpg";
+
+const itemImg =
+  "https://res.cloudinary.com/urlan/image/upload/a_0,e_distort:0:0:232:3:232:327:0:329,g_north_west,h_329,o_100,u_fetch:aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vdXJsYW4vaW1hZ2UvdXBsb2FkL2Nfc2NhbGUsaF80MTMsd18yNTAvZ19ub3J0aF93ZXN0LGhfMzkyLGxfZmlsZW1hbmFnZXI6cXE1c3lsNWF3ajZ0dHZtZ2I5dmosd18yNTAseF8wLHlfMjEvY19jcm9wLGdfbm9ydGhfd2VzdCxoXzMyOSx3XzIzMyx4XzE3LHlfMC92MS9tb2NrdXAvYmFja2dyb3VuZF8yX2Fndml6Yw,x_424,y_427/g_north_west,h_1080,u_mockup:sweatshirt:Rectangle_316_1_obdvrk,w_1080,x_0/c_crop,g_north_west,h_1080,w_1080,x_0,y_0/f_jpg/v1/mockup/Hoodie/back_wiea4a.jpg";
+
+const Item = () => {
   return (
-    // <Stack sx={styles.paddingtop}>
-    //   <Box sx={styles.padding}>
-    //     <p>Хамтарсан уран бүтээлчид:</p>
-    //     <Box sx={{ paddingLeft: "16px", paddingRight: "16px" }}>
-    //       <Avatar src="https://res.cloudinary.com/urlan/image/upload/v1675159396/geru-store/khongorzul/328598489_1163549884324212_1668282332485989101_n_1_1_wduowu.jpg" />
-    //     </Box>
-    //   </Box>
-    // </Stack>
-    <Box sx={styles.paddingtop} variant="text">
-      <Box sx={styles.padding}>
-        <p>Хамтарсан уран бүтээлчид:</p>
-        <Box sx={{ paddingLeft: "16px", paddingRight: "16px" }}>
-          <Avatar src="https://res.cloudinary.com/urlan/image/upload/v1675159396/geru-store/khongorzul/328598489_1163549884324212_1668282332485989101_n_1_1_wduowu.jpg" />
-        </Box>
-      </Box>
+    <Box bgcolor="red">
+      <img src={itemImg} style={styles.itemimg} />
+      <Stack direction="row" justifyContent="space-between">
+        <Typography>price</Typography>
+        <Typography>Frigile</Typography>
+      </Stack>
     </Box>
   );
 };
 
-export default function Face() {
+const ArtistDetail = () => {
   return (
-    <Container
-      maxWidth="xl"
-      style={{ padding: "24px", backgroundColor: "hsla(0,0%,100%,.7)" }}
-    >
-      <Box sx={styles.position}>
-        <Stack flex={2.5} sx={{ padding: "40px" }}>
-          <img
-            src={
-              "https://res.cloudinary.com/urlan/image/upload/v1678349701/geru-store/urban_nomad/ezgif.com-gif-maker_4_d6jzrh.gif"
-            }
-            style={styles.image}
-            alt="asdf"
-          />
-        </Stack>
-        <Stack sx={styles.texts}>
-          <Typography
-            sx={{
-              fontSize: "72px",
-              fontFamily: "PT Sans Narrow",
-              lineHeight: "0.9em",
-              overflow: "hidden",
-              fontWeight: "bold",
-            }}
-          >
-            ИХ ХОТЫН НҮҮДЭЛЧИД
-          </Typography>
-          <Typography sx={{ color: "rgba(0,0,0,.7)" }}>
-            Хаана ч , хэзээ ч , хэнтэй ч ...
-          </Typography>
-          <Partner />
-          <Box sx={{ paddingTop: "24px", paddingBottom: "24px" }}>
-            {/* <Button
-              sx={{
-                fontFamily: "Manrope",
-                width: "100%",
-                padding: "12px",
-                backgroundColor: "#1b1927",
-              }}
-              variant="contained"
-            >
-              Илүү Ихийг
-            </Button> */}
-            <Button
-              sx={{
-                fontFamily: "Manrope",
-                width: "100%",
-                padding: "12px",
-                backgroundColor: "#1b1927",
-              }}
-              variant="contained"
-            >
-              Илүү Ихийг
-            </Button>
-          </Box>
-        </Stack>
-      </Box>
-    </Container>
+    <Box minWidth={300} pr={5}>
+      <img
+        src={artistIcon}
+        alt="artist icon"
+        width={{ xl: 40, lg: 30, md: 20, xs: 10 }}
+        height={{
+          xl: 40,
+          lg: 30,
+          md: 20,
+          xs: 10,
+        }}
+      />
+      <Typography variant="h2">Fragile</Typography>
+      <Typography variant="body1">
+        Fragile is our very first game that reveals the story of a 10-year-old
+        girl who was abducted and brought to a
+      </Typography>
+    </Box>
   );
-}
+};
+
+const bgImg =
+  "https://res.klook.com/image/upload/c_fill,w_843,h_474/q_80/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/ys5jqwvg6pgtpacb5kqb.webp";
+
+export const Collection = () => {
+  return (
+    <Stack direction="row" padding={10} position="relative" sx={styles.img}>
+      <Box sx={styles.backimg}></Box>
+      <ArtistDetail />
+      <Stack direction="row" gap={2} sx={styles.img}>
+        <Item />
+        <Item />
+        <Item />
+      </Stack>
+    </Stack>
+  );
+};
 
 const styles = {
-  position: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    direction: {
-      lg: "row",
-      md: "column",
+  backimg: {
+    width: "100%",
+    height: "100%",
+    backgroundImage: `url(${bgImg})`,
+    position: "absolute",
+    backdropFilter: "blur(10px)",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    zIndex: -1,
+  },
+  img: {
+    display: {
+      xl: "flex",
+      lg: "block",
+      md: "block",
+      xs: "block",
     },
-  },
-  image: {
-    padding: "16px",
-  },
-  texts: {
-    flex: 2,
+    padding: 10,
+    position: "relative",
     flexDirection: "column",
-    justifyContent: "center",
   },
-  little: {
-    height: "60px",
-    fontSize: "16px",
-    fontFamily: "Manrope",
-  },
-  paddingtop: {
-    display: "flex",
-    alignItems: "center",
-    paddingTop: "24px",
-    paddingBottom: "24px",
-    flexDirection: "row",
-    color: "black",
-    justifyContent: "flex-start",
-  },
-  padding: {
-    padding: "16px",
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "row",
-    cursor: "pointer",
+  itemimg: {
+    width: { md: "25vh" },
+    height: { md: "25vh" },
   },
 };
