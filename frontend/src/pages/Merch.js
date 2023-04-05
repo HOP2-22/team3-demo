@@ -126,14 +126,15 @@ export default function Merch() {
                 paddingRight: "40px",
                 width: "25%",
                 height: "1700px",
-                // display: {
-                //   xs: "none",
-                //   sx: "none",
-                //   md: "none",
-                //   lg: "flex",
-                //   xl: "flex",
-                // },
+                display: {
+                  xs: "none",
+                  sx: "none",
+                  md: "none",
+                  lg: "flex",
+                  xl: "flex",
+                },
                 flexDirection: "column",
+                alignItems:"center",
               }}
             >
               <Box
