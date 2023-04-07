@@ -1,16 +1,14 @@
 import Box from "@mui/material/Box";
 import CardMedia from "@mui/material/CardMedia";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
-import Favorite from "@mui/icons-material/Favorite";
-import Checkbox from "@mui/material/Checkbox";
 
-export default function MerchCart(props) {
+export default function ArtistCart(props) {
   const { image } = props;
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   return (
     <Box
       sx={{
+        backgroundColor: "red",
         width: {
           xs: "45%",
           sm: "45%",
@@ -19,45 +17,79 @@ export default function MerchCart(props) {
           xl: "30%",
         },
       }}>
-      <Box sx={{ position: "relative" }}>
-        <CardMedia
-          image={image}
-          sx={{
-            width: "100%",
-            height: {
-              xs: "180px",
-              sm: "280px",
-              md: "337px",
-              lg: "337px",
-              xl: "337px",
-            },
-          }}
-        />
-        <Checkbox
-          {...label}
-          icon={<FavoriteBorder />}
-          checkedIcon={<Favorite />}
-          sx={{ position: "absolute", top: "8px" }}></Checkbox>
-      </Box>
-      <Box>
-        <Box sx={{ color: "rgb(158, 158, 158)", fontWeight: "bold" }}>Type</Box>
-        <Box sx={{ fontWeight: "bold" }}>Title</Box>
-        <Box
-          sx={{
-            paddingTop: "8px",
-            paddingBottom: "8px",
-            width: "100%",
-            boxSizing: "border-box",
-          }}>
-          <Box
+      <Box
+        sx={{
+          position: "relative",
+          backgroundColor: "red",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+          height: {
+            xs: "180px",
+            sm: "280px",
+            md: "337px",
+            lg: "337px",
+            xl: "337px",
+          },
+        }}>
+        <Box sx={{ display: "flex" }}>
+          <CardMedia
+            image={image}
             sx={{
-              width: "100%",
-              height: "1px",
-              bgcolor: "black",
-              boxSizing: "border-box",
-            }}></Box>
+              width: "33%",
+              height: {
+                xs: "90px",
+                sm: "140px",
+                md: "165px",
+                lg: "165px",
+                xl: "165px",
+              },
+            }}
+          />
+          <CardMedia
+            image={image}
+            sx={{
+              width: "34%",
+              height: {
+                xs: "90px",
+                sm: "140px",
+                md: "165px",
+                lg: "165px",
+                xl: "165px",
+              },
+            }}
+          />
+          <CardMedia
+            image={image}
+            sx={{
+              width: "33%",
+              height: {
+                xs: "90px",
+                sm: "140px",
+                md: "165px",
+                lg: "165px",
+                xl: "165px",
+              },
+            }}
+          />
         </Box>
-        <Box sx={{ fontWeight: "bold" }}>Price</Box>
+        <Box>
+          <CardMedia
+            image={image}
+            sx={{
+              width: "22%",
+              height: {
+                xs: "60px",
+                sm: "85px",
+                md: "99px",
+                lg: "99px",
+                xl: "99px",
+              },
+            }}
+          />
+        </Box>
+        <Box></Box>
       </Box>
     </Box>
   );

@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import MerchCart from "../components/MerchCart";
+import ArtistCart from "../components/ArtistCart";
 import { useEffect, useState } from "react";
 import Axios from "axios";
 import Checkbox from "@mui/material/Checkbox";
@@ -111,7 +111,7 @@ export default function Artist() {
                 alignItems: "center",
               }}>
               {data?.map((card, index) => (
-                <MerchCart key={index} image={card.image}></MerchCart>
+                <ArtistCart key={index} image={card.image}></ArtistCart>
               ))}
             </Box>
             <Box
