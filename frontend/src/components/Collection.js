@@ -36,8 +36,14 @@ export default function Face(props) {
     <Box
       sx={{
         width: "100%",
-        height: "450px",
         display: "flex",
+        flexDirection: {
+          xs: "column",
+          sm: "column",
+          md: "column",
+          lg: "row",
+          xl: "row",
+        },
         marginBottom: "20px",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
@@ -49,16 +55,60 @@ export default function Face(props) {
         borderRadius: "15px",
       }}
     >
-      <Box sx={{ padding: "40px", width: "25%" }}>
+      <Box
+        sx={{
+          paddingBottom: {
+            xs: "20px",
+            sm: "20px",
+            md: "30px",
+            lg: "40px",
+            xl: "40px",
+          },
+          paddingTop: {
+            xs: "20px",
+            sm: "20px",
+            md: "30px",
+            lg: "40px",
+            xl: "40px",
+          },
+          paddingLeft: {
+            xs: "20px",
+            sm: "20px",
+            md: "20px",
+            lg: "30px",
+            xl: "30px",
+          },
+          paddingRight: {
+            xs: "20px",
+            sm: "20px",
+            md: "20px",
+            lg: "30px",
+            xl: "30px",
+          },
+          width: {
+            xs: "100%",
+            sm: "100%",
+            md: "100%",
+            lg: "25%",
+            xl: "25%",
+          },
+        }}
+      >
         <Box>
           <CardMedia
             image={Image}
             sx={{
-              width: "120px",
+              width: {
+                xs: "90px",
+                sm: "90px",
+                md: "100px",
+                lg: "120px",
+                xl: "120px",
+              },
               height: {
-                xs: "120px",
-                sm: "120px",
-                md: "120px",
+                xs: "90px",
+                sm: "90px",
+                md: "100px",
                 lg: "120px",
                 xl: "120px",
               },
@@ -67,11 +117,35 @@ export default function Face(props) {
             }}
           />
         </Box>
-        <Box sx={{ paddingTop: "24px", paddingBottom: "24px" }}>
+        <Box
+          sx={{
+            paddingTop: {
+              xs: "0px",
+              sm: "0px",
+              md: "20px",
+              lg: "24px",
+              xl: "24px",
+            },
+            paddingBottom: {
+              xs: "0px",
+              sm: "0px",
+              md: "20px",
+              lg: "24px",
+              xl: "24px",
+            },
+          }}
+        >
           <Box
             sx={{
               fontWeight: "bold",
               fontSize: "28px",
+              fontSize: {
+                xs: "18px",
+                sm: "18px",
+                md: "20px",
+                lg: "28px",
+                xl: "28px",
+              },
               lineHeight: "1em",
               color: "rgb(255, 255, 255)",
             }}
@@ -82,6 +156,11 @@ export default function Face(props) {
             sx={{
               color: "rgb(255, 255, 255)",
               fontWeight: "200",
+              fontSize: {
+                xs: "13px",
+                sm: "13px",
+                md: "15px",
+              },
             }}
           >
             Fragile is our very first game that reveals the story of a
@@ -93,7 +172,13 @@ export default function Face(props) {
             sx={{
               display: "flex",
               alignItems: "center",
-              paddingBottom: "48px",
+              paddingBottom: {
+                xs: "0px",
+                sm: "0px",
+                md: "30px",
+                lg: "48px",
+                xl: "48px",
+              },
               flexDirection: "row",
               color: "black",
               justifyContent: "flex-start",
@@ -111,18 +196,63 @@ export default function Face(props) {
               <Box>
                 <Avatar src="https://res.cloudinary.com/urlan/image/upload/v1675159396/geru-store/khongorzul/328598489_1163549884324212_1668282332485989101_n_1_1_wduowu.jpg" />
               </Box>
-              <Box sx={{ color: "rgb(255, 255, 255)" }}>@Studio</Box>
+              <Box
+                sx={{
+                  color: "rgb(255, 255, 255)",
+                  fontSize: {
+                    xs: "13px",
+                    sm: "13px",
+                    md: "15px",
+                  },
+                }}
+              >
+                @Studio
+              </Box>
             </Box>
           </Box>
         </Box>
       </Box>
       <Box
         sx={{
-          width: "75%",
-          padding: "40px",
+          width: {
+            xs: "100%",
+            sm: "100%",
+            md: "100%",
+            lg: "75%",
+            xl: "75%",
+          },
+          paddingBottom: {
+            xs: "5px",
+            sm: "5px",
+            md: "30px",
+            lg: "40px",
+            xl: "40px",
+          },
+          paddingTop: {
+            xs: "5px",
+            sm: "5px",
+            md: "30px",
+            lg: "40px",
+            xl: "40px",
+          },
+          paddingLeft: {
+            xs: "5px",
+            sm: "5px",
+            md: "20px",
+            lg: "30px",
+            xl: "30px",
+          },
+          paddingRight: {
+            xs: "5px",
+            sm: "5px",
+            md: "20px",
+            lg: "30px",
+            xl: "30px",
+          },
           flexWrap: "wrap",
           display: "flex",
           justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
         {data?.map((card, index) => (
