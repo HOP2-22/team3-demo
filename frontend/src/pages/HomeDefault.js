@@ -1,5 +1,6 @@
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import Collection from "../components/Collection";
+import CollectionV2 from "../components/CollectionV2";
 import FaceHome from "../components/FaceHome";
 import { useEffect, useState } from "react";
 import Axios from "axios";
@@ -30,7 +31,7 @@ export default function Face() {
     fetchProps();
   }, []);
   return (
-    <Box sx={{ backgroundColor: "#edf2f4" }}>
+    <Box sx={{ backgroundColor: "#edf2f4", width:"100%" }}>
       <Container maxWidth="xl">
         <FaceHome />
         <Box sx={{ padding: "40px" }}></Box>
