@@ -1,12 +1,12 @@
 import Box from "@mui/material/Box";
 import CardMedia from "@mui/material/CardMedia";
-import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
-import Favorite from '@mui/icons-material/Favorite';
-import Checkbox from '@mui/material/Checkbox';
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Favorite from "@mui/icons-material/Favorite";
+import Checkbox from "@mui/material/Checkbox";
 
 export default function MerchCart(props) {
   const { image } = props;
-  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   return (
     <Box
@@ -18,8 +18,7 @@ export default function MerchCart(props) {
           lg: "30%",
           xl: "30%",
         },
-      }}
-    >
+      }}>
       <Box sx={{ position: "relative" }}>
         <CardMedia
           image={image}
@@ -34,7 +33,11 @@ export default function MerchCart(props) {
             },
           }}
         />
-        <Checkbox {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} sx={{position:"absolute", top:"8px"}} ></Checkbox>
+        <Checkbox
+          {...label}
+          icon={<FavoriteBorder />}
+          checkedIcon={<Favorite />}
+          sx={{ position: "absolute", top: "8px" }}></Checkbox>
       </Box>
       <Box>
         <Box sx={{ color: "rgb(158, 158, 158)", fontWeight: "bold" }}>Type</Box>
@@ -45,16 +48,14 @@ export default function MerchCart(props) {
             paddingBottom: "8px",
             width: "100%",
             boxSizing: "border-box",
-          }}
-        >
+          }}>
           <Box
             sx={{
               width: "100%",
               height: "1px",
               bgcolor: "black",
               boxSizing: "border-box",
-            }}
-          ></Box>
+            }}></Box>
         </Box>
         <Box sx={{ fontWeight: "bold" }}>Price</Box>
       </Box>
