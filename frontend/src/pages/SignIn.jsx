@@ -13,12 +13,12 @@ const Login = () => {
 
   const response = async () => {
     try {
-      const { data } = await axios.post("http://localhost:6666/users/login", {
+      const { data } = await axios.post("http://localhost:9006/users/login", {
         email: email,
         password: password,
       });
-      // Cookies.set("email", data.email);
-      // Cookies.set("token", data.token);
+      Cookies.set("email", data.email);
+      Cookies.set("token", data.token);
       console.log(data);
     } catch (error) {
       console.log(error);

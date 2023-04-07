@@ -13,7 +13,7 @@ const Login = () => {
 
   const register = async () => {
     try {
-      const { data } = await axios.post("http://localhost:6666/users/signup", {
+      const { data } = await axios.post("http://localhost:9006/users/signup", {
         email: email,
         password: password,
       });
