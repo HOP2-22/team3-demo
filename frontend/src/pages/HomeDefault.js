@@ -80,8 +80,20 @@ export default function Face() {
             sx={{
               gap: "10px",
               width: "100%",
-              paddingTop: "24px",
-              paddingBottom: "24px",
+              paddingBottom: {
+                xs: "5px",
+                sm: "5px",
+                md: "30px",
+                lg: "24px",
+                xl: "24px",
+              },
+              paddingTop: {
+                xs: "5px",
+                sm: "5px",
+                md: "30px",
+                lg: "24px",
+                xl: "24px",
+              },
               paddingLeft: "8px",
               paddingRight: "8px",
             }}

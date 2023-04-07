@@ -2,6 +2,7 @@ import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import { Avatar } from "@mui/material";
 
 export default function Face() {
+
   return (
     <Box sx={{ backgroundColor: "#edf2f4", padding: "24px" }}>
       <Box sx={styles.position}>
