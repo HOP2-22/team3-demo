@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import CardMedia from "@mui/material/CardMedia";
 
@@ -8,88 +9,69 @@ export default function ArtistCart(props) {
   return (
     <Box
       sx={{
-        backgroundColor: "red",
+        display: "flex",
+        flexDirection: "column",
+        marginTop: {
+          xs: "40px",
+          sm: "20px",
+          md: "20px",
+          lg: "20px",
+          xl: "20px",
+        },
         width: {
-          xs: "45%",
+          xs: "100%",
           sm: "45%",
           md: "30%",
           lg: "30%",
           xl: "30%",
         },
       }}>
-      <Box
-        sx={{
-          position: "relative",
-          backgroundColor: "red",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "100%",
-          height: {
-            xs: "180px",
-            sm: "280px",
-            md: "337px",
-            lg: "337px",
-            xl: "337px",
-          },
-        }}>
-        <Box sx={{ display: "flex" }}>
-          <CardMedia
-            image={image}
-            sx={{
-              width: "33%",
-              height: {
-                xs: "90px",
-                sm: "140px",
-                md: "165px",
-                lg: "165px",
-                xl: "165px",
-              },
-            }}
-          />
-          <CardMedia
-            image={image}
-            sx={{
-              width: "34%",
-              height: {
-                xs: "90px",
-                sm: "140px",
-                md: "165px",
-                lg: "165px",
-                xl: "165px",
-              },
-            }}
-          />
-          <CardMedia
-            image={image}
-            sx={{
-              width: "33%",
-              height: {
-                xs: "90px",
-                sm: "140px",
-                md: "165px",
-                lg: "165px",
-                xl: "165px",
-              },
-            }}
-          />
-        </Box>
+      <Box>
         <Box>
           <CardMedia
             image={image}
             sx={{
-              width: "22%",
+              width: "100%",
               height: {
-                xs: "60px",
-                sm: "85px",
-                md: "99px",
-                lg: "99px",
-                xl: "99px",
+                xs: "100px",
+                sm: "100px",
+                md: "100px",
+                lg: "100px",
+                xl: "100px",
               },
             }}
           />
+          <Box
+            sx={{
+              display: "flex ",
+              flexDirection: "column",
+              width: "100%",
+              alignItems: "center",
+              justifyContent: "center",
+              marginTop: "-50px",
+            }}>
+            <Box sx={{ border: "5px solid white", borderRadius: "80px" }}>
+              <CardMedia
+                image={image}
+                sx={{ width: "80px", height: "80px", borderRadius: "80px" }}
+              />
+            </Box>
+            <Box
+              sx={{
+                dispal: "flex",
+                flexDirection: "column ",
+                marginTop: "20px",
+              }}>
+              <Typography>ArtisName</Typography>
+              <Typography>ArtistType</Typography>
+            </Box>
+          </Box>
         </Box>
-        <Box></Box>
+        <Box sx={{ width: "100%", display: "flex", marginTop: "20px" }}>
+          <CardMedia image={image} sx={{ width: "33%", height: "150px" }} />
+          <CardMedia image={image} sx={{ width: "33%", height: "150px" }} />
+          <CardMedia image={image} sx={{ width: "33%", height: "150px" }} />
+        </Box>
       </Box>
     </Box>
   );

@@ -93,12 +93,16 @@ export default function Artist() {
                 }}></Box>
             </Box>
           </Box>
-          <Box sx={{ display: "flex" }}>
+          <Box
+            sx={{
+              display: "flex",
+            }}>
             <Box
               sx={{
                 flexWrap: "wrap",
                 display: "flex",
                 flexDirection: "row",
+                marginTop: "-20px",
                 width: {
                   xs: "100%",
                   sx: "100%",
@@ -107,8 +111,8 @@ export default function Artist() {
                   xl: "75%",
                 },
                 gap: "10px",
-                justifyContent: "space-between",
                 alignItems: "center",
+                justifyContent: "center",
               }}>
               {data?.map((card, index) => (
                 <ArtistCart key={index} image={card.image}></ArtistCart>
@@ -119,7 +123,7 @@ export default function Artist() {
                 paddingLeft: "40px",
                 paddingRight: "40px",
                 width: "25%",
-                height: "1600",
+                height: "1730px",
                 display: {
                   xs: "none",
                   sx: "none",

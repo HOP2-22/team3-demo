@@ -46,15 +46,19 @@ export default function Header() {
               <div
                 className={`${
                   burger ? " flex" : "hidden"
-                } absolute bg-white w-[150px] h-[200px] absolute xl:mt-[-45px] xl:ml-[100px] -mt-[35px] -ml-[160px] xl:-mt-[35px] flex-col px-[20px] justify-evenly shadow-xl rounded-[9px]`}>
+                } absolute bg-white w-[150px] h-[200px]   xl:mt-[-45px] xl:ml-[-170px] -mt-[35px] -ml-[160px]  flex-col px-[20px] justify-evenly shadow-xl rounded-[9px]`}>
                 <div className="bg-gray-300 rounded-[5px] w-[110%] h-[35px] flex items-center">
                   COLLECTION
                 </div>
-                <div className="font-bold">DESIGN BYME</div>
-                <div className="font-bold">MERCH</div>
-                <div className="font-bold">DROP</div>
-                <div className="font-bold">ARTWORK</div>
-                <div className="font-bold">ARTIST</div>
+                <a href="Merch ">
+                  <div className="font-bold">MERCH</div>
+                </a>
+                <a href="ArtWork">
+                  <div className="font-bold">ARTWORK</div>
+                </a>
+                <a href="Artist">
+                  <div className="font-bold">ARTIST</div>
+                </a>
               </div>
             </div>
             <div className="hidden xl:flex items-center gap-5">
@@ -72,7 +76,6 @@ export default function Header() {
             </div>
           </div>
         </Container>
-        {searchClick ? <Search boolean={searchClick} /> : <></>}
       </div>
     </div>
   );
