@@ -1,18 +1,31 @@
 const express = require("express");
-require("dotenv").config();
 const cors = require("cors");
-const connect = require("./database");
-const userRouter = require("./router/userRouter");
+const mongoose = require("mongoose");
+require("dotenv").config();
+
+const connection = mongoose.connection;
 
 const app = express();
-const port = process.env.PORT || 6666;
+const PORT = process.env.PORT;
+const URI = process.env.URI;
+
+const usersRouter = require("./Router/UserRouter.js");
+const adminRouter = require("./Router/AdminRouter");
+const artistRouter = require("./Router/Artist");
+
+mongoose.connect(URI);
 
 app.use(express.json());
 app.use(cors());
-connect();
 
-app.use("/users", userRouter);
+app.use("/user", usersRouter);
+// app.use("/admin", adminRouter);
+// app.use("/artist", artistRouter);
 
-app.listen(port, () => {
-  console.log(`Server listening on ${port}`);
+connection.once("open", () => {
+  console.log("connect MONGODB server");
+});
+
+app.listen(PORT, () => {
+  console.log(PORT, "listening on port");
 });
