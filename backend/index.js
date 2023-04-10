@@ -5,6 +5,7 @@ const connection = mongoose.connection;
 const connect = require("./database");
 const userRouter = require("./router/userRouter");
 const artistRouter = require("./router/artistRouter");
+const adminRouter = require("./router/adminRouter");
 
 require("dotenv").config();
 const app = express();
@@ -16,9 +17,9 @@ mongoose.connect(URI);
 app.use(express.json());
 app.use(cors());
 
-app.use("/user", usersRouter);
-app.use("/admin", adminRouter);
+app.use("/users", userRouter);
 app.use("/artist", artistRouter);
+app.use("/admin", adminRouter);
 
 connection.once("open", () => {
   console.log("connect MONGODB server");
