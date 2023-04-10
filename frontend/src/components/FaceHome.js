@@ -92,7 +92,7 @@ export default function Face() {
               }}
               variant="contained"
             >
-              Илүү Ихийг
+              Илүү Ихийг.
             </Button>
           </Box>
         </Stack>
