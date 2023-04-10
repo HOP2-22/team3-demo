@@ -5,7 +5,7 @@ export default function Choose() {
         <button className="w-[350px] h-[45px] bg-[#1b1927] text-white rounded-[10px]">
           Нэвтрэх
         </button>
-        <button className="w-[350px] h-[45px] border-2 b-black border-black text-black rounded-[10px]">
+        <button className="w-[350px] h-[45px] border-2 b-black border-black text-black   rounded-[10px]">
           Бүртгүүлэх
         </button>
       </div>
