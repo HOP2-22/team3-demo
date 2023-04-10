@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import "@/styles/artist.css";
 import { Provider } from "../context/context";
 import Layout from "../layout/layout";
 
