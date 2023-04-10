@@ -63,3 +63,12 @@ exports.login = async (req, res, next) => {
     res.status(400).json({ message: "password is dont match" });
   }
 };
+
+exports.deleteAll = async (req, res) => {
+  try {
+    const user = await User.deleteMany();
+    res.status(200).json({ match: true, user: user });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};

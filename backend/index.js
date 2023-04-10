@@ -20,7 +20,7 @@ app.use(cors());
 
 app.use("/user", usersRouter);
 // app.use("/admin", adminRouter);
-// app.use("/artist", artistRouter);
+app.use("/artist", artistRouter);
 
 connection.once("open", () => {
   console.log("connect MONGODB server");

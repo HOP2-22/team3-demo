@@ -2,7 +2,6 @@ import { AiOutlineUser } from "react-icons/ai";
 import { HiCheckCircle } from "react-icons/hi";
 import { GiPencilBrush } from "react-icons/gi";
 import { useState } from "react";
-import { useEffect } from "react";
 
 export default function Select() {
   const [isSelected, setIsSelcet] = useState(false);
