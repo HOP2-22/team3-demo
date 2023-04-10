@@ -2,11 +2,49 @@ import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import { Avatar } from "@mui/material";
 
 export default function Face() {
-
   return (
     <Box sx={{ backgroundColor: "#edf2f4", padding: "24px" }}>
       <Box sx={styles.position}>
-        <Stack flex={2.5} sx={{ padding: "40px" }}>
+        <Stack
+          flex={2.5}
+          sx={{
+            padding: {
+              xs: "0px",
+              sm: "0px",
+              md: "40px",
+              lg: "40px",
+              xl: "40px",
+            },
+            // display: {
+            //   xs: "flex",
+            //   sm: "flex",
+            //   md: "flex",
+            //   lg: "flex",
+            //   xl: "flex",
+            // },
+            // flexDirection: {
+            //   xs: "column",
+            //   sm: "column",
+            //   md: "column",
+            //   lg: "column",
+            //   xl: "column",
+            // },
+            marginTop: {
+              xs: "60px",
+              sm: "60px",
+              md: "0px",
+              lg: "0px",
+              xl: "0px",
+            },
+            marginBottom: {
+              xs: "60px",
+              sm: "60px",
+              md: "0px",
+              lg: "0px",
+              xl: "0px",
+            },
+          }}
+        >
           <img
             src={
               "https://res.cloudinary.com/urlan/image/upload/v1678349701/geru-store/urban_nomad/ezgif.com-gif-maker_4_d6jzrh.gif"
@@ -33,7 +71,12 @@ export default function Face() {
           <Box sx={styles.paddingtop} variant="text">
             <Box sx={styles.padding}>
               <p>Хамтарсан уран бүтээлчид:</p>
-              <Box sx={{ paddingLeft: "16px", paddingRight: "16px" }}>
+              <Box
+                sx={{
+                  paddingLeft: "16px",
+                  paddingRight: "16px",
+                }}
+              >
                 <Avatar src="https://res.cloudinary.com/urlan/image/upload/v1675159396/geru-store/khongorzul/328598489_1163549884324212_1668282332485989101_n_1_1_wduowu.jpg" />
               </Box>
             </Box>
@@ -49,7 +92,7 @@ export default function Face() {
               }}
               variant="contained"
             >
-              Илүү Ихийг
+              Илүү Ихийг.
             </Button>
           </Box>
         </Stack>
@@ -63,9 +106,13 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    direction: {
+    display: "flex",
+    flexDirection: {
+      xs: "column",
+      sm: "column",
+      md: "row",
       lg: "row",
-      md: "column",
+      xl: "row",
     },
   },
   image: {

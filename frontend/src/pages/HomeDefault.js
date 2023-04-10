@@ -31,11 +31,22 @@ export default function Face() {
     fetchProps();
   }, []);
   return (
-    <Box sx={{ backgroundColor: "#edf2f4", width:"100%" }}>
+    <Box sx={{ backgroundColor: "#edf2f4", width: "100%" }}>
       <Container maxWidth="xl">
         <FaceHome />
         <Box sx={{ padding: "40px" }}></Box>
-        <Box sx={{ marginTop: "32px", padding: "24px" }}>
+        <Box
+          sx={{
+            marginTop: "32px",
+            padding: {
+              xs: "5px",
+              sm: "5px",
+              md: "10px",
+              lg: "24px",
+              xl: "24px",
+            },
+          }}
+        >
           <Box
             sx={{
               display: "flex",
@@ -51,10 +62,32 @@ export default function Face() {
                 alignItems: "center",
               }}
             >
-              <Box sx={{ fontWeight: "bold", fontSize: "36px" }}>
+              <Box
+                sx={{
+                  fontWeight: "bold",
+                  fontSize: {
+                    xs: "20px",
+                    sm: "20px",
+                    md: "26px",
+                    lg: "36px",
+                    xl: "36px",
+                  },
+                }}
+              >
                 КУРАТОРЫН КОЛЛЕКЦ
               </Box>
-              <Box sx={{ fontWeight: "bold", fontSize: "36px" }}>
+              <Box
+                sx={{
+                  fontWeight: "bold",
+                  fontSize: {
+                    xs: "20px",
+                    sm: "20px",
+                    md: "26px",
+                    lg: "36px",
+                    xl: "36px",
+                  },
+                }}
+              >
                 ИЛҮҮ ИХИЙГ +
               </Box>
             </Box>

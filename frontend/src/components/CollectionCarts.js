@@ -8,8 +8,8 @@ export default function Face(props) {
   return (
     <Box
       sx={{
-        width: "30%",
-        height: "90%",
+        // width: "30%",
+        // height: "90%",
         width: {
           xs: "30%",
           sm: "30%",
@@ -18,9 +18,9 @@ export default function Face(props) {
           xl: "30%",
         },
         height: {
-          xs: "70%",
-          sm: "70%",
-          md: "75%",
+          xs: "90%",
+          sm: "90%",
+          md: "90%",
           lg: "90%",
           xl: "90%",
         },
@@ -43,11 +43,43 @@ export default function Face(props) {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          padding: "12px",
+          padding: {
+            xs: "0px",
+            sm: "0px",
+            md: "10px",
+            lg: "12px",
+            xl: "12px",
+          },
+          gap: "20px",
         }}
       >
-        <Box sx={{ fontWeight: "bold" }}>price</Box>
-        <Box>@Artist</Box>
+        <Box
+          sx={{
+            fontWeight: "bold",
+            fontSize: {
+              xs: "10px",
+              sm: "10px",
+              md: "20px",
+              lg: "20px",
+              xl: "20px",
+            },
+          }}
+        >
+          price
+        </Box>
+        <Box
+          sx={{
+            fontSize: {
+              xs: "10px",
+              sm: "10px",
+              md: "20px",
+              lg: "20px",
+              xl: "20px",
+            },
+          }}
+        >
+          @Artist
+        </Box>
       </Box>
     </Box>
   );
