@@ -10,7 +10,6 @@ exports.getPosts = async (req, res) => {
     res.status(404).send(error);
   }
 };
-
 exports.createPost = async (req, res) => {
   if (!req.body.title || !req.body.name)
     return res.status(404).json({ message: "text bolon neree bicnu bayrllao" });
