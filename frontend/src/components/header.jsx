@@ -4,6 +4,7 @@ import { AiOutlineSearch, AiOutlineUser } from "react-icons/ai";
 import { SlBasket, SlArrowDown } from "react-icons/sl";
 import Container from "@mui/material/Container";
 import Search from "../components/Search";
+import Link from "next/link";
 
 export default function Header() {
   const { info } = useContext(Context);
@@ -26,8 +27,7 @@ export default function Header() {
       <div className="flex flex-col bg-white">
         <Container
           maxWidth="xl"
-          className="flex justify-between h-[75px] items-center"
-        >
+          className="flex justify-between h-[75px] items-center">
           <div className="flex items-center gap-5 md:gap-5 w-[100%]">
             <div className="text-[30px] font-bold">Geru</div>
             <input
@@ -41,15 +41,13 @@ export default function Header() {
                 className="text-[20px] flex items-center gap-2 font-bold"
                 onClick={() => {
                   setBurger(!burger);
-                }}
-              >
+                }}>
                 Enjoy <SlArrowDown className="text-[15px]" />
               </span>
               <div
                 className={`${
                   burger ? " flex" : "hidden"
-                } absolute bg-white w-[150px] h-[200px]   xl:mt-[-45px] xl:ml-[-170px] -mt-[35px] -ml-[160px]  flex-col px-[20px] justify-evenly shadow-xl rounded-[9px]`}
-              >
+                } absolute bg-white w-[150px] h-[200px]   xl:mt-[-45px] xl:ml-[-170px] -mt-[35px] -ml-[160px]  flex-col px-[20px] justify-evenly shadow-xl rounded-[9px]`}>
                 <div className="bg-gray-300 rounded-[5px] w-[110%] h-[35px] flex items-center">
                   COLLECTION
                 </div>
@@ -74,11 +72,14 @@ export default function Header() {
                   }}
                 />
                 <SlBasket />
-                <AiOutlineUser />
+                <Link href="/typeselect">
+                  <AiOutlineUser />
+                </Link>
               </div>
             </div>
           </div>
         </Container>
+        {searchClick ? <Search boolean={searchClick} /> : <></>}
       </div>
     </div>
   );
