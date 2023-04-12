@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function SignUpUser() {
   return (
     <div className="w-full h-full  mt-[150px] flex flex-col items-center justify-center gap-10">
@@ -24,6 +26,11 @@ export default function SignUpUser() {
             placeholder="••••••••••"
           />
         </div>
+        <Link href="/signUpArtist">
+          <p className="text-[16px] ml-[20px]">
+            Уран бүтээлч бол энд дарна уу?
+          </p>
+        </Link>
         <button className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white">
           Бүртгүүлэх
         </button>
