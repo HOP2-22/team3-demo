@@ -41,7 +41,13 @@ function ArtistArtworks() {
       >
         {pictures.map((item, index) => {
           return (
-            <Box sx={{ fontWeight: "bold" }}>
+            <Box
+              sx={{
+                fontWeight: "bold",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
               <img src={item} alt="a" width={"442px"} />
               INNER ESSENCE OF MANKIND
             </Box>

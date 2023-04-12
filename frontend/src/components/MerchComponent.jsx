@@ -4,45 +4,58 @@ import CardContent from "@mui/material/CardContent";
 import Favorite from "@mui/icons-material/Favorite";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Box, Button, CardActionArea, IconButton } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 
 function MerchComponent() {
   const [isShown, setIsShown] = useState(false);
 
   return (
     <Card sx={{ maxWidth: "453px" }}>
-      <CardActionArea>
+      <Box
+        onMouseEnter={() => setIsShown(true)}
+        onMouseLeave={() => setIsShown(false)}
+      >
         <CardMedia
           component="img"
           width="453px"
           image="https://res.cloudinary.com/urlan/image/upload/c_scale/q_60/f_jpg/v1/filemanager/i462uld0c6cmxc3r8noi"
           alt="Merch Photo"
-          onMouseEnter={() => setIsShown(true)}
-          onMouseLeave={() => setIsShown(false)}
         />
-        <IconButton
-          sx={{
-            position: "absolute",
-            right: 0,
-            top: 0,
-          }}
-        >
-          <Favorite />
-        </IconButton>
-        <CardContent sx={{ height: "100px" }}>
-          <Typography variant="h9" component="div" color="text.secondary">
-            T-Shirt
-          </Typography>
+        <CardContent>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              height: "30px",
+            }}
+          >
+            <Typography variant="h9" component="div" color="text.secondary">
+              T-Shirt
+            </Typography>
+            {isShown && (
+              <IconButton
+                onMouseEnter={() => setIsShown(true)}
+                onMouseLeave={() => setIsShown(false)}
+              >
+                <Favorite />
+              </IconButton>
+            )}
+          </Box>
           <Typography variant="h7" sx={{ fontWeight: "bold" }}>
             INNER ESSENCE OF MANKIND
           </Typography>
           <Typography
-            sx={{ width: "100%", height: "1px", background: "black" }}
+            sx={{
+              width: "100%",
+              height: "1px",
+              background: "black",
+            }}
           >
             80K₮
           </Typography>
         </CardContent>
-      </CardActionArea>
+      </Box>
     </Card>
   );
 }
