@@ -1,14 +1,14 @@
 import React from "react";
-import Artworks from "./ArtistArtworks";
-import Bio from "./ArtistBio";
-import Collection from "./ArtistCollection";
-import Merch from "./ArtistMerch";
+import Artworks from "../components/ArtistArtworks";
+import Bio from "../components/ArtistBio";
+import Collection from "../components/ArtistCollection";
+import Merch from "../components/ArtistMerch";
 import { Box, Container, Stack } from "@mui/material";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import Image from "next/image";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import ArtistCollection from "./ArtistCollection";
+import ArtistCollection from "../components/ArtistCollection";
 function ArtistDetail() {
   const [arr, setArr] = useState([true, false, false, false]);
 
