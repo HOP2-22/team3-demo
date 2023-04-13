@@ -1,7 +1,7 @@
 export default function LoginArtist() {
   return (
     <div className="w-full h-full  mt-[150px] flex flex-col items-center justify-center gap-10">
-      <div className="text-[32px] text-[#1b1927]">Нэвтрэх</div>
+      <div className="text-[32px] text-[#1b1927]"> Нэвтрэх</div>
       <div className="flex flex-col gap-6">
         <div className="">
           <p className="px-[20px] text-[16px]">Цахим хаяг</p>
