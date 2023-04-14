@@ -10,9 +10,6 @@ const adminRouter = require("./router/adminRouter");
 require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT;
-const URI = process.env.URI;
-
-mongoose.connect(URI);
 
 app.use(express.json());
 app.use(cors());
