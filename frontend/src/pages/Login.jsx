@@ -2,11 +2,20 @@ import { useState } from "react";
 import Cookie from "js-cookie";
 import axios from "axios";
 import Link from "next/link";
+import { Context } from "../context/context";
+import { useContext } from "react";
 
 export default function LoginUser() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [checkpass, setCheckPass] = useState("");
+  const {
+    loginUser,
+    setUserLlogin,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    checkpass,
+    setCheckPass,
+  } = useContext(Context);
 
   const EmailInput = async (event) => {
     setEmail(event.target.value);
@@ -18,29 +27,8 @@ export default function LoginUser() {
     setCheckPass(event.target.value);
   };
 
-  const login = async () => {
-    if (password == checkpass) {
-      try {
-        console.log(email, password);
-        const res = await axios.post("http://localhost:7070/user/login", {
-          email: email,
-          password: password,
-        });
-        console.log("in process");
-        console.log("is done");
-        console.log(res.data);
-        Cookie.set("token", res.data?.token);
-        console.log(res?.data?.token);
-
-        alert("Амжилттай нэвтэрлээ");
-
-        // User_post();
-      } catch (error) {
-        alert("Нууц үг эсвэл Цахим хаяг буруу байна");
-      }
-    } else {
-      alert("Нууц үг таарахгүй байна");
-    }
+  const handleLogin = () => {
+    loginUser();
   };
 
   return (
@@ -79,10 +67,8 @@ export default function LoginUser() {
           </Link>
         </div>
         <button
-          onClick={() => {
-            login();
-          }}
-          className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white">
+          className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
+          onClick={handleLogin}>
           Нэвтрэх
         </button>
       </div>
