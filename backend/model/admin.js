@@ -8,7 +8,7 @@ const adminSchema = new Schema({
     type: String,
     required: true,
   },
-  status: { type: String },
+  Role: { type: String },
 });
 
 const admin = mongoose.model("admin", adminSchema);

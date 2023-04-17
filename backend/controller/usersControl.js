@@ -1,6 +1,7 @@
-const User = require("../Model/UserModel");
+const User = require("../Model/users");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { Client } = require("../config/roles");
 
 exports.createUser = async (req, res) => {
   try {
@@ -10,8 +11,8 @@ exports.createUser = async (req, res) => {
     const newUser = await User.create({
       email: email,
       password: hashedPassword,
+      Role: Client,
     });
-    console.log(newUser);
 
     res.status(200).json({ data: newUser });
   } catch (error) {

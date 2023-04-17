@@ -10,16 +10,19 @@ exports.authenticateToken = (req, res, next) => {
 
   try {
     jwt.verify(token, process.env.ACCESS_TOKEN_KEY, (error, user) => {
+      const rolesArray = [...allowedRoles];
+
+      const result = req.roles
+        .map((role) => rolesArray.includes(role))
+        .find((val) => val === true);
+
+      if (!result) return res.sendStatus(401);
+
       if (error) {
         return res.send({ error: error }).status(500);
       }
 
-      if (user.role === "admin") {
-        console.log("this is admin");
-      }
       next();
     });
-  } catch (error) {
-    res.send(error).status(404);
-  }
+  } catch (error) {}
 };
