@@ -5,6 +5,7 @@ const cors = require("cors");
 const usersRouter = require("./router/userRouter");
 const adminRouter = require("./router/adminRouter");
 const artistRouter = require("./router/artistRouter");
+const productRouter = require("./router/productRouter");
 
 const connection = mongoose.connection;
 require("dotenv").config();
@@ -21,6 +22,7 @@ app.use(cors());
 app.use("/user", usersRouter);
 app.use("/artist", artistRouter);
 app.use("/admin", adminRouter);
+app.use("/product", productRouter);
 
 connection.once("open", () => {
   console.log("connect MONGODB server");

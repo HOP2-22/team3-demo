@@ -13,8 +13,6 @@ export const Provider = ({ children }) => {
   const [passwordUserSignUp, setPasswordUserSignUp] = useState("");
   const [checkpassUserSignUp, setCheckPassUserSignUp] = useState("");
 
-
-
   const [emailArtist, setEmailArtist] = useState("");
   const [passwordArtist, setPasswordArtist] = useState("");
   const [checkpassArtist, setCheckPassArtist] = useState("");
