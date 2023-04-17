@@ -21,27 +21,6 @@ exports.createArtist = async (req, res) => {
   }
 };
 
-exports.createArtist = async (req, res) => {
-  try {
-    const { email, password, username, type_of } = req.body;
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-    console.log(hashedPassword);
-
-    const newUser = await artist.create({
-      email: email,
-      password: hashedPassword,
-      username: username,
-      type_of: type_of,
-    });
-    console.log(newUser);
-
-    res.status(200).json({ data: newUser });
-  } catch (error) {
-    res.status(400).json({ error: error });
-  }
-};
-
 exports.getArtist = async (req, res) => {
   try {
     const users = await artist.find({});

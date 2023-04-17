@@ -54,7 +54,6 @@ exports.login = async (req, res) => {
       {
         user: user.email,
         userId: user._id,
-        role: "admin",
       },
       process.env.ACCESS_TOKEN_KEY
     );

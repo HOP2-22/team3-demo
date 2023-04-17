@@ -54,6 +54,7 @@ export const Provider = ({ children }) => {
 
   return (
     <Context.Provider
+<<<<<<< HEAD
       value={{
         // functions
         loginUser,
@@ -71,6 +72,13 @@ export const Provider = ({ children }) => {
         setUserName,
       }}
     >
+=======
+      value={
+        {
+          // functions
+        }
+      }>
+>>>>>>> 479f17c (sdfsdfgsd)
       {children}
     </Context.Provider>
   );

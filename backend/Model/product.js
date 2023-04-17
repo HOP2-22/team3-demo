@@ -18,6 +18,6 @@ const productSchema = new Schema({
     default: "pending",
   },
 });
-const product = mongoose.model("admin", productSchema);
+const product = mongoose.model("product", productSchema);
 
 module.exports = product;
