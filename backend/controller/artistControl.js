@@ -1,4 +1,5 @@
 const artist = require("../model/artist");
+
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { Artist } = require("../config/roles");
@@ -20,43 +21,66 @@ exports.createArtist = async (req, res) => {
   }
 };
 
-exports.getPosts = async (req, res) => {
+exports.createArtist = async (req, res) => {
   try {
-    const response = await artist.find();
-    res.status(200).send(response);
+    const { email, password, username, type_of } = req.body;
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    console.log(hashedPassword);
+
+    const newUser = await artist.create({
+      email: email,
+      password: hashedPassword,
+      username: username,
+      type_of: type_of,
+    });
+    console.log(newUser);
+
+    res.status(200).json({ data: newUser });
   } catch (error) {
-    res.status(404).send(error);
-  }
-};
-exports.createPost = async (req, res) => {
-  if (!req.body.title || !req.body.name)
-    return res.status(404).json({ message: "text bolon neree bicnu bayrllao" });
-  try {
-    const { name, title, price, colors, size, count, status } = req.body;
-    const post = await artist.create(req.body);
-    res.status(200).send(post);
-  } catch (error) {
-    res.status(404).send(error);
+    res.status(400).json({ error: error });
   }
 };
 
-exports.deletePost = async (req, res) => {
-  const _id = req.params.id;
+exports.getArtist = async (req, res) => {
   try {
-    const post = await artist.findByIdAndDelete({ _id });
-    res.status(200).send(post);
+    const users = await artist.find({});
+    res.status(200).json({ data: users });
   } catch (error) {
-    res.status(404).send(error);
+    res.status(400).json({ error: error });
   }
 };
 
-exports.updatePost = async (req, res) => {
-  const _id = req.params.id;
-  const body = req.body;
+exports.getArtistById = async (req, res) => {
+  const { _id } = req.params;
   try {
-    const post = await artist.findByIdAndUpdate({ _id }, { ...body });
-    res.status(200).send(post);
+    const user = await artist.findById(_id);
+    res.send({ data: user });
   } catch (error) {
-    res.status(404).send(error);
+    res.send({ error: error });
+  }
+};
+const ACCESS_TOKEN_KEY = "secret123";
+
+exports.login = async (req, res, next) => {
+  console.log(req.body);
+  try {
+    const { email, password } = req.body;
+    const user = await artist.findOne({ email: email });
+    console.log(user, user.password);
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
+      return res.status(400).json({ message: "password is dont match" });
+    }
+    const token = jwt.sign(
+      {
+        user: user.email,
+        userId: user._id,
+      },
+      ACCESS_TOKEN_KEY
+    );
+    res.status(200).json({ match: match, user: user, token });
+  } catch (error) {
+    res.status(400).json({ message: "password is dont match" });
   }
 };

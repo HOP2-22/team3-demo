@@ -1,6 +1,31 @@
 import Link from "next/link";
+import { Context } from "../context/context";
+import { useContext } from "react";
 
 export default function SignUpUser() {
+  const {
+    signUpUser,
+    emailSignUp,
+    setEmailSignUp,
+    passwordUserSignUp,
+    setPasswordUserSignUp,
+    checkpassUserSignUp,
+    setCheckPassUserSignUp,
+  } = useContext(Context);
+
+  const EmailInput = async (event) => {
+    setEmailSignUp(event.target.value);
+  };
+  const PassInput = async (event) => {
+    setPasswordUserSignUp(event.target.value);
+  };
+  const PassInputCheck = async (event) => {
+    setCheckPassUserSignUp(event.target.value);
+  };
+
+  const handleSignUp = () => {
+    signUpUser();
+  };
   return (
     <div className="w-full h-full  mt-[150px] flex flex-col items-center justify-center gap-10">
       <div className="text-[32px] text-[#1b1927]">Бүртгүүлэх</div>
@@ -10,6 +35,7 @@ export default function SignUpUser() {
           <input
             className="shadow-2xl w-[300px] sm:w-[380px] h-[45px] outline-none rounded-full text-[20px] px-[20px]"
             placeholder="••••••••••"
+            onChange={EmailInput}
           />
         </div>
         <div className="">
@@ -17,6 +43,7 @@ export default function SignUpUser() {
           <input
             className="shadow-2xl w-[300px] sm:w-[380px] h-[45px] outline-none rounded-full text-[20px] px-[20px]"
             placeholder="••••••••••"
+            onChange={PassInput}
           />
         </div>
         <div className="">
@@ -24,6 +51,7 @@ export default function SignUpUser() {
           <input
             className="shadow-2xl w-[300px] sm:w-[380px] h-[45px] outline-none rounded-full text-[20px] px-[20px]"
             placeholder="••••••••••"
+            onChange={PassInputCheck}
           />
         </div>
         <Link href="/signUpArtist">
@@ -31,7 +59,9 @@ export default function SignUpUser() {
             Уран бүтээлч бол энд дарна уу?
           </p>
         </Link>
-        <button className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white">
+        <button
+          className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
+          onClick={handleSignUp}>
           Бүртгүүлэх
         </button>
       </div>
