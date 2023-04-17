@@ -9,6 +9,7 @@ const artistSchema = new Schema({
 
   type_of: { type: "String", required: true },
 
+
   status: { type: "String", required: true },
   name: { type: "String" },
   title: { type: "String" },
