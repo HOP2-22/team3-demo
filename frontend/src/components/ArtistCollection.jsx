@@ -12,10 +12,28 @@ function ArtistCollection() {
         background: "#1b1927",
         display: "flex",
         padding: "40px",
+        flexDirection: {
+          xs: "column",
+          sm: "column",
+          md: "column",
+          lg: "row",
+          xl: "row",
+        },
       }}
     >
       <CollectionArtist />
-      <Box sx={{ display: "flex", gap: "20px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          gap: "20px",
+          flexDirection: {
+            xs: "column",
+            md: "row",
+            lg: "row",
+            xl: "row",
+          },
+        }}
+      >
         {topMerch.map((item, index) => {
           return <CollectionMerch />;
         })}
