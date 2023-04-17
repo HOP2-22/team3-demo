@@ -97,7 +97,7 @@ function ArtistDetail() {
                   color: "gray",
                 }}
               >
-                Улаанбаатар, Монголaaa
+                Улаанбаатар, Монгол
               </Box>
             </Box>
           </Box>
