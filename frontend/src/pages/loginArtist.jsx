@@ -1,4 +1,22 @@
+import { Context } from "../context/context";
+import React, { useContext } from "react";
+
 export default function LoginArtist() {
+  const { setEmailArtist, setPasswordArtist, setCheckPassArtist, login } =
+    useContext(Context);
+
+  const EmailInput = async (event) => {
+    setEmailArtist(event.target.value);
+  };
+  const PassInput = async (event) => {
+    setPasswordArtist(event.target.value);
+  };
+  const PassInputCheck = async (event) => {
+    setCheckPassArtist(event.target.value);
+  };
+  const handleLogin = () => {
+    login();
+  };
   return (
     <div className="w-full h-full  mt-[150px] flex flex-col items-center justify-center gap-10">
       <div className="text-[32px] text-[#1b1927]"> Нэвтрэх</div>
@@ -8,6 +26,7 @@ export default function LoginArtist() {
           <input
             className="shadow-2xl w-[300px] sm:w-[380px] h-[45px] outline-none rounded-full text-[20px] px-[20px]"
             placeholder="••••••••••"
+            onChange={EmailInput}
           />
         </div>
         <div className="">
@@ -15,6 +34,7 @@ export default function LoginArtist() {
           <input
             className="shadow-2xl w-[300px] sm:w-[380px] h-[45px] outline-none rounded-full text-[20px] px-[20px]"
             placeholder="••••••••••"
+            onChange={PassInput}
           />
         </div>
         <div className="">
@@ -22,9 +42,12 @@ export default function LoginArtist() {
           <input
             className="shadow-2xl w-[300px] sm:w-[380px] h-[45px] outline-none rounded-full text-[20px] px-[20px]"
             placeholder="••••••••••"
+            onChange={PassInputCheck}
           />
         </div>
-        <button className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white">
+        <button
+          className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
+          onClick={handleLogin}>
           Нэвтрэх
         </button>
       </div>
