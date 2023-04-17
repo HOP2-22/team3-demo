@@ -13,6 +13,7 @@ const artistSchema = new Schema({
   color: { type: "String" },
   size: { type: "String" },
   count: { type: "String" },
+  Role: { type: "String" },
 });
 
 const artist = mongoose.model("artist", artistSchema);
