@@ -9,6 +9,21 @@ import { Box, IconButton } from "@mui/material";
 function MerchComponent() {
   const [isShown, setIsShown] = useState(false);
 
+  // const styles = (theme) => ({
+  //   Box: {
+  //     padding: theme.spacing(1),
+  //     [theme.breakpoints.down("md")]: {
+  //       backgroundColor: theme.palette.secondary.main,
+  //     },
+  //     [theme.breakpoints.up("md")]: {
+  //       backgroundColor: theme.palette.primary.main,
+  //     },
+  //     [theme.breakpoints.up("lg")]: {
+  //       backgroundColor: green[500],
+  //     },
+  //   },
+  // });
+
   return (
     <Card sx={{ maxWidth: "453px" }}>
       <Box
