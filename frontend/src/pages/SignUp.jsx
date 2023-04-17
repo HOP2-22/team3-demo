@@ -1,17 +1,11 @@
 import Link from "next/link";
-import { Context } from "../context/context";
-import { useContext } from "react";
+import { useState } from "react";
+import axios from "axios";
 
 export default function SignUpUser() {
-  const {
-    signUpUser,
-    emailSignUp,
-    setEmailSignUp,
-    passwordUserSignUp,
-    setPasswordUserSignUp,
-    checkpassUserSignUp,
-    setCheckPassUserSignUp,
-  } = useContext(Context);
+  const [emailSignUp, setEmailSignUp] = useState();
+  const [passwordSignUp, setPasswordUserSignUp] = useState();
+  const [checkpass, setCheckPass] = useState();
 
   const EmailInput = async (event) => {
     setEmailSignUp(event.target.value);
@@ -20,12 +14,26 @@ export default function SignUpUser() {
     setPasswordUserSignUp(event.target.value);
   };
   const PassInputCheck = async (event) => {
-    setCheckPassUserSignUp(event.target.value);
+    setCheckPass(event.target.value);
   };
 
-  const handleSignUp = () => {
-    signUpUser();
+  const signUpUser = async () => {
+    if (passwordSignUp == checkpass) {
+      try {
+        const res = await axios.post("http://localhost:7070/user/create", {
+          email: emailSignUp,
+          password: passwordSignUp,
+        });
+
+        alert("amjilttai burtgegdle");
+      } catch (error) {
+        alert("Нууц үг эсвэл Цахим хаяг буруу байна");
+      }
+    } else {
+      alert("nuuts ug taarahgui baina");
+    }
   };
+
   return (
     <div className="w-full h-full  mt-[150px] flex flex-col items-center justify-center gap-10">
       <div className="text-[32px] text-[#1b1927]">Бүртгүүлэх</div>
@@ -61,7 +69,8 @@ export default function SignUpUser() {
         </Link>
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
-          onClick={handleSignUp}>
+          onClick={signUpUser}
+        >
           Бүртгүүлэх
         </button>
       </div>

@@ -1,15 +1,11 @@
-import { Context } from "../context/context";
-import { useContext } from "react";
+import { useState } from "react";
 
 export default function SignUp() {
-  const {
-    setEmailSignUpArtist,
-    setPasswordSignUpArtist,
-    setCheckPassSignUpArtist,
-    signUpArtist,
-    setArtistType,
-    setUserName,
-  } = useContext(Context);
+  const [emailSignUp, setEmailSignUpArtist] = useState();
+  const [passwordUserSignUp, setPasswordSignUpArtist] = useState();
+  const [username, setUserName] = useState();
+  const [artistType, setArtistType] = useState();
+  const [checkpassUserSignUp, setCheckPassSignUpArtist] = useState();
 
   const EmailInput = async (event) => {
     setEmailSignUpArtist(event.target.value);
@@ -26,9 +22,26 @@ export default function SignUp() {
   const NameInput = async (event) => {
     setUserName(event.target.value);
   };
-  const handleSignUp = () => {
-    loginArtist();
+
+  const signUpArtist = async () => {
+    if (passwordUserSignUp == checkpassUserSignUp) {
+      try {
+        const res = await axios.post("http://localhost:7070/artist/create", {
+          email: emailSignUp,
+          password: passwordUserSignUp,
+          username: username,
+          type_of: artistType,
+        });
+
+        alert("amjilttai burgegdle");
+      } catch (error) {
+        alert("Нууц үг эсвэл Цахим хаяг буруу байна");
+      }
+    } else {
+      alert("nuuts ug taarahgui baina");
+    }
   };
+
   return (
     <div className="w-full h-full  mt-[150px] flex flex-col items-center justify-center gap-10">
       <div className="text-[32px] text-[#1b1927]">Бүртгүүлэх</div>
@@ -77,7 +90,8 @@ export default function SignUp() {
         </div>
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
-          onClick={handleSignUp}>
+          onClick={signUpArtist}
+        >
           Бүртгүүлэх
         </button>
       </div>
