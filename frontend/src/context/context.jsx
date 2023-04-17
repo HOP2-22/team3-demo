@@ -13,7 +13,6 @@ export const Provider = ({ children }) => {
   const [passwordUserSignUp, setPasswordUserSignUp] = useState("");
   const [checkpassUserSignUp, setCheckPassUserSignUp] = useState("");
 
-
   const [emailArtist, setEmailArtist] = useState("");
   const [passwordArtist, setPasswordArtist] = useState("");
   const [checkpassArtist, setCheckPassArtist] = useState("");
@@ -86,7 +85,7 @@ export const Provider = ({ children }) => {
           email: emailSignUp,
           password: passwordUserSignUp,
           username: username,
-          type_of :artistType 
+          type_of: artistType,
         });
 
         alert("amjilttai burgegdle");
@@ -105,7 +104,7 @@ export const Provider = ({ children }) => {
         loginUser,
         signUpUser,
         login,
-        signUp
+        signUp,
 
         // user sign up and login states
         email,
