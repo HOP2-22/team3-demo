@@ -7,8 +7,11 @@ const productSchema = new Schema({
   productName: { type: String, required: true },
   images: [{ type: String }],
   price: { type: String, required: true },
-  count: { type: String, required: true },
-  size: [],
+  productDetails: {
+    size: [{ type: String, required: true }],
+    conut: { type: String, required: true },
+    color: { type: String, required: true },
+  },
   status: {
     type: String,
     enum: ["pending", "rejected", "accepted"],
