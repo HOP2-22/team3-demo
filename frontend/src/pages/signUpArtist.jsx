@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 
 export default function SignUp() {
@@ -90,8 +91,9 @@ export default function SignUp() {
         </div>
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
-          onClick={signUpArtist}
-        >
+          onClick={() => {
+            signUpArtist();
+          }}>
           Бүртгүүлэх
         </button>
       </div>

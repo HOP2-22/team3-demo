@@ -39,6 +39,8 @@ exports.getUserById = async (req, res) => {
   }
 };
 
+const ACCESS_TOKEN_KEY = "secret123";
+
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -54,10 +56,10 @@ exports.login = async (req, res) => {
       {
         user: user.email,
         userId: user._id,
-        role: "admin",
       },
-      process.env.ACCESS_TOKEN_KEY
+      ACCESS_TOKEN_KEY
     );
+    console.log("in progress");
 
     res.status(200).json({ match: match, user: user, token });
   } catch (error) {

@@ -69,8 +69,9 @@ export default function SignUpUser() {
         </Link>
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
-          onClick={signUpUser}
-        >
+          onClick={() => {
+            signUpUser();
+          }}>
           Бүртгүүлэх
         </button>
       </div>

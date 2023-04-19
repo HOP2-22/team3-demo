@@ -6,7 +6,7 @@ const Task = new Schema({
   email: { type: String, required: [true, "write your email"] },
   password: { type: String, required: true },
   createdAt: { type: Date, default: new Date() },
-  Role: { type: String },
+  Role: { type: String, required: true },
 });
 
 module.exports = mongoose.model("User", Task);
