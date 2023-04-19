@@ -6,7 +6,7 @@ export default function LoginArtist() {
   const [passwordArtist, setPasswordArtist] = useState();
   const [checkpassArtist, setCheckPassArtist] = useState();
 
-  const loginAritist = async () => {
+  const loginArt = async () => {
     if (passwordArtist == checkpassArtist) {
       try {
         const res = await axios.post("http://localhost:7070/user/login", {
@@ -33,7 +33,7 @@ export default function LoginArtist() {
     setCheckPassArtist(event.target.value);
   };
   const handleLogin = () => {
-    loginAritist();
+    loginArt();
   };
   return (
     <div className="w-full h-full  mt-[150px] flex flex-col items-center justify-center gap-10">
