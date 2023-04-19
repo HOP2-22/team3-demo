@@ -2,20 +2,11 @@ import { useState } from "react";
 import Cookie from "js-cookie";
 import axios from "axios";
 import Link from "next/link";
-import { Context } from "../context/context";
-import { useContext } from "react";
 
 export default function LoginUser() {
-  const {
-    loginUser,
-    setUserLlogin,
-    email,
-    setEmail,
-    password,
-    setPassword,
-    checkpass,
-    setCheckPass,
-  } = useContext(Context);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [checkpass, setCheckPass] = useState("");
 
   const EmailInput = async (event) => {
     setEmail(event.target.value);
@@ -29,6 +20,23 @@ export default function LoginUser() {
 
   const handleLogin = () => {
     loginUser();
+  };
+
+  const loginUser = async () => {
+    if (password == checkpass) {
+      try {
+        const res = await axios.post("http://localhost:7070/user/login", {
+          email: email,
+          password: password,
+        });
+        alert("Login successful");
+        Cookie.set("token", res.data?.token);
+      } catch (error) {
+        alert("Нууц үг эсвэл Цахим хаяг буруу байна");
+      }
+    } else {
+      alert("nuuts ug taarahgui baina");
+    }
   };
 
   return (
@@ -68,7 +76,8 @@ export default function LoginUser() {
         </div>
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
-          onClick={handleLogin}>
+          onClick={handleLogin}
+        >
           Нэвтрэх
         </button>
       </div>
