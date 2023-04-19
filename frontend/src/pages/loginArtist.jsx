@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Cookie from "js-cookie";
+import axios from "axios";
 
 export default function LoginArtist() {
   const [emailArtist, setEmailArtist] = useState();
@@ -9,7 +10,7 @@ export default function LoginArtist() {
   const loginArt = async () => {
     if (passwordArtist == checkpassArtist) {
       try {
-        const res = await axios.post("http://localhost:7070/user/login", {
+        const res = await axios.post("http://localhost:7070/artist/login", {
           email: emailArtist,
           password: passwordArtist,
         });
@@ -65,8 +66,7 @@ export default function LoginArtist() {
         </div>
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
-          onClick={handleLogin}
-        >
+          onClick={handleLogin}>
           Нэвтрэх
         </button>
       </div>

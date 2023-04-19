@@ -15,6 +15,4 @@ artistRouter.get("/findArtist/:_id", getArtistById);
 artistRouter.post("/create", createArtist);
 artistRouter.post("/login", login);
 
-artistRouter.post("/", createArtist);
-
 module.exports = artistRouter;

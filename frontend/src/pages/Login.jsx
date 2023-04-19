@@ -76,8 +76,7 @@ export default function LoginUser() {
         </div>
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
-          onClick={handleLogin}
-        >
+          onClick={handleLogin}>
           Нэвтрэх
         </button>
       </div>

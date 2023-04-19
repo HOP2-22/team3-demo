@@ -7,14 +7,7 @@ const artistSchema = new Schema({
   password: { type: "String", required: true },
   username: { type: "String", required: true },
   type_of: { type: "String", required: true },
-  status: { type: "String", required: true },
-  name: { type: "String" },
-  title: { type: "String" },
-  price: { type: Number },
-  color: { type: "String" },
-  size: { type: "String" },
-  count: { type: "String" },
-  Role: { type: "String", required: true },
+  Role: { type: "String" },
 });
 
 const artist = mongoose.model("artist", artistSchema);

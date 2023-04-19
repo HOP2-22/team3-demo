@@ -6,12 +6,14 @@ const { Artist } = require("../config/roles");
 
 exports.createArtist = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, type_of, username } = req.body;
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     const newUser = await artist.create({
       email: email,
       password: hashedPassword,
+      type_of: type_of,
+      username: username,
       Role: Artist,
     });
 
@@ -41,7 +43,7 @@ exports.getArtistById = async (req, res) => {
 };
 const ACCESS_TOKEN_KEY = "secret123";
 
-exports.login = async (req, res, next) => {
+exports.login = async (req, res) => {
   console.log(req.body);
   try {
     const { email, password } = req.body;
