@@ -1,9 +1,27 @@
-import { Context } from "../context/context";
-import React, { useContext } from "react";
+import React, { useState } from "react";
+import Cookie from "js-cookie";
 
 export default function LoginArtist() {
-  const { setEmailArtist, setPasswordArtist, setCheckPassArtist, login } =
-    useContext(Context);
+  const [emailArtist, setEmailArtist] = useState();
+  const [passwordArtist, setPasswordArtist] = useState();
+  const [checkpassArtist, setCheckPassArtist] = useState();
+
+  const loginAritist = async () => {
+    if (passwordArtist == checkpassArtist) {
+      try {
+        const res = await axios.post("http://localhost:7070/user/login", {
+          email: emailArtist,
+          password: passwordArtist,
+        });
+        alert("Login successful");
+        Cookie.set("token", res.data?.token);
+      } catch (error) {
+        alert("Нууц үг эсвэл Цахим хаяг буруу байна");
+      }
+    } else {
+      alert("nuuts ug taarahgui baina");
+    }
+  };
 
   const EmailInput = async (event) => {
     setEmailArtist(event.target.value);
@@ -15,7 +33,7 @@ export default function LoginArtist() {
     setCheckPassArtist(event.target.value);
   };
   const handleLogin = () => {
-    login();
+    loginAritist();
   };
   return (
     <div className="w-full h-full  mt-[150px] flex flex-col items-center justify-center gap-10">
@@ -47,7 +65,8 @@ export default function LoginArtist() {
         </div>
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
-          onClick={handleLogin}>
+          onClick={handleLogin}
+        >
           Нэвтрэх
         </button>
       </div>

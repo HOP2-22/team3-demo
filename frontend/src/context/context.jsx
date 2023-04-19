@@ -5,9 +5,6 @@ import Cookie from "js-cookie";
 export const Context = createContext({});
 
 export const Provider = ({ children }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [checkpass, setCheckPass] = useState("");
   const [emailSignUp, setEmailSignUp] = useState("");
   const [passwordUserSignUp, setPasswordUserSignUp] = useState("");
   const [checkpassUserSignUp, setCheckPassUserSignUp] = useState("");

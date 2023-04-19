@@ -4,6 +4,10 @@ import axios from "axios";
 import Link from "next/link";
 
 export default function LoginUser() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [checkpass, setCheckPass] = useState("");
+
   const EmailInput = async (event) => {
     setEmail(event.target.value);
   };
