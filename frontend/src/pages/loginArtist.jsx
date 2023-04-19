@@ -16,6 +16,10 @@ export default function LoginArtist() {
         });
         alert("Login successful");
         Cookie.set("token", res.data?.token);
+
+        setTimeout(() => {
+          router.push("/HomeDefault");
+        }, 1000);
       } catch (error) {
         alert("Нууц үг эсвэл Цахим хаяг буруу байна");
       }
@@ -66,7 +70,8 @@ export default function LoginArtist() {
         </div>
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
-          onClick={handleLogin}>
+          onClick={handleLogin}
+        >
           Нэвтрэх
         </button>
       </div>
