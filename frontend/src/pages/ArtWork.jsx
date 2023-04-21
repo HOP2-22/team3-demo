@@ -73,13 +73,7 @@ function Artwork() {
         marginTop: "75px",
       }}
     >
-      <Container
-      // sx={{
-      //   width: {
-      //     xs: "100%",
-      //   },
-      // }}
-      >
+      <Container>
         <Typography>ARTWORK</Typography>
         <Typography display={"flex"} justifyContent={"end"}>
           Илүү мэдрэмж
@@ -91,7 +85,7 @@ function Artwork() {
             width: "100%",
           }}
         >
-          <ImageList variant="masonry" cols={{ xs: "1", sm: "2" }} gap={10}>
+          <ImageList variant="masonry" cols={3} gap={10}>
             {itemData.map((item) => (
               <ArtworkArts
                 image={item.img}
