@@ -8,6 +8,7 @@ import VerifiedIcon from "@mui/icons-material/Verified";
 import Image from "next/image";
 import { useState } from "react";
 import ArtistCollection from "../components/ArtistCollection";
+
 function ArtistDetail() {
   const [arr, setArr] = useState([true, false, false, false]);
 

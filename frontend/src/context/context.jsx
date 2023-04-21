@@ -1,6 +1,4 @@
-import React, { createContext, useState } from "react";
-import axios from "axios";
-import Cookie from "js-cookie";
+import React, { createContext } from "react";
 
 export const Context = createContext({});
 

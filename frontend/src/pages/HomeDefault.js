@@ -23,7 +23,6 @@ export default function Face() {
         const res = await instance.get("/");
         setData([res.data.data][0].slice(0, 6));
         setCount([res.data.data][0].length);
-        console.log(count);
       } catch (err) {
         console.log(err);
       }

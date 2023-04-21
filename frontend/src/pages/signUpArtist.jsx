@@ -35,6 +35,10 @@ export default function SignUp() {
         });
 
         alert("amjilttai burgegdle");
+
+        setTimeout(() => {
+          router.push("/loginArtist");
+        }, 1000);
       } catch (error) {
         alert("Нууц үг эсвэл Цахим хаяг буруу байна");
       }
@@ -93,7 +97,8 @@ export default function SignUp() {
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
           onClick={() => {
             signUpArtist();
-          }}>
+          }}
+        >
           Бүртгүүлэх
         </button>
       </div>
