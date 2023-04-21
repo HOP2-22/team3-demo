@@ -29,6 +29,7 @@ export default function Face() {
     };
     fetchProps();
   }, []);
+
   return (
     <Box sx={{ backgroundColor: "#edf2f4", width: "100%", marginTop: "70px" }}>
       <Container maxWidth="xl">
