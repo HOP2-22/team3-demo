@@ -7,11 +7,28 @@ const productSchema = new Schema({
   productName: { type: String, required: true },
   images: [{ type: String }],
   price: { type: String, required: true },
-  productDetails: {
-    size: [{ type: String, required: true }],
-    conut: { type: String, required: true },
-    color: { type: String, required: true },
+  //   size: [
+  //  "sm":
+  //   ],
+  sm: {
+    count: {
+      type: Number,
+      default: 0,
+    },
   },
+  md: {
+    count: {
+      type: Number,
+      default: 0,
+    },
+  },
+  lg: {
+    count: {
+      type: Number,
+      default: 0,
+    },
+  },
+
   status: {
     type: String,
     enum: ["pending", "rejected", "accepted"],
