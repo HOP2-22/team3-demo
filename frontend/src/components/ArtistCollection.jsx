@@ -12,10 +12,20 @@ function ArtistCollection() {
         background: "#1b1927",
         display: "flex",
         padding: "40px",
+        gap: "15px",
+        justifyContent: "center",
       }}
+      className="abc"
     >
       <CollectionArtist />
-      <Box sx={{ display: "flex", gap: "20px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          gap: "20px",
+          justifyContent: "center",
+        }}
+        className="hello"
+      >
         {topMerch.map((item, index) => {
           return <CollectionMerch />;
         })}

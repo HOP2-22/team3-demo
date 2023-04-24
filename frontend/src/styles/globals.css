@@ -6,3 +6,22 @@ html,
 body {
   background-color: #f7f7f7;
 }
+@media only screen and (max-width: 768px) {
+  .collectionMerchStyle {
+    width: 159px;
+  }
+  .abc {
+    flex-direction: column;
+  }
+}
+@media only screen and (max-width: 620px) {
+  .collectionMerchStyle {
+    width: 159px;
+  }
+  .hello {
+    flex-direction: column;
+  }
+  .collectionMerchPrice {
+    width: 159px;
+  }
+}

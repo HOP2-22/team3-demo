@@ -1,17 +1,17 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
 import ArtistPfp from "./ArtistPfp";
 
 function CollectionArtist() {
   return (
-    <Box sx={{ width: "30%" }}>
+    <Box>
       <img
         src="/artistBg.jpeg"
         width={"132px"}
         height={"132px"}
         style={{ borderRadius: "20px", marginBottom: "20px" }}
       />
-      <Typography
+      <Box
         sx={{
           color: "white",
           fontWeight: "bold",
@@ -20,11 +20,17 @@ function CollectionArtist() {
         }}
       >
         Medrehui
-      </Typography>
-      <Typography sx={{ color: "white", marginBottom: "20px" }}>
+      </Box>
+      <Box
+        sx={{
+          color: "white",
+          marginBottom: "20px",
+          width: "100%",
+        }}
+      >
         Mongol geriin tooniig emegtei hunii belhuuseer orooson durslel baij
         bolno gej uu?
-      </Typography>
+      </Box>
       <Box
         sx={{
           display: "flex",

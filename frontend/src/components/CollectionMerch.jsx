@@ -8,6 +8,7 @@ function CollectionMerch() {
         src="https://res.cloudinary.com/urlan/image/upload/c_scale/q_60/f_jpg/v1/filemanager/cjmh1ndpifgf2oilap8j"
         height={"294px"}
         width={"294px"}
+        className="collectionMerchStyle"
       />
       <Box
         sx={{
@@ -18,6 +19,7 @@ function CollectionMerch() {
           padding: "16px 12px",
           justifyContent: "space-between",
         }}
+        className="collectionMerchPrice"
       >
         <Box>80K₮</Box>
         <Box>@khongorzul</Box>
