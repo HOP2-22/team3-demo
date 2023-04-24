@@ -6,26 +6,44 @@ const productSchema = new Schema({
   ownerID: { type: String, required: true },
   productName: { type: String, required: true },
   images: [{ type: String }],
+  color: { type: String, required: true },
   price: { type: String, required: true },
-  //   size: [
-  //  "sm":
-  //   ],
-  sm: {
-    count: {
-      type: Number,
-      default: 0,
+  size: {
+    xxs: {
+      count: {
+        type: Number,
+        default: 0,
+      },
     },
-  },
-  md: {
-    count: {
-      type: Number,
-      default: 0,
+    xs: {
+      count: {
+        type: Number,
+        default: 0,
+      },
     },
-  },
-  lg: {
-    count: {
-      type: Number,
-      default: 0,
+    s: {
+      count: {
+        type: Number,
+        default: 0,
+      },
+    },
+    m: {
+      count: {
+        type: Number,
+        default: 0,
+      },
+    },
+    l: {
+      count: {
+        type: Number,
+        default: 0,
+      },
+    },
+    xxl: {
+      count: {
+        type: Number,
+        default: 0,
+      },
     },
   },
 

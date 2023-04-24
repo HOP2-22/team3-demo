@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 export default function SignUp() {
   const [emailSignUp, setEmailSignUpArtist] = useState();
@@ -7,6 +8,8 @@ export default function SignUp() {
   const [username, setUserName] = useState();
   const [artistType, setArtistType] = useState();
   const [checkpassUserSignUp, setCheckPassSignUpArtist] = useState();
+
+  const router = useRouter();
 
   const EmailInput = async (event) => {
     setEmailSignUpArtist(event.target.value);
@@ -97,8 +100,7 @@ export default function SignUp() {
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
           onClick={() => {
             signUpArtist();
-          }}
-        >
+          }}>
           Бүртгүүлэх
         </button>
       </div>

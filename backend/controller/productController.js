@@ -1,19 +1,36 @@
 const Product = require("../Model/product");
 
 exports.createProduct = async (req, res) => {
-  const { ownerID, productName, images, price, productDetails } = req.body;
-  const { count, size, color } = productDetails;
-  console.log(ownerID, productName, images, price, productDetails);
+  const { ownerID, productName, images, price, size, color } = req.body;
+  const { xxs, xs, s, m, l, xxl } = size;
+
+  console.log(ownerID, productName, images, price);
   try {
     const newProduct = await Product.create({
       ownerID: ownerID,
       productName: productName,
       images: images,
       price: price,
-      productDetails: {
-        size: size,
-        count: count,
-        color: color,
+      color: color,
+      size: {
+        xxs: {
+          count: xxs.count,
+        },
+        xs: {
+          count: xxs.count,
+        },
+        s: {
+          count: xxs.count,
+        },
+        m: {
+          count: xxs.count,
+        },
+        l: {
+          count: xxs.count,
+        },
+        xxl: {
+          count: xxs.count,
+        },
       },
     });
 
