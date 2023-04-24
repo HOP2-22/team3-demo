@@ -43,8 +43,7 @@ export default function Face() {
               lg: "0px",
               xl: "0px",
             },
-          }}
-        >
+          }}>
           <img
             src={
               "https://res.cloudinary.com/urlan/image/upload/v1678349701/geru-store/urban_nomad/ezgif.com-gif-maker_4_d6jzrh.gif"
@@ -61,8 +60,7 @@ export default function Face() {
               lineHeight: "0.9em",
               overflow: "hidden",
               fontWeight: "bold",
-            }}
-          >
+            }}>
             ИХ ХОТЫН НҮҮДЭЛЧИД
           </Typography>
           <Typography sx={{ color: "rgba(0,0,0,.7)" }}>
@@ -75,8 +73,7 @@ export default function Face() {
                 sx={{
                   paddingLeft: "16px",
                   paddingRight: "16px",
-                }}
-              >
+                }}>
                 <Avatar src="https://res.cloudinary.com/urlan/image/upload/v1675159396/geru-store/khongorzul/328598489_1163549884324212_1668282332485989101_n_1_1_wduowu.jpg" />
               </Box>
             </Box>
@@ -90,8 +87,7 @@ export default function Face() {
                 backgroundColor: "White",
                 color: "black",
               }}
-              variant="contained"
-            >
+              variant="contained">
               Илүү Ихийг.
             </Button>
           </Box>
