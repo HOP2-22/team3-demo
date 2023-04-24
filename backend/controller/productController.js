@@ -14,22 +14,22 @@ exports.createProduct = async (req, res) => {
       color: color,
       size: {
         xxs: {
-          count: xxs.count,
+          count: 1,
         },
         xs: {
-          count: xxs.count,
+          count: 1,
         },
         s: {
-          count: xxs.count,
+          count: 1,
         },
         m: {
-          count: xxs.count,
+          count: 1,
         },
         l: {
-          count: xxs.count,
+          count: 1,
         },
         xxl: {
-          count: xxs.count,
+          count: 1,
         },
       },
     });
@@ -75,4 +75,18 @@ exports.PatchProduct = async (req, res) => {
   } catch (error) {
     res.status(400).json(error);
   }
+};
+exports.DeleteProduct = async (req, res) => {
+  const id = req.body.id;
+  try {
+    console.log(id);
+    await Product.findByIdAndDelete(id);
+    res.status(200).json({ deleteUser: "succesful" });
+  } catch (error) {
+    res.status(400).json({ message: "can't delete" });
+  }
+};
+exports.DeleteAll = async (req, res) => {
+  await Product.deleteMany();
+  res.status(200).json({ success: true });
 };

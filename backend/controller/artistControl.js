@@ -65,3 +65,19 @@ exports.login = async (req, res) => {
     res.status(400).json({ message: "password is dont match" });
   }
 };
+
+exports.deleteArtist = async (req, res) => {
+  const id = req.body.id;
+  try {
+    console.log(id);
+    await artist.findByIdAndDelete(id);
+    res.status(200).json({ deleteUser: "succesful" });
+  } catch (error) {
+    res.status(400).json({ message: "can't delete" });
+  }
+};
+
+exports.DeleteAll = async (req, res) => {
+  await artist.deleteMany();
+  res.status(200).json({ success: true });
+};
