@@ -2,16 +2,22 @@ import { Container, Box, Typography } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
+import { CardDt } from "../json/card.json";
+
+const img =
+  "https://res.cloudinary.com/urlan/image/upload/a_0,g_north_west,h_664,o_100,u_fetch:aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vdXJsYW4vaW1hZ2UvdXBsb2FkL2Nfc2NhbGUsaF82ODIsd183NDYvZ19ub3J0aF93ZXN0LGhfNjU2LGxfZmlsZW1hbmFnZXI6c2RhaHA5OHl2bWtodWhrdXp4eGQsd181NDYseF8xMTEseV8yNi9jX2Nyb3AsZ19ub3J0aF93ZXN0LGhfNjY0LHdfNzQ2LHhfMCx5XzAvdjEvbW9ja3VwL2JhY2tncm91bmRfMl9hZ3ZpemM,x_169,y_188/c_crop,g_north_west,h_1080,w_1080,x_0,y_0/f_jpg/v1/mockup/mouse-pad-40x45/pad_studio_shot_ewlllo.jpg";
 
 const Product = () => {
-  <Container>
-    <Box>
-      <img src="https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" />
-      <Typography>fgcvserdfverd</Typography>
-      <NativeSelectDemo />
-      <Typography>39.6k</Typography>
-    </Box>
-  </Container>;
+  return (
+    <Container>
+      <Box>
+        <img src={img} style={{ height: "100px" }} />
+        <Typography>fgcvserdfverd</Typography>
+        <NativeSelectDemo />
+        <Typography>39.6k</Typography>
+      </Box>
+    </Container>
+  );
 };
 
 const NativeSelectDemo = () => {
@@ -28,9 +34,9 @@ const NativeSelectDemo = () => {
             id: "uncontrolled-native",
           }}
         >
-          <option value={10}>Ten</option>
-          <option value={20}>Twenty</option>
-          <option value={30}>Thirty</option>
+          {CardDt.map((data, ind) => {
+            return <option value={40}>{data}</option>;
+          })}
         </NativeSelect>
       </FormControl>
     </Box>
@@ -50,6 +56,7 @@ function Cart() {
           <Typography>(04/22 - 04/25)</Typography>
         </Box>
       </Box>
+
       <Product />
     </Container>
   );

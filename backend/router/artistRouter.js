@@ -1,9 +1,11 @@
 const express = require("express");
 
+const { getUserById } = require("../Controller/usersControl");
+
 const {
-  createArtist,
   getArtist,
   getArtistById,
+  createArtist,
   login,
   DeleteAll,
   deleteArtist,
