@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function SignUpUser() {
+  const router = useRouter();
+
   const [emailSignUp, setEmailSignUp] = useState();
   const [passwordSignUp, setPasswordUserSignUp] = useState();
   const [checkpass, setCheckPass] = useState();
@@ -27,9 +30,7 @@ export default function SignUpUser() {
 
         alert("amjilttai burtgegdle");
 
-        setTimeout(() => {
-          router.push("/Login");
-        }, 1000);
+        router.push("/Login");
       } catch (error) {
         alert("Нууц үг эсвэл Цахим хаяг буруу байна");
       }
@@ -75,8 +76,7 @@ export default function SignUpUser() {
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
           onClick={() => {
             signUpUser();
-          }}
-        >
+          }}>
           Бүртгүүлэх
         </button>
       </div>
