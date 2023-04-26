@@ -6,9 +6,9 @@ import Merch from "../components/ArtistMerch";
 import { Box, Container, Stack } from "@mui/material";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import Image from "next/image";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import ArtistCollection from "../components/ArtistCollection";
+
 function ArtistDetail() {
   const [arr, setArr] = useState([true, false, false, false]);
 
@@ -20,7 +20,14 @@ function ArtistDetail() {
 
   return (
     <Box>
-      <Box height={"400px"} width={"100vw"} position={"relative"}>
+      <Box
+        height={"400px"}
+        width={"100vw"}
+        position={"relative"}
+        sx={{
+          padding: "85px 0px",
+        }}
+      >
         <Image
           src="/artistBg.jpeg"
           fill
@@ -29,18 +36,46 @@ function ArtistDetail() {
             objectPosition: "center",
           }}
         />
-      </Box>
-      <Box>
-        <Container maxWidth={"xl"}>
-          <Stack
-            direction={"row"}
-            justifyContent={"space-between"}
+        <Stack
+          sx={{
+            display: "flex",
+            position: "absolute",
+            bottom: "0",
+            transform: "translateY(50%)",
+            width: "100%",
+            justifyContent: "space-around",
+            flexDirection: {
+              xs: "column",
+              md: "row",
+              lg: "row",
+              xl: "row",
+            },
+          }}
+        >
+          <Box
             sx={{
-              transform: "translateY(-50%)",
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
             }}
           >
             <Box
               sx={{
+                height: "152px",
+                width: "152px",
+                padding: "20px",
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                backgroundImage:
+                  "url(https://res.cloudinary.com/urlan/image/upload/v1675159396/geru-store/khongorzul/328598489_1163549884324212_1668282332485989101_n_1_1_wduowu.jpg)",
+                borderRadius: "50%",
+                border: "10px solid white",
+                borderRadius: "100%",
+                boxShadow: "0 0px 15px 5px rgba(0, 0, 0, 0.2)",
+              }}
+            />
+            <Box
+              style={{
                 display: "flex",
                 alignItems: "center",
                 flexDirection: "column",
@@ -48,70 +83,65 @@ function ArtistDetail() {
             >
               <Box
                 sx={{
-                  height: "152px",
-                  width: "152px",
-                  padding: "20px",
-                  backgroundPosition: "center",
-                  backgroundSize: "cover",
-                  backgroundImage:
-                    "url(https://res.cloudinary.com/urlan/image/upload/v1675159396/geru-store/khongorzul/328598489_1163549884324212_1668282332485989101_n_1_1_wduowu.jpg)",
-                  borderRadius: "50%",
-                  border: "10px solid white",
-                  borderRadius: "100%",
-                  boxShadow: "0 0px 15px 5px rgba(0, 0, 0, 0.2)",
-                }}
-              />
-              <Box
-                style={{
                   display: "flex",
                   alignItems: "center",
-                  flexDirection: "column",
+                  fontHeight: " 600",
+                  fontSize: "36px",
+                  color: "aqua",
                 }}
               >
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    fontHeight: " 600",
-                    fontSize: "36px",
-                  }}
-                >
-                  Хонгорзул
-                  <VerifiedIcon sx={{ color: "#3498db" }} />
-                </Box>
-                <Box>Улаанбаатар, Монгол</Box>
-              </Box>
-            </Box>
-            <Box
-              sx={{
-                width: "680px",
-                background: "white",
-                padding: "16px 20px",
-                boxShadow: "0 0px 15px 5px rgba(0, 0, 0, 0.2)",
-              }}
-            >
-              <Box>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Provident eligendi, temporibus reiciendis quos, necessitatibus
-                nihil harum at ut modi corrupti blanditiis culpa minus illo
-                maxime inven tore molestias unde, dignissimos hic?
+                Хонгорзул
+                <VerifiedIcon sx={{ color: "#3498db" }} />
               </Box>
               <Box
                 sx={{
-                  display: "flex",
-                  justifyContent: "end",
+                  color: "gray",
                 }}
               >
-                <img
-                  src="https://wallpapers.com/images/hd/confused-patrick-random-pfp-x63wp9vs43cem64s.jpg"
-                  height="34px"
-                  width="34px"
-                  style={{ borderRadius: "50%" }}
-                />
-                Aminaa Mashbat
+                Улаанбаатар, Монгол
               </Box>
             </Box>
-          </Stack>
+          </Box>
+          <Box
+            sx={{
+              width: {
+                xs: "100%",
+                md: "680px",
+              },
+              right: 0,
+              background: "white",
+              padding: "16px 20px",
+              boxShadow: {
+                xs: "none",
+                md: "0 0px 15px 5px rgba(0, 0, 0, 0.2)",
+              },
+            }}
+          >
+            <Box>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Provident eligendi, temporibus reiciendis quos, necessitatibus
+              nihil harum at ut modi corrupti blanditiis culpa minus illo maxime
+              inven tore molestias unde, dignissimos hic?
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "end",
+              }}
+            >
+              <img
+                src="https://wallpapers.com/images/hd/confused-patrick-random-pfp-x63wp9vs43cem64s.jpg"
+                height="34px"
+                width="34px"
+                style={{ borderRadius: "50%" }}
+              />
+              Aminaa Mashbat
+            </Box>
+          </Box>
+        </Stack>
+      </Box>
+      <Box sx={{ padding: "200px 0px 0px 0px" }}>
+        <Container maxWidth={"xl"}>
           <Box
             sx={{
               display: "flex",
@@ -126,7 +156,15 @@ function ArtistDetail() {
           >
             {arr?.map((item, index) => {
               return (
-                <Box onClick={() => booleanHandler(index)}>
+                <Box
+                  onClick={() => booleanHandler(index)}
+                  sx={{
+                    fontSize: {
+                      xs: "16px",
+                      sm: "30px",
+                    },
+                  }}
+                >
                   {index === 0
                     ? "COLLECTION"
                     : index === 1

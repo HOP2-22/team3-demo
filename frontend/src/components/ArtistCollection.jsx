@@ -12,8 +12,18 @@ function ArtistCollection() {
         background: "#1b1927",
         display: "flex",
         padding: "40px",
+
         gap: "15px",
         justifyContent: "center",
+
+        flexDirection: {
+          xs: "column",
+          sm: "column",
+          md: "column",
+          lg: "row",
+          xl: "row",
+        },
+
       }}
       className="abc"
     >
@@ -22,9 +32,18 @@ function ArtistCollection() {
         sx={{
           display: "flex",
           gap: "20px",
+
           justifyContent: "center",
         }}
-        className="hello"
+
+          flexDirection: {
+            xs: "column",
+            md: "row",
+            lg: "row",
+            xl: "row",
+          },
+        }}
+
       >
         {topMerch.map((item, index) => {
           return <CollectionMerch />;

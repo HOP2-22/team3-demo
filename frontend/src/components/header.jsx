@@ -4,6 +4,7 @@ import { AiOutlineSearch, AiOutlineUser } from "react-icons/ai";
 import { SlBasket, SlArrowDown } from "react-icons/sl";
 import Container from "@mui/material/Container";
 import Search from "../components/Search";
+import Link from "next/link";
 
 export default function Header() {
   const { info } = useContext(Context);
@@ -29,7 +30,9 @@ export default function Header() {
           className="flex justify-between h-[75px] items-center"
         >
           <div className="flex items-center gap-5 md:gap-5 w-[100%]">
-            <div className="text-[30px] font-bold">Geru</div>
+            <Link href="/">
+              <div className="text-[30px] font-bold">Geru</div>
+            </Link>
             <input
               className="outline-none h-[40px] w-[60%] md:w-[100%] xl:hidden font-bold"
               placeholder="Мэрч, Артист, Коллекц хайх ..."
@@ -69,16 +72,18 @@ export default function Header() {
               <div className="flex gap-3 text-[20px] font-bold">
                 <AiOutlineSearch
                   onClick={() => {
-                    console.log(searchClick);
                     setSearchClick(!searchClick);
                   }}
                 />
                 <SlBasket />
-                <AiOutlineUser />
+                <Link href="/typeselect">
+                  <AiOutlineUser />
+                </Link>
               </div>
             </div>
           </div>
         </Container>
+        {searchClick ? <Search boolean={searchClick} /> : <></>}
       </div>
     </div>
   );

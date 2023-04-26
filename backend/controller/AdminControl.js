@@ -1,24 +1,21 @@
-const artist = require("../model/artist");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { Admin } = require("../config/roles");
+const admin = require("../Model/admin");
 
-exports.getPost = async (req, res) => {
+exports.createAdmin = async (req, res) => {
   try {
-    const data = await artist.find();
-    console.log(data);
-    res.status(200).send(data);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
+    const { email, password } = req.body;
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    const newUser = await admin.create({
+      email: email,
+      password: hashedPassword,
+      Role: Admin,
+    });
 
-exports.updatePost = async (req, res) => {
-  const _id = req.params.id;
-  const body = req.body.status;
-  try {
-    const post = await artist.findByIdAndUpdate({ _id }, { ...body });
-    res.status(200).send(post);
+    res.status(200).json({ data: newUser });
   } catch (error) {
-    res.status(404).send(error);
+    res.status(400).json({ error: error });
   }
 };

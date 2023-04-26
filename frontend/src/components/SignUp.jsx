@@ -16,7 +16,6 @@ const Create = () => {
   };
   const CreateUser = async () => {
     try {
-      console.log("sdfds");
       const response = await axios.post("http://localhost:7070/user/create", {
         email: email,
         password: password,

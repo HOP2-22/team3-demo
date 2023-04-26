@@ -4,7 +4,18 @@ import ArtistPfp from "./ArtistPfp";
 
 function CollectionArtist() {
   return (
+
     <Box>
+
+    <Box
+      sx={{
+        width: {
+          xs: "100%",
+          md: "30%",
+        },
+      }}
+    >
+
       <img
         src="/artistBg.jpeg"
         width={"132px"}
@@ -37,6 +48,7 @@ function CollectionArtist() {
           alignItems: "center",
           gap: "5px",
           color: "white",
+          marginBottom: "10px",
         }}
       >
         <ArtistPfp height={"32px"} width={"32px"} />

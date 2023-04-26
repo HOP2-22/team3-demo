@@ -18,6 +18,7 @@ function CollectionMerch() {
           alignItems: "center",
           padding: "16px 12px",
           justifyContent: "space-between",
+          maxWidth: "294px",
         }}
         className="collectionMerchPrice"
       >

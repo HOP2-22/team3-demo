@@ -1,8 +1,7 @@
-import React, { createContext, useState } from "react";
+import React, { createContext } from "react";
 
 export const Context = createContext({});
 
 export const Provider = ({ children }) => {
-  const [info, setInfo] = useState("sdfgdfdfg");
-  return <Context.Provider value={{ info }}>{children}</Context.Provider>;
+  return <Context.Provider value={{}}>{children}</Context.Provider>;
 };
