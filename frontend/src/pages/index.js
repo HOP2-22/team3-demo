@@ -1,9 +1,5 @@
-import Cart from "@/components/Cart";
 import Head from "next/head";
-import Face from "./HomeDefault";
-import ArtistDetail from "./ArtistDetail";
-import CollectionArtist from "@/components/CollectionArtist";
-import Basket from "@/components/Basket";
+import Basket from "../components/Basket";
 
 export default function Home() {
   return (
