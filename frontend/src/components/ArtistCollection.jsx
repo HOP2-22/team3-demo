@@ -12,6 +12,10 @@ function ArtistCollection() {
         background: "#1b1927",
         display: "flex",
         padding: "40px",
+
+        gap: "15px",
+        justifyContent: "center",
+
         flexDirection: {
           xs: "column",
           sm: "column",
@@ -19,13 +23,19 @@ function ArtistCollection() {
           lg: "row",
           xl: "row",
         },
+
       }}
+      className="abc"
     >
       <CollectionArtist />
       <Box
         sx={{
           display: "flex",
           gap: "20px",
+
+          justifyContent: "center",
+        }}
+
           flexDirection: {
             xs: "column",
             md: "row",
@@ -33,6 +43,7 @@ function ArtistCollection() {
             xl: "row",
           },
         }}
+
       >
         {topMerch.map((item, index) => {
           return <CollectionMerch />;
