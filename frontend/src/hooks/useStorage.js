@@ -7,7 +7,7 @@ export const useStorage = () => {
 
   const handleUpload = async (file) => {
     if (!file) {
-      alert("Please choose a file first!");
+      alert("Зургаа сонгоно уу!");
     }
     setLoading(true);
 
