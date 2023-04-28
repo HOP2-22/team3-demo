@@ -4,6 +4,12 @@ import { Avatar } from "@mui/material";
 import Carts from "../components/CollectionCarts";
 import { useEffect, useState } from "react";
 import Axios from "axios";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+import { FreeMode, Navigation, Thumbs } from "swiper";
 
 export default function Face(props) {
   const { Image } = props;
@@ -22,7 +28,7 @@ export default function Face(props) {
     const fetchProps = async () => {
       try {
         const res = await instance.get("/");
-        setData([res.data.data][0].slice(0, 3));
+        setData([res.data.data][0].slice(0, 5));
         setCount([res.data.data][0].length);
       } catch (err) {
         console.log(err);
@@ -261,9 +267,20 @@ export default function Face(props) {
           alignItems: "center",
         }}
       >
-        {data?.map((card, index) => (
-          <Carts key={index} Image={card.image} />
-        ))}
+        <Swiper
+          spaceBetween={10}
+          slidesPerView={4}
+          freeMode={true}
+          watchSlidesProgress={true}
+          modules={[FreeMode, Navigation, Thumbs]}
+          className="mySwiper"
+        >
+          {data?.map((card, index) => (
+            <SwiperSlide style={{ width: "500px", height: "200px" }}>
+              <Carts key={index} Image={card.image} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </Box>
     </Box>
   );

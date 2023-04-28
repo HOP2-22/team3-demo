@@ -35,6 +35,12 @@ export default function Face(props) {
             height: "100%",
           }}
         />
+        {/* <Image
+        width={100}
+        height={100}
+        src={Imag}
+        style={{ paddingBottom: "10px", width: "100%", height: "100%" }}
+      /> */}
       </Box>
       <Box
         sx={{
