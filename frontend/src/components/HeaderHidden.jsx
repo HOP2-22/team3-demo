@@ -1,7 +1,5 @@
 import { AiFillHome, AiOutlineUser } from "react-icons/ai";
 import Link from "next/link";
-import Container from "@mui/material/Container";
-import { FaHashtag } from "react-icons/fa";
 import { SlBasket } from "react-icons/sl";
 
 export default function HeaderHidden() {
@@ -18,6 +16,7 @@ export default function HeaderHidden() {
           <SlBasket />
         </Link>
       </div>
+
       <div className="text-[20px] w-[25%] md:text-[25px] flex items-center justify-center">
         <Link href="/Login">
           <AiOutlineUser />
