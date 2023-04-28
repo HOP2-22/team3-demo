@@ -34,8 +34,6 @@ function ArtistCollection() {
           gap: "20px",
 
           justifyContent: "center",
-        }}
-
           flexDirection: {
             xs: "column",
             md: "row",
@@ -43,6 +41,8 @@ function ArtistCollection() {
             xl: "row",
           },
         }}
+
+        
 
       >
         {topMerch.map((item, index) => {

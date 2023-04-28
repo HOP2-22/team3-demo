@@ -55,6 +55,7 @@ function CollectionArtist() {
         @khongorzul
       </Box>
     </Box>
+    </Box>
   );
 }
 

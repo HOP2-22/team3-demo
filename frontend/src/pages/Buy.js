@@ -6,7 +6,6 @@ import Button from "@mui/material/Button";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
@@ -43,25 +42,82 @@ export default function Buy() {
       <Container maxWidth="xl">
         <Box
           sx={{
-            display: "flex",
+            display: {
+              xs: "column",
+              sm: "flex",
+              md: "flex",
+              lg: "flex",
+              xl: "flex",
+            },
             width: "100%",
-            border: "1px solid red",
-            paddingTop: "100px",
-            paddingLeft: "150px",
-            paddingRight: "150px",
+            paddingBottom: {
+              xs: "0px",
+              sm: "10px",
+              md: "10px",
+              lg: "100px",
+              xl: "100px",
+            },
+            paddingRight: {
+              xs: "0px",
+              sm: "10px",
+              md: "10px",
+              lg: "150px",
+              xl: "150px",
+            },
+            paddingLeft: {
+              xs: "0px",
+              sm: "10px",
+              md: "10px",
+              lg: "150px",
+              xl: "150px",
+            },
+            paddingTop: {
+              xs: "100px",
+              sm: "100px",
+              md: "100px",
+              lg: "100px",
+              xl: "100px",
+            },
           }}
         >
-          <Box sx={{ width: "60%", border: "1px solid red" }}>
+          <Box
+            sx={{
+              width: {
+                xs: "100%",
+                sm: "60%",
+                md: "60%",
+                lg: "60%",
+                xl: "60%",
+              },
+            }}
+          >
             {data?.map((card, index) => (
               <SwiperCard key={index} Image={card.image} />
             ))}
           </Box>
           <Box
             sx={{
-              width: "40%",
-              border: "1px solid blue",
-              paddingLeft: "25px",
-              paddingRight: "25px",
+              width: {
+                xs: "100%",
+                sm: "40%",
+                md: "40%",
+                lg: "40%",
+                xl: "40%",
+              },
+              paddingLeft: {
+                xs: "0px",
+                sm: "25px",
+                md: "25px",
+                lg: "25px",
+                xl: "25px",
+              },
+              paddingRight: {
+                xs: "0px",
+                sm: "25px",
+                md: "25px",
+                lg: "25px",
+                xl: "25px",
+              },
               paddingBottom: "20px",
             }}
           >
@@ -200,7 +256,7 @@ export default function Buy() {
               }}
             >
               <TextField
-                sx={{ width: "100%", ":hover": {color:"#d50000",}, }}
+                sx={{ width: "100%", ":hover": { color: "#d50000" } }}
                 id="standard-basic"
                 label="Тоо ширхэг сонгох"
                 variant="standard"
@@ -212,8 +268,53 @@ export default function Buy() {
                   backgroundColor: "#d50000",
                   border: "hidden",
                   borderRadius: "10px",
+                  color: "white",
                 }}
-              ></button>
+              >
+                Сагсанд хийх
+              </button>
+            </Box>
+            <Box
+              sx={{ width: "100%", height: "1px", backgroundColor: "gray" }}
+            ></Box>
+            <Box>
+              <p
+                style={{
+                  fontWeight: "bold",
+                  fontSize: "18px",
+                  paddingBottom: "8px",
+                  paddingTop: "8px",
+                }}
+              >
+                Бүтээлийн тайлбар
+              </p>
+              <Box sx={{ fontWeight: "10" }}>
+                The Unisex Staple T-Shirt feels soft and light with just the
+                right amount of stretch. It's comfortable and flattering for
+                all. We can't compliment this shirt enough–it's one of our crowd
+                favorites, and it's sure to be your next favorite too! Solid
+                colors are 100% Airlume combed and ring-spun cotton Ash color is
+                99% combed and ring-spun cotton, 1% polyester
+              </Box>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                gap: "10px",
+                paddingTop: "10px",
+                paddingBottom: "10px",
+              }}
+            >
+              <p style={{ fontWeight: "bold" }}>Артворк:</p>
+              <p>ARTIST</p>
+            </Box>
+            <Box sx={{ paddingBottom: "10px" }}>
+              <p style={{ fontWeight: "bold" }}>Материал</p>
+              <p>Цэвэр 100% хөвөн даавуу</p>
+            </Box>
+            <Box>
+              <p style={{ fontWeight: "bold" }}>Арчилгааны зөвлөмж</p>
+              <p>Хүйтэн усанд тусд нь угаана</p>
             </Box>
           </Box>
         </Box>
