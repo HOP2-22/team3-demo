@@ -3,7 +3,8 @@ import Cookie from "js-cookie";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function LoginUser() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -32,22 +33,23 @@ export default function LoginUser() {
           email: email,
           password: password,
         });
-        alert("Login successful");
+        toast("Successful logged in!");
         Cookie.set("token", res.data?.token);
 
         setTimeout(() => {
           router.push("/HomeDefault");
         }, 1000);
       } catch (error) {
-        alert("Нууц үг эсвэл Цахим хаяг буруу байна");
+        toast("Password or Email incorrect!");
       }
     } else {
-      alert("nuuts ug taarahgui baina");
+      toast("Password does not match!");
     }
   };
 
   return (
     <div className="w-full h-full  mt-[150px] flex flex-col items-center justify-center gap-10">
+      <ToastContainer />
       <div className="text-[32px] text-[#1b1927]">Нэвтрэх</div>
       <div className="flex flex-col gap-6">
         <div className="">

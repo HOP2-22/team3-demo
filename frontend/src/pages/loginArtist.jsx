@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Cookie from "js-cookie";
 import axios from "axios";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function LoginArtist() {
   const [emailArtist, setEmailArtist] = useState();
   const [passwordArtist, setPasswordArtist] = useState();
@@ -14,17 +15,17 @@ export default function LoginArtist() {
           email: emailArtist,
           password: passwordArtist,
         });
-        alert("Login successful");
+        toast("Successfully logged in!");
         Cookie.set("token", res.data?.token);
 
         setTimeout(() => {
           router.push("/HomeDefault");
         }, 1000);
       } catch (error) {
-        alert("Нууц үг эсвэл Цахим хаяг буруу байна");
+        toast("Password or Email incorrect!");
       }
     } else {
-      alert("nuuts ug taarahgui baina");
+      toast("Password does not match!");
     }
   };
 
@@ -42,6 +43,7 @@ export default function LoginArtist() {
   };
   return (
     <div className="w-full h-full  mt-[150px] flex flex-col items-center justify-center gap-10">
+      <ToastContainer />
       <div className="text-[32px] text-[#1b1927]"> Нэвтрэх</div>
       <div className="flex flex-col gap-6">
         <div className="">
