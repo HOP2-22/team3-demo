@@ -19,3 +19,25 @@ exports.createAdmin = async (req, res) => {
     res.status(400).json({ error: error });
   }
 };
+
+const ACCESS_TOKEN_KEY = "secret123";
+exports.loginAdmin = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await admin.findOne({ email: email });
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
+      return res.status(400).json({ message: "password is dont match" });
+    }
+    console.log("================================================ 123213213");
+    const token = jwt.sign(
+      {
+        data: admin,
+      },
+      ACCESS_TOKEN_KEY
+    );
+    res.status(200).json({ match: match });
+  } catch (error) {
+    res.status(400).json({ message: "password is dont match" });
+  }
+};

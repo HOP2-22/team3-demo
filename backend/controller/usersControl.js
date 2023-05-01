@@ -4,9 +4,6 @@ const jwt = require("jsonwebtoken");
 const { Client } = require("../config/roles");
 
 exports.createUser = async (req, res) => {
-  if (!image) {
-    res.status(404).json({ message: "no image" });
-  }
   try {
     const { email, password, image } = req.body;
     const salt = await bcrypt.genSalt(10);
@@ -15,7 +12,6 @@ exports.createUser = async (req, res) => {
       email: email,
       password: hashedPassword,
       Role: Client,
-      image: image,
     });
 
     res.status(200).json({ data: newUser });
