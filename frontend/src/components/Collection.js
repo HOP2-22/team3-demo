@@ -153,12 +153,15 @@ export default function Face(props) {
               },
               lineHeight: "1em",
               color: "rgb(255, 255, 255)",
+              paddingTop: "10px",
+              paddingBottom: "10px",
             }}
           >
             Title
           </Box>
           <Box
             sx={{
+              paddingBottom: "10px",
               color: "rgb(255, 255, 255)",
               fontWeight: "200",
               fontSize: {
@@ -227,7 +230,7 @@ export default function Face(props) {
             xl: "75%",
           },
           height: {
-            xs: "200px",
+            xs: "250px",
             sm: "280px",
             md: "350px",
             lg: "450px",
@@ -269,14 +272,27 @@ export default function Face(props) {
       >
         <Swiper
           spaceBetween={10}
-          slidesPerView={4}
-          freeMode={true}
-          watchSlidesProgress={true}
-          modules={[FreeMode, Navigation, Thumbs]}
-          className="mySwiper"
+          style={{ width: "100%", height: "100%" }}
+          breakpoints={{
+            0: {
+              slidesPerView: 1.5,
+            },
+            600: {
+              slidesPerView: 2,
+            },
+            900: {
+              slidesPerView: 3,
+            },
+            1200: {
+              slidesPerView: 3,
+            },
+            1536: {
+              slidesPerView: 3,
+            }
+          }}
         >
           {data?.map((card, index) => (
-            <SwiperSlide style={{ width: "500px", height: "200px" }}>
+            <SwiperSlide>
               <Carts key={index} Image={card.image} />
             </SwiperSlide>
           ))}
