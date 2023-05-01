@@ -5,10 +5,9 @@ import HeaderHidden from "../components/HeaderHidden";
 
 function Layout({ children }) {
   return (
-    <div className="">
+    <div>
       <Header />
       {children}
-
       <HeaderHidden />
       <Footer />
     </div>

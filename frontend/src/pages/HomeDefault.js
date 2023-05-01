@@ -29,6 +29,7 @@ export default function Face() {
     };
     fetchProps();
   }, []);
+
   return (
     <Box sx={{ backgroundColor: "#edf2f4", width: "100%", marginTop: "70px" }}>
       <Container maxWidth="xl">
@@ -44,20 +45,23 @@ export default function Face() {
               lg: "24px",
               xl: "24px",
             },
-          }}>
+          }}
+        >
           <Box
             sx={{
               display: "flex",
               flexDirection: "column",
               paddingTop: "40px",
               paddingBottom: "40px",
-            }}>
+            }}
+          >
             <Box
               sx={{
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-              }}>
+              }}
+            >
               <Box
                 sx={{
                   fontWeight: "bold",
@@ -68,7 +72,8 @@ export default function Face() {
                     lg: "36px",
                     xl: "36px",
                   },
-                }}>
+                }}
+              >
                 КУРАТОРЫН КОЛЛЕКЦ
               </Box>
               <Box
@@ -81,7 +86,8 @@ export default function Face() {
                     lg: "36px",
                     xl: "36px",
                   },
-                }}>
+                }}
+              >
                 ИЛҮҮ ИХИЙГ +
               </Box>
             </Box>
@@ -91,14 +97,16 @@ export default function Face() {
                 paddingBottom: "16px",
                 width: "100%",
                 boxSizing: "border-box",
-              }}>
+              }}
+            >
               <Box
                 sx={{
                   width: "100%",
                   height: "1px",
                   bgcolor: "black",
                   boxSizing: "border-box",
-                }}></Box>
+                }}
+              ></Box>
             </Box>
           </Box>
           <Box
@@ -121,7 +129,8 @@ export default function Face() {
               },
               paddingLeft: "8px",
               paddingRight: "8px",
-            }}>
+            }}
+          >
             {data?.map((card, index) => (
               <Collection key={index} Image={card.image} />
             ))}
