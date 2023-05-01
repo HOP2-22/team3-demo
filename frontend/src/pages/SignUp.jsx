@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { useState } from "react";
 import axios from "axios";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { useRouter } from "next/router";
+
 
 export default function SignUpUser() {
   const router = useRouter();
@@ -28,19 +33,20 @@ export default function SignUpUser() {
           password: passwordSignUp,
         });
 
-        alert("amjilttai burtgegdle");
+        toast("Successfully signed up!");
 
         router.push("/Login");
       } catch (error) {
-        alert("Нууц үг эсвэл Цахим хаяг буруу байна");
+        toast("Password or Email incorrect!");
       }
     } else {
-      alert("nuuts ug taarahgui baina");
+      toast("Password does not match!");
     }
   };
 
   return (
     <div className="w-full h-full  mt-[150px] flex flex-col items-center justify-center gap-10">
+      <ToastContainer />
       <div className="text-[32px] text-[#1b1927]">Бүртгүүлэх</div>
       <div className="flex flex-col gap-6">
         <div className="">
@@ -57,6 +63,7 @@ export default function SignUpUser() {
             className="shadow-2xl w-[300px] sm:w-[380px] h-[45px] outline-none rounded-full text-[20px] px-[20px]"
             placeholder="••••••••••"
             onChange={PassInput}
+            type="password"
           />
         </div>
         <div className="">
@@ -65,6 +72,7 @@ export default function SignUpUser() {
             className="shadow-2xl w-[300px] sm:w-[380px] h-[45px] outline-none rounded-full text-[20px] px-[20px]"
             placeholder="••••••••••"
             onChange={PassInputCheck}
+            type="password"
           />
         </div>
         <Link href="/signUpArtist">
