@@ -1,15 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Cookie from "js-cookie";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { Context } from "@/context/context";
+import toast from "react-hot-toast";
 
 export default function LoginUser() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checkpass, setCheckPass] = useState("");
-
   const router = useRouter();
+
+  const { setCurrentUser } = useContext(Context);
 
   const EmailInput = async (event) => {
     setEmail(event.target.value);
@@ -32,17 +35,19 @@ export default function LoginUser() {
           email: email,
           password: password,
         });
-        alert("Login successful");
-        Cookie.set("token", res.data?.token);
 
-        setTimeout(() => {
-          router.push("/HomeDefault");
-        }, 1000);
+        toast.success("Login successful");
+        setCurrentUser(null);
+
+        Cookie.set("token", res.data?.token);
+        Cookie.set("user", res.data.user.email);
+
+        router.push("/HomeDefault");
       } catch (error) {
         alert("Нууц үг эсвэл Цахим хаяг буруу байна");
       }
     } else {
-      alert("nuuts ug taarahgui baina");
+      toast.error("nuuts ug taarahgui baina");
     }
   };
 
@@ -81,6 +86,7 @@ export default function LoginUser() {
             </p>
           </Link>
         </div>
+
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
           onClick={handleLogin}

@@ -2,14 +2,19 @@ import { useContext, useEffect, useState } from "react";
 import { Context } from "../context/context";
 import { AiOutlineSearch, AiOutlineUser } from "react-icons/ai";
 import { SlBasket, SlArrowDown } from "react-icons/sl";
+import { HiOutlineLogout } from "react-icons/hi";
 import Container from "@mui/material/Container";
 import Search from "../components/Search";
 import Link from "next/link";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
 export default function Header() {
-  const { info } = useContext(Context);
   const [searchClick, setSearchClick] = useState(false);
   const [burger, setBurger] = useState(false);
+  const { currentUser, setCurrentUser } = useContext(Context);
+
+  const router = useRouter();
 
   useEffect(() => {
     const resizeFunc = () => {
@@ -21,6 +26,14 @@ export default function Header() {
     window.addEventListener("resize", resizeFunc);
     return () => window.removeEventListener("resize", resizeFunc);
   }, []);
+
+  const logOut = () => {
+    setCurrentUser(null);
+    Cookies.remove("token");
+    Cookies.remove("user");
+
+    router.push("/typeselect");
+  };
 
   return (
     <div className="w-full fixed top-0 z-10">
@@ -69,6 +82,7 @@ export default function Header() {
             </div>
             <div className="hidden xl:flex items-center gap-5">
               <div className="bg-gray-500 w-[1px] h-[35px] "></div>
+
               <div className="flex gap-3 text-[20px] font-bold">
                 <AiOutlineSearch
                   onClick={() => {
@@ -76,9 +90,15 @@ export default function Header() {
                   }}
                 />
                 <SlBasket />
-                <Link href="/typeselect">
-                  <AiOutlineUser />
-                </Link>
+                {currentUser ? (
+                  <Box onClick={() => logOut()}>
+                    <HiOutlineLogout />
+                  </Box>
+                ) : (
+                  <Link href="/typeselect">
+                    <AiOutlineUser />
+                  </Link>
+                )}
               </div>
             </div>
           </div>
