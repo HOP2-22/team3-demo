@@ -3,7 +3,7 @@ const Product = require("../Model/product");
 exports.createProduct = async (req, res) => {
   const { ownerID, productName, images, price, size, color } = req.body;
   const { xxs, xs, s, m, l, xxl } = size;
-
+  console.log(xxs);
   console.log(ownerID, productName, images, price);
   try {
     const newProduct = await Product.create({
@@ -13,24 +13,12 @@ exports.createProduct = async (req, res) => {
       price: price,
       color: color,
       size: {
-        xxs: {
-          count: 1,
-        },
-        xs: {
-          count: 1,
-        },
-        s: {
-          count: 1,
-        },
-        m: {
-          count: 1,
-        },
-        l: {
-          count: 1,
-        },
-        xxl: {
-          count: 1,
-        },
+        xxs,
+        xs,
+        s,
+        m,
+        l,
+        xxl,
       },
     });
 
@@ -58,12 +46,12 @@ exports.PatchProduct = async (req, res) => {
     if (!product) {
       return res.status(404).json({
         success: false,
-        message: "There is no product" + id + " like that",
+        message: `There is no product with the given ID(${id})`,
       });
     }
 
     for (let item in req.body) {
-      product[item] = req.body[item];
+      product.size[item].count -= req.body[item].count;
     }
 
     await product.save();
@@ -76,6 +64,7 @@ exports.PatchProduct = async (req, res) => {
     res.status(400).json(error);
   }
 };
+
 exports.DeleteProduct = async (req, res) => {
   const id = req.body.id;
   try {
