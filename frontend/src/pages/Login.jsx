@@ -1,16 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Cookie from "js-cookie";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 export default function LoginUser() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checkpass, setCheckPass] = useState("");
-
   const router = useRouter();
+
+  const { setCurrentUser } = useContext(Context);
 
   const EmailInput = async (event) => {
     setEmail(event.target.value);
@@ -34,16 +37,21 @@ export default function LoginUser() {
           password: password,
         });
         toast("Successful logged in!");
-        Cookie.set("token", res.data?.token);
 
-        setTimeout(() => {
-          router.push("/HomeDefault");
-        }, 1000);
+
+      
+
+        Cookie.set("token", res.data?.token);
+        Cookie.set("user", res.data.user.email);
+
+        router.push("/HomeDefault");
       } catch (error) {
         toast("Password or Email incorrect!");
       }
     } else {
+
       toast("Password does not match!");
+
     }
   };
 
@@ -83,6 +91,7 @@ export default function LoginUser() {
             </p>
           </Link>
         </div>
+
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
           onClick={handleLogin}

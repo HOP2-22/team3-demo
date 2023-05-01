@@ -1,10 +1,16 @@
 import Link from "next/link";
 import { useState } from "react";
 import axios from "axios";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { useRouter } from "next/router";
+
+
 export default function SignUpUser() {
+  const router = useRouter();
+
   const [emailSignUp, setEmailSignUp] = useState();
   const [passwordSignUp, setPasswordUserSignUp] = useState();
   const [checkpass, setCheckPass] = useState();
@@ -29,9 +35,7 @@ export default function SignUpUser() {
 
         toast("Successfully signed up!");
 
-        setTimeout(() => {
-          router.push("/Login");
-        }, 1000);
+        router.push("/Login");
       } catch (error) {
         toast("Password or Email incorrect!");
       }
