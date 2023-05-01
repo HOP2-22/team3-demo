@@ -1,7 +1,5 @@
 import { Container, Box, Typography, Button } from "@mui/material";
-import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
-import NativeSelect from "@mui/material/NativeSelect";
+import { InputLabel, FormControl, NativeSelect } from "@mui/material";
 import { CardDt } from "../json/card.js";
 
 const img =
@@ -11,10 +9,6 @@ const data = [
   {
     Color: "White",
     Size: "M",
-  },
-  {
-    Color: "Black",
-    Size: "S",
   },
 ];
 
@@ -28,12 +22,11 @@ const Product = () => {
         <Typography sx={(styles.font, { fontWeight: "bold" })}>
           INNER ESSENCE OF MANKIND / T-SHIRT
         </Typography>
-
         {data.map((dt, ind) => {
           return (
-            <Box>
-              <Typography> Color :{dt.Color}</Typography>
-              <Typography> Size :{dt.Size}</Typography>
+            <Box key={ind}>
+              <Typography sx={styles.font}> Color: {dt.Color}</Typography>
+              <Typography sx={styles.font}> Size: {dt.Size}</Typography>
             </Box>
           );
         })}
@@ -50,9 +43,6 @@ const NativeSelectDemo = () => {
   return (
     <Box>
       <FormControl>
-        <InputLabel variant="standard" htmlFor="uncontrolled-native">
-          Count
-        </InputLabel>
         <NativeSelect
           defaultValue={30}
           inputProps={{
@@ -73,7 +63,7 @@ const NativeSelectDemo = () => {
   );
 };
 
-function Cart() {
+const Cart = () => {
   return (
     <Container maxWidth="md">
       <Box sx={styles.header}>
@@ -90,23 +80,31 @@ function Cart() {
       <Button> Устгах</Button>
     </Container>
   );
-}
+};
 
 const styles = {
   header: {
     display: "flex",
     justifyContent: "space-between",
+    gap: 4,
   },
   comp: {
     display: "flex",
     justifyContent: "space-between",
   },
   img: {
-    display: "flex",
+    height: {
+      xl: "10vh",
+      lg: "10vh",
+      md: "10vh",
+    },
   },
   font: {
-    fontFamily: "PT Sans Narrow  Manrope",
+    fontFamily: "PT Sans Narrow",
     fontSize: "17px",
+  },
+  Typography: {
+    fontSize: "30px",
   },
 };
 

@@ -1,4 +1,4 @@
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import { Avatar } from "@mui/material";
 
 const gif =
