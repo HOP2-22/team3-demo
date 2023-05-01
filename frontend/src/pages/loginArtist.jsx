@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import Cookie from "js-cookie";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function LoginArtist() {
   const [emailArtist, setEmailArtist] = useState();
   const [passwordArtist, setPasswordArtist] = useState();
   const [checkpassArtist, setCheckPassArtist] = useState();
+  const router = useRouter();
 
   const loginArt = async () => {
     if (passwordArtist == checkpassArtist) {
@@ -18,7 +20,7 @@ export default function LoginArtist() {
         Cookie.set("token", res.data?.token);
 
         setTimeout(() => {
-          router.push("/HomeDefault");
+          router.push("/artistcreate");
         }, 1000);
       } catch (error) {
         alert("Нууц үг эсвэл Цахим хаяг буруу байна");
@@ -70,8 +72,7 @@ export default function LoginArtist() {
         </div>
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
-          onClick={handleLogin}
-        >
+          onClick={handleLogin}>
           Нэвтрэх
         </button>
       </div>

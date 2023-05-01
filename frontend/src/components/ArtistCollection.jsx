@@ -23,10 +23,8 @@ function ArtistCollection() {
           lg: "row",
           xl: "row",
         },
-
       }}
-      className="abc"
-    >
+      className="abc">
       <CollectionArtist />
       <Box
         sx={{
@@ -34,17 +32,13 @@ function ArtistCollection() {
           gap: "20px",
 
           justifyContent: "center",
-        }}
-
           flexDirection: {
             xs: "column",
             md: "row",
             lg: "row",
             xl: "row",
           },
-        }}
-
-      >
+        }}>
         {topMerch.map((item, index) => {
           return <CollectionMerch />;
         })}
