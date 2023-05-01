@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import ArtistCart from "../components/ArtistCart";
+import ArtistCart from "../../components/artistweb/ArtistCart";
 import { useEffect, useState } from "react";
 import Axios from "axios";
 import Checkbox from "@mui/material/Checkbox";
@@ -44,7 +44,8 @@ export default function Artist() {
               alignItems: "center",
               paddingTop: "40px",
               paddingBottom: "40px",
-            }}>
+            }}
+          >
             <Box sx={{ display: "flex", alignSelf: "self-start" }}>
               <Box
                 sx={{
@@ -56,7 +57,8 @@ export default function Artist() {
                     xl: "96px",
                   },
                   fontWeight: "bold",
-                }}>
+                }}
+              >
                 ARTIST
               </Box>
               <Box
@@ -70,7 +72,8 @@ export default function Artist() {
                     lg: "30px",
                     xl: "36px",
                   },
-                }}>
+                }}
+              >
                 72
               </Box>
             </Box>
@@ -83,20 +86,23 @@ export default function Artist() {
                 paddingBottom: "16px",
                 width: "100%",
                 boxSizing: "border-box",
-              }}>
+              }}
+            >
               <Box
                 sx={{
                   width: "100%",
                   height: "1px",
                   bgcolor: "black",
                   boxSizing: "border-box",
-                }}></Box>
+                }}
+              ></Box>
             </Box>
           </Box>
           <Box
             sx={{
               display: "flex",
-            }}>
+            }}
+          >
             <Box
               sx={{
                 flexWrap: "wrap",
@@ -113,7 +119,8 @@ export default function Artist() {
                 gap: "10px",
                 alignItems: "center",
                 justifyContent: "center",
-              }}>
+              }}
+            >
               {data?.map((card, index) => (
                 <ArtistCart key={index} image={card.image}></ArtistCart>
               ))}
@@ -132,18 +139,21 @@ export default function Artist() {
                   xl: "flex",
                 },
                 flexDirection: "column",
-              }}>
+              }}
+            >
               <Box
                 sx={{
                   top: "80px",
                   position: "sticky",
-                }}>
+                }}
+              >
                 <Box
                   sx={{
                     padding: "10px",
                     fontWeight: "bold",
                     fontSize: "20px",
-                  }}>
+                  }}
+                >
                   Төрлөөр шүүх
                 </Box>
                 <Box sx={{ display: "flex" }}>

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Basket from "../components/Basket";
+import Basket from "../components/market/Basket";
 
 export default function Home() {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Container } from "@mui/material";
-import ArtistCollection from "@/components/ArtistCollection";
+import ArtistCollection from "@/components/artistweb/ArtistCollection";
 function Collection() {
   return (
     <Box style={{ marginTop: "75px" }}>

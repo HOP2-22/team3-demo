@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import React from "react";
-import MerchComponent from "./MerchComponent";
+import MerchComponent from "../merch/MerchComponent";
 function ArtistMerch() {
   return (
     <Box

@@ -1,6 +1,6 @@
 import { Container, Box, Typography, Button, Stack } from "@mui/material";
 import { FormControl, NativeSelect } from "@mui/material";
-import { CardDt } from "../json/card.js";
+import { CardDt } from "../../json/card.js";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const img =

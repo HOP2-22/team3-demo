@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import CollectionMerch from "./CollectionMerch";
-import CollectionArtist from "./CollectionArtist";
+import CollectionMerch from "../collection/CollectionMerch";
+import CollectionArtist from "../collection/CollectionArtist";
 import { useState } from "react";
 function ArtistCollection() {
   const [topMerch, setTopMerch] = useState(["first", "second", "third"]);

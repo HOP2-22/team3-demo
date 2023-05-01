@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import { Context } from "../context/context";
+import { Context } from "../../context/context";
 import { AiOutlineSearch, AiOutlineUser } from "react-icons/ai";
 import { SlBasket, SlArrowDown } from "react-icons/sl";
 import { RiArrowDownSFill } from "react-icons/ri";
 import { HiOutlineLogout } from "react-icons/hi";
 import Container from "@mui/material/Container";
-import Search from "../components/Search";
+import Search from "./Search";
 import Link from "next/link";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
