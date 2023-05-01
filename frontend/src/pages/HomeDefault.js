@@ -34,7 +34,7 @@ export default function Face() {
     <Box sx={{ backgroundColor: "#edf2f4", width: "100%", marginTop: "70px" }}>
       <Container maxWidth="xl">
         <FaceHome />
-        <Box sx={{ padding: "40px" }}></Box>
+        <Box></Box>
         <Box
           sx={{
             marginTop: "32px",
@@ -78,6 +78,7 @@ export default function Face() {
               </Box>
               <Box
                 sx={{
+                  display:"flex", 
                   fontWeight: "bold",
                   fontSize: {
                     xs: "20px",

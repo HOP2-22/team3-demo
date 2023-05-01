@@ -11,13 +11,64 @@ export default function Face() {
   return (
     <Box sx={{ backgroundColor: "#edf2f4", padding: "24px" }}>
       <Box sx={styles.position}>
-        <Stack flex={2.5} sx={styles.res}>
-          <img src={gif} style={styles.image} alt="asdf" />
+        <Stack
+          flex={2.5}
+          sx={{
+            padding: {
+              xs: "0px",
+              sm: "0px",
+              md: "40px",
+              lg: "40px",
+              xl: "40px",
+            },
+            // display: {
+            //   xs: "flex",
+            //   sm: "flex",
+            //   md: "flex",
+            //   lg: "flex",
+            //   xl: "flex",
+            // },
+            // flexDirection: {
+            //   xs: "column",
+            //   sm: "column",
+            //   md: "column",
+            //   lg: "column",
+            //   xl: "column",
+            // },
+            marginTop: {
+              xs: "60px",
+              sm: "60px",
+              md: "0px",
+              lg: "0px",
+              xl: "0px",
+            },
+            marginBottom: {
+              xs: "60px",
+              sm: "60px",
+              md: "0px",
+              lg: "0px",
+              xl: "0px",
+            },
+          }}
+        >
+          <img
+            src={
+              "https://res.cloudinary.com/urlan/image/upload/v1678349701/geru-store/urban_nomad/ezgif.com-gif-maker_4_d6jzrh.gif"
+            }
+            style={styles.image}
+            alt="asdf"
+          />
         </Stack>
         <Stack sx={styles.texts}>
           <Typography
             sx={{
-              fontSize: "72px",
+              fontSize: {
+                xs: "50px",
+                sm: "55px",
+                md: "55px",
+                lg: "72px",
+                xl: "72px",
+              },
               fontFamily: "PT Sans Narrow",
               lineHeight: "0.9em",
               overflow: "hidden",
@@ -38,7 +89,7 @@ export default function Face() {
                   paddingRight: "16px",
                 }}
               >
-                <Avatar src={avatar} />
+                <Avatar src="https://res.cloudinary.com/urlan/image/upload/v1675159396/geru-store/khongorzul/328598489_1163549884324212_1668282332485989101_n_1_1_wduowu.jpg" />
               </Box>
             </Box>
           </Box>

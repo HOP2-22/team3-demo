@@ -4,7 +4,7 @@ import { SlBasket } from "react-icons/sl";
 
 export default function HeaderHidden() {
   return (
-    <div className="fixed flex  w-full h-[60px] bottom-0 bg-white justify-between px-[0px] md:px-[30px] lg:px-[50px] xl:hidden">
+    <div className="fixed flex z-10  w-full h-[60px] bottom-0 bg-white justify-between px-[0px] md:px-[30px] lg:px-[50px] xl:hidden">
       <div className="text-[20px] w-[25%] md:text-[25px] flex items-center justify-center">
         <Link href="/HomeDefault">
           <AiFillHome />

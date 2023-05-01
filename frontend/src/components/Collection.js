@@ -4,6 +4,12 @@ import { Avatar } from "@mui/material";
 import Carts from "../components/CollectionCarts";
 import { useEffect, useState } from "react";
 import Axios from "axios";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+import { FreeMode, Navigation, Thumbs } from "swiper";
 
 export default function Face(props) {
   const { Image } = props;
@@ -22,7 +28,7 @@ export default function Face(props) {
     const fetchProps = async () => {
       try {
         const res = await instance.get("/");
-        setData([res.data.data][0].slice(0, 3));
+        setData([res.data.data][0].slice(0, 5));
         setCount([res.data.data][0].length);
       } catch (err) {
         console.log(err);
@@ -147,12 +153,15 @@ export default function Face(props) {
               },
               lineHeight: "1em",
               color: "rgb(255, 255, 255)",
+              paddingTop: "10px",
+              paddingBottom: "10px",
             }}
           >
             Title
           </Box>
           <Box
             sx={{
+              paddingBottom: "10px",
               color: "rgb(255, 255, 255)",
               fontWeight: "200",
               fontSize: {
@@ -221,7 +230,7 @@ export default function Face(props) {
             xl: "75%",
           },
           height: {
-            xs: "200px",
+            xs: "250px",
             sm: "280px",
             md: "350px",
             lg: "450px",
@@ -261,9 +270,33 @@ export default function Face(props) {
           alignItems: "center",
         }}
       >
-        {data?.map((card, index) => (
-          <Carts key={index} Image={card.image} />
-        ))}
+        <Swiper
+          spaceBetween={10}
+          style={{ width: "100%", height: "100%" }}
+          breakpoints={{
+            0: {
+              slidesPerView: 1.5,
+            },
+            600: {
+              slidesPerView: 2,
+            },
+            900: {
+              slidesPerView: 3,
+            },
+            1200: {
+              slidesPerView: 3,
+            },
+            1536: {
+              slidesPerView: 3,
+            }
+          }}
+        >
+          {data?.map((card, index) => (
+            <SwiperSlide>
+              <Carts key={index} Image={card.image} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </Box>
     </Box>
   );
