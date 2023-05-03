@@ -3,6 +3,7 @@ import Cookie from "js-cookie";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { Context } from "@/context/context";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -38,9 +39,6 @@ export default function LoginUser() {
         });
         toast("Successful logged in!");
 
-
-      
-
         Cookie.set("token", res.data?.token);
         Cookie.set("user", res.data.user.email);
 
@@ -49,9 +47,7 @@ export default function LoginUser() {
         toast("Password or Email incorrect!");
       }
     } else {
-
       toast("Password does not match!");
-
     }
   };
 
@@ -94,8 +90,7 @@ export default function LoginUser() {
 
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
-          onClick={handleLogin}
-        >
+          onClick={handleLogin}>
           Нэвтрэх
         </button>
       </div>
