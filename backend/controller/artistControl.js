@@ -5,13 +5,9 @@ const artist = require("../Model/artist");
 
 exports.createArtist = async (req, res) => {
   try {
-    const { email, password, type_of, username, image } = req.body;
+    const { email, password, type_of, username } = req.body;
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-
-    if (!image) {
-      res.status(404).json({ message: "no image available" });
-    }
 
     const newUser = await artist.create({
       email: email,
@@ -19,7 +15,6 @@ exports.createArtist = async (req, res) => {
       type_of: type_of,
       username: username,
       Role: Artist,
-      image: image,
     });
 
     res.status(200).json({ data: newUser });

@@ -7,13 +7,13 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { useRouter } from "next/router";
 
-
 export default function SignUpUser() {
   const router = useRouter();
 
   const [emailSignUp, setEmailSignUp] = useState();
   const [passwordSignUp, setPasswordUserSignUp] = useState();
   const [checkpass, setCheckPass] = useState();
+  const [name, setName] = useState();
 
   const EmailInput = async (event) => {
     setEmailSignUp(event.target.value);
@@ -24,6 +24,9 @@ export default function SignUpUser() {
   const PassInputCheck = async (event) => {
     setCheckPass(event.target.value);
   };
+  const NameInput = async (event) => {
+    setName(event.target.value);
+  };
 
   const signUpUser = async () => {
     if (passwordSignUp == checkpass) {
@@ -31,6 +34,7 @@ export default function SignUpUser() {
         const res = await axios.post("http://localhost:7070/user/create", {
           email: emailSignUp,
           password: passwordSignUp,
+          name: name,
         });
 
         toast("Successfully signed up!");
@@ -58,12 +62,19 @@ export default function SignUpUser() {
           />
         </div>
         <div className="">
+          <p className="px-[20px] text-[16px]">Хэрэглэгчийн нэр</p>
+          <input
+            className="shadow-2xl w-[300px] sm:w-[380px] h-[45px] outline-none rounded-full text-[20px] px-[20px]"
+            placeholder="••••••••••"
+            onChange={NameInput}
+          />
+        </div>
+        <div className="">
           <p className="px-[20px] text-[16px]">Нууц үг</p>
           <input
             className="shadow-2xl w-[300px] sm:w-[380px] h-[45px] outline-none rounded-full text-[20px] px-[20px]"
             placeholder="••••••••••"
             onChange={PassInput}
-            type="password"
           />
         </div>
         <div className="">
@@ -72,7 +83,6 @@ export default function SignUpUser() {
             className="shadow-2xl w-[300px] sm:w-[380px] h-[45px] outline-none rounded-full text-[20px] px-[20px]"
             placeholder="••••••••••"
             onChange={PassInputCheck}
-            type="password"
           />
         </div>
         <Link href="/signUpArtist">
@@ -84,8 +94,7 @@ export default function SignUpUser() {
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
           onClick={() => {
             signUpUser();
-          }}
-        >
+          }}>
           Бүртгүүлэх
         </button>
       </div>

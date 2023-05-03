@@ -31,6 +31,7 @@ export default function SignUp() {
 
   const signUpArtist = async () => {
     if (passwordUserSignUp == checkpassUserSignUp) {
+      console.log("is working");
       try {
         const res = await axios.post("http://localhost:7070/artist/create", {
           email: emailSignUp,
@@ -103,8 +104,7 @@ export default function SignUp() {
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
           onClick={() => {
             signUpArtist();
-          }}
-        >
+          }}>
           Бүртгүүлэх
         </button>
       </div>

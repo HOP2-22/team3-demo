@@ -4,18 +4,16 @@ const jwt = require("jsonwebtoken");
 const { Client } = require("../config/roles");
 
 exports.createUser = async (req, res) => {
-  if (!image) {
-    res.status(404).json({ message: "no image" });
-  }
   try {
-    const { email, password, image } = req.body;
+    console.log("================================================");
+    const { email, password, name } = req.body;
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     const newUser = await User.create({
       email: email,
       password: hashedPassword,
+      name: name,
       Role: Client,
-      image: image,
     });
 
     res.status(200).json({ data: newUser });
@@ -84,4 +82,12 @@ exports.deleteUser = async (req, res) => {
 exports.DeleteAll = async (req, res) => {
   await User.deleteMany();
   res.status(200).json({ success: true });
+};
+exports.getUser = async (req, res) => {
+  const token = req.headers.token || "";
+  if (!token) {
+    return res.status(404).json({ message: "Invalid token" });
+  }
+  const data = await jwt.decode(token, ACCESS_TOKEN_KEY);
+  res.status(200).json(data);
 };
