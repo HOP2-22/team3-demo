@@ -23,7 +23,7 @@ export default function Dash() {
     const fetchProps = async () => {
       try {
         const res = await instance.get("/");
-        setData([res.data.data][0].slice(0, 6));
+        setData([res.data.data][0].slice(0, 20));
         console.log(data);
       } catch (err) {
         console.log(err);
@@ -177,16 +177,16 @@ export default function Dash() {
                 border: "hidden",
                 borderRadius: "10px",
                 gap: "150px",
-                paddingLeft: "150px",
+                paddingLeft: "160px",
                 paddingTop: "10px",
                 paddingBottom: "10px",
               }}
             >
-              <p style={{ color: "black" }}>Artist Id</p>
-              <p style={{ color: "black" }}>Date</p>
-              <p style={{ color: "black" }}>Artist name</p>
-              <p style={{ color: "black" }}>Product name</p>
-              <p style={{ color: "black" }}>Count</p>
+              <p style={{ color: "black", width:"100px" }}>Artist Id</p>
+              <p style={{ color: "black", width:"100px" }}>Date</p>
+              <p style={{ color: "black", width:"100px" }}>Artist name</p>
+              <p style={{ color: "black", width:"100px" }}>Product name</p>
+              <p style={{ color: "black", width:"100px" }}>Count</p>
             </Box>
             {data?.map((card, index) => (
               <User key={index} />
