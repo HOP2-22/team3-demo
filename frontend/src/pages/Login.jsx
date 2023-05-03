@@ -14,7 +14,7 @@ export default function LoginUser() {
   const [checkpass, setCheckPass] = useState("");
   const router = useRouter();
 
-  const { setCurrentUser } = useContext(Context);
+  const { setCurrentUser, setUserName } = useContext(Context);
 
   const EmailInput = async (event) => {
     setEmail(event.target.value);
@@ -41,6 +41,7 @@ export default function LoginUser() {
 
         Cookie.set("token", res.data?.token);
         Cookie.set("user", res.data.user.email);
+        setUserName(res?.data?.user?.name);
 
         router.push("/HomeDefault");
       } catch (error) {

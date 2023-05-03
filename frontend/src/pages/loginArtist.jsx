@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Cookie from "js-cookie";
 import axios from "axios";
+import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Context } from "@/context/context";
 export default function LoginArtist() {
+  const router = useRouter();
+
   const [emailArtist, setEmailArtist] = useState();
   const [passwordArtist, setPasswordArtist] = useState();
   const [checkpassArtist, setCheckPassArtist] = useState();
+  const { setCurrentUser, setUserName } = useContext(Context);
 
   const loginArt = async () => {
     if (passwordArtist == checkpassArtist) {
@@ -16,11 +21,14 @@ export default function LoginArtist() {
           password: passwordArtist,
         });
         toast("Successfully logged in!");
-        Cookie.set("token", res.data?.token);
 
-        setTimeout(() => {
-          router.push("/HomeDefault");
-        }, 1000);
+        console.log(res.data);
+        Cookie.set("token", res.data?.token);
+        Cookie.set("user", res.data.user.email);
+        setUserName(res?.data?.user?.name);
+        // console.log(res?.data?.user?.username);
+
+        router.push("/HomeDefault");
       } catch (error) {
         toast("Password or Email incorrect!");
       }
@@ -72,8 +80,7 @@ export default function LoginArtist() {
         </div>
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
-          onClick={handleLogin}
-        >
+          onClick={handleLogin}>
           Нэвтрэх
         </button>
       </div>

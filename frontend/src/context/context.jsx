@@ -7,6 +7,7 @@ export const Context = createContext({});
 export const Provider = (props) => {
   const { children } = props;
   const [currentUser, setCurrentUser] = useState(null);
+  const [username, setUserName] = useState();
 
   axios.interceptors.request.use(
     function (config) {
@@ -22,15 +23,20 @@ export const Provider = (props) => {
   useEffect(() => {
     const getUser = async () => {
       const token = Cookies.get("token");
+
       if (!token) return;
       const user = Cookies.get("user");
+      const res = await axios.get("http://localhost:7070/user/getUser");
+      setUserName(res?.data?.user?.name);
+
       setCurrentUser(user);
     };
     getUser();
   }, []);
 
   return (
-    <Context.Provider value={{ currentUser, setCurrentUser }}>
+    <Context.Provider
+      value={{ currentUser, setCurrentUser, setUserName, username }}>
       {children}
     </Context.Provider>
   );

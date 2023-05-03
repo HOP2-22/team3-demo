@@ -8,7 +8,6 @@ const artistSchema = new Schema({
   username: { type: "String", required: true },
   type_of: { type: "String", required: true },
   Role: { type: "String" },
-  image: { type: "String", required: true },
 });
 
 const artist = mongoose.model("artist", artistSchema);
