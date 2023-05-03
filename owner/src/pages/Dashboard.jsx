@@ -1,95 +1,199 @@
-import { AiFillShop } from "react-icons/ai";
-import { TbBellRinging } from "react-icons/tb";
-import {
-  MdLibraryAddCheck,
-  MdPendingActions,
-  MdShoppingBasket,
-} from "react-icons/md";
-import { useState } from "react";
-import { data } from "autoprefixer";
+import { Box } from "@mui/material";
+import Axios from "axios";
+import React, { useState, useEffect } from "react";
+import NotificationsActiveTwoToneIcon from "@mui/icons-material/NotificationsActiveTwoTone";
+import BeenhereTwoToneIcon from "@mui/icons-material/BeenhereTwoTone";
+import PendingActionsTwoToneIcon from "@mui/icons-material/PendingActionsTwoTone";
+import BookmarkBorderTwoToneIcon from "@mui/icons-material/BookmarkBorderTwoTone";
+import Image from "next/image";
+import image from "../images/cover-photo.gif";
+import User from "../components/user";
 
 export default function Dash() {
-  const [isPendding, setIsPendding] = useState(false);
-  const [isApproved, setIsApproved] = useState(false);
-  const [isOrders, setIsOrders] = useState(false);
+  const [data, setData] = useState();
 
-  const adminImg =
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4mVkO67o1eY046Lia1zDdvPM-RMgTtP9D4g&usqp=CAU";
+  const instance = Axios.create({
+    baseURL: "https://dummyapi.io/data/v1/post/",
+    headers: {
+      "app-id": "636e0d6642c1f665f684f489",
+    },
+  });
+
+  useEffect(() => {
+    const fetchProps = async () => {
+      try {
+        const res = await instance.get("/");
+        setData([res.data.data][0].slice(0, 6));
+        console.log(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchProps();
+  }, []);
 
   return (
-    <div className="w-full h-[100vh] bg-slate-200">
-      <div className="w-full h-[70px] flex items-center justify-between px-[100px] bg-white ">
-        <div className="flex items-center text-[30px] gap-2 text-black">
-          <p>
-            <AiFillShop />
-          </p>
-          <p className="text-[24px]">Admin dashboard</p>
-        </div>
-        <div className="flex gap-[20px]">
-          <div className="w-[45px] h-[45px] rounded-[5px] bg-white text-black flex items-center justify-center text-[35px]">
-            <TbBellRinging />
-          </div>
-          <div className="">
-            <img
-              src={adminImg}
-              className="w-[45px] h-[45px] rounded-[5px] shadow-2xl"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className="w-full h-[100vh] flex mt-[50px] ">
-        <div className=" h-[100vh]  px-[100px] flex flex-col gap-4 pt-[75px]">
-          <div
-            className={`${
-              isApproved ? "border-b-[1px] border-black" : ""
-            } flex gap-2 items-center text-[34px] text-black`}
-            onClick={() => {
-              setIsApproved(true);
-              setIsOrders(false);
-              setIsPendding(false);
-            }}>
-            <p>
-              <MdLibraryAddCheck />
-            </p>
-            <p>Approved</p>
-          </div>
-          <div
-            className={`${
-              isPendding ? "border-b-[1px] border-black" : ""
-            } flex gap-2 items-center text-[34px] text-black`}
-            onClick={() => {
-              setIsPendding(true);
-              setIsApproved(false);
-              setIsOrders(false);
-            }}>
-            <p>
-              <MdPendingActions />
-            </p>
-            <p>Pending</p>
-          </div>
-          <div
-            className={`${
-              isOrders ? "border-b-[1px] border-black " : ""
-            }  flex gap-2 items-center text-[34px] text-black`}
-            onClick={() => {
-              setIsOrders(true);
-              setIsApproved(false);
-              setIsPendding(false);
-            }}>
-            <p>
-              <MdShoppingBasket />
-            </p>
-            <p>Orders</p>
-            <p>dfjihgdfiug</p>
-            <p></p>
-          </div>
-        </div>
-        <div className="ml-[90px] w-[80%] h-[100vh] bg-slate-200 flex flex-col gap-4">
-          <p className="text-[44px] text-black">Approved </p>
-          <div className="w-[100%] h-[80vh] bg-white rounded-[25px]"></div>
-        </div>
-      </div>
-    </div>
+    <Box
+      sx={{
+        backgroundColor: "#edf2f4",
+        width: "100%",
+        display: "flex",
+      }}
+    >
+      <Box
+        sx={{
+          width: "15%",
+          height: "100%",
+          paddingLeft: "50px",
+          paddingRight: "50px",
+          paddingBottom: "50px",
+          paddingTop: "10%",
+        }}
+      >
+        <Box
+          sx={{
+            width: "100%",
+            padding: "10px",
+            height: "50px",
+            display: "flex",
+            gap: "10px",
+            marginBottom: "10px",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <BeenhereTwoToneIcon sx={{ color: "black" }}></BeenhereTwoToneIcon>
+          <Box sx={{ color: "black" }}>Approved</Box>
+        </Box>
+        <Box
+          sx={{
+            width: "100%",
+            padding: "10px",
+            height: "50px",
+            display: "flex",
+            gap: "10px",
+            marginBottom: "10px",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <PendingActionsTwoToneIcon
+            sx={{ color: "black" }}
+          ></PendingActionsTwoToneIcon>
+          <Box sx={{ color: "black" }}>Approved</Box>
+        </Box>
+        <Box
+          sx={{
+            width: "100%",
+            padding: "10px",
+            height: "50px",
+            display: "flex",
+            gap: "10px",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <BookmarkBorderTwoToneIcon
+            sx={{ color: "black" }}
+          ></BookmarkBorderTwoToneIcon>
+          <Box sx={{ color: "black" }}>Approved</Box>
+        </Box>
+      </Box>
+      <Box sx={{ width: "85%", height: "100%" }}>
+        <Box
+          sx={{
+            width: "100%",
+            height: "15%",
+            padding: "50px",
+            paddingLeft: "0px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <p style={{ color: "black", fontSize: "30px" }}>Pending board</p>
+          <Box sx={{ display: "flex", gap: "20px" }}>
+            <Box
+              sx={{
+                width: "60px",
+                height: "60px",
+                backgroundColor: "white",
+                border: "1.5px solid #ADA7A7",
+                borderRadius: "8px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <NotificationsActiveTwoToneIcon
+                sx={{ color: "black", fontSize: "30px" }}
+              ></NotificationsActiveTwoToneIcon>
+            </Box>
+            <Box
+              sx={{
+                width: "60px",
+                height: "60px",
+                backgroundColor: "white",
+                border: "1.5px solid #ADA7A7",
+                borderRadius: "8px",
+              }}
+            >
+              <Image
+                style={{ border: "hidden", borderRadius: "8px" }}
+                width={60}
+                height={60}
+                src={image}
+                alt="img"
+              />
+            </Box>
+          </Box>
+        </Box>
+        <Box
+          sx={{
+            width: "100%",
+            height: "85%",
+            paddingRight: "50px",
+            paddingBottom: "50px",
+          }}
+        >
+          <Box
+            sx={{
+              width: "100%",
+              height: "100%",
+              backgroundColor: "white",
+              border: "1.5px solid #ADA7A7",
+              borderRadius: "10px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
+              padding: "10px",
+            }}
+          >
+            <Box
+              sx={{
+                backgroundColor: "#edf2f4",
+                width: "100%",
+                display: "flex",
+                border: "hidden",
+                borderRadius: "10px",
+                gap: "150px",
+                paddingLeft: "150px",
+                paddingTop: "10px",
+                paddingBottom: "10px",
+              }}
+            >
+              <p style={{ color: "black" }}>Artist Id</p>
+              <p style={{ color: "black" }}>Date</p>
+              <p style={{ color: "black" }}>Artist name</p>
+              <p style={{ color: "black" }}>Product name</p>
+              <p style={{ color: "black" }}>Count</p>
+            </Box>
+            {data?.map((card, index) => (
+              <User key={index} />
+            ))}
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 }
