@@ -46,13 +46,7 @@ const BasketSchema = new Schema({
       },
     },
   },
-
-  status: {
-    type: String,
-    enum: ["pending", "rejected", "accepted"],
-    default: "pending",
-  },
 });
-const basket = mongoose.model("Basket", BasketSchema);
+const basket = mongoose.model("basket", BasketSchema);
 
 module.exports = basket;
