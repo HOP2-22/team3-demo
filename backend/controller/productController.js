@@ -85,3 +85,15 @@ exports.DeleteAll = async (req, res) => {
   await Product.deleteMany();
   res.status(200).json({ success: true });
 };
+exports.ChangeProductStatus = async (req, res) => {
+  const id = req.params.id;
+  const newStatus = req.body.status;
+  try {
+    const updatedStatus = await Product.findByIdAndUpdate(id, {
+      status: newStatus,
+    });
+    res.status(200).json(updatedStatus);
+  } catch (error) {
+    res.status(400).json({ message: "can't update" });
+  }
+};

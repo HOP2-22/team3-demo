@@ -3,9 +3,13 @@ import CardMedia from "@mui/material/CardMedia";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 import Checkbox from "@mui/material/Checkbox";
+import axios from "axios";
 
 export default function MerchCart(props) {
-  const { image } = props;
+  const instance = axios.get({
+    baseURL: "http://localhost:7070/product/",
+  });
+  console.log(instance);
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   return (

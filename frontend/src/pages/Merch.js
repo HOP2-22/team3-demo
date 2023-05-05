@@ -12,13 +12,6 @@ export default function Merch() {
   const [count, setCount] = useState();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-  const instance = Axios.create({
-    baseURL: "https://dummyapi.io/data/v1/post/",
-    headers: {
-      "app-id": "636e0d6642c1f665f684f489",
-    },
-  });
-
   useEffect(() => {
     const fetchProps = async () => {
       try {
@@ -43,8 +36,7 @@ export default function Merch() {
               alignItems: "center",
               paddingTop: "40px",
               paddingBottom: "40px",
-            }}
-          >
+            }}>
             <Box sx={{ display: "flex", alignSelf: "self-start" }}>
               <Box
                 sx={{
@@ -56,8 +48,7 @@ export default function Merch() {
                     xl: "96px",
                   },
                   fontWeight: "bold",
-                }}
-              >
+                }}>
                 MERCH
               </Box>
               <Box
@@ -71,8 +62,7 @@ export default function Merch() {
                     lg: "30px",
                     xl: "36px",
                   },
-                }}
-              >
+                }}>
                 751
               </Box>
             </Box>
@@ -85,16 +75,14 @@ export default function Merch() {
                 paddingBottom: "16px",
                 width: "100%",
                 boxSizing: "border-box",
-              }}
-            >
+              }}>
               <Box
                 sx={{
                   width: "100%",
                   height: "1px",
                   bgcolor: "black",
                   boxSizing: "border-box",
-                }}
-              ></Box>
+                }}></Box>
             </Box>
           </Box>
           <Box sx={{ display: "flex" }}>
@@ -113,8 +101,7 @@ export default function Merch() {
                 gap: "10px",
                 justifyContent: "space-between",
                 alignItems: "center",
-              }}
-            >
+              }}>
               {data?.map((card, index) => (
                 <MerchCart key={index} image={card.image}></MerchCart>
               ))}
@@ -133,17 +120,18 @@ export default function Merch() {
                   xl: "flex",
                 },
                 flexDirection: "column",
-              }}
-            >
+              }}>
               <Box
                 sx={{
                   top: "20px",
                   position: "sticky",
-                }}
-              >
+                }}>
                 <Box
-                  sx={{ padding: "10px", fontWeight: "bold", fontSize: "20px" }}
-                >
+                  sx={{
+                    padding: "10px",
+                    fontWeight: "bold",
+                    fontSize: "20px",
+                  }}>
                   Төрлөөр шүүх
                 </Box>
                 <Box sx={{ display: "flex" }}>
