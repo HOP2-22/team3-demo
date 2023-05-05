@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
-import { Avatar } from "@mui/material";
 
 export default function Face(props) {
   const { Image } = props;
