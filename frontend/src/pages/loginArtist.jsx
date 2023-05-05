@@ -11,27 +11,7 @@ export default function LoginArtist() {
   const [emailArtist, setEmailArtist] = useState();
   const [passwordArtist, setPasswordArtist] = useState();
   const [checkpassArtist, setCheckPassArtist] = useState();
-  const { setCurrentUser, setUserName, setIsClient, setIsArtist } =
-    useContext(Context);
-
-  const loginArt = async () => {
-    if (passwordArtist == checkpassArtist) {
-      try {
-        const res = await axios.post("http://localhost:7070/artist/login", {
-          email: emailArtist,
-          password: passwordArtist,
-        });
-        toast("Successfully logged in!");
-        setIsArtist(true);
-        setIsClient(false);
-        router.push("/CreateProduct");
-      } catch (error) {
-        toast("Password or Email incorrect!");
-      }
-    } else {
-      toast("Password does not match!");
-    }
-  };
+  const { setIsClient, setIsArtist } = useContext(Context);
 
   const EmailInput = async (event) => {
     setEmailArtist(event.target.value);
@@ -45,6 +25,30 @@ export default function LoginArtist() {
   const handleLogin = () => {
     loginArt();
   };
+  const loginArt = async () => {
+    console.log("================================================");
+    if (passwordArtist == checkpassArtist) {
+      try {
+        const res = await axios.post("http://localhost:7070/artist/login", {
+          email: emailArtist,
+          password: passwordArtist,
+        });
+        Cookie.set("token", res.data?.token);
+        Cookie.set("user", res.data.user.email);
+        console.log(res);
+
+        toast("Successfully logged in!");
+        setIsArtist(true);
+        setIsClient(false);
+        router.push("/CreateProduct");
+      } catch (error) {
+        toast("Password or Email incorrect!");
+      }
+    } else {
+      toast("Password does not match!");
+    }
+  };
+
   return (
     <div className="w-full h-full  mt-[150px] flex flex-col items-center justify-center gap-10">
       <ToastContainer />

@@ -8,7 +8,8 @@ import { useRouter } from "next/router";
 export default function ArtistHeader() {
   const [searchClick, setSearchClick] = useState(false);
   const [burger, setBurger] = useState(false);
-  const { currentUser, setCurrentUser, username } = useContext(Context);
+  const { setCurrentUser, isArtist, setIsArtist, setIsClient } =
+    useContext(Context);
   const [seeLogout, setSeeLogout] = useState(false);
 
   const router = useRouter();
@@ -34,14 +35,24 @@ export default function ArtistHeader() {
   };
 
   return (
-    <div className="w-full fixed top-0 z-100 bg-red-800">
-      <div className="flex flex-col bg-white">
-        <Container
-          maxWidth="xl"
-          className="flex justify-between h-[75px]  items-center">
-          <div>dfijdi</div>
-        </Container>
-      </div>
+    <div
+      className={` ${
+        isArtist ? "z-10" : "z-4"
+      } w-full fixed top-0 z-6 bg-red-500 `}>
+      <Container
+        maxWidth="xl"
+        className="flex justify-between h-[75px]  items-center">
+        <div className="text-white">hi</div>
+        <div
+          className=""
+          onClick={() => {
+            setIsArtist(false);
+            setIsClient(true);
+            logOut();
+          }}>
+          logout
+        </div>
+      </Container>
     </div>
   );
 }

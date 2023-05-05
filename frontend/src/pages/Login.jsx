@@ -14,8 +14,7 @@ export default function LoginUser() {
   const [checkpass, setCheckPass] = useState("");
   const router = useRouter();
 
-  const { setCurrentUser, setUserName, setIsClient, setIsArtist } =
-    useContext(Context);
+  const { setUserName, setIsClient, setIsArtist } = useContext(Context);
 
   const EmailInput = async (event) => {
     setEmail(event.target.value);

@@ -10,15 +10,8 @@ function Layout({ children }) {
 
   return (
     <div>
-      {isClient ? (
-        <div>
-          <Header />
-        </div>
-      ) : (
-        <div>
-          <ArtistHeader />
-        </div>
-      )}
+      <Header />
+      <ArtistHeader />
 
       {children}
       <HeaderHidden />
