@@ -292,8 +292,8 @@ export default function Face(props) {
           }}
         >
           {data?.map((card, index) => (
-            <SwiperSlide>
-              <Carts key={index} Image={card.image} />
+            <SwiperSlide key={index}>
+              <Carts Image={card.image} />
             </SwiperSlide>
           ))}
         </Swiper>
