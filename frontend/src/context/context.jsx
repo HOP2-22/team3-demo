@@ -8,7 +8,8 @@ export const Provider = (props) => {
   const { children } = props;
   const [currentUser, setCurrentUser] = useState(null);
   const [username, setUserName] = useState();
-
+  const [isClient, setIsClient] = useState(true);
+  const [isArtist, setIsArtist] = useState(false);
   axios.interceptors.request.use(
     function (config) {
       const token = Cookies.get("token");
@@ -36,7 +37,16 @@ export const Provider = (props) => {
 
   return (
     <Context.Provider
-      value={{ currentUser, setCurrentUser, setUserName, username }}>
+      value={{
+        currentUser,
+        setCurrentUser,
+        setUserName,
+        username,
+        isClient,
+        setIsClient,
+        isArtist,
+        setIsArtist,
+      }}>
       {children}
     </Context.Provider>
   );

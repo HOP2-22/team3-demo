@@ -11,7 +11,8 @@ export default function LoginArtist() {
   const [emailArtist, setEmailArtist] = useState();
   const [passwordArtist, setPasswordArtist] = useState();
   const [checkpassArtist, setCheckPassArtist] = useState();
-  const { setCurrentUser, setUserName } = useContext(Context);
+  const { setCurrentUser, setUserName, setIsClient, setIsArtist } =
+    useContext(Context);
 
   const loginArt = async () => {
     if (passwordArtist == checkpassArtist) {
@@ -21,14 +22,9 @@ export default function LoginArtist() {
           password: passwordArtist,
         });
         toast("Successfully logged in!");
-
-        console.log(res.data);
-        Cookie.set("token", res.data?.token);
-        Cookie.set("user", res.data.user.email);
-        setUserName(res?.data?.user?.name);
-        // console.log(res?.data?.user?.username);
-
-        router.push("/HomeDefault");
+        setIsArtist(true);
+        setIsClient(false);
+        router.push("/CreateProduct");
       } catch (error) {
         toast("Password or Email incorrect!");
       }
