@@ -11,6 +11,7 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import TextField from "@mui/material/TextField";
+import Cookies from "js-cookie";
 
 export default function Buy() {
   const [data, setData] = useState();
@@ -22,6 +23,9 @@ export default function Buy() {
       "app-id": "636e0d6642c1f665f684f489",
     },
   });
+
+
+
 
   useEffect(() => {
     const fetchProps = async () => {

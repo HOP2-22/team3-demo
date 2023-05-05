@@ -1,6 +1,6 @@
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
-import Collection from "../components/Collection";
-import CollectionV2 from "../components/CollectionV2";
+import Collection from "../components/collection/Collection";
+import CollectionV2 from "../components/collection/CollectionV2";
 import FaceHome from "../components/FaceHome";
 import { useEffect, useState } from "react";
 import Axios from "axios";
@@ -78,7 +78,7 @@ export default function Face() {
               </Box>
               <Box
                 sx={{
-                  display:"flex", 
+                  display: "flex",
                   fontWeight: "bold",
                   fontSize: {
                     xs: "20px",

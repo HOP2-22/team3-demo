@@ -1,3 +1,3 @@
-export * from "./Collection";
+export * from "./collection/Collection";
 export * from "./FaceHome";
-export * from "./header";
+export * from "./layout/header";

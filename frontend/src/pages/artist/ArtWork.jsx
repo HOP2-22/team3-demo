@@ -3,7 +3,7 @@ import ImageList from "@mui/material/ImageList";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import ArtworkArts from "@/components/ArtworkArts";
+import ArtworkArts from "@/components/artistweb/ArtworkArts";
 function Artwork() {
   const itemData = [
     {

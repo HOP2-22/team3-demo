@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
 import { Avatar } from "@mui/material";
-import Carts from "../components/CollectionCarts";
+import Carts from "./CollectionCarts";
 import { useEffect, useState } from "react";
 import Axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -288,7 +288,7 @@ export default function Face(props) {
             },
             1536: {
               slidesPerView: 3,
-            }
+            },
           }}
         >
           {data?.map((card, index) => (

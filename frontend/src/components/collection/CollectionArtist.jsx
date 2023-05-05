@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import React from "react";
-import ArtistPfp from "./ArtistPfp";
+import ArtistPfp from "../artistweb/ArtistPfp";
 
 function CollectionArtist() {
   return (
@@ -52,7 +52,6 @@ function CollectionArtist() {
           @khongorzul
         </Box>
       </Box>
-    </Box>
     </Box>
   );
 }

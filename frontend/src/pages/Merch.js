@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import MerchCart from "../components/MerchCart";
+import MerchCart from "../components/merch/MerchCart";
 import { useEffect, useState } from "react";
 import Axios from "axios";
 import Checkbox from "@mui/material/Checkbox";

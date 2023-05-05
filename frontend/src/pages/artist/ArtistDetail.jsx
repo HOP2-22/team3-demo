@@ -1,13 +1,13 @@
 import React from "react";
-import Artworks from "../components/ArtistArtworks";
-import Bio from "../components/ArtistBio";
-import Collection from "../components/ArtistCollection";
-import Merch from "../components/ArtistMerch";
+import Artworks from "../../components/artistweb/ArtistArtworks";
+import Bio from "../../components/artistweb/ArtistBio";
+import Collection from "../../components/artistweb/ArtistCollection";
+import Merch from "../../components/artistweb/ArtistMerch";
 import { Box, Container, Stack } from "@mui/material";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import Image from "next/image";
 import { useState } from "react";
-import ArtistCollection from "../components/ArtistCollection";
+import ArtistCollection from "../../components/artistweb/ArtistCollection";
 
 function ArtistDetail() {
   const [arr, setArr] = useState([true, false, false, false]);

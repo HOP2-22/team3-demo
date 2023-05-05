@@ -6,6 +6,7 @@ const usersRouter = require("./router/userRouter");
 const adminRouter = require("./router/adminRouter");
 const artistRouter = require("./router/artistRouter");
 const productRouter = require("./router/productRouter");
+const basketRouter = require("./router/basketRouter");
 
 const connection = mongoose.connection;
 require("dotenv").config();
@@ -23,6 +24,7 @@ app.use("/user", usersRouter);
 app.use("/artist", artistRouter);
 app.use("/admin", adminRouter);
 app.use("/product", productRouter);
+app.use("/basket", basketRouter);
 
 connection.once("open", () => {
   console.log("connect MONGODB server");
