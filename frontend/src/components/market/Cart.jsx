@@ -108,7 +108,7 @@ const styles = {
   title: {
     fontFamily: "PT Sans Narrow",
     fontWeight: "bold",
-    fontSize: { xl: "25px", xs: "15px" },
+    fontSize: { xl: "30px", xs: "15px" },
   },
 
   word: {

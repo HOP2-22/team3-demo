@@ -46,7 +46,9 @@ const productSchema = new Schema({
       },
     },
   },
-
+  details: { type: String, required: true },
+  caretip: { type: String, required: true },
+  warning: { type: String, required: true },
   status: {
     type: String,
     enum: ["pending", "rejected", "accepted"],

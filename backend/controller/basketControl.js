@@ -5,7 +5,7 @@ exports.getAllBasket = async (req, res) => {
   try {
     const _id = req.params.id;
     const getAll = await Product.find(_id);
-    
+
     res.status(200).json(getAll);
   } catch (error) {
     res.status(400).json({ error: error });
