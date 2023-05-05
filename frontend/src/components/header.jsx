@@ -14,7 +14,8 @@ import { Box } from "@mui/material";
 export default function Header() {
   const [searchClick, setSearchClick] = useState(false);
   const [burger, setBurger] = useState(false);
-  const { currentUser, setCurrentUser, username } = useContext(Context);
+  const { currentUser, setCurrentUser, username, isClient } =
+    useContext(Context);
   const [seeLogout, setSeeLogout] = useState(false);
 
   const router = useRouter();
@@ -40,7 +41,7 @@ export default function Header() {
   };
 
   return (
-    <div className="w-full fixed top-0 z-10">
+    <div className={` ${isClient ? "z-10" : "z-4"} w-full fixed top-0 z-6`}>
       <div className="flex flex-col bg-white">
         <Container
           maxWidth="xl"

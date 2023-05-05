@@ -14,7 +14,7 @@ export default function LoginUser() {
   const [checkpass, setCheckPass] = useState("");
   const router = useRouter();
 
-  const { setCurrentUser, setUserName } = useContext(Context);
+  const { setUserName, setIsClient, setIsArtist } = useContext(Context);
 
   const EmailInput = async (event) => {
     setEmail(event.target.value);
@@ -42,7 +42,8 @@ export default function LoginUser() {
         Cookie.set("token", res.data?.token);
         Cookie.set("user", res.data.user.email);
         setUserName(res?.data?.user?.name);
-
+        setIsClient(true);
+        setIsArtist(false);
         router.push("/HomeDefault");
       } catch (error) {
         toast("Password or Email incorrect!");
