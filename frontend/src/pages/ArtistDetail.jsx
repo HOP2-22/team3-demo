@@ -1,5 +1,5 @@
 import React from "react";
-import Artworks from "../../components/artistweb/ArtistArtworks";
+import Artworks from "../ArtistArtworks";
 import Bio from "../../components/artistweb/ArtistBio";
 import Collection from "../../components/artistweb/ArtistCollection";
 import Merch from "../../components/artistweb/ArtistMerch";

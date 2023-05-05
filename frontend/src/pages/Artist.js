@@ -1,11 +1,9 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import ArtistCart from "../../components/artistweb/ArtistCart";
+import ArtistCart from "../components/artistweb/ArtistCart";
 import { useEffect, useState } from "react";
 import Axios from "axios";
 import Checkbox from "@mui/material/Checkbox";
-import Stack from "@mui/material/Stack";
-import IconButton from "@mui/material/IconButton";
 
 export default function Artist() {
   const [data, setData] = useState();

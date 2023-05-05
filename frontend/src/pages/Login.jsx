@@ -4,9 +4,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Context } from "@/context/context";
-
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import toast from "react-hot-toast";
 
 export default function LoginUser() {
   const [email, setEmail] = useState("");
@@ -14,7 +12,7 @@ export default function LoginUser() {
   const [checkpass, setCheckPass] = useState("");
   const router = useRouter();
 
-  const { setUserName, setIsClient, setIsArtist } = useContext(Context);
+  const { setCurrentUser } = useContext(Context);
 
   const EmailInput = async (event) => {
     setEmail(event.target.value);
@@ -37,25 +35,24 @@ export default function LoginUser() {
           email: email,
           password: password,
         });
-        toast("Successful logged in!");
+
+        toast.success("Login successful");
+        setCurrentUser(null);
 
         Cookie.set("token", res.data?.token);
         Cookie.set("user", res.data.user.email);
-        setUserName(res?.data?.user?.name);
-        setIsClient(true);
-        setIsArtist(false);
+
         router.push("/HomeDefault");
       } catch (error) {
-        toast("Password or Email incorrect!");
+        alert("Нууц үг эсвэл Цахим хаяг буруу байна");
       }
     } else {
-      toast("Password does not match!");
+      toast.error("nuuts ug taarahgui baina");
     }
   };
 
   return (
     <div className="w-full h-full  mt-[150px] flex flex-col items-center justify-center gap-10">
-      <ToastContainer />
       <div className="text-[32px] text-[#1b1927]">Нэвтрэх</div>
       <div className="flex flex-col gap-6">
         <div className="">
@@ -92,7 +89,8 @@ export default function LoginUser() {
 
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
-          onClick={handleLogin}>
+          onClick={handleLogin}
+        >
           Нэвтрэх
         </button>
       </div>

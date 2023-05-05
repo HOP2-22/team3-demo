@@ -86,11 +86,12 @@ function Artwork() {
           }}
         >
           <ImageList variant="masonry" cols={3} gap={10}>
-            {itemData.map((item) => (
+            {itemData.map((item, index) => (
               <ArtworkArts
                 image={item.img}
                 author={item.author}
                 title={item.title}
+                key={index}
               />
             ))}
           </ImageList>
