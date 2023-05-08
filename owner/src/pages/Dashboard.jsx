@@ -13,7 +13,7 @@ export default function Dash() {
   const [data, setData] = useState();
 
   const instance = Axios.create({
-    baseURL: "https://dummyapi.io/data/v1/post/",
+    baseURL: "http://localhost:7070/product/",
     headers: {
       "app-id": "636e0d6642c1f665f684f489",
     },
@@ -39,14 +39,13 @@ export default function Dash() {
         width: "100%",
         height: "100vh",
         display: {
-              xs: "none",
-              sm: "none",
-              md: "none",
-              lg: "flex",
-              xl: "flex",
-            },
-      }}
-    >
+          xs: "none",
+          sm: "none",
+          md: "none",
+          lg: "flex",
+          xl: "flex",
+        },
+      }}>
       <Container maxWidth="xl" sx={{ display: "flex", height: "100%" }}>
         <Box
           sx={{
@@ -59,8 +58,7 @@ export default function Dash() {
               xl: "flex",
             },
             flexDirection: "column",
-          }}
-        >
+          }}>
           <Box
             sx={{
               width: "100%",
@@ -72,16 +70,14 @@ export default function Dash() {
                 lg: "50px",
                 xl: "50px",
               },
-            }}
-          ></Box>
+            }}></Box>
           <Box
             sx={{
               width: "100%",
               paddingLeft: "50px",
               paddingRight: "50px",
               paddingBottom: "50px",
-            }}
-          >
+            }}>
             <Box
               sx={{
                 width: "100%",
@@ -93,11 +89,9 @@ export default function Dash() {
                 alignItems: "center",
                 justifyContent: "space-between",
                 cursor: "pointer",
-              }}
-            >
+              }}>
               <BeenhereTwoToneIcon
-                sx={{ color: "black" }}
-              ></BeenhereTwoToneIcon>
+                sx={{ color: "black" }}></BeenhereTwoToneIcon>
               <Box sx={{ color: "black" }}>Approved</Box>
             </Box>
             <Box
@@ -111,11 +105,9 @@ export default function Dash() {
                 alignItems: "center",
                 justifyContent: "space-between",
                 cursor: "pointer",
-              }}
-            >
+              }}>
               <PendingActionsTwoToneIcon
-                sx={{ color: "black" }}
-              ></PendingActionsTwoToneIcon>
+                sx={{ color: "black" }}></PendingActionsTwoToneIcon>
               <Box sx={{ color: "black" }}>Pending</Box>
             </Box>
             <Box
@@ -128,11 +120,9 @@ export default function Dash() {
                 alignItems: "center",
                 justifyContent: "space-between",
                 cursor: "pointer",
-              }}
-            >
+              }}>
               <BookmarkBorderTwoToneIcon
-                sx={{ color: "black" }}
-              ></BookmarkBorderTwoToneIcon>
+                sx={{ color: "black" }}></BookmarkBorderTwoToneIcon>
               <Box sx={{ color: "black" }}> Orders</Box>
             </Box>
           </Box>
@@ -147,8 +137,7 @@ export default function Dash() {
               xl: "85%",
             },
             height: "100%",
-          }}
-        >
+          }}>
           <Box
             sx={{
               width: "100%",
@@ -164,8 +153,7 @@ export default function Dash() {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-            }}
-          >
+            }}>
             <p style={{ color: "black", fontSize: "30px" }}>Pending board</p>
             <Box sx={{ display: "flex", gap: "20px" }}>
               <Box
@@ -179,11 +167,12 @@ export default function Dash() {
                   alignItems: "center",
                   justifyContent: "center",
                   cursor: "pointer",
-                }}
-              >
+                }}>
                 <NotificationsActiveTwoToneIcon
-                  sx={{ color: "black", fontSize: "30px" }}
-                ></NotificationsActiveTwoToneIcon>
+                  sx={{
+                    color: "black",
+                    fontSize: "30px",
+                  }}></NotificationsActiveTwoToneIcon>
               </Box>
               <Box
                 sx={{
@@ -192,8 +181,7 @@ export default function Dash() {
                   backgroundColor: "white",
                   border: "1.5px solid #ADA7A7",
                   borderRadius: "8px",
-                }}
-              >
+                }}>
                 <Image
                   style={{
                     border: "hidden",
@@ -226,8 +214,7 @@ export default function Dash() {
                 lg: "50px",
                 xl: "50px",
               },
-            }}
-          >
+            }}>
             <Box
               sx={{
                 width: "100%",
@@ -237,8 +224,7 @@ export default function Dash() {
                 borderRadius: "10px",
                 display: "flex",
                 flexDirection: "column",
-              }}
-            >
+              }}>
               <Box
                 sx={{
                   backgroundColor: "#edf2f4",
@@ -254,11 +240,9 @@ export default function Dash() {
                   border: "hidden",
                   borderTopLeftRadius: "10px",
                   borderTopRightRadius: "10px",
-                }}
-              >
+                }}>
                 <Box
-                  sx={{ color: "black", width: "33px", height: "33px" }}
-                ></Box>
+                  sx={{ color: "black", width: "33px", height: "33px" }}></Box>
                 <p style={{ color: "black", width: "100px" }}>Artist Id</p>
                 <p style={{ color: "black", width: "100px" }}>Date</p>
                 <p style={{ color: "black", width: "100px" }}>Artist name</p>
@@ -275,8 +259,7 @@ export default function Dash() {
                   overflow: "hidden",
                   overflowY: "scroll",
                   gap: "10px",
-                }}
-              >
+                }}>
                 {data?.map((index) => (
                   <User key={index} />
                 ))}
