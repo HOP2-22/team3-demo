@@ -1,8 +1,16 @@
 const Product = require("../Model/product");
 
 exports.createProduct = async (req, res) => {
-  const { ownerID, productName, images, price, size, color, type_of } =
-    req.body;
+  const {
+    ownerID,
+    productName,
+    images,
+    price,
+    size,
+    color,
+    type_of,
+    ownerName,
+  } = req.body;
   const { xxs, xs, s, m, l, xxl } = size;
   console.log(xxs);
   console.log(ownerID, productName, images, price);
@@ -14,6 +22,7 @@ exports.createProduct = async (req, res) => {
       price: price,
       color: color,
       type_of: type_of,
+      ownerName: ownerName,
       size: {
         xxs,
         xs,

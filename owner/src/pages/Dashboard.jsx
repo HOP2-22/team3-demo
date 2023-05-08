@@ -8,29 +8,36 @@ import BookmarkBorderTwoToneIcon from "@mui/icons-material/BookmarkBorderTwoTone
 import Image from "next/image";
 import image from "../images/cover-photo.gif";
 import User from "../components/user";
+import Checkbox from "@mui/material/Checkbox";
+import axios from "axios";
 
 export default function Dash() {
   const [data, setData] = useState();
+  const [load, setLoad] = useState(false);
 
   const instance = Axios.create({
     baseURL: "http://localhost:7070/product/",
-    headers: {
-      "app-id": "636e0d6642c1f665f684f489",
-    },
   });
 
   useEffect(() => {
     const fetchProps = async () => {
       try {
-        const res = await instance.get("/");
-        setData([res.data.data][0].slice(0, 20));
-        console.log(data);
+        const res = await instance?.get("/");
+        setData(res?.data);
+        console.log(res.data);
       } catch (err) {
         console.log(err);
       }
     };
     fetchProps();
-  }, []);
+  }, [load]);
+
+  const StatusChange = async ({ id, type }) => {
+    console.log(id, type);
+    await axios.patch(`http://localhost:7070/product/StatusUpdate/${id}`, {
+      status: type,
+    });
+  };
 
   return (
     <Box
@@ -233,21 +240,20 @@ export default function Dash() {
                   border: "hidden",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  paddingLeft: "20px",
+                  paddingLeft: "40px",
                   paddingTop: "10px",
                   paddingBottom: "10px",
-                  paddingRight: "20px",
+                  paddingRight: "40px",
                   border: "hidden",
                   borderTopLeftRadius: "10px",
                   borderTopRightRadius: "10px",
                 }}>
-                <Box
-                  sx={{ color: "black", width: "33px", height: "33px" }}></Box>
                 <p style={{ color: "black", width: "100px" }}>Artist Id</p>
                 <p style={{ color: "black", width: "100px" }}>Date</p>
                 <p style={{ color: "black", width: "100px" }}>Artist name</p>
-                <p style={{ color: "black", width: "100px" }}>Product name</p>
-                <p style={{ color: "black", width: "100px" }}>Count</p>
+                <p style={{ color: "black", width: "120px" }}>Product name</p>
+                <p style={{ color: "black", width: "100px" }}>Price</p>
+                <p style={{ color: "black", width: "100px" }}>Status</p>
               </Box>
               <Box
                 sx={{
@@ -260,8 +266,48 @@ export default function Dash() {
                   overflowY: "scroll",
                   gap: "10px",
                 }}>
-                {data?.map((index) => (
-                  <User key={index} />
+                {data?.map((dataa, index) => (
+                  <Box
+                    sx={{
+                      backgroundColor: "#edf2f4",
+                      display: "flex",
+                      border: "hidden",
+                      borderRadius: "10px",
+                      // gap: "150px",
+                      padding: "10px",
+                      marginLeft: "30px",
+                      marginRight: "30px",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      marginTop: "10px",
+                    }}>
+                    <p style={{ color: "black", width: "100px" }}>
+                      {dataa.ownerID.slice(0, 10)}
+                    </p>
+                    <p style={{ color: "black", width: "100px" }}>
+                      {dataa.Date.slice(0, 10)}
+                    </p>
+                    <p style={{ color: "black", width: "100px" }}>
+                      {dataa.ownerName}
+                    </p>
+                    <p style={{ color: "black", width: "100px" }}>
+                      {dataa.productName}
+                    </p>
+                    <p style={{ color: "black", width: "100px" }}>
+                      {dataa.price}
+                    </p>
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <Checkbox
+                        onClick={(e) => {
+                          setLoad(!load);
+                          e.target.checked
+                            ? StatusChange({ id: dataa._id, type: "approved" })
+                            : StatusChange({ id: dataa._id, type: "rejected" });
+                        }}
+                        checked={dataa.status == "approved" ? true : false}
+                      />
+                    </Box>
+                  </Box>
                 ))}
               </Box>
             </Box>
