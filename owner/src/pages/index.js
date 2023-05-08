@@ -8,24 +8,6 @@ export default function Home() {
 
   const router = useRouter();
 
-  const login = async () => {
-    try {
-      console.log("xxa");
-      const res = await axios.post("http://localhost:7070/admin/login", {
-        email: email,
-        password: password,
-      });
-      alert("Login successful");
-      Cookie.set("token", res.data?.token);
-      alert("Login successful");
-      setTimeout(() => {
-        router.push("/Dashboard");
-      }, 100);
-    } catch (error) {
-      alert("Нууц үг эсвэл Цахим хаяг буруу байна");
-    }
-  };
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -33,7 +15,23 @@ export default function Home() {
     setEmail(event.target.value);
   };
   const PasswordInput = async (event) => {
-    setEmail(event.target.value);
+    setPassword(event.target.value);
+  };
+
+  const login = async () => {
+    try {
+      const res = await axios.post("http://localhost:7070/admin/login", {
+        email: email,
+        password: password,
+      });
+      alert("Login successful");
+      alert("Login successful");
+      setTimeout(() => {
+        router.push("/Dashboard");
+      }, 100);
+    } catch (error) {
+      alert("Нууц үг эсвэл Цахим хаяг буруу байна");
+    }
   };
 
   return (
