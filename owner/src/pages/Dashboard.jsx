@@ -37,17 +37,41 @@ export default function Dash() {
       sx={{
         backgroundColor: "#edf2f4",
         width: "100%",
-        // height: "100vh",
-        display: "flex",
+        height: "100vh",
+        display: {
+              xs: "none",
+              sm: "none",
+              md: "none",
+              lg: "flex",
+              xl: "flex",
+            },
       }}
     >
       <Container maxWidth="xl" sx={{ display: "flex", height: "100%" }}>
-        <Box>
+        <Box
+          sx={{
+            width: "15%",
+            display: {
+              xs: "none",
+              sm: "none",
+              md: "flex",
+              lg: "flex",
+              xl: "flex",
+            },
+            flexDirection: "column",
+          }}
+        >
           <Box
             sx={{
               width: "100%",
               height: "15%",
-              padding: "50px",
+              padding: {
+                xs: "10px",
+                sm: "50px",
+                md: "50px",
+                lg: "50px",
+                xl: "50px",
+              },
             }}
           ></Box>
           <Box
@@ -113,12 +137,29 @@ export default function Dash() {
             </Box>
           </Box>
         </Box>
-        <Box sx={{ width: "85%", height: "100%" }}>
+        <Box
+          sx={{
+            width: {
+              xs: "100%",
+              sm: "100%",
+              md: "85%",
+              lg: "85%",
+              xl: "85%",
+            },
+            height: "100%",
+          }}
+        >
           <Box
             sx={{
               width: "100%",
               height: "15%",
-              padding: "50px",
+              padding: {
+                xs: "0px",
+                sm: "0px",
+                md: "50px",
+                lg: "50px",
+                xl: "50px",
+              },
               paddingLeft: "0px",
               display: "flex",
               justifyContent: "space-between",
@@ -171,8 +212,20 @@ export default function Dash() {
             sx={{
               width: "100%",
               height: "85%",
-              paddingRight: "50px",
-              paddingBottom: "50px",
+              paddingRight: {
+                xs: "0px",
+                sm: "0px",
+                md: "50px",
+                lg: "50px",
+                xl: "50px",
+              },
+              paddingBottom: {
+                xs: "0px",
+                sm: "0px",
+                md: "50px",
+                lg: "50px",
+                xl: "50px",
+              },
             }}
           >
             <Box
@@ -184,14 +237,12 @@ export default function Dash() {
                 borderRadius: "10px",
                 display: "flex",
                 flexDirection: "column",
-                // padding: "10px",
               }}
             >
               <Box
                 sx={{
                   backgroundColor: "#edf2f4",
                   width: "100%",
-                  // height: "100%",
                   display: "flex",
                   border: "hidden",
                   alignItems: "center",
@@ -200,7 +251,6 @@ export default function Dash() {
                   paddingTop: "10px",
                   paddingBottom: "10px",
                   paddingRight: "20px",
-                  // marginBottom: "10px",
                   border: "hidden",
                   borderTopLeftRadius: "10px",
                   borderTopRightRadius: "10px",
