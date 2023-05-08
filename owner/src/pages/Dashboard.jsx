@@ -16,7 +16,7 @@ export default function Dash() {
   const [load, setLoad] = useState(false);
 
   const instance = Axios.create({
-    baseURL: "http://localhost:7070/product/",
+    baseURL: "http://localhost:7070/product",
   });
 
   useEffect(() => {

@@ -108,3 +108,7 @@ exports.ChangeProductStatus = async (req, res) => {
     res.status(400).json({ message: "can't update" });
   }
 };
+exports.onlyApproved = async (req, res) => {
+  const responsive = await Product.find({ status: "approved" });
+  res.status(200).json({ success: true, json: responsive });
+};

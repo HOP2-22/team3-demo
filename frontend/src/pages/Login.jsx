@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import Cookie from "js-cookie";
 import axios from "axios";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { Context } from "@/context/context";
 import toast from "react-hot-toast";
 
@@ -11,8 +11,9 @@ export default function LoginUser() {
   const [password, setPassword] = useState("");
   const [checkpass, setCheckPass] = useState("");
   const router = useRouter();
+  const refresh = useRouter().refresh;
 
-  const { setCurrentUser } = useContext(Context);
+  const { setCurrentUser, setUserName } = useContext(Context);
 
   const EmailInput = async (event) => {
     setEmail(event.target.value);
@@ -37,7 +38,9 @@ export default function LoginUser() {
         });
 
         toast.success("Login successful");
-        setCurrentUser(null);
+
+        setUserName(res?.data?.user?.name);
+        setCurrentUser(user);
 
         Cookie.set("token", res.data?.token);
         Cookie.set("user", res.data.user.email);
@@ -89,8 +92,7 @@ export default function LoginUser() {
 
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
-          onClick={handleLogin}
-        >
+          onClick={handleLogin}>
           Нэвтрэх
         </button>
       </div>

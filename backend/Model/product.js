@@ -53,7 +53,7 @@ const productSchema = new Schema({
   warning: { type: String, required: true },
   status: {
     type: String,
-    enum: ["pending", "rejected", "accepted"],
+    enum: ["pending", "rejected", "approved"],
     default: "pending",
   },
   Date: { type: Date, default: Date.now },
