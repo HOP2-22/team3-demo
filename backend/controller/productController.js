@@ -1,7 +1,8 @@
 const Product = require("../Model/product");
 
 exports.createProduct = async (req, res) => {
-  const { ownerID, productName, images, price, size, color } = req.body;
+  const { ownerID, productName, images, price, size, color, type_of } =
+    req.body;
   const { xxs, xs, s, m, l, xxl } = size;
   console.log(xxs);
   console.log(ownerID, productName, images, price);
@@ -12,6 +13,7 @@ exports.createProduct = async (req, res) => {
       images: images,
       price: price,
       color: color,
+      type_of: type_of,
       size: {
         xxs,
         xs,
@@ -84,4 +86,16 @@ exports.DeleteProduct = async (req, res) => {
 exports.DeleteAll = async (req, res) => {
   await Product.deleteMany();
   res.status(200).json({ success: true });
+};
+exports.ChangeProductStatus = async (req, res) => {
+  const id = req.params.id;
+  const newStatus = req.body.status;
+  try {
+    const updatedStatus = await Product.findByIdAndUpdate(id, {
+      status: newStatus,
+    });
+    res.status(200).json(updatedStatus);
+  } catch (error) {
+    res.status(400).json({ message: "can't update" });
+  }
 };

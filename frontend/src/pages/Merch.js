@@ -2,29 +2,30 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import MerchCart from "../components/merch/MerchCart";
 import { useEffect, useState } from "react";
-import Axios from "axios";
+import axios from "axios";
 import Checkbox from "@mui/material/Checkbox";
 import Stack from "@mui/material/Stack";
 import IconButton from "@mui/material/IconButton";
+import CardMedia from "@mui/material/CardMedia";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Favorite from "@mui/icons-material/Favorite";
 
 export default function Merch() {
   const [data, setData] = useState();
-  const [count, setCount] = useState();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
+  const [count, setCount] = useState();
 
-  const instance = Axios.create({
-    baseURL: "https://dummyapi.io/data/v1/post/",
-    headers: {
-      "app-id": "636e0d6642c1f665f684f489",
-    },
+  const instance = axios.create({
+    baseURL: "http://localhost:7070/product",
   });
 
   useEffect(() => {
     const fetchProps = async () => {
       try {
-        const res = await instance.get("/");
-        setData([res.data.data][0].slice(0, 12));
-        setCount([res.data.data][0].length);
+        const res = await instance?.get("/");
+        setData(res?.data);
+        console.log(res.data);
+        setCount(res?.data.length);
       } catch (err) {
         console.log(err);
       }
@@ -35,7 +36,7 @@ export default function Merch() {
   return (
     <Box sx={{ marginTop: "70px" }}>
       <Container maxWidth="xl">
-        <Box>
+        <Box sx={{ width: "100%" }}>
           <Box
             sx={{
               display: "flex",
@@ -43,8 +44,7 @@ export default function Merch() {
               alignItems: "center",
               paddingTop: "40px",
               paddingBottom: "40px",
-            }}
-          >
+            }}>
             <Box sx={{ display: "flex", alignSelf: "self-start" }}>
               <Box
                 sx={{
@@ -56,8 +56,7 @@ export default function Merch() {
                     xl: "96px",
                   },
                   fontWeight: "bold",
-                }}
-              >
+                }}>
                 MERCH
               </Box>
               <Box
@@ -71,9 +70,8 @@ export default function Merch() {
                     lg: "30px",
                     xl: "36px",
                   },
-                }}
-              >
-                751
+                }}>
+                {count}
               </Box>
             </Box>
             <Box sx={{ alignSelf: "self-start", fontWeight: "300" }}>
@@ -85,16 +83,14 @@ export default function Merch() {
                 paddingBottom: "16px",
                 width: "100%",
                 boxSizing: "border-box",
-              }}
-            >
+              }}>
               <Box
                 sx={{
                   width: "100%",
                   height: "1px",
                   bgcolor: "black",
                   boxSizing: "border-box",
-                }}
-              ></Box>
+                }}></Box>
             </Box>
           </Box>
           <Box sx={{ display: "flex" }}>
@@ -113,11 +109,87 @@ export default function Merch() {
                 gap: "10px",
                 justifyContent: "space-between",
                 alignItems: "center",
-              }}
-            >
-              {data?.map((card, index) => (
-                <MerchCart key={index} image={card.image}></MerchCart>
-              ))}
+              }}>
+              <Box sx={{ width: "100%" }}>
+                <Box
+                  sx={{
+                    width: "100%",
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "space-between",
+                  }}>
+                  {data?.map((info, index) => {
+                    return (
+                      <Box
+                        key={index}
+                        sx={{
+                          marginBottom: "50px",
+                          width: {
+                            xs: "45%",
+                            sm: "45%",
+                            md: "30%",
+                            lg: "30%",
+                            xl: "30%",
+                          },
+                        }}>
+                        <Box sx={{ position: "relative" }}>
+                          <CardMedia
+                            image={info?.images}
+                            sx={{
+                              width: "100%",
+                              height: {
+                                xs: "180px",
+                                sm: "280px",
+                                md: "337px",
+                                lg: "337px",
+                                xl: "337px",
+                              },
+                            }}
+                          />
+                          <Checkbox
+                            {...label}
+                            icon={<FavoriteBorder />}
+                            checkedIcon={<Favorite />}
+                            sx={{
+                              position: "absolute",
+                              top: "8px",
+                            }}></Checkbox>
+                        </Box>
+                        <Box>
+                          <Box
+                            sx={{
+                              color: "rgb(158, 158, 158)",
+                              fontWeight: "bold",
+                            }}>
+                            {info.type_of}
+                          </Box>
+                          <Box sx={{ fontWeight: "bold" }}>
+                            Title {info.productName}
+                          </Box>
+                          <Box
+                            sx={{
+                              paddingTop: "8px",
+                              paddingBottom: "8px",
+                              width: "100%",
+                              boxSizing: "border-box",
+                            }}>
+                            <Box
+                              sx={{
+                                width: "100%",
+                                height: "1px",
+                                bgcolor: "black",
+                                boxSizing: "border-box",
+                              }}></Box>
+                          </Box>
+                          <Box sx={{ fontWeight: "bold" }}>
+                            Price : {info.price}
+                          </Box>
+                        </Box>
+                      </Box>
+                    );
+                  })}
+                </Box>
+              </Box>
             </Box>
             <Box
               sx={{
@@ -133,17 +205,18 @@ export default function Merch() {
                   xl: "flex",
                 },
                 flexDirection: "column",
-              }}
-            >
+              }}>
               <Box
                 sx={{
                   top: "20px",
                   position: "sticky",
-                }}
-              >
+                }}>
                 <Box
-                  sx={{ padding: "10px", fontWeight: "bold", fontSize: "20px" }}
-                >
+                  sx={{
+                    padding: "10px",
+                    fontWeight: "bold",
+                    fontSize: "20px",
+                  }}>
                   Төрлөөр шүүх
                 </Box>
                 <Box sx={{ display: "flex" }}>
