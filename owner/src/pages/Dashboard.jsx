@@ -277,7 +277,7 @@ export default function Dash() {
                   gap: "10px",
                 }}
               >
-                {data?.map((card, index) => (
+                {data?.map((index) => (
                   <User key={index} />
                 ))}
               </Box>
