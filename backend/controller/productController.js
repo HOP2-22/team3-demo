@@ -3,8 +3,6 @@ const Product = require("../Model/product");
 exports.createProduct = async (req, res) => {
   const { ownerID, productName, images, price, size, color } = req.body;
   const { xxs, xs, s, m, l, xxl } = size;
-  console.log(xxs);
-  console.log(ownerID, productName, images, price);
   try {
     const newProduct = await Product.create({
       ownerID: ownerID,
@@ -40,6 +38,7 @@ exports.getAllProducts = async (req, res) => {
 exports.PatchProduct = async (req, res) => {
   try {
     const id = req.params.id;
+    const item = req.body;
 
     const product = await Product.findById(id);
 
@@ -48,8 +47,17 @@ exports.PatchProduct = async (req, res) => {
         success: false,
         message: `There is no product with the given ID(${id})`,
       });
+    } else if (product.size[item].count <= 0) {
+      return res.status(404).json({
+        success: false,
+        message: `Our product with that size is out of stock!`,
+      });
+    } else if (req.body[item].count > product.size[item].count) {
+      return res.status(404).json({
+        success: false,
+        message: `We don't have enough product!`,
+      });
     }
-
     for (let item in req.body) {
       product.size[item].count -= req.body[item].count;
     }
