@@ -80,11 +80,11 @@ export default function SignUpUser() {
           name: name,
           image: imageUrl,
         });
+
         toast("Successfully signed up!");
-        console.log(res);
+
         router.push("/Login");
       } catch (error) {
-        console.log(error);
         toast("Password or Email incorrect!");
       }
     } else {

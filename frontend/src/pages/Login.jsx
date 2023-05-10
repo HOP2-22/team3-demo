@@ -39,8 +39,8 @@ export default function LoginUser() {
       Cookie.set("token", data?.token);
       Cookie.set("user", data?.user.email);
       Cookies.set("role", data?.user.Role);
+      Cookies.set("image", data?.user.image);
 
-      console.log({ data });
       setCurrentUser({
         username: data?.user?.username,
         image: data?.user?.image,
@@ -48,7 +48,6 @@ export default function LoginUser() {
 
       router.push("/");
     } catch (error) {
-      console.log(error);
       alert("Нууц үг эсвэл Цахим хаяг буруу байна");
     }
   };

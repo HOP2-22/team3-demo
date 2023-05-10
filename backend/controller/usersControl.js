@@ -7,7 +7,7 @@ exports.createUser = async (req, res) => {
   const isArtist = req.query.isArtist;
 
   try {
-    const { email, password, name } = req.body;
+    const { email, password, name, image } = req.body;
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -17,6 +17,7 @@ exports.createUser = async (req, res) => {
       name: name,
       Role: role.Client,
       isArtist: isArtist,
+      image: image,
     });
 
     res.status(200).json({ data: newUser });

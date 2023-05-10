@@ -61,7 +61,6 @@ export default function SignUp() {
 
         router.push("/loginArtist");
       } catch (error) {
-        console.log(error);
         toast("Password or Email incorrect!");
       }
     } else {

@@ -24,10 +24,7 @@ export default function Dash() {
       try {
         const res = await instance?.get("/");
         setData(res?.data);
-        console.log(res.data);
-      } catch (err) {
-        console.log(err);
-      }
+      } catch (err) {}
     };
     fetchProps();
   }, [load]);
@@ -52,7 +49,8 @@ export default function Dash() {
           lg: "flex",
           xl: "flex",
         },
-      }}>
+      }}
+    >
       <Container maxWidth="xl" sx={{ display: "flex", height: "100%" }}>
         <Box
           sx={{
@@ -65,7 +63,8 @@ export default function Dash() {
               xl: "flex",
             },
             flexDirection: "column",
-          }}>
+          }}
+        >
           <Box
             sx={{
               width: "100%",
@@ -77,14 +76,16 @@ export default function Dash() {
                 lg: "50px",
                 xl: "50px",
               },
-            }}></Box>
+            }}
+          ></Box>
           <Box
             sx={{
               width: "100%",
               paddingLeft: "50px",
               paddingRight: "50px",
               paddingBottom: "50px",
-            }}>
+            }}
+          >
             <Box
               sx={{
                 width: "100%",
@@ -96,9 +97,11 @@ export default function Dash() {
                 alignItems: "center",
                 justifyContent: "space-between",
                 cursor: "pointer",
-              }}>
+              }}
+            >
               <BeenhereTwoToneIcon
-                sx={{ color: "black" }}></BeenhereTwoToneIcon>
+                sx={{ color: "black" }}
+              ></BeenhereTwoToneIcon>
               <Box sx={{ color: "black" }}>Approved</Box>
             </Box>
             <Box
@@ -112,9 +115,11 @@ export default function Dash() {
                 alignItems: "center",
                 justifyContent: "space-between",
                 cursor: "pointer",
-              }}>
+              }}
+            >
               <PendingActionsTwoToneIcon
-                sx={{ color: "black" }}></PendingActionsTwoToneIcon>
+                sx={{ color: "black" }}
+              ></PendingActionsTwoToneIcon>
               <Box sx={{ color: "black" }}>Pending</Box>
             </Box>
             <Box
@@ -127,9 +132,11 @@ export default function Dash() {
                 alignItems: "center",
                 justifyContent: "space-between",
                 cursor: "pointer",
-              }}>
+              }}
+            >
               <BookmarkBorderTwoToneIcon
-                sx={{ color: "black" }}></BookmarkBorderTwoToneIcon>
+                sx={{ color: "black" }}
+              ></BookmarkBorderTwoToneIcon>
               <Box sx={{ color: "black" }}> Orders</Box>
             </Box>
           </Box>
@@ -144,7 +151,8 @@ export default function Dash() {
               xl: "85%",
             },
             height: "100%",
-          }}>
+          }}
+        >
           <Box
             sx={{
               width: "100%",
@@ -160,7 +168,8 @@ export default function Dash() {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-            }}>
+            }}
+          >
             <p style={{ color: "black", fontSize: "30px" }}>Pending board</p>
             <Box sx={{ display: "flex", gap: "20px" }}>
               <Box
@@ -174,12 +183,14 @@ export default function Dash() {
                   alignItems: "center",
                   justifyContent: "center",
                   cursor: "pointer",
-                }}>
+                }}
+              >
                 <NotificationsActiveTwoToneIcon
                   sx={{
                     color: "black",
                     fontSize: "30px",
-                  }}></NotificationsActiveTwoToneIcon>
+                  }}
+                ></NotificationsActiveTwoToneIcon>
               </Box>
               <Box
                 sx={{
@@ -188,7 +199,8 @@ export default function Dash() {
                   backgroundColor: "white",
                   border: "1.5px solid #ADA7A7",
                   borderRadius: "8px",
-                }}>
+                }}
+              >
                 <Image
                   style={{
                     border: "hidden",
@@ -221,7 +233,8 @@ export default function Dash() {
                 lg: "50px",
                 xl: "50px",
               },
-            }}>
+            }}
+          >
             <Box
               sx={{
                 width: "100%",
@@ -231,7 +244,8 @@ export default function Dash() {
                 borderRadius: "10px",
                 display: "flex",
                 flexDirection: "column",
-              }}>
+              }}
+            >
               <Box
                 sx={{
                   backgroundColor: "#edf2f4",
@@ -247,13 +261,14 @@ export default function Dash() {
                   border: "hidden",
                   borderTopLeftRadius: "10px",
                   borderTopRightRadius: "10px",
-                }}>
-                <p style={{ color: "black", width: "100px", textAlign:"center" }}>Artist Id</p>
-                <p style={{ color: "black", width: "100px", textAlign:"center" }}>Date</p>
-                <p style={{ color: "black", width: "100px", textAlign:"center" }}>Artist name</p>
-                <p style={{ color: "black", width: "100px", textAlign:"center" }}>Product name</p>
-                <p style={{ color: "black", width: "100px", textAlign:"center" }}>Price</p>
-                <p style={{ color: "black", width: "42px", textAlign:"center" }}>Status</p>
+                }}
+              >
+                <p style={{ color: "black", width: "100px" }}>Artist Id</p>
+                <p style={{ color: "black", width: "100px" }}>Date</p>
+                <p style={{ color: "black", width: "100px" }}>Artist name</p>
+                <p style={{ color: "black", width: "120px" }}>Product name</p>
+                <p style={{ color: "black", width: "100px" }}>Price</p>
+                <p style={{ color: "black", width: "100px" }}>Status</p>
               </Box>
               <Box
                 sx={{
@@ -265,7 +280,8 @@ export default function Dash() {
                   overflow: "hidden",
                   overflowY: "scroll",
                   gap: "10px",
-                }}>
+                }}
+              >
                 {data?.map((dataa, index) => (
                   <Box
                     sx={{
@@ -280,20 +296,21 @@ export default function Dash() {
                       justifyContent: "space-between",
                       alignItems: "center",
                       marginTop: "10px",
-                    }}>
-                    <p style={{ color: "black", width: "100px", textAlign:"center" }}>
+                    }}
+                  >
+                    <p style={{ color: "black", width: "100px" }}>
                       {dataa.ownerID.slice(0, 10)}
                     </p>
-                    <p style={{ color: "black", width: "100px", textAlign:"center" }}>
+                    <p style={{ color: "black", width: "100px" }}>
                       {dataa.Date.slice(0, 10)}
                     </p>
-                    <p style={{ color: "black", width: "100px", textAlign:"center" }}>
+                    <p style={{ color: "black", width: "100px" }}>
                       {dataa.ownerName}
                     </p>
-                    <p style={{ color: "black", width: "100px", textAlign:"center" }}>
+                    <p style={{ color: "black", width: "100px" }}>
                       {dataa.productName}
                     </p>
-                    <p style={{ color: "black", width: "100px", textAlign:"center" }}>
+                    <p style={{ color: "black", width: "100px" }}>
                       {dataa.price}
                     </p>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
