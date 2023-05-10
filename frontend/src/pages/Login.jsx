@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Context } from "@/context/context";
 import toast from "react-hot-toast";
+import Cookies from "js-cookie";
 
 export default function LoginUser() {
   const [email, setEmail] = useState("");
@@ -37,7 +38,7 @@ export default function LoginUser() {
 
       Cookie.set("token", res.data?.token);
       Cookie.set("user", res.data?.user.email);
-      console.log(res.data.user.Role);
+      Cookies.set("role", res.data?.user.Role);
       router.push("/");
     } catch (error) {
       console.log(error);

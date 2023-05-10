@@ -12,7 +12,6 @@ export default function LoginArtist() {
 
   const [emailArtist, setEmailArtist] = useState();
   const [passwordArtist, setPasswordArtist] = useState();
-  const [checkpassArtist, setCheckPassArtist] = useState();
   const { setIsClient, setIsArtist, currentUser, setCurrentUser } =
     useAuthContext();
 

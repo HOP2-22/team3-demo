@@ -1,7 +1,6 @@
 const User = require("../Model/users");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { Client } = require("../config/roles");
 const role = require("../config/roles");
 
 exports.createUser = async (req, res) => {
@@ -52,7 +51,6 @@ exports.login = async (req, res) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
-    console.log(user, user.password);
     const match = await bcrypt.compare(password, user.password);
 
     if (!match) {
@@ -61,15 +59,14 @@ exports.login = async (req, res) => {
 
     const token = jwt.sign(
       {
-        username: user.username,
-        id: user.id,
+        user: user,
         isArtist: user.isArtist,
         Role: role.Client,
       },
       ACCESS_TOKEN_KEY
     );
 
-    res.status(200).json({ username: "username", id, token });
+    res.status(200).json({ user, token });
   } catch (error) {
     res.status(400).json({ message: "password dont match" });
   }

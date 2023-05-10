@@ -39,8 +39,6 @@ export const Provider = (props) => {
       // setCurrentUser(user);
       const { data } = await axios.get("http://localhost:7070/user/getUser");
 
-      console.log(data, "this is a token");
-
       setCurrentUser({
         username: data?.user?.username,
         image: data?.user?.image,
