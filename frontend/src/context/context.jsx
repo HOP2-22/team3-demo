@@ -7,7 +7,7 @@ export const Context = createContext({});
 export const Provider = (props) => {
   const { children } = props;
   const [currentUser, setCurrentUser] = useState(null);
-  const [username, setUserName] = useState();
+  const [username, setUserName] = useState("");
   const [isClient, setIsClient] = useState(true);
   const [isArtist, setIsArtist] = useState(false);
 
@@ -21,6 +21,10 @@ export const Provider = (props) => {
       return Promise.reject(error);
     }
   );
+
+  // useEffect(() => {
+  //   location.reload();
+  // }, [refresh]);
 
   useEffect(() => {
     const getUser = async () => {

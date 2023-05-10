@@ -2,28 +2,31 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import ArtistCart from "../components/artistweb/ArtistCart";
 import { useEffect, useState } from "react";
-import Axios from "axios";
+import axios from "axios";
 import Checkbox from "@mui/material/Checkbox";
+import CardMedia from "@mui/material/CardMedia";
+import { Stack, Typography } from "@mui/material";
+import CardContent from "@mui/material/CardContent";
+import Card from "@mui/material/Card";
+import Image from "next/image";
+import { CardActionArea } from "@mui/material";
 
 export default function Artist() {
   const [data, setData] = useState();
   const [count, setCount] = useState();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-  const instance = Axios.create({
-    baseURL: "https://dummyapi.io/data/v1/post/",
-    headers: {
-      "app-id": "636e0d6642c1f665f684f489",
-    },
+  const instance = axios.create({
+    baseURL: "http://localhost:7070/artist",
   });
 
   useEffect(() => {
     const fetchProps = async () => {
       try {
         const res = await instance.get("/");
-        setData([res.data.data][0].slice(0, 12));
-        setCount([res.data.data][0].length);
-        console.log(count);
+        setData(res?.data?.data);
+        console.log(res?.data?.data);
+        setCount(res?.data?.data.length);
       } catch (err) {
         console.log(err);
       }
@@ -42,8 +45,7 @@ export default function Artist() {
               alignItems: "center",
               paddingTop: "40px",
               paddingBottom: "40px",
-            }}
-          >
+            }}>
             <Box sx={{ display: "flex", alignSelf: "self-start" }}>
               <Box
                 sx={{
@@ -55,8 +57,7 @@ export default function Artist() {
                     xl: "96px",
                   },
                   fontWeight: "bold",
-                }}
-              >
+                }}>
                 ARTIST
               </Box>
               <Box
@@ -70,9 +71,8 @@ export default function Artist() {
                     lg: "30px",
                     xl: "36px",
                   },
-                }}
-              >
-                72
+                }}>
+                {count}
               </Box>
             </Box>
             <Box sx={{ alignSelf: "self-start", fontWeight: "300" }}>
@@ -84,74 +84,82 @@ export default function Artist() {
                 paddingBottom: "16px",
                 width: "100%",
                 boxSizing: "border-box",
-              }}
-            >
+              }}>
               <Box
                 sx={{
                   width: "100%",
                   height: "1px",
                   bgcolor: "black",
                   boxSizing: "border-box",
-                }}
-              ></Box>
+                }}></Box>
             </Box>
           </Box>
-          <Box
-            sx={{
-              display: "flex",
-            }}
-          >
-            <Box
+          <Stack direction={"row"}>
+            <Stack
               sx={{
-                flexWrap: "wrap",
                 display: "flex",
                 flexDirection: "row",
-                marginTop: "-20px",
-                width: {
-                  xs: "100%",
-                  sx: "100%",
-                  md: "100%",
-                  lg: "100%",
-                  xl: "75%",
-                },
-                gap: "10px",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
+                flexWrap: "wrap",
+                flex: 1,
+                // marginTop: "-20px",
+                // width: {
+                //   xs: "100%",
+                //   sx: "100%",
+                //   md: "100%",
+                //   lg: "100%",
+                //   xl: "75%",
+                // },
+                // gap: "10px",
+              }}>
               {data?.map((card, index) => (
-                <ArtistCart key={index} image={card.image}></ArtistCart>
+                <Box sx={{ width: "345px" }} bgcolor={"red"}>
+                  <Box>
+                    <Box
+                      component="img"
+                      height={140}
+                      width={345}
+                      sx={{
+                        background: `url(https://mui.com/static/images/cards/contemplative-reptile.jpg)`,
+                      }}
+                    />
+                    <Box>
+                      <Typography gutterBottom variant="h5" component="Box">
+                        {card.username}
+                      </Typography>
+                      <Typography gutterBottom variant="h5" component="div">
+                        {card.type_of}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {card.cv}
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Box>
               ))}
-            </Box>
+            </Stack>
             <Box
               sx={{
                 paddingLeft: "40px",
                 paddingRight: "40px",
-                width: "25%",
+                width: "256px",
                 height: "1730px",
                 display: {
                   xs: "none",
-                  sx: "none",
-                  md: "none",
                   lg: "flex",
-                  xl: "flex",
                 },
                 flexDirection: "column",
-              }}
-            >
+              }}>
               <Box
                 sx={{
                   top: "80px",
                   position: "sticky",
-                }}
-              >
+                }}>
                 <Box
                   sx={{
                     padding: "10px",
                     fontWeight: "bold",
                     fontSize: "20px",
-                  }}
-                >
+                  }}>
                   Төрлөөр шүүх
                 </Box>
                 <Box sx={{ display: "flex" }}>
@@ -178,7 +186,7 @@ export default function Artist() {
                 </Box>
               </Box>
             </Box>
-          </Box>
+          </Stack>
         </Box>
       </Container>
     </Box>

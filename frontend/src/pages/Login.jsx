@@ -9,11 +9,7 @@ import toast from "react-hot-toast";
 export default function LoginUser() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [checkpass, setCheckPass] = useState("");
   const router = useRouter();
-  const refresh = useRouter().refresh;
-
-  const { setCurrentUser, setUserName } = useContext(Context);
 
   const EmailInput = async (event) => {
     setEmail(event.target.value);
@@ -21,36 +17,26 @@ export default function LoginUser() {
   const PassInput = async (event) => {
     setPassword(event.target.value);
   };
-  const PassInputCheck = async (event) => {
-    setCheckPass(event.target.value);
-  };
 
   const handleLogin = () => {
     loginUser();
   };
 
   const loginUser = async () => {
-    if (password == checkpass) {
-      try {
-        const res = await axios.post("http://localhost:7070/user/login", {
-          email: email,
-          password: password,
-        });
+    try {
+      const res = await axios.post("http://localhost:7070/user/login", {
+        email: email,
+        password: password,
+      });
 
-        toast.success("Login successful");
+      toast.success("Login successful");
 
-        setUserName(res?.data?.user?.name);
-        setCurrentUser(user);
+      Cookie.set("token", res.data?.token);
+      Cookie.set("user", res.data.user.email);
 
-        Cookie.set("token", res.data?.token);
-        Cookie.set("user", res.data.user.email);
-
-        router.push("/HomeDefault");
-      } catch (error) {
-        alert("Нууц үг эсвэл Цахим хаяг буруу байна");
-      }
-    } else {
-      toast.error("nuuts ug taarahgui baina");
+      router.push("/HomeDefault");
+    } catch (error) {
+      alert("Нууц үг эсвэл Цахим хаяг буруу байна");
     }
   };
 
@@ -74,18 +60,16 @@ export default function LoginUser() {
             onChange={PassInput}
           />
         </div>
-        <div className="">
-          <p className="px-[20px] text-[16px]">Нууц үгээ давтна уу?</p>
-          <input
-            className="shadow-2xl w-[300px] sm:w-[380px] h-[45px] outline-none rounded-full text-[20px] px-[20px]"
-            placeholder="••••••••••"
-            onChange={PassInputCheck}
-          />
-        </div>
-        <div className="w-[100%] flex justify-between px-[10px]">
+
+        <div className="w-[100%] flex justify-between px-[10px] flex-col gap-6">
           <Link href="/loginArtist">
             <p className="text-[16px] ml-[10px] ">
               Уран бүтээлч бол энд дарна уу?
+            </p>
+          </Link>
+          <Link href="/SignUp">
+            <p className="text-[16px] ml-[10px] ">
+              Шинэ хэрэглэгч бол энд дарна уу ?
             </p>
           </Link>
         </div>

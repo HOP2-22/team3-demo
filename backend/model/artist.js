@@ -7,6 +7,7 @@ const artistSchema = new Schema({
   password: { type: "String", required: true },
   username: { type: "String", required: true },
   type_of: { type: "String", required: true },
+  cv: { type: "String", required: true },
   Role: { type: "String" },
 });
 

@@ -5,7 +5,7 @@ const artist = require("../Model/artist");
 
 exports.createArtist = async (req, res) => {
   try {
-    const { email, password, type_of, username } = req.body;
+    const { email, password, type_of, username, cv } = req.body;
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -14,6 +14,7 @@ exports.createArtist = async (req, res) => {
       password: hashedPassword,
       type_of: type_of,
       username: username,
+      cv: cv,
       Role: Artist,
     });
 

@@ -37,7 +37,7 @@ export default function Header() {
     Cookies.remove("token");
     Cookies.remove("user");
 
-    router.push("/typeselect");
+    router.push("/HomeDefault");
   };
 
   return (
@@ -45,8 +45,7 @@ export default function Header() {
       <div className="flex flex-col bg-white">
         <Container
           maxWidth="xl"
-          className="flex justify-between h-[75px]  items-center"
-        >
+          className="flex justify-between h-[75px]  items-center">
           <div className="flex items-center gap-5 md:gap-5 w-[100%]">
             <Link href="/">
               <div className="text-[30px] font-bold">Geru</div>
@@ -62,26 +61,27 @@ export default function Header() {
                 className="text-[20px] flex items-center gap-2 font-bold"
                 onClick={() => {
                   setBurger(!burger);
-                }}
-              >
+                }}>
                 Enjoy <SlArrowDown className="text-[15px]" />
               </span>
               <div
                 className={`${
                   burger ? " flex" : "hidden"
-                } absolute bg-white w-[150px] h-[200px]   xl:mt-[-45px] xl:ml-[-170px] -mt-[35px] -ml-[160px]  flex-col px-[20px] justify-evenly shadow-xl rounded-[9px]`}
-              >
-                <div className="bg-gray-300 rounded-[5px] w-[110%] h-[35px] flex items-center">
-                  COLLECTION
-                </div>
+                } absolute bg-white w-[150px] h-[200px]   xl:mt-[-45px] xl:ml-[-170px] -mt-[35px] -ml-[160px]  flex-col px-[20px] justify-evenly border-2 shadow-xl rounded-[9px]`}>
                 <a href="Merch ">
-                  <div className="font-bold">MERCH</div>
+                  <div className="font-bold border-b-[1px] flex items-center justify-center">
+                    MERCH
+                  </div>
                 </a>
                 <a href="ArtWork">
-                  <div className="font-bold">ARTWORK</div>
+                  <div className="font-bold border-b-[1px] flex items-center justify-center">
+                    ARTWORK
+                  </div>
                 </a>
                 <a href="Artist">
-                  <div className="font-bold">ARTIST</div>
+                  <div className="font-bold border-b-[1px] flex items-center justify-center">
+                    ARTIST
+                  </div>
                 </a>
               </div>
             </div>
@@ -100,12 +100,11 @@ export default function Header() {
                     className="flex items-center gap-[2px] "
                     onClick={() => {
                       setSeeLogout(!seeLogout);
-                    }}
-                  >
+                    }}>
                     {username} <RiArrowDownSFill className="text-[#1b1927]" />
                   </div>
                 ) : (
-                  <Link href="/typeselect">
+                  <Link href="/Login">
                     <AiOutlineUser />
                   </Link>
                 )}
@@ -117,8 +116,7 @@ export default function Header() {
                 onClick={() => {
                   logOut();
                   setSeeLogout(false);
-                }}
-              >
+                }}>
                 Гарах
               </div>
             ) : (
