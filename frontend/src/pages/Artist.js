@@ -13,20 +13,20 @@ import { CardActionArea } from "@mui/material";
 
 export default function Artist() {
   const [data, setData] = useState();
-  const [count, setCount] = useState();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
+  const [count, setCount] = useState();
 
   const instance = axios.create({
-    baseURL: "http://localhost:7070/artist",
+    baseURL: "http://localhost:7070/product/approved",
   });
 
   useEffect(() => {
     const fetchProps = async () => {
       try {
-        const res = await instance.get("/");
-        setData(res?.data?.data);
-        console.log(res?.data?.data);
-        setCount(res?.data?.data.length);
+        const res = await instance?.get("/");
+        setData(res?.data.json);
+        console.log(res.data.json);
+        setCount(res?.data.json.length);
       } catch (err) {
         console.log(err);
       }
@@ -45,7 +45,8 @@ export default function Artist() {
               alignItems: "center",
               paddingTop: "40px",
               paddingBottom: "40px",
-            }}>
+            }}
+          >
             <Box sx={{ display: "flex", alignSelf: "self-start" }}>
               <Box
                 sx={{
@@ -57,7 +58,8 @@ export default function Artist() {
                     xl: "96px",
                   },
                   fontWeight: "bold",
-                }}>
+                }}
+              >
                 ARTIST
               </Box>
               <Box
@@ -71,7 +73,8 @@ export default function Artist() {
                     lg: "30px",
                     xl: "36px",
                   },
-                }}>
+                }}
+              >
                 {count}
               </Box>
             </Box>
@@ -84,82 +87,115 @@ export default function Artist() {
                 paddingBottom: "16px",
                 width: "100%",
                 boxSizing: "border-box",
-              }}>
+              }}
+            >
               <Box
                 sx={{
                   width: "100%",
                   height: "1px",
                   bgcolor: "black",
                   boxSizing: "border-box",
-                }}></Box>
+                }}
+              ></Box>
             </Box>
           </Box>
-          <Stack direction={"row"}>
-            <Stack
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                flexWrap: "wrap",
-                flex: 1,
-                // marginTop: "-20px",
-                // width: {
-                //   xs: "100%",
-                //   sx: "100%",
-                //   md: "100%",
-                //   lg: "100%",
-                //   xl: "75%",
-                // },
-                // gap: "10px",
-              }}>
-              {data?.map((card, index) => (
-                <Box sx={{ width: "345px" }} bgcolor={"red"}>
-                  <Box>
-                    <Box
-                      component="img"
-                      height={140}
-                      width={345}
-                      sx={{
-                        background: `url(https://mui.com/static/images/cards/contemplative-reptile.jpg)`,
-                      }}
-                    />
-                    <Box>
-                      <Typography gutterBottom variant="h5" component="Box">
-                        {card.username}
-                      </Typography>
-                      <Typography gutterBottom variant="h5" component="div">
-                        {card.type_of}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {card.cv}
-                      </Typography>
-                    </Box>
-                  </Box>
-                </Box>
-              ))}
-            </Stack>
+          <Box sx={{ display: "flex" }}>
             <Box
               sx={{
-                paddingLeft: "40px",
-                paddingRight: "40px",
-                width: "256px",
-                height: "1730px",
+                display: "flex",
+                flexWrap: "wrap",
+                // flex: 4,
+                // marginTop: "-20px",
+                width: {
+                  xs: "100%",
+                  sx: "100%",
+                  md: "100%",
+                  lg: "100%",
+                  xl: "auto",
+                },
+                gap: "20px",
+                justifyContent:{
+                  xs: "center",
+                  sx: "none",
+                  md: "none",
+                  lg: "none",
+                  xl: "none",
+                },
+                paddingLeft:{
+                  xs: "0px",
+                  xl: "70px",
+                },
+                paddingRight:{
+                  xs: "0px",
+                  xl: "70px",
+                },
+              }}
+            >
+              {data?.map((info, index) => (
+                <Card key={index} sx={{ width: "345px" }}>
+                  <CardActionArea sx={{ height: "100%" }}>
+                    <CardMedia
+                      component="img"
+                      height="140"
+                      image={
+                        "https://res.cloudinary.com/urlan/image/upload/v1677914253/geru-store/beernight/Screenshot_2023-03-04_at_15.13_1_1_1_1_gqsnhc.jpg"
+                      }
+                      alt="green iguana"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                        {info.productName}
+                      </Typography>
+                      <Typography
+                        sx={{ overflow: "hidden", overflowY: "scroll", height:"100px", paddingRight:"4px" }}
+                        variant="body2"
+                        color="text.secondary"
+                      >
+                        {info.details}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              ))}
+            </Box>
+            <Box
+              sx={{
+                paddingLeft: "0px",
+                paddingRight: {
+                  xs: "0px",
+                  xl: "80px",
+                },
+                width: {
+                  xs: "none",
+                  sx: "none",
+                  md: "25%",
+                  lg: "25%",
+                  xl: "30%",
+                },
                 display: {
                   xs: "none",
+                  sx: "none",
+                  md: "flex",
                   lg: "flex",
+                  xl: "flex",
                 },
                 flexDirection: "column",
-              }}>
+                alignItems:"center"
+              }}
+            >
               <Box
                 sx={{
                   top: "80px",
                   position: "sticky",
-                }}>
+                }}
+              >
                 <Box
                   sx={{
                     padding: "10px",
                     fontWeight: "bold",
                     fontSize: "20px",
-                  }}>
+                  }}
+                >
                   Төрлөөр шүүх
                 </Box>
                 <Box sx={{ display: "flex" }}>
@@ -186,7 +222,7 @@ export default function Artist() {
                 </Box>
               </Box>
             </Box>
-          </Stack>
+          </Box>
         </Box>
       </Container>
     </Box>
