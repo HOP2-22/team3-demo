@@ -58,8 +58,7 @@ export default function SwiperCard() {
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper"
-      >
+        className="mySwiper">
         {images.map((image, index) => {
           return (
             <SwiperSlide key={image.id}>
