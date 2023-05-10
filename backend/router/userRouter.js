@@ -9,6 +9,7 @@ const {
   login,
   DeleteAll,
   deleteUser,
+  getUser,
 } = require("../Controller/usersControl");
 
 const userRouter = express.Router();
@@ -19,4 +20,6 @@ userRouter.get("/", getUsers);
 userRouter.post("/login", login);
 userRouter.delete("/deleteAll", DeleteAll);
 userRouter.delete("/deleteUser", deleteUser);
+userRouter.get("/getUser", getUser);
+
 module.exports = userRouter;

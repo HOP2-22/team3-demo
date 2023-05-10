@@ -1,14 +1,19 @@
-import React, { Children } from "react";
-import Header from "../components/header";
-import Footer from "../components/Footer";
-import HeaderHidden from "../components/HeaderHidden";
+import React, { Children, useContext } from "react";
+import Header from "../components/layout/header";
+import Footer from "../components/layout/Footer";
+import HeaderHidden from "../components/layout/HeaderHidden";
+import ArtistHeader from "../components/ArtistHeader";
+import { Context } from "@/context/context";
 
 function Layout({ children }) {
-  return (
-    <div className="">
-      <Header />
-      {children}
+  const { isClient, isArtist } = useContext(Context);
 
+  return (
+    <div>
+      <Header />
+      <ArtistHeader />
+
+      {children}
       <HeaderHidden />
       <Footer />
     </div>

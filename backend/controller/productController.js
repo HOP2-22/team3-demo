@@ -1,7 +1,16 @@
 const Product = require("../Model/product");
 
 exports.createProduct = async (req, res) => {
-  const { ownerID, productName, images, price, size, color } = req.body;
+  const {
+    ownerID,
+    productName,
+    images,
+    price,
+    size,
+    color,
+    type_of,
+    ownerName,
+  } = req.body;
   const { xxs, xs, s, m, l, xxl } = size;
   try {
     const newProduct = await Product.create({
@@ -10,6 +19,8 @@ exports.createProduct = async (req, res) => {
       images: images,
       price: price,
       color: color,
+      type_of: type_of,
+      ownerName: ownerName,
       size: {
         xxs,
         xs,
@@ -18,6 +29,12 @@ exports.createProduct = async (req, res) => {
         l,
         xxl,
       },
+      details:
+        "The Unisex Staple T-Shirt feels soft and light with just the right amount of stretch. It's comfortable and flattering for all. We can't compliment this shirt enough–it's one of our crowd favorites, and it's sure to be your next favorite too! Solid colors are 100% Airlume combed and ring-spun cotton Ash color is 99% combed and ring-spun cotton, 1% polyester",
+      caretip:
+        "Machine wash cold, inside-out, gentle cycle with mild detergent and similar colors. Use non-chlorine bleach, only when necessary. No fabric softeners.",
+      warning:
+        "Do not dry clean. Cool iron inside-out if necessary. Do not iron decoration.",
     });
 
     res.status(200).json(newProduct);
@@ -86,4 +103,20 @@ exports.DeleteProduct = async (req, res) => {
 exports.DeleteAll = async (req, res) => {
   await Product.deleteMany();
   res.status(200).json({ success: true });
+};
+exports.ChangeProductStatus = async (req, res) => {
+  const id = req.params.id;
+  const newStatus = req.body.status;
+  try {
+    const updatedStatus = await Product.findByIdAndUpdate(id, {
+      status: newStatus,
+    });
+    res.status(200).json(updatedStatus);
+  } catch (error) {
+    res.status(400).json({ message: "can't update" });
+  }
+};
+exports.onlyApproved = async (req, res) => {
+  const responsive = await Product.find({ status: "approved" });
+  res.status(200).json({ success: true, json: responsive });
 };

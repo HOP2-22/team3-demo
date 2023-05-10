@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import CollectionMerch from "./CollectionMerch";
-import CollectionArtist from "./CollectionArtist";
+import CollectionMerch from "../collection/CollectionMerch";
+import CollectionArtist from "../collection/CollectionArtist";
 import { useState } from "react";
 function ArtistCollection() {
   const [topMerch, setTopMerch] = useState(["first", "second", "third"]);
@@ -12,6 +12,10 @@ function ArtistCollection() {
         background: "#1b1927",
         display: "flex",
         padding: "40px",
+
+        gap: "15px",
+        justifyContent: "center",
+
         flexDirection: {
           xs: "column",
           sm: "column",
@@ -20,12 +24,14 @@ function ArtistCollection() {
           xl: "row",
         },
       }}
+      className="abc"
     >
       <CollectionArtist />
       <Box
         sx={{
           display: "flex",
           gap: "20px",
+          justifyContent: "center",
           flexDirection: {
             xs: "column",
             md: "row",

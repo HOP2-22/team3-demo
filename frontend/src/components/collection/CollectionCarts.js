@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
-import { Avatar } from "@mui/material";
 
 export default function Face(props) {
   const { Image } = props;
@@ -11,18 +10,18 @@ export default function Face(props) {
         // width: "30%",
         // height: "90%",
         width: {
-          xs: "30%",
-          sm: "30%",
-          md: "30%",
-          lg: "30%",
-          xl: "30%",
+          xs: "100%",
+          sm: "100%",
+          md: "100%",
+          lg: "100%",
+          xl: "100%",
         },
         height: {
           xs: "90%",
           sm: "90%",
           md: "90%",
           lg: "90%",
-          xl: "90%",
+          xl: "100%",
         },
         backgroundColor: "white",
       }}
@@ -35,6 +34,12 @@ export default function Face(props) {
             height: "100%",
           }}
         />
+        {/* <Image
+        width={100}
+        height={100}
+        src={Imag}
+        style={{ paddingBottom: "10px", width: "100%", height: "100%" }}
+      /> */}
       </Box>
       <Box
         sx={{

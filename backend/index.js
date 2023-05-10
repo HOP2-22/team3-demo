@@ -8,6 +8,7 @@ const artistRouter = require("./router/artistRouter");
 const productRouter = require("./router/productRouter");
 const cartRouter = require("./router/cartRouter");
 
+
 const connection = mongoose.connection;
 require("dotenv").config();
 const app = express();

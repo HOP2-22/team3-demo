@@ -7,6 +7,7 @@ const Task = new Schema({
   password: { type: String, required: true },
   createdAt: { type: Date, default: new Date() },
   Role: { type: String, required: true },
+  name: { type: String, required: true },
 });
 
 module.exports = mongoose.model("User", Task);

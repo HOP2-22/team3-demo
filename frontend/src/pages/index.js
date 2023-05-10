@@ -1,7 +1,5 @@
 import Head from "next/head";
 import Face from "./HomeDefault";
-import ArtistDetail from "./ArtistDetail";
-import CollectionArtist from "@/components/CollectionArtist";
 
 export default function Home() {
   return (

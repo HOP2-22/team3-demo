@@ -4,8 +4,10 @@ const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
   ownerID: { type: String, required: true },
+  type_of: { type: String, required: true },
   productName: { type: String, required: true },
-  images: [{ type: String }],
+  ownerName: { type: String, required: true },
+  images: { type: String },
   color: { type: String, required: true },
   price: { type: String, required: true },
   size: {
@@ -46,12 +48,15 @@ const productSchema = new Schema({
       },
     },
   },
-
+  details: { type: String, required: true },
+  caretip: { type: String, required: true },
+  warning: { type: String, required: true },
   status: {
     type: String,
-    enum: ["pending", "rejected", "accepted"],
+    enum: ["pending", "rejected", "approved"],
     default: "pending",
   },
+  Date: { type: Date, default: Date.now },
 });
 const product = mongoose.model("product", productSchema);
 
