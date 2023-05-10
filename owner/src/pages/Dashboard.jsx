@@ -248,12 +248,12 @@ export default function Dash() {
                   borderTopLeftRadius: "10px",
                   borderTopRightRadius: "10px",
                 }}>
-                <p style={{ color: "black", width: "100px" }}>Artist Id</p>
-                <p style={{ color: "black", width: "100px" }}>Date</p>
-                <p style={{ color: "black", width: "100px" }}>Artist name</p>
-                <p style={{ color: "black", width: "120px" }}>Product name</p>
-                <p style={{ color: "black", width: "100px" }}>Price</p>
-                <p style={{ color: "black", width: "100px" }}>Status</p>
+                <p style={{ color: "black", width: "100px", textAlign:"center" }}>Artist Id</p>
+                <p style={{ color: "black", width: "100px", textAlign:"center" }}>Date</p>
+                <p style={{ color: "black", width: "100px", textAlign:"center" }}>Artist name</p>
+                <p style={{ color: "black", width: "100px", textAlign:"center" }}>Product name</p>
+                <p style={{ color: "black", width: "100px", textAlign:"center" }}>Price</p>
+                <p style={{ color: "black", width: "42px", textAlign:"center" }}>Status</p>
               </Box>
               <Box
                 sx={{
@@ -281,19 +281,19 @@ export default function Dash() {
                       alignItems: "center",
                       marginTop: "10px",
                     }}>
-                    <p style={{ color: "black", width: "100px" }}>
+                    <p style={{ color: "black", width: "100px", textAlign:"center" }}>
                       {dataa.ownerID.slice(0, 10)}
                     </p>
-                    <p style={{ color: "black", width: "100px" }}>
+                    <p style={{ color: "black", width: "100px", textAlign:"center" }}>
                       {dataa.Date.slice(0, 10)}
                     </p>
-                    <p style={{ color: "black", width: "100px" }}>
+                    <p style={{ color: "black", width: "100px", textAlign:"center" }}>
                       {dataa.ownerName}
                     </p>
-                    <p style={{ color: "black", width: "100px" }}>
+                    <p style={{ color: "black", width: "100px", textAlign:"center" }}>
                       {dataa.productName}
                     </p>
-                    <p style={{ color: "black", width: "100px" }}>
+                    <p style={{ color: "black", width: "100px", textAlign:"center" }}>
                       {dataa.price}
                     </p>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
