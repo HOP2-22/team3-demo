@@ -33,3 +33,11 @@ exports.deleteProductFromCart = async (req, res) => {
     res.status(400).json({ message: "Couldn't delete!" });
   }
 };
+
+exports.getUserCarts = async (req, res) => {
+  const userId = req.params.id;
+
+  const userCards = await Cart.find({ cardUser: userId });
+
+  res.status(200).json(userCards);
+};
