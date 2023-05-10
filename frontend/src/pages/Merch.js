@@ -1,16 +1,15 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import MerchCart from "../components/merch/MerchCart";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Checkbox from "@mui/material/Checkbox";
-import Stack from "@mui/material/Stack";
-import IconButton from "@mui/material/IconButton";
 import CardMedia from "@mui/material/CardMedia";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
+import { useRouter } from "next/router";
 
 export default function Merch() {
+  const router = useRouter();
   const [data, setData] = useState();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const [count, setCount] = useState();
@@ -33,6 +32,12 @@ export default function Merch() {
     fetchProps();
   }, []);
 
+  const handleClick = (id) => {
+    router.push("/Buy", {
+      query: id,
+    });
+  };
+
   return (
     <Box sx={{ marginTop: "70px" }}>
       <Container maxWidth="xl">
@@ -44,7 +49,8 @@ export default function Merch() {
               alignItems: "center",
               paddingTop: "40px",
               paddingBottom: "40px",
-            }}>
+            }}
+          >
             <Box sx={{ display: "flex", alignSelf: "self-start" }}>
               <Box
                 sx={{
@@ -56,7 +62,8 @@ export default function Merch() {
                     xl: "96px",
                   },
                   fontWeight: "bold",
-                }}>
+                }}
+              >
                 MERCH
               </Box>
               <Box
@@ -70,7 +77,8 @@ export default function Merch() {
                     lg: "30px",
                     xl: "36px",
                   },
-                }}>
+                }}
+              >
                 {count}
               </Box>
             </Box>
@@ -83,14 +91,16 @@ export default function Merch() {
                 paddingBottom: "16px",
                 width: "100%",
                 boxSizing: "border-box",
-              }}>
+              }}
+            >
               <Box
                 sx={{
                   width: "100%",
                   height: "1px",
                   bgcolor: "black",
                   boxSizing: "border-box",
-                }}></Box>
+                }}
+              ></Box>
             </Box>
           </Box>
           <Box sx={{ display: "flex" }}>
@@ -109,7 +119,8 @@ export default function Merch() {
                 gap: "10px",
                 justifyContent: "space-between",
                 alignItems: "center",
-              }}>
+              }}
+            >
               <Box sx={{ width: "100%" }}>
                 <Box
                   sx={{
@@ -117,7 +128,8 @@ export default function Merch() {
                     display: "flex",
                     flexWrap: "wrap",
                     justifyContent: "space-between",
-                  }}>
+                  }}
+                >
                   {data?.map((info, index) => {
                     return (
                       <Box
@@ -131,9 +143,11 @@ export default function Merch() {
                             lg: "30%",
                             xl: "30%",
                           },
-                        }}>
+                        }}
+                      >
                         <Box sx={{ position: "relative" }}>
                           <CardMedia
+                            onClick={() => handleClick(info?._id)}
                             image={info?.images}
                             sx={{
                               width: "100%",
@@ -144,6 +158,7 @@ export default function Merch() {
                                 lg: "337px",
                                 xl: "337px",
                               },
+                              cursor: "pointer",
                             }}
                           />
                           <Checkbox
@@ -153,14 +168,16 @@ export default function Merch() {
                             sx={{
                               position: "absolute",
                               top: "8px",
-                            }}></Checkbox>
+                            }}
+                          ></Checkbox>
                         </Box>
                         <Box>
                           <Box
                             sx={{
                               color: "rgb(158, 158, 158)",
                               fontWeight: "bold",
-                            }}>
+                            }}
+                          >
                             {info.type_of}
                           </Box>
                           <Box sx={{ fontWeight: "bold" }}>
@@ -172,14 +189,16 @@ export default function Merch() {
                               paddingBottom: "8px",
                               width: "100%",
                               boxSizing: "border-box",
-                            }}>
+                            }}
+                          >
                             <Box
                               sx={{
                                 width: "100%",
                                 height: "1px",
                                 bgcolor: "black",
                                 boxSizing: "border-box",
-                              }}></Box>
+                              }}
+                            ></Box>
                           </Box>
                           <Box sx={{ fontWeight: "bold" }}>
                             Price : {info.price}
@@ -205,18 +224,21 @@ export default function Merch() {
                   xl: "flex",
                 },
                 flexDirection: "column",
-              }}>
+              }}
+            >
               <Box
                 sx={{
                   top: "20px",
                   position: "sticky",
-                }}>
+                }}
+              >
                 <Box
                   sx={{
                     padding: "10px",
                     fontWeight: "bold",
                     fontSize: "20px",
-                  }}>
+                  }}
+                >
                   Төрлөөр шүүх
                 </Box>
                 <Box sx={{ display: "flex" }}>
