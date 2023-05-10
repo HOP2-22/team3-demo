@@ -16,16 +16,16 @@ export default function Merch() {
   const [count, setCount] = useState();
 
   const instance = axios.create({
-    baseURL: "http://localhost:7070/product",
+    baseURL: "http://localhost:7070/product/approved",
   });
 
   useEffect(() => {
     const fetchProps = async () => {
       try {
         const res = await instance?.get("/");
-        setData(res?.data);
-        console.log(res.data);
-        setCount(res?.data.length);
+        setData(res?.data.json);
+        console.log(res.data.json);
+        setCount(res?.data.json.length);
       } catch (err) {
         console.log(err);
       }

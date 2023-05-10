@@ -31,7 +31,7 @@ export default function ArtistHeader() {
     Cookies.remove("token");
     Cookies.remove("user");
 
-    router.push("/typeselect");
+    router.push("/HomeDefault");
   };
 
   return (
