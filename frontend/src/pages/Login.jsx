@@ -27,7 +27,7 @@ export default function LoginUser() {
 
   const loginUser = async () => {
     try {
-      const res = await axios.post("http://localhost:7070/user/login", {
+      const { data } = await axios.post("http://localhost:7070/user/login", {
         email: email,
         password: password,
       });
@@ -36,9 +36,16 @@ export default function LoginUser() {
 
       setCurrentUser(null);
 
-      Cookie.set("token", res.data?.token);
-      Cookie.set("user", res.data?.user.email);
-      Cookies.set("role", res.data?.user.Role);
+      Cookie.set("token", data?.token);
+      Cookie.set("user", data?.user.email);
+      Cookies.set("role", data?.user.Role);
+
+      console.log({ data });
+      setCurrentUser({
+        username: data?.user?.username,
+        image: data?.user?.image,
+      });
+
       router.push("/");
     } catch (error) {
       console.log(error);

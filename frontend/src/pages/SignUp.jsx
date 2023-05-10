@@ -16,6 +16,7 @@ export default function SignUpUser() {
   const [passwordSignUp, setPasswordUserSignUp] = useState();
   const [checkpass, setCheckPass] = useState();
   const [name, setName] = useState();
+
   const { handleUpload } = useStorage();
   const [image, setImage] = useState();
   const [imageUrl, setImageUrl] = useState();
@@ -77,8 +78,8 @@ export default function SignUpUser() {
           email: emailSignUp,
           password: passwordSignUp,
           name: name,
+          image: imageUrl,
         });
-
         toast("Successfully signed up!");
         console.log(res);
         router.push("/Login");
