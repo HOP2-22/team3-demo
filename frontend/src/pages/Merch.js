@@ -33,8 +33,11 @@ export default function Merch() {
   }, []);
 
   const handleClick = (id) => {
-    router.push("/Buy", {
-      query: id,
+    router.push({
+      pathname: "Buy",
+      query: {
+        product: id,
+      },
     });
   };
 
@@ -49,8 +52,7 @@ export default function Merch() {
               alignItems: "center",
               paddingTop: "40px",
               paddingBottom: "40px",
-            }}
-          >
+            }}>
             <Box sx={{ display: "flex", alignSelf: "self-start" }}>
               <Box
                 sx={{
@@ -62,8 +64,7 @@ export default function Merch() {
                     xl: "96px",
                   },
                   fontWeight: "bold",
-                }}
-              >
+                }}>
                 MERCH
               </Box>
               <Box
@@ -77,8 +78,7 @@ export default function Merch() {
                     lg: "30px",
                     xl: "36px",
                   },
-                }}
-              >
+                }}>
                 {count}
               </Box>
             </Box>
@@ -91,16 +91,14 @@ export default function Merch() {
                 paddingBottom: "16px",
                 width: "100%",
                 boxSizing: "border-box",
-              }}
-            >
+              }}>
               <Box
                 sx={{
                   width: "100%",
                   height: "1px",
                   bgcolor: "black",
                   boxSizing: "border-box",
-                }}
-              ></Box>
+                }}></Box>
             </Box>
           </Box>
           <Box sx={{ display: "flex" }}>
@@ -119,8 +117,7 @@ export default function Merch() {
                 gap: "10px",
                 justifyContent: "space-between",
                 alignItems: "center",
-              }}
-            >
+              }}>
               <Box sx={{ width: "100%" }}>
                 <Box
                   sx={{
@@ -128,11 +125,11 @@ export default function Merch() {
                     display: "flex",
                     flexWrap: "wrap",
                     justifyContent: "space-between",
-                  }}
-                >
+                  }}>
                   {data?.map((info, index) => {
                     return (
                       <Box
+                        onClick={() => handleClick(info?._id)}
                         key={index}
                         sx={{
                           marginBottom: "50px",
@@ -143,11 +140,9 @@ export default function Merch() {
                             lg: "30%",
                             xl: "30%",
                           },
-                        }}
-                      >
+                        }}>
                         <Box sx={{ position: "relative" }}>
                           <CardMedia
-                            onClick={() => handleClick(info?._id)}
                             image={info?.images}
                             sx={{
                               width: "100%",
@@ -168,16 +163,14 @@ export default function Merch() {
                             sx={{
                               position: "absolute",
                               top: "8px",
-                            }}
-                          ></Checkbox>
+                            }}></Checkbox>
                         </Box>
                         <Box>
                           <Box
                             sx={{
                               color: "rgb(158, 158, 158)",
                               fontWeight: "bold",
-                            }}
-                          >
+                            }}>
                             {info.type_of}
                           </Box>
                           <Box sx={{ fontWeight: "bold" }}>
@@ -189,16 +182,14 @@ export default function Merch() {
                               paddingBottom: "8px",
                               width: "100%",
                               boxSizing: "border-box",
-                            }}
-                          >
+                            }}>
                             <Box
                               sx={{
                                 width: "100%",
                                 height: "1px",
                                 bgcolor: "black",
                                 boxSizing: "border-box",
-                              }}
-                            ></Box>
+                              }}></Box>
                           </Box>
                           <Box sx={{ fontWeight: "bold" }}>
                             Price : {info.price}
@@ -224,21 +215,18 @@ export default function Merch() {
                   xl: "flex",
                 },
                 flexDirection: "column",
-              }}
-            >
+              }}>
               <Box
                 sx={{
                   top: "20px",
                   position: "sticky",
-                }}
-              >
+                }}>
                 <Box
                   sx={{
                     padding: "10px",
                     fontWeight: "bold",
                     fontSize: "20px",
-                  }}
-                >
+                  }}>
                   Төрлөөр шүүх
                 </Box>
                 <Box sx={{ display: "flex" }}>

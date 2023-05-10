@@ -120,3 +120,12 @@ exports.onlyApproved = async (req, res) => {
   const responsive = await Product.find({ status: "approved" });
   res.status(200).json({ success: true, json: responsive });
 };
+exports.getProductById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await Product.findById(id);
+    res.send({ data: user });
+  } catch (error) {
+    res.send({ error: error });
+  }
+};
