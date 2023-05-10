@@ -9,7 +9,7 @@ const {
   login,
   DeleteAll,
   deleteArtist,
-} = require("../controller/artistControl");
+} = require("../Controller/artistControl");
 
 const artistRouter = express.Router();
 

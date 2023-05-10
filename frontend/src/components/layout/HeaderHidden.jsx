@@ -18,7 +18,7 @@ export default function HeaderHidden() {
       </div>
 
       <div className="text-[20px] w-[25%] md:text-[25px] flex items-center justify-center">
-        <Link href="/typeselect">
+        <Link href="/Login">
           <AiOutlineUser />
         </Link>
       </div>

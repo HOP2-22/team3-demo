@@ -1,19 +1,23 @@
 const User = require("../Model/users");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { Client } = require("../config/roles");
+const role = require("../config/roles");
 
 exports.createUser = async (req, res) => {
+  const isArtist = req.query.isArtist;
+
   try {
-    console.log("================================================");
-    const { email, password, name } = req.body;
+    const { email, password, name, image } = req.body;
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
+
     const newUser = await User.create({
       email: email,
       password: hashedPassword,
       name: name,
-      Role: Client,
+      Role: role.Client,
+      isArtist: isArtist,
+      image: image,
     });
 
     res.status(200).json({ data: newUser });
@@ -57,12 +61,13 @@ exports.login = async (req, res) => {
     const token = jwt.sign(
       {
         user: user,
+        isArtist: user.isArtist,
+        Role: role.Client,
       },
       ACCESS_TOKEN_KEY
     );
-    console.log("in progress");
 
-    res.status(200).json({ match: match, user: user, token });
+    res.status(200).json({ user, token });
   } catch (error) {
     res.status(400).json({ message: "password dont match" });
   }

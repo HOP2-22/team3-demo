@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import storage from "../firebaseConfig";
+import { storage } from "../pages/firebaseConfig";
 
 export const useStorage = () => {
   const [loading, setLoading] = useState(false);
@@ -13,8 +13,8 @@ export const useStorage = () => {
 
     const storageRef = ref(storage, `/files/${file.name}`);
     await uploadBytes(storageRef, file);
-    const url = await getDownloadURL(storageRef);
 
+    const url = await getDownloadURL(storageRef);
     setLoading(false);
     return url;
   };

@@ -5,11 +5,14 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Context } from "@/context/context";
 import toast from "react-hot-toast";
+import Cookies from "js-cookie";
 
 export default function LoginUser() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+
+  const { setCurrentUser, setIsClient, setIsArtist } = useContext(Context);
 
   const EmailInput = async (event) => {
     setEmail(event.target.value);
@@ -24,17 +27,26 @@ export default function LoginUser() {
 
   const loginUser = async () => {
     try {
-      const res = await axios.post("http://localhost:7070/user/login", {
+      const { data } = await axios.post("http://localhost:7070/user/login", {
         email: email,
         password: password,
       });
 
       toast.success("Login successful");
 
-      Cookie.set("token", res.data?.token);
-      Cookie.set("user", res.data.user.email);
+      setCurrentUser(null);
 
-      router.push("/HomeDefault");
+      Cookie.set("token", data?.token);
+      Cookie.set("user", data?.user.email);
+      Cookies.set("role", data?.user.Role);
+      Cookies.set("image", data?.user.image);
+
+      setCurrentUser({
+        username: data?.user?.username,
+        image: data?.user?.image,
+      });
+
+      router.push("/");
     } catch (error) {
       alert("Нууц үг эсвэл Цахим хаяг буруу байна");
     }
@@ -76,7 +88,8 @@ export default function LoginUser() {
 
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
-          onClick={handleLogin}>
+          onClick={handleLogin}
+        >
           Нэвтрэх
         </button>
       </div>

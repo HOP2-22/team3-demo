@@ -3,6 +3,9 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useStorage from "@/hooks/useStorage";
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
+import { IconButton, Stack, Button } from "@mui/material";
 
 export default function SignUp() {
   const [emailSignUp, setEmailSignUpArtist] = useState();
@@ -10,6 +13,10 @@ export default function SignUp() {
   const [username, setUserName] = useState();
   const [artistType, setArtistType] = useState();
   const [checkpassUserSignUp, setCheckPassSignUpArtist] = useState();
+
+  const { handleUpload } = useStorage();
+  const [image, setImage] = useState();
+  const [imageUrl, setImageUrl] = useState();
 
   const router = useRouter();
 
@@ -29,28 +36,62 @@ export default function SignUp() {
     setUserName(event.target.value);
   };
 
+  const handle = async () => {
+    try {
+      if (!image) return;
+      const res = await handleUpload(image);
+      setImageUrl(res);
+      toast("Successfully");
+    } catch (error) {
+      toast("Error uploading");
+    }
+  };
+
   const signUpArtist = async () => {
     if (passwordUserSignUp == checkpassUserSignUp) {
-      console.log("is working");
       try {
-        const res = await axios.post("http://localhost:7070/artist/create", {
+        await axios.post("http://localhost:7070/artist/create", {
           email: emailSignUp,
           password: passwordUserSignUp,
           username: username,
           type_of: artistType,
+          image: imageUrl,
         });
-
         toast("Successfully created artist accout!");
 
-        setTimeout(() => {
-          router.push("/loginArtist");
-        }, 1000);
+        router.push("/loginArtist");
       } catch (error) {
         toast("Password or Email incorrect!");
       }
     } else {
       toast("Password does not match!");
     }
+  };
+
+  const UploadImage = () => {
+    return (
+      <Stack direction="row" alignItems="center" spacing={2}>
+        <Button variant="contained" component="label" onClick={() => handle()}>
+          Upload
+        </Button>
+        <IconButton
+          color="primary"
+          aria-label="upload picture"
+          component="label"
+        >
+          <input
+            hidden
+            accept="image/*"
+            type="file"
+            onChange={(el) => {
+              setImage(el.target.files[0]);
+            }}
+          />
+
+          <PhotoCamera />
+        </IconButton>
+      </Stack>
+    );
   };
 
   return (
@@ -100,11 +141,15 @@ export default function SignUp() {
             onChange={TypeInput}
           />
         </div>
+        <div className="flex flex-col gap-2">
+          <UploadImage />
+        </div>
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
           onClick={() => {
             signUpArtist();
-          }}>
+          }}
+        >
           Бүртгүүлэх
         </button>
       </div>

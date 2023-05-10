@@ -35,24 +35,29 @@ export default function ArtistHeader() {
   };
 
   return (
-    <div
-      className={` ${
-        isArtist ? "z-10" : "z-4"
-      } w-full fixed top-0 z-6 bg-red-500 `}>
-      <Container
-        maxWidth="xl"
-        className="flex justify-between h-[75px]  items-center">
-        <div className="text-white">hi</div>
-        <div
-          className=""
-          onClick={() => {
-            setIsArtist(false);
-            setIsClient(true);
-            logOut();
-          }}>
-          logout
-        </div>
-      </Container>
+    <div>
+      {/* <div
+        className={` ${
+          isArtist ? "z-10" : "z-4"
+        } w-full fixed top-0 z-6 bg-red-500 `}
+      >
+        <Container
+          maxWidth="xl"
+          className="flex justify-between h-[75px]  items-center"
+        >
+          <div className="text-white">hi</div>
+          <div
+            className=""
+            onClick={() => {
+              setIsArtist(false);
+              setIsClient(true);
+              logOut();
+            }}
+          >
+            logout
+          </div>
+        </Container>
+      </div> */}
     </div>
   );
 }

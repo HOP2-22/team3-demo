@@ -1,14 +1,16 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 export const Context = createContext({});
+
+export const useAuthContext = () => useContext(Context);
 
 export const Provider = (props) => {
   const { children } = props;
   const [currentUser, setCurrentUser] = useState(null);
   const [username, setUserName] = useState("");
-  const [isClient, setIsClient] = useState(true);
+  const [isClient, setIsClient] = useState(false);
   const [isArtist, setIsArtist] = useState(false);
 
   axios.interceptors.request.use(
@@ -31,27 +33,49 @@ export const Provider = (props) => {
       const token = Cookies.get("token");
 
       if (!token) return;
-      const user = Cookies.get("user");
-      const res = await axios.get("http://localhost:7070/user/getUser");
-      setUserName(res?.data?.user?.name);
-      setCurrentUser(user);
+      // const user = Cookies.get("user");
+      // const res = await axios.get("http://localhost:7070/user/getUser");
+      // setUserName(res?.data?.user?.name);
+      // setCurrentUser(user);
+      const { data } = await axios.get("http://localhost:7070/user/getUser");
+
+      setCurrentUser({
+        username: data?.user?.username,
+        image: data?.user?.image,
+      });
     };
     getUser();
   }, []);
+
+  // console.log(currentUser);
 
   return (
     <Context.Provider
       value={{
         currentUser,
         setCurrentUser,
-        setUserName,
-        username,
         isClient,
         setIsClient,
         isArtist,
         setIsArtist,
-      }}>
+      }}
+    >
       {children}
     </Context.Provider>
   );
 };
+
+// {
+//   "match": true,
+//   "user": {
+//       "_id": "645b5b0e1d5198811cff580d",
+//       "email": "123",
+//       "password": "$2b$10$Fneh4TpyL8nsgXYZ8saYreDiErhMc.V4d7NgdXqOyKXNACHyH38sO",
+//       "username": "123",
+//       "type_of": "123",
+//       "Role": "6906",
+//       "image": "https://firebasestorage.googleapis.com/v0/b/demoday-cc353.appspot.com/o/files%2Ffragile.jpeg?alt=media&token=2ce3f928-fe04-449c-8231-a70f60e83742",
+//       "__v": 0
+//   },
+//   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiMTIzIiwidXNlcklkIjoiNjQ1YjViMGUxZDUxOTg4MTFjZmY1ODBkIiwiaWF0IjoxNjgzNzEwNzE5fQ.wXmD4bEKgP36opVpGsCvcED5IE6VC55778aBL-oF8Hs"
+// }
