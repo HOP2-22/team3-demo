@@ -5,12 +5,16 @@ import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Context } from "@/context/context";
+import { useAuthContext } from "../context/context";
+
 export default function LoginArtist() {
   const router = useRouter();
 
   const [emailArtist, setEmailArtist] = useState();
   const [passwordArtist, setPasswordArtist] = useState();
-  const { setIsClient, setIsArtist } = useContext(Context);
+  const [checkpassArtist, setCheckPassArtist] = useState();
+  const { setIsClient, setIsArtist, currentUser, setCurrentUser } =
+    useAuthContext();
 
   const EmailInput = async (event) => {
     setEmailArtist(event.target.value);
@@ -22,20 +26,26 @@ export default function LoginArtist() {
   const handleLogin = () => {
     loginArt();
   };
+
   const loginArt = async () => {
     try {
-      const res = await axios.post("http://localhost:7070/artist/login", {
+      const { data } = await axios.post("http://localhost:7070/artist/login", {
         email: emailArtist,
         password: passwordArtist,
       });
-      Cookie.set("token", res.data?.token);
-      Cookie.set("user", res.data.user.email);
-      console.log(res);
+      Cookie.set("token", data?.token);
+      Cookie.set("user", data?.user.email);
+      Cookie.set("role", data?.user.Role);
+
+      setCurrentUser({
+        username: data?.user?.username,
+        image: data?.user?.image,
+        isArtist: data?.user?.isArtist,
+      });
 
       toast("Successfully logged in!");
-      setIsArtist(true);
-      setIsClient(false);
-      router.push("/CreateProduct");
+
+      // router.push("/");
     } catch (error) {
       toast("Password or Email incorrect!");
     }
@@ -68,7 +78,8 @@ export default function LoginArtist() {
         </div>
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
-          onClick={handleLogin}>
+          onClick={handleLogin}
+        >
           Нэвтрэх
         </button>
       </div>

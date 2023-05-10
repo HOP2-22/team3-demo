@@ -13,6 +13,7 @@ export default function SignUp() {
   const [username, setUserName] = useState();
   const [artistType, setArtistType] = useState();
   const [checkpassUserSignUp, setCheckPassSignUpArtist] = useState();
+
   const { handleUpload } = useStorage();
   const [image, setImage] = useState();
   const [imageUrl, setImageUrl] = useState();
@@ -48,21 +49,19 @@ export default function SignUp() {
 
   const signUpArtist = async () => {
     if (passwordUserSignUp == checkpassUserSignUp) {
-      console.log("is working");
       try {
-        const res = await axios.post("http://localhost:7070/artist/create", {
+        await axios.post("http://localhost:7070/artist/create", {
           email: emailSignUp,
           password: passwordUserSignUp,
           username: username,
           type_of: artistType,
+          image: imageUrl,
         });
-
         toast("Successfully created artist accout!");
 
-        setTimeout(() => {
-          router.push("/loginArtist");
-        }, 1000);
+        router.push("/loginArtist");
       } catch (error) {
+        console.log(error);
         toast("Password or Email incorrect!");
       }
     } else {

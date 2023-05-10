@@ -2,10 +2,11 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { Artist } = require("../config/roles");
 const artist = require("../Model/artist");
+const role = require("../config/roles");
 
 exports.createArtist = async (req, res) => {
   try {
-    const { email, password, type_of, username, cv } = req.body;
+    const { email, password, type_of, username, image, cv } = req.body;
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -15,12 +16,13 @@ exports.createArtist = async (req, res) => {
       type_of: type_of,
       username: username,
       cv: cv,
-      Role: Artist,
+      Role: role.Artist,
+      image: image,
     });
 
     res.status(200).json({ data: newUser });
   } catch (error) {
-    res.status(400).json({ error: error });
+    res.status(400).json({ error: error.message });
   }
 };
 
@@ -49,7 +51,6 @@ exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await artist.findOne({ email: email });
-    console.log(user, user.password);
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
       return res.status(400).json({ message: "password is dont match" });
@@ -58,6 +59,7 @@ exports.login = async (req, res) => {
       {
         user: user.email,
         userId: user._id,
+        Role: role.Artist,
       },
       ACCESS_TOKEN_KEY
     );

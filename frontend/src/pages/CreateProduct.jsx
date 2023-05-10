@@ -2,12 +2,16 @@ import axios from "axios";
 import { useState } from "react";
 import { IconButton, Stack, Box, Button, List } from "@mui/material";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
+import { useAuthContext } from "@/context/context";
 
 const size = ["s", "m", "l", "xl", "2xl", "3xl"];
 
 export default function Create() {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { currentUser } = useAuthContext();
+  console.log(currentUser);
 
   const create = async () => {
     try {

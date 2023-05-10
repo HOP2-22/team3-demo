@@ -11,6 +11,8 @@ export default function LoginUser() {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
+  const { setCurrentUser, setIsClient, setIsArtist } = useContext(Context);
+
   const EmailInput = async (event) => {
     setEmail(event.target.value);
   };
@@ -31,11 +33,14 @@ export default function LoginUser() {
 
       toast.success("Login successful");
 
-      Cookie.set("token", res.data?.token);
-      Cookie.set("user", res.data.user.email);
+      setCurrentUser(null);
 
-      router.push("/HomeDefault");
+      Cookie.set("token", res.data?.token);
+      Cookie.set("user", res.data?.user.email);
+      console.log(res.data.user.Role);
+      router.push("/");
     } catch (error) {
+      console.log(error);
       alert("Нууц үг эсвэл Цахим хаяг буруу байна");
     }
   };
@@ -76,7 +81,8 @@ export default function LoginUser() {
 
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
-          onClick={handleLogin}>
+          onClick={handleLogin}
+        >
           Нэвтрэх
         </button>
       </div>
