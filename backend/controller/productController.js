@@ -129,3 +129,19 @@ exports.getProductById = async (req, res) => {
     res.send({ error: error });
   }
 };
+exports.getProductByOwner = async (req, res) => {
+  const { ownerName, status } = req.body;
+  try {
+    let user;
+    if (status) {
+      console.log("get with status");
+      user = await Product.find({ ownerName: ownerName, status: status });
+    } else {
+      console.log("get without status");
+      // user = await Product.find(ownerName);
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    res.send({ error: error });
+  }
+};

@@ -40,12 +40,11 @@ export default function Header() {
   };
 
   return (
-    <div className={` ${isClient ? "z-10" : "z-4"} w-full fixed top-0 z-6`}>
+    <div className={` ${isClient ? "z-10" : "z-4"} w-full fixed top-0 z-10`}>
       <div className="flex flex-col bg-white">
         <Container
           maxWidth="xl"
-          className="flex justify-between h-[75px]  items-center"
-        >
+          className="flex justify-between h-[75px]  items-center">
           <div className="flex items-center gap-5 md:gap-5 w-[100%]">
             <Link href="/">
               <div className="text-[30px] font-bold">Geru</div>
@@ -61,15 +60,13 @@ export default function Header() {
                 className="text-[20px] flex items-center gap-2 font-bold"
                 onClick={() => {
                   setBurger(!burger);
-                }}
-              >
+                }}>
                 Enjoy <SlArrowDown className="text-[15px]" />
               </span>
               <div
                 className={`${
                   burger ? " flex" : "hidden"
-                } absolute bg-white w-[150px] h-[200px]   xl:mt-[-45px] xl:ml-[-170px] -mt-[35px] -ml-[160px]  flex-col px-[20px] justify-evenly border-2 shadow-xl rounded-[9px]`}
-              >
+                } absolute bg-white w-[150px] h-[200px]   xl:mt-[-45px] xl:ml-[-170px] -mt-[35px] -ml-[160px]  flex-col px-[20px] justify-evenly border-2 shadow-xl rounded-[9px]`}>
                 <a href="Merch ">
                   <div className="font-bold border-b-[1px] flex items-center justify-center">
                     MERCH
@@ -102,8 +99,7 @@ export default function Header() {
                     className="flex items-center gap-[2px] "
                     onClick={() => {
                       setSeeLogout(!seeLogout);
-                    }}
-                  >
+                    }}>
                     <Avatar src={currentUser?.image} />
                     <RiArrowDownSFill className="text-[#1b1927]" />
                   </div>
@@ -120,8 +116,7 @@ export default function Header() {
                 onClick={() => {
                   logOut();
                   setSeeLogout(false);
-                }}
-              >
+                }}>
                 Гарах
               </div>
             ) : (
