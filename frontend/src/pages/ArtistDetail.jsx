@@ -1,188 +1,166 @@
 import React from "react";
-import Artworks from "../ArtistArtworks";
-import Bio from "../../components/artistweb/ArtistBio";
-import Collection from "../../components/artistweb/ArtistCollection";
-import Merch from "../../components/artistweb/ArtistMerch";
-import { Box, Container, Stack } from "@mui/material";
+import Artworks from "../components/artistweb/ArtistArtworks";
+import Bio from "../components/artistweb/ArtistBio";
+import Collection from "../components/artistweb/ArtistCollection";
+import Merch from "../components/artistweb/ArtistMerch";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import Image from "next/image";
-import { useState } from "react";
-import ArtistCollection from "../../components/artistweb/ArtistCollection";
+import ArtistCollection from "../components/artistweb/ArtistCollection";
+import { useRouter } from "next/router";
+import axios from "axios";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import { useEffect, useState } from "react";
+import Checkbox from "@mui/material/Checkbox";
+import CardMedia from "@mui/material/CardMedia";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Favorite from "@mui/icons-material/Favorite";
 
 function ArtistDetail() {
-  const [arr, setArr] = useState([true, false, false, false]);
+  const router = useRouter();
 
-  const booleanHandler = (index) => {
-    let newArr = new Array(arr.length).fill(false);
-    newArr[index] = true;
-    setArr(newArr);
-  };
+  const [data, setData] = useState();
+  const [merchData, setMerchData] = useState();
+
+  useEffect(() => {
+    const findProduct = async () => {
+      if (!router.query.artist) {
+        return;
+      }
+      const res = await axios.get(
+        `http://localhost:7070/artist/findArtist/${router.query.artist}`
+      );
+      setData(res?.data?.data);
+    };
+    findProduct();
+  }, [router.query]);
+
+  // "http://localhost:7070/product/getProductByOwner/ownerId?status=approved",
+  const OwnerName = data?.username;
+  const status = "approved";
+
+  useEffect(() => {
+    const Merchs = async () => {
+      try {
+        const { datamerch } = await axios.post(
+          "http://localhost:7070/product/getProductByOwner/",
+          {
+            ownerName: OwnerName,
+            status: status,
+          }
+        );
+        console.log(OwnerName, status);
+
+        setMerchData(datamerch);
+      } catch (error) {}
+    };
+    Merchs();
+  }, []);
 
   return (
-    <Box>
-      <Box
-        height={"400px"}
-        width={"100vw"}
-        position={"relative"}
-        sx={{
-          padding: "85px 0px",
-        }}
-      >
-        <Image
-          src="/artistBg.jpeg"
-          fill
-          style={{
-            objectFit: "cover",
-            objectPosition: "center",
-          }}
-        />
-        <Stack
-          sx={{
-            display: "flex",
-            position: "absolute",
-            bottom: "0",
-            transform: "translateY(50%)",
-            width: "100%",
-            justifyContent: "space-around",
-            flexDirection: {
-              xs: "column",
-              md: "row",
-              lg: "row",
-              xl: "row",
-            },
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              flexDirection: "column",
-            }}
-          >
+    <div className="w-full  bg-gray-500 mt-[70px]">
+      <img
+        className="w-[100%] h-[400px]"
+        src="https://res.cloudinary.com/urlan/image/upload/v1675754478/geru-store/anarotion/Group_68_3_1_hprccd.jpg"
+      />
+      <Container maxWidth="xl">
+        <div className="w-[100%] border-b-[1px] pb-[30px]">
+          <img
+            className="w-[200px] h-[200px] rounded-full border-[10px] mt-[-100px] relative z-2"
+            src="https://res.cloudinary.com/urlan/image/upload/v1675754163/geru-store/anarotion/296706802_584934106372209_4121703699884707119_n_eeibpf.jpg"
+          />
+          <p className="text-[50px] font-bold">{data?.username}</p>
+          <p>{data?.type_of}</p>
+        </div>
+        <div>
+          <div className="w-[100%] border-b-[1px]">
+            <p className="text-[90px] font-bold">Bio</p>
+            <p>{data?.cv}</p>
+          </div>
+        </div>
+        <div>
+          <p className="text-[90px] font-bold">Merch</p>
+          <Box sx={{ width: "100%" }}>
             <Box
               sx={{
-                height: "152px",
-                width: "152px",
-                padding: "20px",
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-                backgroundImage:
-                  "url(https://res.cloudinary.com/urlan/image/upload/v1675159396/geru-store/khongorzul/328598489_1163549884324212_1668282332485989101_n_1_1_wduowu.jpg)",
-                borderRadius: "50%",
-                border: "10px solid white",
-                borderRadius: "100%",
-                boxShadow: "0 0px 15px 5px rgba(0, 0, 0, 0.2)",
-              }}
-            />
-            <Box
-              style={{
+                position: "relative",
+                width: "100%",
                 display: "flex",
-                alignItems: "center",
-                flexDirection: "column",
-              }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  fontHeight: " 600",
-                  fontSize: "36px",
-                  color: "aqua",
-                }}
-              >
-                Хонгорзул
-                <VerifiedIcon sx={{ color: "#3498db" }} />
-              </Box>
-              <Box
-                sx={{
-                  color: "gray",
-                }}
-              >
-                Улаанбаатар, Монгол
-              </Box>
+                flexWrap: "wrap",
+                justifyContent: "space-between",
+              }}>
+              {merchData?.map((merchData, index) => {
+                return (
+                  <Box
+                    key={index}
+                    sx={{
+                      marginBottom: "50px",
+                      border: "1px solid ",
+                      width: {
+                        xs: "45%",
+                        sm: "45%",
+                        md: "30%",
+                        lg: "30%",
+                        xl: "30%",
+                      },
+                    }}>
+                    <Box sx={{ position: "relative" }}>
+                      <CardMedia
+                        image="https://i.pinimg.com/564x/ac/85/7f/ac857f3e95191797f908869707752ca1.jpg"
+                        sx={{
+                          width: "100%",
+                          height: {
+                            xs: "180px",
+                            sm: "280px",
+                            md: "337px",
+                            lg: "337px",
+                            xl: "337px",
+                          },
+                          cursor: "pointer",
+                        }}
+                      />
+                      <Checkbox
+                        icon={<FavoriteBorder />}
+                        checkedIcon={<Favorite />}
+                        sx={{
+                          position: "absolute",
+                          top: "8px",
+                        }}></Checkbox>
+                    </Box>
+                    <Box>
+                      <Box
+                        sx={{
+                          color: "rgb(158, 158, 158)",
+                          fontWeight: "bold",
+                        }}>
+                        {merchData.type_of}
+                      </Box>
+                      <Box sx={{ fontWeight: "bold" }}>Title </Box>
+                      <Box
+                        sx={{
+                          paddingTop: "8px",
+                          paddingBottom: "8px",
+                          width: "100%",
+                          boxSizing: "border-box",
+                        }}>
+                        <Box
+                          sx={{
+                            width: "100%",
+                            height: "1px",
+                            bgcolor: "black",
+                            boxSizing: "border-box",
+                          }}></Box>
+                      </Box>
+                      <Box sx={{ fontWeight: "bold" }}>Price : </Box>
+                    </Box>
+                  </Box>
+                );
+              })}
             </Box>
           </Box>
-          <Box
-            sx={{
-              width: {
-                xs: "100%",
-                md: "680px",
-              },
-              right: 0,
-              background: "white",
-              padding: "16px 20px",
-              boxShadow: {
-                xs: "none",
-                md: "0 0px 15px 5px rgba(0, 0, 0, 0.2)",
-              },
-            }}
-          >
-            <Box>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Provident eligendi, temporibus reiciendis quos, necessitatibus
-              nihil harum at ut modi corrupti blanditiis culpa minus illo maxime
-              inven tore molestias unde, dignissimos hic?
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "end",
-              }}
-            >
-              <img
-                src="https://wallpapers.com/images/hd/confused-patrick-random-pfp-x63wp9vs43cem64s.jpg"
-                height="34px"
-                width="34px"
-                style={{ borderRadius: "50%" }}
-              />
-              Aminaa Mashbat
-            </Box>
-          </Box>
-        </Stack>
-      </Box>
-      <Box sx={{ padding: "200px 0px 0px 0px" }}>
-        <Container maxWidth={"xl"}>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-around",
-              height: "55px",
-              borderBottom: "1px solid black",
-              marginBottom: "30px",
-              fontWeight: "bold",
-              fontSize: "28px",
-              color: "gray",
-            }}
-          >
-            {arr?.map((item, index) => {
-              return (
-                <Box
-                  onClick={() => booleanHandler(index)}
-                  sx={{
-                    fontSize: {
-                      xs: "16px",
-                      sm: "30px",
-                    },
-                  }}
-                >
-                  {index === 0
-                    ? "COLLECTION"
-                    : index === 1
-                    ? "ARTWORKS"
-                    : index === 2
-                    ? "MERCH"
-                    : "BIO"}
-                </Box>
-              );
-            })}
-          </Box>
-          {arr[0] && <Collection />}
-          {arr[1] && <Artworks />}
-          {arr[2] && <Merch />}
-          {arr[3] && <Bio />}
-        </Container>
-      </Box>
-    </Box>
+        </div>
+      </Container>
+    </div>
   );
 }
 

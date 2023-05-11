@@ -9,6 +9,7 @@ const {
   ChangeProductStatus,
   onlyApproved,
   getProductById,
+  getProductByOwner,
 } = require("../Controller/productController");
 
 const productRouter = express.Router();
@@ -21,5 +22,6 @@ productRouter.delete("/deleteAll", DeleteAll);
 productRouter.patch("/StatusUpdate/:id", ChangeProductStatus);
 productRouter.get("/approved", onlyApproved);
 productRouter.get("/getProductById/:id", getProductById);
+productRouter.post("/getProductByOwner/", getProductByOwner);
 
 module.exports = productRouter;
