@@ -22,7 +22,7 @@ export default function Face() {
     const fetchProps = async () => {
       try {
         const res = await instance.get("/");
-        setData([res.data.data][0].slice(0, 20));
+        setData([res.data.data][0].slice(0, 6));
         setCount([res.data.data][0].length);
       } catch (err) {
         console.log(err);
