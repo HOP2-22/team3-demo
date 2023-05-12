@@ -20,6 +20,7 @@ const artistSchema = new Schema(
     cv: { type: "String", required: true },
     Role: { type: "String" },
     image: { type: "String", required: true },
+    bgImg: { type: "String", required: true },
   },
   { toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );

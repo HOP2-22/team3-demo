@@ -7,7 +7,7 @@ const { response } = require("express");
 
 exports.createArtist = async (req, res) => {
   try {
-    const { email, password, type_of, username, image, cv } = req.body;
+    const { email, password, type_of, username, image, cv, bgImg } = req.body;
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -19,6 +19,7 @@ exports.createArtist = async (req, res) => {
       cv: cv,
       Role: role.Artist,
       image: image,
+      bgImg: bgImg,
     });
 
     res.status(200).json({ data: newUser });

@@ -40,10 +40,12 @@ export default function LoginUser() {
       Cookie.set("user", data?.user.email);
       Cookies.set("role", data?.user.Role);
       Cookies.set("image", data?.user.image);
+      Cookies.set("userId", data?.user._id);
 
       setCurrentUser({
         username: data?.user?.username,
         image: data?.user?.image,
+        userid: data?.user._id,
       });
 
       router.push("/");

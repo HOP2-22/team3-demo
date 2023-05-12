@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import useStorage from "@/hooks/useStorage";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import { IconButton, Stack, Button } from "@mui/material";
+import { IconButton, Stack, Button, Typography } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -65,6 +65,7 @@ export default function SignUpUser() {
           />
 
           <PhotoCamera />
+          <Typography>Зургаа сонгоно уу?</Typography>
         </IconButton>
       </Stack>
     );

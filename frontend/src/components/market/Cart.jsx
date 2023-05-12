@@ -2,6 +2,10 @@ import { Container, Box, Typography, Button, Stack } from "@mui/material";
 import { FormControl, NativeSelect } from "@mui/material";
 import { CardDt } from "../../json/card.js";
 import DeleteIcon from "@mui/icons-material/Delete";
+import axios from "axios";
+import { useEffect, useState, useContext } from "react";
+import Cookies from "js-cookie";
+import { Context } from "@/context/artistcontext.jsx";
 
 const img =
   "https://res.cloudinary.com/urlan/image/upload/a_0,g_north_west,h_664,o_100,u_fetch:aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vdXJsYW4vaW1hZ2UvdXBsb2FkL2Nfc2NhbGUsaF82ODIsd183NDYvZ19ub3J0aF93ZXN0LGhfNjU2LGxfZmlsZW1hbmFnZXI6c2RhaHA5OHl2bWtodWhrdXp4eGQsd181NDYseF8xMTEseV8yNi9jX2Nyb3AsZ19ub3J0aF93ZXN0LGhfNjY0LHdfNzQ2LHhfMCx5XzAvdjEvbW9ja3VwL2JhY2tncm91bmRfMl9hZ3ZpemM,x_169,y_188/c_crop,g_north_west,h_1080,w_1080,x_0,y_0/f_jpg/v1/mockup/mouse-pad-40x45/pad_studio_shot_ewlllo.jpg";
@@ -14,6 +18,32 @@ const data = [
 ];
 
 const Product = () => {
+  const [size, setSize] = useState();
+  const [count, setCount] = useState();
+  const [productId, setProductId] = useState();
+  const [color, setColor] = useState();
+
+  // useEffect(() => {
+  //   const details = async () => {
+  //     try {
+  //       const userid = Cookies.get("userId");
+
+  //       const res = await axios.post("http://localhost:7070/cart/addToCart", {
+  //         cardUser: userid,
+  //         productId: productId,
+  //         color: color,
+  //         size: size,
+  //         count: count,
+  //       });
+
+  //       console.log(res);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   details();
+  // }, []);
+
   return (
     <Container sx={styles.comp}>
       <Box sx={styles.img}>
@@ -21,7 +51,7 @@ const Product = () => {
       </Box>
       <Box sx={styles.titlee}>
         <Typography sx={styles.title}>
-          INNER ESSENCE OF MANKIND / T-SHIRT
+          INNER ESSENCE OF MANKIND / T-SHIRTcle
         </Typography>
         {data.map((dt, ind) => {
           return (
