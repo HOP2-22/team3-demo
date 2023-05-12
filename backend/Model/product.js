@@ -3,10 +3,9 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
-  ownerID: { type: String, required: true },
   type_of: { type: String, required: true },
   productName: { type: String, required: true },
-  ownerName: { type: String, required: true },
+  owner: { type: mongoose.Schema.ObjectId, required: true, ref: "artists" },
   images: { type: String },
   color: { type: String, required: true },
   price: { type: String, required: true },

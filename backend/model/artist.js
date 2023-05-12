@@ -12,6 +12,6 @@ const artistSchema = new Schema({
   image: { type: "String", required: true },
 });
 
-const artist = mongoose.model("artist", artistSchema);
+const artist = mongoose.model("artists", artistSchema);
 
 module.exports = artist;
