@@ -16,7 +16,7 @@ exports.addProductIntoCart = async (req, res) => {
 
       res.status(200).json(newCard);
     } else {
-      req.status(404).json({ message: "User not found" });
+      res.status(404).json({ message: "User not found" });
     }
   } catch (error) {
     res.status(404).json(error);
