@@ -68,6 +68,9 @@ export default function SignUp() {
           cv: userInfo,
           image: imageUrl,
         });
+        console.log(
+          "================================================================"
+        );
         toast("Successfully created artist accout!");
 
         router.push("/loginArtist");

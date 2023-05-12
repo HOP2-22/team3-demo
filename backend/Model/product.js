@@ -3,7 +3,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
-  type_of: { type: String, required: true },
+  type_of: {
+    type: "string",
+    enum: ["Хувцас", "Гар урлал", "Бусад"],
+  },
   productName: { type: String, required: true },
   owner: { type: mongoose.Schema.ObjectId, required: true, ref: "artists" },
   images: { type: String },

@@ -47,8 +47,7 @@ export default function Artist() {
               alignItems: "center",
               paddingTop: "40px",
               paddingBottom: "40px",
-            }}
-          >
+            }}>
             <Box sx={{ display: "flex", alignSelf: "self-start" }}>
               <Box
                 sx={{
@@ -60,8 +59,7 @@ export default function Artist() {
                     xl: "96px",
                   },
                   fontWeight: "bold",
-                }}
-              >
+                }}>
                 ARTIST
               </Box>
               <Box
@@ -75,8 +73,7 @@ export default function Artist() {
                     lg: "30px",
                     xl: "36px",
                   },
-                }}
-              >
+                }}>
                 {count}
               </Box>
             </Box>
@@ -89,16 +86,14 @@ export default function Artist() {
                 paddingBottom: "16px",
                 width: "100%",
                 boxSizing: "border-box",
-              }}
-            >
+              }}>
               <Box
                 sx={{
                   width: "100%",
                   height: "1px",
                   bgcolor: "black",
                   boxSizing: "border-box",
-                }}
-              ></Box>
+                }}></Box>
             </Box>
           </Box>
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -131,20 +126,15 @@ export default function Artist() {
                   xs: "0px",
                   xl: "70px",
                 },
-              }}
-            >
+              }}>
               {data?.map((info, index) => (
                 <div
                   className="w-[360px] h-[360px] border-2"
-                  onClick={() => handleClick(info?._id)}
-                >
+                  onClick={() => handleClick(info?._id)}>
                   <div className="w-[100%] h-[100%]  flex items-center flex-col ">
+                    <img src={info.image} className="w-[100%] h-[40%]" />
                     <img
-                      src="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                      className="w-[100%] h-[40%]"
-                    />
-                    <img
-                      src="https://mui.com/static/images/cards/live-from-space.jpg"
+                      src={info.image}
                       className="w-[100px] h-[100px] rounded-full border-[6px] mt-[-50px]"
                     />
                     <div className="w-[100%] flex flex-col items-center gap-[4px]">
@@ -183,21 +173,18 @@ export default function Artist() {
                 },
                 flexDirection: "column",
                 alignItems: "center",
-              }}
-            >
+              }}>
               <Box
                 sx={{
                   top: "80px",
                   position: "sticky",
-                }}
-              >
+                }}>
                 <Box
                   sx={{
                     padding: "10px",
                     fontWeight: "bold",
                     fontSize: "20px",
-                  }}
-                >
+                  }}>
                   Төрлөөр шүүх
                 </Box>
                 <Box sx={{ display: "flex" }}>

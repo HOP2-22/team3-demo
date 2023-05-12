@@ -12,27 +12,22 @@ import Favorite from "@mui/icons-material/Favorite";
 function ArtistDetail({ data }) {
   const router = useRouter();
 
-  console.log(data);
-
   return (
     <div className="w-full  bg-gray-500 mt-[70px]">
-      <img
-        className="w-[100%] h-[400px]"
-        src="https://res.cloudinary.com/urlan/image/upload/v1675754478/geru-store/anarotion/Group_68_3_1_hprccd.jpg"
-      />
+      <img className="w-[100%] h-[400px]" src={data[0]?.owner.image} />
       <Container maxWidth="xl">
         <div className="w-[100%] border-b-[1px] pb-[30px]">
           <img
             className="w-[200px] h-[200px] rounded-full border-[10px] mt-[-100px] relative z-2"
-            src="https://res.cloudinary.com/urlan/image/upload/v1675754163/geru-store/anarotion/296706802_584934106372209_4121703699884707119_n_eeibpf.jpg"
+            src={data[0]?.owner.image}
           />
           <p className="text-[50px] font-bold">{data?.username}</p>
-          <p>{data?.type_of}</p>
+          <p>{data[0]?.owner.type_of}</p>
         </div>
         <div>
           <div className="w-[100%] border-b-[1px]">
             <p className="text-[90px] font-bold">Bio</p>
-            <p>{data?.cv}</p>
+            <p>{data[0]?.owner.cv}</p>
           </div>
         </div>
         <div>

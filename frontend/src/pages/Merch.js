@@ -35,11 +35,32 @@ export default function Merch() {
     fetchProps();
   }, [query]);
 
-  const handleTShort = (event) => {
+  const handleClick = (id) => {
+    router.push({
+      pathname: "Buy",
+      query: {
+        product: id,
+      },
+    });
+  };
+
+  const handleHandMade = (event) => {
     if (event.target.checked) {
       router.push({
         query: {
-          type_of: "omd",
+          type_of: "Гар урлал",
+        },
+      });
+    } else {
+      delete query.sort;
+      router.push({});
+    }
+  };
+  const handleClothes = (event) => {
+    if (event.target.checked) {
+      router.push({
+        query: {
+          type_of: "Хувцас",
         },
       });
     } else {
@@ -48,13 +69,17 @@ export default function Merch() {
     }
   };
 
-  const handleClick = (id) => {
-    router.push({
-      pathname: "Buy",
-      query: {
-        product: id,
-      },
-    });
+  const handleMore = (event) => {
+    if (event.target.checked) {
+      router.push({
+        query: {
+          type_of: "Бусад",
+        },
+      });
+    } else {
+      delete query.sort;
+      router.push({});
+    }
   };
 
   return (
@@ -246,13 +271,21 @@ export default function Merch() {
                   Төрлөөр шүүх
                 </Box>
                 <Box sx={{ display: "flex" }}>
-                  <Checkbox {...label} />
-                  <Box sx={{ display: "flex", alignItems: "center" }}>Бүгд</Box>
+                  <Checkbox {...label} onChange={handleClothes} />
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                    Хувцас
+                  </Box>
                 </Box>
                 <Box sx={{ display: "flex" }}>
-                  <Checkbox {...label} onChange={handleTShort} />
+                  <Checkbox {...label} onChange={handleHandMade} />
                   <Box sx={{ display: "flex", alignItems: "center" }}>
-                    пудволк
+                    Гар урлал
+                  </Box>
+                </Box>
+                <Box sx={{ display: "flex" }}>
+                  <Checkbox {...label} onChange={handleMore} />
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                    Бусад
                   </Box>
                 </Box>
               </Box>
