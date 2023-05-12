@@ -22,6 +22,7 @@ productRouter.delete("/deleteAll", DeleteAll);
 productRouter.patch("/StatusUpdate/:id", ChangeProductStatus);
 productRouter.get("/approved", onlyApproved);
 productRouter.get("/getProductById/:id", getProductById);
-productRouter.post("/getProductByOwner/", getProductByOwner);
+
+productRouter.get("/getProductByOwner/:id", getProductByOwner);
 
 module.exports = productRouter;

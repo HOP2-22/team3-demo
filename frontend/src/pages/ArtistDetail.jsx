@@ -1,11 +1,4 @@
 import React from "react";
-import Artworks from "../components/artistweb/ArtistArtworks";
-import Bio from "../components/artistweb/ArtistBio";
-import Collection from "../components/artistweb/ArtistCollection";
-import Merch from "../components/artistweb/ArtistMerch";
-import VerifiedIcon from "@mui/icons-material/Verified";
-import Image from "next/image";
-import ArtistCollection from "../components/artistweb/ArtistCollection";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Box from "@mui/material/Box";
@@ -16,46 +9,10 @@ import CardMedia from "@mui/material/CardMedia";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 
-function ArtistDetail() {
+function ArtistDetail({ data }) {
   const router = useRouter();
 
-  const [data, setData] = useState();
-  const [merchData, setMerchData] = useState();
-
-  useEffect(() => {
-    const findProduct = async () => {
-      if (!router.query.artist) {
-        return;
-      }
-      const res = await axios.get(
-        `http://localhost:7070/artist/findArtist/${router.query.artist}`
-      );
-      setData(res?.data?.data);
-    };
-    findProduct();
-  }, [router.query]);
-
-  // "http://localhost:7070/product/getProductByOwner/ownerId?status=approved",
-  const OwnerName = data?.username;
-  const status = "approved";
-
-  useEffect(() => {
-    const Merchs = async () => {
-      try {
-        const { datamerch } = await axios.post(
-          "http://localhost:7070/product/getProductByOwner/",
-          {
-            ownerName: OwnerName,
-            status: status,
-          }
-        );
-        console.log(OwnerName, status);
-
-        setMerchData(datamerch);
-      } catch (error) {}
-    };
-    Merchs();
-  }, []);
+  console.log(data);
 
   return (
     <div className="w-full  bg-gray-500 mt-[70px]">
@@ -89,7 +46,7 @@ function ArtistDetail() {
                 flexWrap: "wrap",
                 justifyContent: "space-between",
               }}>
-              {merchData?.map((merchData, index) => {
+              {data?.map((merchData, index) => {
                 return (
                   <Box
                     key={index}
@@ -165,3 +122,21 @@ function ArtistDetail() {
 }
 
 export default ArtistDetail;
+
+export async function getServerSideProps(context) {
+  const id = context.query.artist;
+
+  try {
+    const res = await axios.get(
+      `http://localhost:7070/product/getProductByOwner/${id}`
+    );
+
+    return {
+      props: {
+        data: res.data,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+  }
+}

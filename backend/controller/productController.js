@@ -1,34 +1,17 @@
 const Product = require("../Model/product");
 
 exports.createProduct = async (req, res) => {
-  const {
-    ownerID,
-    productName,
-    images,
-    price,
-    size,
-    color,
-    type_of,
-    ownerName,
-  } = req.body;
-  const { xxs, xs, s, m, l, xxl } = size;
+  const { ownerID, productName, images, price, size, color, type_of, owner } =
+    req.body;
   try {
     const newProduct = await Product.create({
-      ownerID: ownerID,
       productName: productName,
       images: images,
       price: price,
       color: color,
       type_of: type_of,
-      ownerName: ownerName,
-      size: {
-        xxs,
-        xs,
-        s,
-        m,
-        l,
-        xxl,
-      },
+      owner: owner,
+      size: size,
       details:
         "The Unisex Staple T-Shirt feels soft and light with just the right amount of stretch. It's comfortable and flattering for all. We can't compliment this shirt enough–it's one of our crowd favorites, and it's sure to be your next favorite too! Solid colors are 100% Airlume combed and ring-spun cotton Ash color is 99% combed and ring-spun cotton, 1% polyester",
       caretip:
@@ -45,7 +28,10 @@ exports.createProduct = async (req, res) => {
 
 exports.getAllProducts = async (req, res) => {
   try {
-    const getAll = await Product.find();
+    const getAll = await Product.find().populate("owner");
+
+    console.log(getAll);
+
     res.status(200).json(getAll);
   } catch (error) {
     res.status(400).json({ error: error });
@@ -117,8 +103,19 @@ exports.ChangeProductStatus = async (req, res) => {
   }
 };
 exports.onlyApproved = async (req, res) => {
-  const responsive = await Product.find({ status: "approved" });
-  res.status(200).json({ success: true, json: responsive });
+  try {
+    const { query } = req;
+
+    console.log(query);
+
+    const responsive = await Product.find({ status: "approved", ...query });
+
+    console.log(responsive);
+
+    res.status(200).json({ success: true, json: responsive });
+  } catch (error) {
+    console.log(error);
+  }
 };
 exports.getProductById = async (req, res) => {
   const { id } = req.params;
@@ -129,19 +126,16 @@ exports.getProductById = async (req, res) => {
     res.send({ error: error });
   }
 };
+
 exports.getProductByOwner = async (req, res) => {
-  const { ownerName, status } = req.body;
   try {
-    let user;
-    if (status) {
-      console.log("get with status");
-      user = await Product.find({ ownerName: ownerName, status: status });
-    } else {
-      console.log("get without status");
-      // user = await Product.find(ownerName);
-    }
+    const user = await Product.find({
+      owner: req.params.id,
+      status: "approved",
+    }).populate("owner");
     res.status(200).json(user);
   } catch (error) {
+    console.log(error);
     res.send({ error: error });
   }
 };

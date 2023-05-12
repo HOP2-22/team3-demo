@@ -9,6 +9,7 @@ import Favorite from "@mui/icons-material/Favorite";
 import { useRouter } from "next/router";
 
 export default function Merch() {
+  const { query } = useRouter();
   const router = useRouter();
   const [data, setData] = useState();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
@@ -18,19 +19,34 @@ export default function Merch() {
     baseURL: "http://localhost:7070/product/approved",
   });
 
+  const fetchProps = async () => {
+    try {
+      const res = await instance?.get(
+        `/?${query.type_of ? `type_of=${query.type_of}` : ""}`
+      );
+
+      setData(res?.data.json);
+      setCount(res?.data.json.length);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   useEffect(() => {
-    const fetchProps = async () => {
-      try {
-        const res = await instance?.get("/");
-        setData(res?.data.json);
-        console.log(res.data.json);
-        setCount(res?.data.json.length);
-      } catch (err) {
-        console.log(err);
-      }
-    };
     fetchProps();
-  }, []);
+  }, [query]);
+
+  const handleTShort = (event) => {
+    if (event.target.checked) {
+      router.push({
+        query: {
+          type_of: "omd",
+        },
+      });
+    } else {
+      delete query.sort;
+      router.push({});
+    }
+  };
 
   const handleClick = (id) => {
     router.push({
@@ -234,7 +250,7 @@ export default function Merch() {
                   <Box sx={{ display: "flex", alignItems: "center" }}>Бүгд</Box>
                 </Box>
                 <Box sx={{ display: "flex" }}>
-                  <Checkbox {...label} />
+                  <Checkbox {...label} onChange={handleTShort} />
                   <Box sx={{ display: "flex", alignItems: "center" }}>
                     пудволк
                   </Box>
