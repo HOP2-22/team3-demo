@@ -4,6 +4,7 @@ import CollectionV2 from "../components/collection/CollectionV2";
 import FaceHome from "../components/FaceHome";
 import { useEffect, useState } from "react";
 import Axios from "axios";
+import HomeMerch from "../components/merch/HomeMerch"
 
 export default function Face() {
   const [data, setData] = useState();
@@ -34,7 +35,6 @@ export default function Face() {
     <Box sx={{ backgroundColor: "#edf2f4", width: "100%", marginTop: "70px" }}>
       <Container maxWidth="xl">
         <FaceHome />
-        <Box></Box>
         <Box
           sx={{
             marginTop: "32px",
@@ -136,6 +136,7 @@ export default function Face() {
               <Collection key={index} Image={card.image} />
             ))}
           </Box>
+          <HomeMerch />
         </Box>
       </Container>
     </Box>
