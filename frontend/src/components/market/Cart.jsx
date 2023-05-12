@@ -89,7 +89,7 @@ const ProductList = () => {
 const styles = {
   header: {
     display: "flex",
-    justifyContent: { xl: "space-between", xs: "" },
+    justifyContent: "space-between",
   },
   comp: {
     display: "flex",

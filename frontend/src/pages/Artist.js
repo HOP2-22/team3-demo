@@ -1,15 +1,8 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import ArtistCart from "../components/artistweb/ArtistCart";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Checkbox from "@mui/material/Checkbox";
-import CardMedia from "@mui/material/CardMedia";
-import { Stack, Typography } from "@mui/material";
-import CardContent from "@mui/material/CardContent";
-import Card from "@mui/material/Card";
-import Image from "next/image";
-import { CardActionArea } from "@mui/material";
 import { useRouter } from "next/router";
 
 export default function Artist() {
@@ -54,7 +47,8 @@ export default function Artist() {
               alignItems: "center",
               paddingTop: "40px",
               paddingBottom: "40px",
-            }}>
+            }}
+          >
             <Box sx={{ display: "flex", alignSelf: "self-start" }}>
               <Box
                 sx={{
@@ -66,7 +60,8 @@ export default function Artist() {
                     xl: "96px",
                   },
                   fontWeight: "bold",
-                }}>
+                }}
+              >
                 ARTIST
               </Box>
               <Box
@@ -80,7 +75,8 @@ export default function Artist() {
                     lg: "30px",
                     xl: "36px",
                   },
-                }}>
+                }}
+              >
                 {count}
               </Box>
             </Box>
@@ -93,17 +89,19 @@ export default function Artist() {
                 paddingBottom: "16px",
                 width: "100%",
                 boxSizing: "border-box",
-              }}>
+              }}
+            >
               <Box
                 sx={{
                   width: "100%",
                   height: "1px",
                   bgcolor: "black",
                   boxSizing: "border-box",
-                }}></Box>
+                }}
+              ></Box>
             </Box>
           </Box>
-          <Box sx={{ display: "flex" }}>
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             <Box
               sx={{
                 display: "flex",
@@ -133,11 +131,13 @@ export default function Artist() {
                   xs: "0px",
                   xl: "70px",
                 },
-              }}>
+              }}
+            >
               {data?.map((info, index) => (
                 <div
                   className="w-[360px] h-[360px] border-2"
-                  onClick={() => handleClick(info?._id)}>
+                  onClick={() => handleClick(info?._id)}
+                >
                   <div className="w-[100%] h-[100%]  flex items-center flex-col ">
                     <img
                       src="https://mui.com/static/images/cards/contemplative-reptile.jpg"
@@ -183,18 +183,21 @@ export default function Artist() {
                 },
                 flexDirection: "column",
                 alignItems: "center",
-              }}>
+              }}
+            >
               <Box
                 sx={{
                   top: "80px",
                   position: "sticky",
-                }}>
+                }}
+              >
                 <Box
                   sx={{
                     padding: "10px",
                     fontWeight: "bold",
                     fontSize: "20px",
-                  }}>
+                  }}
+                >
                   Төрлөөр шүүх
                 </Box>
                 <Box sx={{ display: "flex" }}>
