@@ -86,10 +86,12 @@ exports.DeleteProduct = async (req, res) => {
     res.status(400).json({ message: "can't delete" });
   }
 };
+
 exports.DeleteAll = async (req, res) => {
   await Product.deleteMany();
   res.status(200).json({ success: true });
 };
+
 exports.ChangeProductStatus = async (req, res) => {
   const id = req.params.id;
   const newStatus = req.body.status;
@@ -102,6 +104,24 @@ exports.ChangeProductStatus = async (req, res) => {
     res.status(400).json({ message: "can't update" });
   }
 };
+
+// get products by status
+exports.getProductByStatus = async (req, res) => {
+  const { status, limit = 100, page = 1 } = req.query;
+  try {
+    const products = await Product.find({
+      status,
+    })
+      .limit(limit * 1)
+      .skip((page - 1) * limit)
+      .sort({ createdAt: -1 });
+
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(400).json({ message: "something wrong" });
+  }
+};
+
 exports.onlyApproved = async (req, res) => {
   try {
     const { query } = req;
@@ -131,7 +151,7 @@ exports.getProductByOwner = async (req, res) => {
   try {
     const user = await Product.find({
       owner: req.params.id,
-      status: "approved",
+      status: " approved",
     }).populate("owner");
     res.status(200).json(user);
   } catch (error) {
