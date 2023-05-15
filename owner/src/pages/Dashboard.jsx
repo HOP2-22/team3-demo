@@ -63,7 +63,9 @@ export default function Dash() {
       },
     });
   };
-  // Bilegt
+
+
+  
   console.log(data);
 
   if (loading) {
