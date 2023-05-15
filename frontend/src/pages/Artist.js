@@ -5,27 +5,12 @@ import axios from "axios";
 import Checkbox from "@mui/material/Checkbox";
 import { useRouter } from "next/router";
 
-export default function Artist() {
-  const [data, setData] = useState();
+export default function Artist({ artists }) {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
-  const [count, setCount] = useState();
   const router = useRouter();
-  const instance = axios.create({
-    baseURL: "http://localhost:7070/artist/",
-  });
+  const { query } = useRouter();
 
-  useEffect(() => {
-    const fetchProps = async () => {
-      try {
-        const res = await instance?.get("/");
-        console.log(res.data.data);
-        setData(res.data.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchProps();
-  }, []);
+  console.log(artists);
 
   const handleClick = (id) => {
     router.push({
@@ -36,8 +21,80 @@ export default function Artist() {
     });
   };
 
+  const handleTailor = (event) => {
+    if (event.target.checked) {
+      router.push({
+        query: {
+          type_of: "Оёдолчин",
+        },
+      });
+    } else {
+      delete query.type_of;
+      router.push({
+        query: { ...query },
+      });
+    }
+  };
+  const handlePhotographer = (event) => {
+    if (event.target.checked) {
+      router.push({
+        query: {
+          type_of: "Гэрэл зурагчин",
+        },
+      });
+    } else {
+      delete query.type_of;
+      router.push({
+        query: { ...query },
+      });
+    }
+  };
+
+  const handleDrawer = (event) => {
+    if (event.target.checked) {
+      router.push({
+        query: {
+          type_of: "Зураач",
+        },
+      });
+    } else {
+      delete query.type_of;
+      router.push({
+        query: { ...query },
+      });
+    }
+  };
+  const handleGraphic = (event) => {
+    if (event.target.checked) {
+      router.push({
+        query: {
+          type_of: "График дизайнер",
+        },
+      });
+    } else {
+      delete query.type_of;
+      router.push({
+        query: { ...query },
+      });
+    }
+  };
+  const handleCraftsman = (event) => {
+    if (event.target.checked) {
+      router.push({
+        query: {
+          type_of: "Гар урлаач",
+        },
+      });
+    } else {
+      delete query.type_of;
+      router.push({
+        query: { ...query },
+      });
+    }
+  };
+
   return (
-    <Box sx={{ marginTop: "70px" }}>
+    <Box sx={{ marginTop: "70px", marginBottom: "100px" }}>
       <Container maxWidth="xl">
         <Box>
           <Box
@@ -74,7 +131,7 @@ export default function Artist() {
                     xl: "36px",
                   },
                 }}>
-                {count}
+                {artists.length}
               </Box>
             </Box>
             <Box sx={{ alignSelf: "self-start", fontWeight: "300" }}>
@@ -127,7 +184,7 @@ export default function Artist() {
                   xl: "70px",
                 },
               }}>
-              {data?.map((info, index) => (
+              {artists?.map((info, index) => (
                 <div
                   className="w-[360px] h-[360px] border-2"
                   onClick={() => handleClick(info?._id)}>
@@ -192,21 +249,33 @@ export default function Artist() {
                   <Box sx={{ display: "flex", alignItems: "center" }}>Бүгд</Box>
                 </Box>
                 <Box sx={{ display: "flex" }}>
-                  <Checkbox {...label} />
+                  <Checkbox {...label} onChange={handleTailor} />
                   <Box sx={{ display: "flex", alignItems: "center" }}>
-                    Дижитал артист
+                    Оёдолчин
                   </Box>
                 </Box>
                 <Box sx={{ display: "flex" }}>
-                  <Checkbox {...label} />
+                  <Checkbox {...label} onChange={handlePhotographer} />
                   <Box sx={{ display: "flex", alignItems: "center" }}>
                     Гэрэл зурагчин
                   </Box>
                 </Box>
                 <Box sx={{ display: "flex" }}>
-                  <Checkbox {...label} />
+                  <Checkbox {...label} onChange={handleDrawer} />
                   <Box sx={{ display: "flex", alignItems: "center" }}>
-                    Уран зураач
+                    Зураач
+                  </Box>
+                </Box>
+                <Box sx={{ display: "flex" }}>
+                  <Checkbox {...label} onChange={handleGraphic} />
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                    График дизайнер
+                  </Box>
+                </Box>
+                <Box sx={{ display: "flex" }}>
+                  <Checkbox {...label} onChange={handleCraftsman} />
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                    Гар урлаач
                   </Box>
                 </Box>
               </Box>
@@ -216,4 +285,33 @@ export default function Artist() {
       </Container>
     </Box>
   );
+}
+
+export async function getServerSideProps(ctx) {
+  const query = ctx.query;
+
+  try {
+    const res = await axios.get(
+      `http://localhost:7070/artist/?${
+        query.type_of ? `type_of=${query.type_of}` : ""
+      }`
+    );
+
+    const artists = res.data.data.filter((item) => {
+      if (item.products.length > 0) return item;
+    });
+
+    return {
+      props: {
+        artists: artists,
+      },
+    };
+  } catch (err) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
 }

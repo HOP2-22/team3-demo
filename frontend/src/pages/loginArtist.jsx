@@ -51,7 +51,7 @@ export default function LoginArtist() {
   };
 
   return (
-    <div className="w-full h-full  mt-[150px] flex flex-col items-center justify-center gap-10">
+    <div className="w-full  h-[60vh]  mt-[150px] flex flex-col items-center justify-center gap-10">
       <ToastContainer />
       <div className="text-[32px] text-[#1b1927]"> Нэвтрэх</div>
       <div className="flex flex-col gap-6">
@@ -77,8 +77,7 @@ export default function LoginArtist() {
         </div>
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
-          onClick={handleLogin}
-        >
+          onClick={handleLogin}>
           Нэвтрэх
         </button>
       </div>

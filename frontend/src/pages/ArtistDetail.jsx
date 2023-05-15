@@ -14,20 +14,20 @@ function ArtistDetail({ data }) {
 
   return (
     <div className="w-full  bg-gray-500 mt-[70px]">
-      <img className="w-[100%] h-[400px]" src={data[0]?.owner.image} />
+      <img className="w-[100%] h-[400px]" src={data.image} />
       <Container maxWidth="xl">
         <div className="w-[100%] border-b-[1px] pb-[30px]">
           <img
             className="w-[200px] h-[200px] rounded-full border-[10px] mt-[-100px] relative z-2"
-            src={data[0]?.owner.image}
+            src={data.image}
           />
           <p className="text-[50px] font-bold">{data?.username}</p>
-          <p>{data[0]?.owner.type_of}</p>
+          <p>{data.type_of}</p>
         </div>
         <div>
           <div className="w-[100%] border-b-[1px]">
             <p className="text-[90px] font-bold">Bio</p>
-            <p>{data[0]?.owner.cv}</p>
+            <p>{data.cv}</p>
           </div>
         </div>
         <div>
@@ -41,7 +41,7 @@ function ArtistDetail({ data }) {
                 flexWrap: "wrap",
                 justifyContent: "space-between",
               }}>
-              {data?.map((merchData, index) => {
+              {data?.products?.map((merchData, index) => {
                 return (
                   <Box
                     key={index}
@@ -123,15 +123,19 @@ export async function getServerSideProps(context) {
 
   try {
     const res = await axios.get(
-      `http://localhost:7070/product/getProductByOwner/${id}`
+      `http://localhost:7070/artist/findArtist/${id}`
     );
 
     return {
       props: {
-        data: res.data,
+        data: res.data.data,
       },
     };
   } catch (error) {
-    console.log(error);
+    return {
+      props: {
+        error: true,
+      },
+    };
   }
 }

@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const { Artist } = require("../config/roles");
 const artist = require("../Model/artist");
 const role = require("../config/roles");
+const { response } = require("express");
 
 exports.createArtist = async (req, res) => {
   try {
@@ -28,7 +29,12 @@ exports.createArtist = async (req, res) => {
 
 exports.getArtist = async (req, res) => {
   try {
-    const users = await artist.find({});
+    const { query } = req;
+
+    console.log(query);
+
+    const users = await artist.find(query).populate("products");
+
     res.status(200).json({ data: users });
   } catch (error) {
     res.status(400).json({ error: error });
@@ -38,7 +44,8 @@ exports.getArtist = async (req, res) => {
 exports.getArtistById = async (req, res) => {
   const { _id } = req.params;
   try {
-    const user = await artist.findById(_id);
+    const user = await artist.findById(_id).populate("products");
+    console.log(user);
     res.send({ data: user });
   } catch (error) {
     res.send({ error: error });

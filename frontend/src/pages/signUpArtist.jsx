@@ -108,7 +108,7 @@ export default function SignUp() {
   };
 
   return (
-    <div className="w-full h-full  mt-[150px] flex flex-col items-center justify-center gap-10">
+    <div className="w-full  h-[60vh]  mt-[150px] flex flex-col items-center justify-center gap-10">
       <ToastContainer />
       <div className="text-[32px] text-[#1b1927]">Бүртгүүлэх</div>
       <div className="flex flex-col gap-6">
