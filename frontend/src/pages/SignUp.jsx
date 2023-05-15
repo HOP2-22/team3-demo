@@ -54,7 +54,8 @@ export default function SignUpUser() {
         <IconButton
           color="primary"
           aria-label="upload picture"
-          component="label">
+          component="label"
+        >
           <input
             hidden
             accept="image/*"
@@ -129,9 +130,9 @@ export default function SignUpUser() {
             onChange={PassInputCheck}
           />
         </div>
-        <div>
+        <div style={{ display: "flex" }}>
           <UploadImage />
-          <img src={imageUrl} alt="image" />
+          <img src={imageUrl} alt="image" style={{ width: "10vh" }} />
         </div>
         <Link href="/signUpArtist">
           <p className="text-[16px] ml-[20px]">
@@ -142,7 +143,8 @@ export default function SignUpUser() {
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
           onClick={() => {
             signUpUser();
-          }}>
+          }}
+        >
           Бүртгүүлэх
         </button>
       </div>

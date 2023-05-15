@@ -14,7 +14,7 @@ export default function SignUp() {
   const [artistType, setArtistType] = useState();
   const [checkpassUserSignUp, setCheckPassSignUpArtist] = useState();
   const [userInfo, setUserInfo] = useState();
-  const { handleUpload } = useStorage();
+  const { handleUpload, handleUploadBgImg } = useStorage();
   const [image, setImage] = useState();
   const [imageUrl, setImageUrl] = useState();
   const [imageBg, setImageBg] = useState();
@@ -52,12 +52,14 @@ export default function SignUp() {
   };
   const handleBgImg = async () => {
     try {
-      if (!image) return;
-      const res = await handleUpload(image);
+      if (!imageBg) return;
+      const res = await handleUploadBgImg(imageBg);
       setImageUrl(res);
       toast("Successfully");
+      console.log(res);
     } catch (error) {
       toast("Error uploading");
+      console.log(error);
     }
   };
 
@@ -207,10 +209,10 @@ export default function SignUp() {
             onChange={TypeInput}
           />
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex  gap-2">
           <UploadImage />
           <UploadImageBgImg />
-          <img src={imageUrl} />
+          <img src={imageUrl} alt="image" style={{ width: "10vh" }} />
         </div>
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"

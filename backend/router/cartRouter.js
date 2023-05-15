@@ -8,8 +8,8 @@ const {
 
 const cartRouter = express.Router();
 
-cartRouter.post("/:id", getUserCarts);
 cartRouter.post("/addToCart", addProductIntoCart);
+cartRouter.post("/:id", getUserCarts);
 cartRouter.delete("/deleteFromCart", deleteProductFromCart);
 
 module.exports = cartRouter;

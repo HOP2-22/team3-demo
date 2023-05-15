@@ -1,4 +1,4 @@
-import { Box, Container } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import SwiperCard from "../components/SwiperCard";
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
@@ -18,6 +18,7 @@ export default function Buy() {
   const [data, setData] = useState();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(null);
   const [size, setSize] = useState();
   const [count, setCount] = useState();
   const [productId, setProductId] = useState();
@@ -25,6 +26,7 @@ export default function Buy() {
   const router = useRouter();
 
   const sizes = ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"];
+  const colors = ["white", "black", "green", "red", "yellow", "blue"];
 
   useEffect(() => {
     const findProduct = async () => {
@@ -155,7 +157,33 @@ export default function Buy() {
               Prize: {data?.price}
             </Box>
             <Box>
-              <p style={{ paddingTop: "10px", paddingBottom: "10px" }}>Color</p>
+              <Typography>Color</Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "5px",
+                  paddingTop: "10px",
+                  paddingBottom: "10px",
+                }}
+              >
+                {colors.map((color, i) => (
+                  <button
+                    key={i}
+                    style={{
+                      backgroundColor:
+                        selectedColor === color ? "azure" : "#cdcdcd",
+                      width: "60px",
+                      height: "40px",
+                      border: "hidden",
+                      borderRadius: "8px",
+                    }}
+                    onClick={() => setSelectedColor(color)}
+                  >
+                    {color}
+                  </button>
+                ))}
+              </Box>
               <Box sx={{ paddingTop: "10px", paddingBottom: "10px" }}>
                 <button
                   style={{
