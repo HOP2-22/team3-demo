@@ -248,7 +248,6 @@ export default function Dash() {
                   borderTopLeftRadius: "10px",
                   borderTopRightRadius: "10px",
                 }}>
-                <p style={{ color: "black", width: "100px" }}>Artist Id</p>
                 <p style={{ color: "black", width: "100px" }}>Date</p>
                 <p style={{ color: "black", width: "100px" }}>Artist name</p>
                 <p style={{ color: "black", width: "120px" }}>Product name</p>
@@ -283,13 +282,10 @@ export default function Dash() {
                       marginTop: "10px",
                     }}>
                     <p style={{ color: "black", width: "100px" }}>
-                      {dataa.owner.username}
-                    </p>
-                    <p style={{ color: "black", width: "100px" }}>
                       {dataa.Date.slice(0, 10)}
                     </p>
                     <p style={{ color: "black", width: "100px" }}>
-                      {dataa.ownerName}
+                      {dataa.owner?.username}
                     </p>
                     <p style={{ color: "black", width: "100px" }}>
                       {dataa.productName}

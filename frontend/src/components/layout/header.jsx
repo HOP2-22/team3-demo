@@ -47,7 +47,7 @@ export default function Header() {
           className="flex justify-between h-[75px]  items-center">
           <div className="flex items-center gap-5 md:gap-5 w-[100%]">
             <Link href="/">
-              <div className="text-[30px] font-bold">Geru</div>
+              <div className="text-[30px] font-bold">new space</div>
             </Link>
             <input
               className="outline-none h-[40px] w-[60%] md:w-[100%] xl:hidden font-bold"
@@ -56,29 +56,15 @@ export default function Header() {
           </div>
           <div className="flex items-center gap-5">
             <div className="">
-              <span
-                className="text-[20px] flex items-center gap-2 font-bold"
-                onClick={() => {
-                  setBurger(!burger);
-                }}>
-                Enjoy <SlArrowDown className="text-[15px]" />
-              </span>
-              <div
-                className={`${
-                  burger ? " flex" : "hidden"
-                } absolute bg-white w-[150px] h-[200px]   xl:mt-[-45px] xl:ml-[-170px] -mt-[35px] -ml-[160px]  flex-col px-[20px] justify-evenly border-2 shadow-xl rounded-[9px]`}>
+              <div className="flex gap-6 text-[18px]">
                 <a href="Merch ">
-                  <div className="font-bold border-b-[1px] flex items-center justify-center">
+                  <div className=" border-b-[1px] flex items-center justify-center">
                     MERCH
                   </div>
                 </a>
-                <a href="ArtWork">
-                  <div className="font-bold border-b-[1px] flex items-center justify-center">
-                    ARTWORK
-                  </div>
-                </a>
+
                 <a href="Artist">
-                  <div className="font-bold border-b-[1px] flex items-center justify-center">
+                  <div className=" border-b-[1px] flex items-center justify-center">
                     ARTIST
                   </div>
                 </a>
