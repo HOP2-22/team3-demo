@@ -131,6 +131,7 @@ export default function SignUpUser() {
         </div>
         <div>
           <UploadImage />
+          <img src={imageUrl} alt="image" />
         </div>
         <Link href="/signUpArtist">
           <p className="text-[16px] ml-[20px]">
