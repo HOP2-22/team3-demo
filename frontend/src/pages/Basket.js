@@ -1,6 +1,6 @@
 import { Container, Box, Typography, Button, Stack, Grid } from "@mui/material";
 import Cart from "../components/market/CartBilegt";
-import BuyCart from "../components/market/BuyCart"
+import BuyCart from "../components/market/BuyCart";
 
 // const BasketCard = ({ price }) => {
 //   return (
@@ -34,8 +34,14 @@ export function Basket() {
           Таны Сагсанд 3 Бүтээгдэхүүн Байна
         </Typography>
       </Stack>
-      <Box sx={{ display: "flex", justifyContent:"space-evenly" }}>
-        <Cart />
+      <Box sx={{ display: "flex", gap: "20px", justifyContent: "center" }}>
+        <Box sx={{width:"50%", display:"flex", gap:"20px", flexDirection:"column"}}>
+          <Cart />
+          <Cart />
+          <Cart />
+          <Cart />
+          <Cart />
+        </Box>
         <BuyCart price={41000} />
       </Box>
     </Container>
