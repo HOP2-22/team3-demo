@@ -4,20 +4,15 @@ import { IconButton, Stack, Box, Button, List } from "@mui/material";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { useAuthContext } from "@/context/context";
 
-const size = ["s", "m", "l", "xl", "2xl", "3xl"];
+// const size = ["s", "m", "l", "xl", "2xl", "3xl"];
 
 export default function Create() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
   const { currentUser } = useAuthContext();
-  console.log(currentUser);
 
-  const create = async () => {
+  const createProduct = async () => {
     try {
       const res = axios.post("http://localhost:7070/product/create", {
-        email: email,
-        password: password,
+        
       });
       console.log(res);
     } catch (error) {
@@ -29,19 +24,24 @@ export default function Create() {
     <div className="w-full h-[100vh] bg-slate-300" style={{ padding: "40vh" }}>
       <Box display="flex" justifyContent="space-around">
         <input
-          onChange={(el) => {
-            setEmail(el.target.value);
+          onChange={(e) => {
+            setEmail(e.target.value);
           }}
         />
         <input
-          onChange={(el) => {
-            setPassword(el.target.value);
+          onChange={(e) => {
+            setPassword(e.target.value);
           }}
         />
       </Box>
-
-      <Stack direction="row" alignItems="center" spacing={2}>
-        <Button variant="contained" component="label">
+      <Stack direction="row" spacing={2}>
+        <Button
+          variant="contained"
+          component="label"
+          onClick={() => {
+            createProduct();
+          }}
+        >
           Upload
         </Button>
         <IconButton
