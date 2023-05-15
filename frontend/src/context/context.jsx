@@ -9,7 +9,6 @@ export const useAuthContext = () => useContext(Context);
 export const Provider = (props) => {
   const { children } = props;
   const [currentUser, setCurrentUser] = useState(null);
-  const [username, setUserName] = useState("");
   const [isClient, setIsClient] = useState(false);
   const [isArtist, setIsArtist] = useState(false);
 
@@ -38,10 +37,11 @@ export const Provider = (props) => {
       // setUserName(res?.data?.user?.name);
       // setCurrentUser(user);
       const { data } = await axios.get("http://localhost:7070/user/getUser");
-
+      // console.log(data);
       setCurrentUser({
-        username: data?.user?.username,
+        name: data?.user?.name,
         image: data?.user?.image,
+        userId: data?.user?._id,
       });
     };
     getUser();
