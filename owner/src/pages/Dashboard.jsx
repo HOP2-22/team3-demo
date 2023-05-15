@@ -1,5 +1,4 @@
 import { Box, Container } from "@mui/material";
-import Axios from "axios";
 import React, { useState, useEffect } from "react";
 import NotificationsActiveTwoToneIcon from "@mui/icons-material/NotificationsActiveTwoTone";
 import BeenhereTwoToneIcon from "@mui/icons-material/BeenhereTwoTone";
@@ -7,37 +6,69 @@ import PendingActionsTwoToneIcon from "@mui/icons-material/PendingActionsTwoTone
 import BookmarkBorderTwoToneIcon from "@mui/icons-material/BookmarkBorderTwoTone";
 import Image from "next/image";
 import image from "../images/cover-photo.gif";
-import User from "../components/user";
 import Checkbox from "@mui/material/Checkbox";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function Dash() {
-  const [data, setData] = useState();
-  const [load, setLoad] = useState(false);
+  const router = useRouter();
 
-  const instance = Axios.create({
-    baseURL: "http://localhost:7070/product",
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [load, setLoad] = useState(false);
+  const { status, page = 1 } = router.query;
+
+  const [filterStatus, setFilterStatus] = useState(status);
+  const [fileterPage, setFileterPage] = useState(page);
+
+  useEffect(() => {
+    setFilterStatus(status || "approved");
+    setFileterPage(page || 1);
+  }, [status, page]);
+
+  const instance = axios.create({
+    baseURL: `http://localhost:7070/product/status`,
   });
 
   useEffect(() => {
     const fetchProps = async () => {
       try {
-        const res = await instance?.get("/");
-
-        console.log(res.data);
-
+        const res = await instance?.get("/", {
+          params: {
+            status: filterStatus,
+            page: fileterPage,
+          },
+        });
         setData(res?.data);
-      } catch (err) {}
+      } catch (err) {
+        console.error(err);
+      }
+      setLoading(false);
     };
     fetchProps();
-  }, [load]);
+  }, [load, fileterPage, filterStatus]);
 
   const StatusChange = async ({ id, type }) => {
-    console.log(id, type);
     await axios.patch(`http://localhost:7070/product/StatusUpdate/${id}`, {
       status: type,
     });
   };
+
+  const filterHandler = (filterValue) => {
+    router.push({
+      pathname: "/Dashboard",
+      query: {
+        status: filterValue,
+        page: fileterPage,
+      },
+    });
+  };
+
+  console.log(data);
+
+  if (loading) {
+    return <div>...loading</div>;
+  }
 
   return (
     <Box
@@ -52,7 +83,8 @@ export default function Dash() {
           lg: "flex",
           xl: "flex",
         },
-      }}>
+      }}
+    >
       <Container maxWidth="xl" sx={{ display: "flex", height: "100%" }}>
         <Box
           sx={{
@@ -65,7 +97,8 @@ export default function Dash() {
               xl: "flex",
             },
             flexDirection: "column",
-          }}>
+          }}
+        >
           <Box
             sx={{
               width: "100%",
@@ -77,14 +110,16 @@ export default function Dash() {
                 lg: "50px",
                 xl: "50px",
               },
-            }}></Box>
+            }}
+          ></Box>
           <Box
             sx={{
               width: "100%",
               paddingLeft: "50px",
               paddingRight: "50px",
               paddingBottom: "50px",
-            }}>
+            }}
+          >
             <Box
               sx={{
                 width: "100%",
@@ -96,9 +131,13 @@ export default function Dash() {
                 alignItems: "center",
                 justifyContent: "space-between",
                 cursor: "pointer",
-              }}>
-              <BeenhereTwoToneIcon
-                sx={{ color: "black" }}></BeenhereTwoToneIcon>
+                border:"5px solid #edf2f4",
+                borderLeftColor:
+                  filterStatus === "approved" ? "Blue" : "transparent",
+              }}
+              onClick={() => filterHandler("approved")}
+            >
+              <BeenhereTwoToneIcon sx={{ color: "black" }} />
               <Box sx={{ color: "black" }}>Approved</Box>
             </Box>
             <Box
@@ -112,9 +151,13 @@ export default function Dash() {
                 alignItems: "center",
                 justifyContent: "space-between",
                 cursor: "pointer",
-              }}>
-              <PendingActionsTwoToneIcon
-                sx={{ color: "black" }}></PendingActionsTwoToneIcon>
+                border:"5px solid #edf2f4",
+                borderLeftColor:
+                  filterStatus === "rejected" ? "Blue" : "transparent",
+              }}
+              onClick={() => filterHandler("rejected")}
+            >
+              <PendingActionsTwoToneIcon sx={{ color: "black" }} />
               <Box sx={{ color: "black" }}>Pending</Box>
             </Box>
             <Box
@@ -127,9 +170,15 @@ export default function Dash() {
                 alignItems: "center",
                 justifyContent: "space-between",
                 cursor: "pointer",
-              }}>
+                border:"5px solid #edf2f4",
+                borderLeftColor:
+                  filterStatus === "orders" ? "Blue" : "transparent",
+              }}
+              onClick={() => filterHandler("orders")}
+            >
               <BookmarkBorderTwoToneIcon
-                sx={{ color: "black" }}></BookmarkBorderTwoToneIcon>
+                sx={{ color: "black" }}
+              ></BookmarkBorderTwoToneIcon>
               <Box sx={{ color: "black" }}> Orders</Box>
             </Box>
           </Box>
@@ -144,7 +193,8 @@ export default function Dash() {
               xl: "85%",
             },
             height: "100%",
-          }}>
+          }}
+        >
           <Box
             sx={{
               width: "100%",
@@ -160,7 +210,8 @@ export default function Dash() {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-            }}>
+            }}
+          >
             <p style={{ color: "black", fontSize: "30px" }}>Pending board</p>
             <Box sx={{ display: "flex", gap: "20px" }}>
               <Box
@@ -174,12 +225,14 @@ export default function Dash() {
                   alignItems: "center",
                   justifyContent: "center",
                   cursor: "pointer",
-                }}>
+                }}
+              >
                 <NotificationsActiveTwoToneIcon
                   sx={{
                     color: "black",
                     fontSize: "30px",
-                  }}></NotificationsActiveTwoToneIcon>
+                  }}
+                ></NotificationsActiveTwoToneIcon>
               </Box>
               <Box
                 sx={{
@@ -188,7 +241,8 @@ export default function Dash() {
                   backgroundColor: "white",
                   border: "1.5px solid #ADA7A7",
                   borderRadius: "8px",
-                }}>
+                }}
+              >
                 <Image
                   style={{
                     border: "hidden",
@@ -221,7 +275,8 @@ export default function Dash() {
                 lg: "50px",
                 xl: "50px",
               },
-            }}>
+            }}
+          >
             <Box
               sx={{
                 width: "100%",
@@ -231,7 +286,8 @@ export default function Dash() {
                 borderRadius: "10px",
                 display: "flex",
                 flexDirection: "column",
-              }}>
+              }}
+            >
               <Box
                 sx={{
                   backgroundColor: "#edf2f4",
@@ -247,7 +303,9 @@ export default function Dash() {
                   border: "hidden",
                   borderTopLeftRadius: "10px",
                   borderTopRightRadius: "10px",
-                }}>
+                }}
+              >
+                <p style={{ color: "black", width: "100px" }}>Artist Id</p>
                 <p style={{ color: "black", width: "100px" }}>Date</p>
                 <p style={{ color: "black", width: "100px" }}>Artist name</p>
                 <p style={{ color: "black", width: "120px" }}>Product name</p>
@@ -264,7 +322,8 @@ export default function Dash() {
                   overflow: "hidden",
                   overflowY: "scroll",
                   gap: "10px",
-                }}>
+                }}
+              >
                 {data?.map((dataa, index) => (
                   <Box
                     key={index}
@@ -280,18 +339,22 @@ export default function Dash() {
                       justifyContent: "space-between",
                       alignItems: "center",
                       marginTop: "10px",
-                    }}>
+                    }}
+                  >
                     <p style={{ color: "black", width: "100px" }}>
-                      {dataa.Date.slice(0, 10)}
+                      {dataa?.owner?.username}
                     </p>
                     <p style={{ color: "black", width: "100px" }}>
-                      {dataa.owner?.username}
+                      {dataa?.Date?.slice(0, 10)}
                     </p>
                     <p style={{ color: "black", width: "100px" }}>
-                      {dataa.productName}
+                      {dataa?.ownerName}
                     </p>
                     <p style={{ color: "black", width: "100px" }}>
-                      {dataa.price}
+                      {dataa?.productName}
+                    </p>
+                    <p style={{ color: "black", width: "100px" }}>
+                      {dataa?.price}
                     </p>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                       <Checkbox
