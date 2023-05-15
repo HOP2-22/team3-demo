@@ -8,9 +8,11 @@ export default function BasketCard({ price }) {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        width:"20%",
-        padding:"15px",
-        height:"180px",
+        width: "20%",
+        padding: "15px",
+        height: "180px",
+        border:"hidden", 
+        borderRadius:"20px"
       }}
     >
       <Stack
@@ -23,11 +25,28 @@ export default function BasketCard({ price }) {
       >
         ТАНЫ ТӨЛБӨР
       </Stack>
-      <Box sx={{ display: "flex", justifyContent: "space-between", paddingTop:"10px", paddingBottom:"10px" }}>
-        <Typography>Нийт </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          paddingTop: "10px",
+          paddingBottom: "10px",
+        }}
+      >
+        <Typography sx={{fontWeight: "lighter"}}>Нийт </Typography>
         <Typography>{price}</Typography>
       </Box>
-      <button style={{backgroundColor:"red", border:"hidden", borderRadius:"5px", padding:"8px", }}>Худалдан авах</button>
+      <button
+        style={{
+          backgroundColor: "#9b1027",
+          border: "hidden",
+          borderRadius: "5px",
+          padding: "8px",
+          color:"white"
+        }}
+      >
+        Худалдан авах
+      </button>
     </Box>
   );
 }
