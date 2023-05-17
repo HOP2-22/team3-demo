@@ -44,7 +44,8 @@ export default function Header() {
       <div className="flex flex-col bg-white">
         <Container
           maxWidth="xl"
-          className="flex justify-between h-[75px]  items-center">
+          className="flex justify-between h-[75px]  items-center"
+        >
           <div className="flex items-center gap-5 md:gap-5 w-[100%]">
             <Link href="/">
               <div className="text-[30px] font-bold">new space</div>
@@ -79,13 +80,18 @@ export default function Header() {
                     setSearchClick(!searchClick);
                   }}
                 />
-                <SlBasket />
+                <SlBasket
+                  onClick={() => {
+                    router.push("/Basket");
+                  }}
+                />
                 {currentUser ? (
                   <div
                     className="flex items-center gap-[2px] "
                     onClick={() => {
                       setSeeLogout(!seeLogout);
-                    }}>
+                    }}
+                  >
                     <Avatar src={currentUser?.image} />
                     <RiArrowDownSFill className="text-[#1b1927]" />
                   </div>
@@ -102,7 +108,8 @@ export default function Header() {
                 onClick={() => {
                   logOut();
                   setSeeLogout(false);
-                }}>
+                }}
+              >
                 Гарах
               </div>
             ) : (

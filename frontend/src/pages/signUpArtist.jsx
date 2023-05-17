@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useStorage from "@/hooks/useStorage";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import { IconButton, Stack, Button } from "@mui/material";
+import { IconButton, Stack, Button, Typography } from "@mui/material";
 
 export default function SignUp() {
   const [emailSignUp, setEmailSignUpArtist] = useState();
@@ -14,9 +14,10 @@ export default function SignUp() {
   const [artistType, setArtistType] = useState();
   const [checkpassUserSignUp, setCheckPassSignUpArtist] = useState();
   const [userInfo, setUserInfo] = useState();
-  const { handleUpload } = useStorage();
+  const { handleUpload, handleUploadBgImg } = useStorage();
   const [image, setImage] = useState();
   const [imageUrl, setImageUrl] = useState();
+  const [imageBg, setImageBg] = useState();
 
   const router = useRouter();
 
@@ -47,6 +48,18 @@ export default function SignUp() {
       toast("Successfully");
     } catch (error) {
       toast("Error uploading");
+    }
+  };
+  const handleBgImg = async () => {
+    try {
+      if (!imageBg) return;
+      const res = await handleUploadBgImg(imageBg);
+      setImageUrl(res);
+      toast("Successfully");
+      console.log(res);
+    } catch (error) {
+      toast("Error uploading");
+      console.log(error);
     }
   };
 
@@ -82,6 +95,37 @@ export default function SignUp() {
     }
   };
 
+  const UploadImageBgImg = () => {
+    return (
+      <Stack direction="row" alignItems="center" spacing={2}>
+        <Button
+          variant="contained"
+          component="label"
+          onClick={() => handleBgImg()}
+        >
+          Upload
+        </Button>
+        <IconButton
+          color="primary"
+          aria-label="upload picture"
+          component="label"
+        >
+          <input
+            hidden
+            accept="image/*"
+            type="file"
+            onChange={(el) => {
+              setImageBg(el.target.files[0]);
+            }}
+          />
+
+          <PhotoCamera />
+          <Typography> Зургаа сонгоно уу?</Typography>
+        </IconButton>
+      </Stack>
+    );
+  };
+
   const UploadImage = () => {
     return (
       <Stack direction="row" alignItems="center" spacing={2}>
@@ -91,7 +135,8 @@ export default function SignUp() {
         <IconButton
           color="primary"
           aria-label="upload picture"
-          component="label">
+          component="label"
+        >
           <input
             hidden
             accept="image/*"
@@ -164,14 +209,17 @@ export default function SignUp() {
             onChange={TypeInput}
           />
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex  gap-2">
           <UploadImage />
+          <UploadImageBgImg />
+          <img src={imageUrl} alt="image" style={{ width: "10vh" }} />
         </div>
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
           onClick={() => {
             signUpArtist();
-          }}>
+          }}
+        >
           Бүртгүүлэх
         </button>
       </div>

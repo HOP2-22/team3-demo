@@ -8,7 +8,6 @@ const artistRouter = require("./router/artistRouter");
 const productRouter = require("./router/productRouter");
 const cartRouter = require("./router/cartRouter");
 
-
 const connection = mongoose.connection;
 require("dotenv").config();
 const app = express();
@@ -24,7 +23,6 @@ app.use(cors());
 app.use("/user", usersRouter);
 app.use("/artist", artistRouter);
 app.use("/admin", adminRouter);
-app.use("/product", productRouter);
 app.use("/cart", cartRouter);
 
 connection.once("open", () => {

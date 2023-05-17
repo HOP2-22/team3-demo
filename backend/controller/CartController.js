@@ -24,10 +24,11 @@ exports.addProductIntoCart = async (req, res) => {
 };
 
 exports.deleteProductFromCart = async (req, res) => {
-  const id = req.body.idni;
+  const id = req.body._id;
 
   try {
     await Cart.findByIdAndDelete(id);
+
     res.status(200).json({ message: "Succesfull!" });
   } catch (error) {
     res.status(400).json({ message: "Couldn't delete!" });
@@ -35,9 +36,13 @@ exports.deleteProductFromCart = async (req, res) => {
 };
 
 exports.getUserCarts = async (req, res) => {
-  const userId = req.params.id;
+  try {
+    const _id = req.params.id;
 
-  const userCards = await Cart.find({ cardUser: userId });
+    const userCards = await Cart.find({ cardUser: _id });
 
-  res.status(200).json(userCards);
+    res.status(200).json(userCards);
+  } catch (error) {
+    res.status(400).json({ error: error });
+  }
 };

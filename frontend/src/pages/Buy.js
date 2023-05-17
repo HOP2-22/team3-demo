@@ -1,4 +1,4 @@
-import { Box, Container } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import SwiperCard from "../components/SwiperCard";
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
@@ -17,7 +17,16 @@ import { useRouter } from "next/router";
 export default function Buy() {
   const [data, setData] = useState();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [size, setSize] = useState();
+  const [count, setCount] = useState();
+  const [productId, setProductId] = useState();
+  const [color, setColor] = useState();
   const router = useRouter();
+
+  const sizes = ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"];
+  const colors = ["white", "black", "green", "red", "yellow", "blue"];
 
   useEffect(() => {
     const findProduct = async () => {
@@ -33,6 +42,29 @@ export default function Buy() {
     };
     findProduct();
   }, [router.query]);
+
+  useEffect(() => {
+    const getDetails = async () => {
+      try {
+        const userid = Cookies.get("userId");
+
+        const { data } = await axios.post(
+          "http://localhost:7070/cart/addToCart",
+          {
+            cardUser: userid,
+            productId: productId,
+            color: color,
+            size: size,
+            count: count,
+          }
+        );
+        console.log({ data });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getDetails();
+  }, []);
 
   return (
     <Box sx={{ backgroundColor: "#edf2f4", width: "100%" }}>
@@ -75,7 +107,8 @@ export default function Buy() {
               lg: "100px",
               xl: "100px",
             },
-          }}>
+          }}
+        >
           <Box
             sx={{
               width: {
@@ -85,7 +118,8 @@ export default function Buy() {
                 lg: "60%",
                 xl: "60%",
               },
-            }}>
+            }}
+          >
             <div className="w-[690px] h-[690px] ">
               <img src={data?.images} />
             </div>
@@ -114,7 +148,8 @@ export default function Buy() {
                 xl: "25px",
               },
               paddingBottom: "20px",
-            }}>
+            }}
+          >
             <Box sx={{ paddingTop: "10px", paddingBottom: "10px" }}>
               {data?.productName}
             </Box>
@@ -122,7 +157,33 @@ export default function Buy() {
               Prize: {data?.price}
             </Box>
             <Box>
-              <p style={{ paddingTop: "10px", paddingBottom: "10px" }}>Color</p>
+              <Typography>Color</Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "5px",
+                  paddingTop: "10px",
+                  paddingBottom: "10px",
+                }}
+              >
+                {colors.map((color, i) => (
+                  <button
+                    key={i}
+                    style={{
+                      backgroundColor:
+                        selectedColor === color ? "azure" : "#cdcdcd",
+                      width: "60px",
+                      height: "40px",
+                      border: "hidden",
+                      borderRadius: "8px",
+                    }}
+                    onClick={() => setSelectedColor(color)}
+                  >
+                    {color}
+                  </button>
+                ))}
+              </Box>
               <Box sx={{ paddingTop: "10px", paddingBottom: "10px" }}>
                 <button
                   style={{
@@ -143,87 +204,24 @@ export default function Buy() {
                   gap: "5px",
                   paddingTop: "10px",
                   paddingBottom: "10px",
-                }}>
-                <button
-                  style={{
-                    backgroundColor: "#cdcdcd",
-                    width: "60px",
-                    height: "40px",
-                    border: "hidden",
-                    borderRadius: "8px",
-                  }}>
-                  XS
-                </button>
-                <button
-                  style={{
-                    backgroundColor: "#cdcdcd",
-                    width: "60px",
-                    height: "40px",
-                    border: "hidden",
-                    borderRadius: "8px",
-                  }}>
-                  S
-                </button>
-                <button
-                  style={{
-                    backgroundColor: "#cdcdcd",
-                    width: "60px",
-                    height: "40px",
-                    border: "hidden",
-                    borderRadius: "8px",
-                  }}>
-                  M
-                </button>
-                <button
-                  style={{
-                    backgroundColor: "#cdcdcd",
-                    width: "60px",
-                    height: "40px",
-                    border: "hidden",
-                    borderRadius: "8px",
-                  }}>
-                  L
-                </button>
-                <button
-                  style={{
-                    backgroundColor: "#cdcdcd",
-                    width: "60px",
-                    height: "40px",
-                    border: "hidden",
-                    borderRadius: "8px",
-                  }}>
-                  XL
-                </button>
-                <button
-                  style={{
-                    backgroundColor: "#cdcdcd",
-                    width: "60px",
-                    height: "40px",
-                    border: "hidden",
-                    borderRadius: "8px",
-                  }}>
-                  2XL
-                </button>
-                <button
-                  style={{
-                    backgroundColor: "#cdcdcd",
-                    width: "60px",
-                    height: "40px",
-                    border: "hidden",
-                    borderRadius: "8px",
-                  }}>
-                  3XL
-                </button>
-                <button
-                  style={{
-                    backgroundColor: "#cdcdcd",
-                    width: "60px",
-                    height: "40px",
-                    border: "hidden",
-                    borderRadius: "8px",
-                  }}>
-                  4XL
-                </button>
+                }}
+              >
+                {sizes.map((size, i) => (
+                  <button
+                    key={i}
+                    style={{
+                      backgroundColor:
+                        selectedSize === size ? "red" : "#cdcdcd",
+                      width: "60px",
+                      height: "40px",
+                      border: "hidden",
+                      borderRadius: "8px",
+                    }}
+                    onClick={() => setSelectedSize(size)}
+                  >
+                    {size}
+                  </button>
+                ))}
               </Box>
             </Box>
             <Box
@@ -233,7 +231,8 @@ export default function Buy() {
                 display: "flex",
                 flexDirection: "column",
                 gap: "10px",
-              }}>
+              }}
+            >
               <TextField
                 sx={{ width: "100%", ":hover": { color: "#d50000" } }}
                 id="standard-basic"
@@ -248,7 +247,8 @@ export default function Buy() {
                   border: "hidden",
                   borderRadius: "10px",
                   color: "white",
-                }}>
+                }}
+              >
                 Сагсанд хийх
               </button>
             </Box>
@@ -257,7 +257,8 @@ export default function Buy() {
                 width: "100%",
                 height: "1px",
                 backgroundColor: "gray",
-              }}></Box>
+              }}
+            ></Box>
             <Box>
               <p
                 style={{
@@ -265,7 +266,8 @@ export default function Buy() {
                   fontSize: "18px",
                   paddingBottom: "8px",
                   paddingTop: "8px",
-                }}>
+                }}
+              >
                 Бүтээлийн тайлбар
               </p>
               <Box sx={{ fontWeight: "10" }}>{data?.details}</Box>
@@ -276,7 +278,8 @@ export default function Buy() {
                 gap: "10px",
                 paddingTop: "10px",
                 paddingBottom: "10px",
-              }}>
+              }}
+            >
               <p style={{ fontWeight: "bold" }}>Артворк:</p>
               <p>{data?.ownerName}</p>
             </Box>
