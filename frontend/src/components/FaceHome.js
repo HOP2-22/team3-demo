@@ -1,5 +1,6 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { Avatar } from "@mui/material";
+import { useTypewriter, Cursor } from "react-simple-typewriter";
 
 const gif =
   "https://res.cloudinary.com/urlan/image/upload/v1678349701/geru-store/urban_nomad/ezgif.com-gif-maker_4_d6jzrh.gif";
@@ -8,6 +9,11 @@ const avatar =
   "https://res.cloudinary.com/urlan/image/upload/v1675159396/geru-store/khongorzul/328598489_1163549884324212_1668282332485989101_n_1_1_wduowu.jpg";
 
 export default function Face() {
+  const [text] = useTypewriter({
+    words: ["Home", "Back"],
+    loop: {},
+  });
+
   return (
     <Box sx={{ backgroundColor: "#edf2f4", padding: "24px" }}>
       <Box sx={styles.position}>
@@ -60,7 +66,7 @@ export default function Face() {
           />
         </Stack>
         <Stack sx={styles.texts}>
-          <Typography
+          <Box
             sx={{
               fontSize: {
                 xs: "50px",
@@ -75,8 +81,11 @@ export default function Face() {
               fontWeight: "bold",
             }}
           >
-            ИХ ХОТЫН НҮҮДЭЛЧИД
-          </Typography>
+            Welcome&nbsp;{text}
+            <span style={{ color: "gray" }}>
+              <Cursor />
+            </span>
+          </Box>
           <Typography sx={{ color: "rgba(0,0,0,.7)" }}>
             Хаана ч , хэзээ ч , хэнтэй ч ...
           </Typography>
@@ -112,7 +121,6 @@ export default function Face() {
     </Box>
   );
 }
-
 const styles = {
   position: {
     display: "flex",
