@@ -11,6 +11,7 @@ export const Provider = (props) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [isClient, setIsClient] = useState(false);
   const [isArtist, setIsArtist] = useState(false);
+  const [artistId, setArtistId] = useState("");
 
   axios.interceptors.request.use(
     function (config) {
@@ -58,8 +59,9 @@ export const Provider = (props) => {
         setIsClient,
         isArtist,
         setIsArtist,
-      }}
-    >
+        artistId,
+        setArtistId,
+      }}>
       {children}
     </Context.Provider>
   );

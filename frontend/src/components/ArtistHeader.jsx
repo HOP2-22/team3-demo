@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 export default function ArtistHeader() {
   const [searchClick, setSearchClick] = useState(false);
   const [burger, setBurger] = useState(false);
-  const { setCurrentUser, isArtist, setIsArtist, setIsClient } =
+  const { setCurrentUser, isArtist, setIsArtist, setIsClient, currentUser } =
     useContext(Context);
   const [seeLogout, setSeeLogout] = useState(false);
 
@@ -31,33 +31,33 @@ export default function ArtistHeader() {
     Cookies.remove("token");
     Cookies.remove("user");
 
-    router.push("/HomeDefault");
+    router.push("/Login");
   };
 
   return (
-    <div>
+    <div
+      className={` ${
+        isArtist ? "z-10" : "z-4"
+      } w-full h-[80px] fixed flex justify-between px-[50px] items-center top-0 z-6 bg-[#0A061C] `}>
+      <div className="text-white text-[30px] font-bold">new space</div>
+      <div className="flex  gap-[10px]">
+        <img
+          src={currentUser?.image}
+          className="w-[45px] h-[45px] rounded-full"
+        />
+        <button className="h-[45px] w-[100px] text-[18px] text-white rounded-[8px] bg-[#6446EE] ">
+          Upload
+        </button>
+      </div>
       {/* <div
-        className={` ${
-          isArtist ? "z-10" : "z-4"
-        } w-full fixed top-0 z-6 bg-red-500 `}
-      >
-        <Container
-          maxWidth="xl"
-          className="flex justify-between h-[75px]  items-center"
-        >
-          <div className="text-white">hi</div>
-          <div
             className=""
             onClick={() => {
               setIsArtist(false);
               setIsClient(true);
               logOut();
-            }}
-          >
+            }}>
             logout
-          </div>
-        </Container>
-      </div> */}
+          </div> */}
     </div>
   );
 }
