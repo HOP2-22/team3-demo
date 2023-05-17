@@ -103,18 +103,17 @@ export default function Face() {
             </Box>
           </Box>
           <Box sx={{ paddingTop: "24px", paddingBottom: "24px" }}>
-            <Button
-              sx={{
-                fontFamily: "Manrope",
+            <button
+              style={{
                 width: "100%",
                 padding: "12px",
-                backgroundColor: "White",
-                color: "black",
+                backgroundColor: "black",
+                color: "white",
+                borderRadius: "10px",
               }}
-              variant="contained"
             >
-              Илүү Ихийг.
-            </Button>
+              Илүү Ихийг
+            </button>
           </Box>
         </Stack>
       </Box>
