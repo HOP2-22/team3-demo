@@ -40,7 +40,6 @@ app.use(cors(corsOptions));
 app.use("/user", userRouter);
 app.use("/artist", artistRouter);
 app.use("/admin", adminRouter);
-app.use("/product", productRouter);
 app.use("/cart", cartRouter);
 app.use("/product", productRouter);
 
