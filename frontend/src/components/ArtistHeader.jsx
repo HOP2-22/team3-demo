@@ -49,15 +49,15 @@ export default function ArtistHeader() {
           Upload
         </button>
       </div>
-      {/* <div
-            className=""
-            onClick={() => {
-              setIsArtist(false);
-              setIsClient(true);
-              logOut();
-            }}>
-            logout
-          </div> */}
+      <div
+        className=""
+        onClick={() => {
+          setIsArtist(false);
+          setIsClient(true);
+          logOut();
+        }}>
+        logout
+      </div>
     </div>
   );
 }
