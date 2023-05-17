@@ -52,12 +52,12 @@ export default function LoginArtist() {
   };
 
   return (
-    <div className="w-full  h-[60vh]  mt-[150px] flex flex-col items-center justify-center gap-10">
+    <div className="w-full  h-[60vh]  mt-[75px] flex flex-col items-center justify-center gap-10"style={{backgroundColor: "#090520"}}>
       <ToastContainer />
-      <div className="text-[32px] text-[#1b1927]"> Нэвтрэх</div>
+      <div className="text-[32px] text-[white]"> Нэвтрэх</div>
       <div className="flex flex-col gap-6">
         <div className="">
-          <p className="px-[20px] text-[16px]">Цахим хаяг</p>
+          <p className="px-[20px] text-[white]">Цахим хаяг</p>
           <input
             className="shadow-2xl w-[300px] sm:w-[380px] h-[45px] outline-none rounded-full text-[20px] px-[20px]"
             placeholder="••••••••••"
@@ -65,7 +65,7 @@ export default function LoginArtist() {
           />
         </div>
         <div className="">
-          <p className="px-[20px] text-[16px]">Нууц үг</p>
+          <p className="px-[20px] text-[white]">Нууц үг</p>
           <input
             className="shadow-2xl w-[300px] sm:w-[380px] h-[45px] outline-none rounded-full text-[20px] px-[20px]"
             placeholder="••••••••••"
@@ -74,7 +74,7 @@ export default function LoginArtist() {
         </div>
         <div className="flex gap-2 px-[20px]">
           <input type="checkbox" />
-          <p>Remind me</p>
+          <p style={{color:"white"}}>Remind me</p>
         </div>
         <button
           className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"

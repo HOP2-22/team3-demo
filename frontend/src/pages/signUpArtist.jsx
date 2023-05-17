@@ -158,13 +158,13 @@ export default function SignUp() {
 
   return (
     <Box>
-      <div className="w-full  h-[60vh]  mt-[150px] flex flex-col items-center py-[650px] justify-center gap-10">
+      <div className="w-full h-[190px]  mt-[75px] flex flex-col items-center py-[650px] justify-center gap-10" style={{backgroundColor: "#090520"}}>
         <ToastContainer />
-        <div className="text-[32px] text-[#1b1927]">Бүртгүүлэх</div>
+        <div className="text-[32px] text-[#1b1927] text-white">Бүртгүүлэх</div>
 
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
-            <p className="px-[20px] text-[16px]">Цахим хаяг</p>
+            <p className="px-[20px] text-[16px] text-white">Цахим хаяг</p>
             <input
               className="shadow-2xl w-[300px] sm:w-[380px] h-[45px] outline-none rounded-full text-[20px] px-[20px]"
               placeholder="••••••••••"
@@ -172,7 +172,7 @@ export default function SignUp() {
             />
           </div>
           <div className="flex flex-col gap-2">
-            <p className="px-[20px] text-[16px]">Нууц үг</p>
+            <p className="px-[20px] text-[16px] text-white">Нууц үг</p>
             <input
               className="shadow-2xl w-[300px] sm:w-[380px] h-[45px] outline-none rounded-full text-[20px] px-[20px]"
               placeholder="••••••••••"
@@ -180,7 +180,7 @@ export default function SignUp() {
             />
           </div>
           <div className="flex flex-col gap-2">
-            <p className="px-[20px] text-[16px]">Нууц үгээ давтна уу?</p>
+            <p className="px-[20px] text-[16px] text-white">Нууц үгээ давтна уу?</p>
             <input
               className="shadow-2xl w-[300px] sm:w-[380px] h-[45px] outline-none rounded-full text-[20px] px-[20px]"
               placeholder="••••••••••"
@@ -188,7 +188,7 @@ export default function SignUp() {
             />
           </div>
           <div className="flex flex-col gap-2">
-            <p className="px-[20px] text-[16px]">
+            <p className="px-[20px] text-[16px] text-white">
               Өөрийн уран бүтээлчийн нэрээ бичнэ үү?
             </p>
             <input
@@ -198,7 +198,7 @@ export default function SignUp() {
             />
           </div>
           <div className="flex flex-col gap-2">
-            <p className="px-[20px] text-[16px]">
+            <p className="px-[20px] text-[16px] text-white">
               Өөрийн товч мэдээлэлээ бичнэ үү?
             </p>
             <input
@@ -208,9 +208,9 @@ export default function SignUp() {
             />
           </div>
           <div className="flex flex-col gap-2">
-            <Box sx={{ minWidth: 120 }}>
+            <Box sx={{ minWidth: 120  , color:"white"}}>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">type</InputLabel>
+                <InputLabel id="demo-simple-select-label" sx={{color: "white"}}>type</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"

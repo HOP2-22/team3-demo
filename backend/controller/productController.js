@@ -1,8 +1,20 @@
 const Product = require("../Model/product");
 
 exports.createProduct = async (req, res) => {
-  const { ownerID, productName, images, price, size, color, type_of, owner } =
-    req.body;
+  const {
+    ownerID,
+    productName,
+    images,
+    price,
+    size,
+    color,
+    type_of,
+    ownerName,
+    details,
+    caretip,
+    warning,
+  } = req.body;
+  const { xxs, xs, s, m, l, xxl } = size;
   try {
     const newProduct = await Product.create({
       productName: productName,
@@ -10,14 +22,18 @@ exports.createProduct = async (req, res) => {
       price: price,
       color: color,
       type_of: type_of,
-      owner: owner,
-      size: size,
-      details:
-        "The Unisex Staple T-Shirt feels soft and light with just the right amount of stretch. It's comfortable and flattering for all. We can't compliment this shirt enough–it's one of our crowd favorites, and it's sure to be your next favorite too! Solid colors are 100% Airlume combed and ring-spun cotton Ash color is 99% combed and ring-spun cotton, 1% polyester",
-      caretip:
-        "Machine wash cold, inside-out, gentle cycle with mild detergent and similar colors. Use non-chlorine bleach, only when necessary. No fabric softeners.",
-      warning:
-        "Do not dry clean. Cool iron inside-out if necessary. Do not iron decoration.",
+      ownerName: ownerName,
+      size: {
+        xxs,
+        xs,
+        s,
+        m,
+        l,
+        xxl,
+      },
+      details: details,
+      caretip: caretip,
+      warning: warning,
     });
 
     res.status(200).json(newProduct);

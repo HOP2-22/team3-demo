@@ -11,6 +11,7 @@ exports.addProductIntoCart = async (req, res) => {
         color: req.body.color,
         size: req.body.size,
         count: req.body.count,
+        images: req.body.images,
       });
       newCard.save();
 

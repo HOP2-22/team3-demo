@@ -11,7 +11,7 @@ const productSchema = new Schema({
   owner: { type: mongoose.Schema.ObjectId, required: true, ref: "artists" },
   images: { type: String },
   color: { type: String, required: true },
-  price: { type: String, required: true },
+  price: { type: Number },
   size: {
     xxs: {
       count: {
@@ -50,9 +50,9 @@ const productSchema = new Schema({
       },
     },
   },
-  details: { type: String, required: true },
-  caretip: { type: String, required: true },
-  warning: { type: String, required: true },
+  details: { type: String },
+  caretip: { type: String },
+  warning: { type: String },
   status: {
     type: String,
     enum: ["pending", "rejected", "approved"],

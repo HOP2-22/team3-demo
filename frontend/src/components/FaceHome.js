@@ -1,5 +1,7 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { Avatar } from "@mui/material";
+import { useTypewriter, Cursor } from "react-simple-typewriter";
+import { useRouter } from "next/router";
 
 const gif =
   "https://res.cloudinary.com/urlan/image/upload/v1678349701/geru-store/urban_nomad/ezgif.com-gif-maker_4_d6jzrh.gif";
@@ -8,8 +10,15 @@ const avatar =
   "https://res.cloudinary.com/urlan/image/upload/v1675159396/geru-store/khongorzul/328598489_1163549884324212_1668282332485989101_n_1_1_wduowu.jpg";
 
 export default function Face() {
+  const [text] = useTypewriter({
+    words: ["Home", "Back"],
+    loop: {},
+  });
+
+  const router = useRouter();
+
   return (
-    <Box sx={{ backgroundColor: "#edf2f4", padding: "24px" }}>
+    <Box sx={{ backgroundColor: "#090520", padding: "24px" }}>
       <Box sx={styles.position}>
         <Stack
           flex={2.5}
@@ -53,14 +62,14 @@ export default function Face() {
         >
           <img
             src={
-              "https://res.cloudinary.com/urlan/image/upload/v1678349701/geru-store/urban_nomad/ezgif.com-gif-maker_4_d6jzrh.gif"
+              "https://i.pinimg.com/originals/3f/2c/15/3f2c15069fd4055ed4f8551f3207010c.gif"
             }
             style={styles.image}
             alt="asdf"
           />
         </Stack>
         <Stack sx={styles.texts}>
-          <Typography
+          <Box
             sx={{
               fontSize: {
                 xs: "50px",
@@ -68,6 +77,7 @@ export default function Face() {
                 md: "55px",
                 lg: "72px",
                 xl: "72px",
+                color: "white",
               },
               fontFamily: "PT Sans Narrow",
               lineHeight: "0.9em",
@@ -75,9 +85,12 @@ export default function Face() {
               fontWeight: "bold",
             }}
           >
-            ИХ ХОТЫН НҮҮДЭЛЧИД
-          </Typography>
-          <Typography sx={{ color: "rgba(0,0,0,.7)" }}>
+            Welcome&nbsp;{text}
+            <span style={{ color: "gray" }}>
+              <Cursor />
+            </span>
+          </Box>
+          <Typography sx={{ color: "white" }}>
             Хаана ч , хэзээ ч , хэнтэй ч ...
           </Typography>
           <Box sx={styles.paddingtop} variant="text">
@@ -96,15 +109,18 @@ export default function Face() {
           <Box sx={{ paddingTop: "24px", paddingBottom: "24px" }}>
             <Button
               sx={{
-                fontFamily: "Manrope",
                 width: "100%",
                 padding: "12px",
-                backgroundColor: "White",
-                color: "black",
+                color: "white",
+                borderRadius: "10px",
               }}
-              variant="contained"
+              color="inherit"
+              variant="outlined"
+              onClick={() => {
+                router.push("/ArtWork");
+              }}
             >
-              Илүү Ихийг.
+              Xолбогдох
             </Button>
           </Box>
         </Stack>
@@ -112,7 +128,6 @@ export default function Face() {
     </Box>
   );
 }
-
 const styles = {
   position: {
     display: "flex",
@@ -180,5 +195,6 @@ const styles = {
     alignItems: "center",
     flexDirection: "row",
     cursor: "pointer",
+    color: "white",
   },
 };

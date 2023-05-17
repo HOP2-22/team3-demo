@@ -94,7 +94,7 @@ export default function Artist({ artists }) {
   };
 
   return (
-    <Box sx={{ marginTop: "70px", marginBottom: "100px" }}>
+    <Box sx={{ marginTop: "70px", marginBottom: "100px", bgcolor: "#090520" }}>
       <Container maxWidth="xl">
         <Box>
           <Box
@@ -104,7 +104,8 @@ export default function Artist({ artists }) {
               alignItems: "center",
               paddingTop: "40px",
               paddingBottom: "40px",
-            }}>
+            }}
+          >
             <Box sx={{ display: "flex", alignSelf: "self-start" }}>
               <Box
                 sx={{
@@ -115,8 +116,10 @@ export default function Artist({ artists }) {
                     lg: "90px",
                     xl: "96px",
                   },
+                  color: "white",
                   fontWeight: "bold",
-                }}>
+                }}
+              >
                 ARTIST
               </Box>
               <Box
@@ -130,11 +133,18 @@ export default function Artist({ artists }) {
                     lg: "30px",
                     xl: "36px",
                   },
-                }}>
+                }}
+              >
                 {artists.length}
               </Box>
             </Box>
-            <Box sx={{ alignSelf: "self-start", fontWeight: "300" }}>
+            <Box
+              sx={{
+                alignSelf: "self-start",
+                fontWeight: "300",
+                color: "white",
+              }}
+            >
               Мэдрэмж бүхэн өөр
             </Box>
             <Box
@@ -143,14 +153,16 @@ export default function Artist({ artists }) {
                 paddingBottom: "16px",
                 width: "100%",
                 boxSizing: "border-box",
-              }}>
+              }}
+            >
               <Box
                 sx={{
                   width: "100%",
                   height: "1px",
-                  bgcolor: "black",
+                  bgcolor: "white",
                   boxSizing: "border-box",
-                }}></Box>
+                }}
+              ></Box>
             </Box>
           </Box>
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -183,11 +195,13 @@ export default function Artist({ artists }) {
                   xs: "0px",
                   xl: "70px",
                 },
-              }}>
+              }}
+            >
               {artists?.map((info, index) => (
                 <div
                   className="w-[360px] h-[360px] border-2"
-                  onClick={() => handleClick(info?._id)}>
+                  onClick={() => handleClick(info?._id)}
+                >
                   <div className="w-[100%] h-[100%]  flex items-center flex-col ">
                     <img src={info.image} className="w-[100%] h-[40%]" />
                     <img
@@ -195,11 +209,22 @@ export default function Artist({ artists }) {
                       className="w-[100px] h-[100px] rounded-full border-[6px] mt-[-50px]"
                     />
                     <div className="w-[100%] flex flex-col items-center gap-[4px]">
-                      <p className="text-[28px] font-bold">{info.username}</p>
-                      <p className="text-[14px] text-[#636363]">
+                      <p
+                        className="text-[28px] font-bold"
+                        style={{ color: "white" }}
+                      >
+                        {info.username}
+                      </p>
+                      <p
+                        className="text-[14px] text-[#636363]"
+                        style={{ color: "white" }}
+                      >
                         {info.type_of}
                       </p>
-                      <div className="w-[100%] px-[10%]">
+                      <div
+                        className="w-[100%] px-[10%]"
+                        style={{ color: "white" }}
+                      >
                         <p>{info.cv}</p>
                       </div>
                     </div>
@@ -230,49 +255,53 @@ export default function Artist({ artists }) {
                 },
                 flexDirection: "column",
                 alignItems: "center",
-              }}>
+              }}
+            >
               <Box
                 sx={{
                   top: "80px",
                   position: "sticky",
-                }}>
+                }}
+              >
                 <Box
                   sx={{
                     padding: "10px",
                     fontWeight: "bold",
                     fontSize: "20px",
-                  }}>
+                    color: "white",
+                  }}
+                >
                   Төрлөөр шүүх
                 </Box>
-                <Box sx={{ display: "flex" }}>
+                <Box sx={{ display: "flex", color: "white" }}>
                   <Checkbox {...label} />
                   <Box sx={{ display: "flex", alignItems: "center" }}>Бүгд</Box>
                 </Box>
-                <Box sx={{ display: "flex" }}>
+                <Box sx={{ display: "flex", color: "white" }}>
                   <Checkbox {...label} onChange={handleTailor} />
                   <Box sx={{ display: "flex", alignItems: "center" }}>
                     Оёдолчин
                   </Box>
                 </Box>
-                <Box sx={{ display: "flex" }}>
+                <Box sx={{ display: "flex", color: "white" }}>
                   <Checkbox {...label} onChange={handlePhotographer} />
                   <Box sx={{ display: "flex", alignItems: "center" }}>
                     Гэрэл зурагчин
                   </Box>
                 </Box>
-                <Box sx={{ display: "flex" }}>
+                <Box sx={{ display: "flex", color: "white" }}>
                   <Checkbox {...label} onChange={handleDrawer} />
                   <Box sx={{ display: "flex", alignItems: "center" }}>
                     Зураач
                   </Box>
                 </Box>
-                <Box sx={{ display: "flex" }}>
+                <Box sx={{ display: "flex", color: "white" }}>
                   <Checkbox {...label} onChange={handleGraphic} />
                   <Box sx={{ display: "flex", alignItems: "center" }}>
                     График дизайнер
                   </Box>
                 </Box>
-                <Box sx={{ display: "flex" }}>
+                <Box sx={{ display: "flex", color: "white" }}>
                   <Checkbox {...label} onChange={handleCraftsman} />
                   <Box sx={{ display: "flex", alignItems: "center" }}>
                     Гар урлаач
