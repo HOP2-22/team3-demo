@@ -1,125 +1,130 @@
-import axios from "axios";
-import { useState } from "react";
-import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import { IconButton, Stack, Box, Button, List } from "@mui/material";
-import { useAuthContext } from "@/context/context";
+import { Box } from "@mui/material";
+import Image from "next/image";
+import image from "../images/cover-photo.gif";
 
-// const size = ["s", "m", "l", "xl", "2xl", "3xl"];
-
-export default function Create() {
-
-  const [color, setColor] = useState([]);
-  const [details, setDetails] = useState("");
-  const [caretip, setCaretip] = useState("");
-  const [warning, setWarning] = useState("");
-  const [size, setSize] = useState("");
-  const [count, setCount] = useState();
-  const [productName, setProductName] = useState("")
-  const [type_of, setType_of] = useState("")
-  const [price, setPrice] = useState()
-
-
-  const { currentUser } = useAuthContext();
-  const createProduct = async () => {
-    try {
-      const res = axios.post("http://localhost:7070/product/create", {
-        ownerId: currentUser?.userId,
-        type_of: type_of,
-        productName: productName,
-        ownerName: currentUser?.name,
-        color: color,
-        price: price,
-        size: {
-          [size]: count
-        },
-        details: details,
-        caretip: caretip,
-        warning: warning
-      });
-      console.log(res);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+export default function CreateProduct() {
   return (
-    <div className="w-full h-[100vh] bg-slate-300" style={{ padding: "40vh",}}>
-      <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-        <div>Product Name:</div>
-        <input
-          onChange={(e) => {
-            setProductName(e.target.value);
+    <Box
+      sx={{
+        backgroundColor: "#090520",
+        width: "100%",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <Box
+        sx={{
+          paddingLeft: "60px",
+          paddingRight: "60px",
+          width: "100%",
+          paddingTop: "75px",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            gap: "60px",
+            paddingTop: "50px",
+            paddingLeft: "20px",
+            paddingRight: "20px",
+            paddingBottom: "20px",
+            borderBottom: "1px dashed #382B76",
           }}
-        />
-        <div>Type:</div>
-        <input
-          onChange={(e) => {
-            setType_of(e.target.value);
+        >
+          <p style={{ color: "white", fontSize: "25px", cursor: "pointer" }}>
+            Aproved
+          </p>
+          <p style={{ color: "white", fontSize: "25px", cursor: "pointer" }}>
+            Pending
+          </p>
+          <p style={{ color: "white", fontSize: "25px", cursor: "pointer" }}>
+            Order
+          </p>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            padding: "50px",
+            paddingLeft: "0",
+            paddingRight: "0",
+            gap: "50px",
+            flexWrap: "wrap",
           }}
-        />
-        <div>Color:</div>
-         <input
-          onChange={(e) => {
-            setColor(e.target.value);
-          }}
-        />
-        <div>Size:</div>
-         <input
-          onChange={(e) => {
-            setSize(e.target.value);
-          }}
-        />
-        <div>Count:</div>
-         <input
-          onChange={(e) => {
-            setCount(e.target.value);
-          }}
-        />
-        <div>Price:</div>
-         <input
-          onChange={(e) => {
-            setPrice(e.target.value);
-          }}
-        />
-        <div>Details:</div>
-         <input
-          onChange={(e) => {
-            setDetails(e.target.value);
-          }}
-        />
-        <div>Warning:</div>
-         <input
-          onChange={(e) => {
-            setWarning(e.target.value);
-          }}
-        />
-        <div>Caretip:</div>
-         <input
-          onChange={(e) => {
-            setCaretip(e.target.value);
-          }}
-        />
+        >
+          <Box
+            sx={{
+              gap: "10px",
+              display: "flex",
+              flexDirection: "column",
+              width: "400px",
+              border: "2px solid #382B76",
+              borderRadius: "8px",
+              backgroundColor: "#0e0638",
+              padding: "25px",
+            }}
+          >
+            <Image
+              style={{
+                border: "hidden",
+                borderRadius: "8px",
+                cursor: "pointer",
+              }}
+              width={400}
+              height={400}
+              src={image}
+              alt="img"
+            />
+            <p
+              style={{
+                color: "white",
+                fontSize: "20px",
+                cursor: "pointer",
+                fontWeight: "100",
+                textAlign: "center",
+              }}
+            >
+              INNER ESSENCE OF MANKIND
+            </p>
+          </Box>
+          {/* Mappppppp */}
+          <Box
+            sx={{
+              gap: "10px",
+              display: "flex",
+              flexDirection: "column",
+              width: "400px",
+              border: "2px solid #382B76",
+              borderRadius: "8px",
+              backgroundColor: "#0e0638",
+              padding: "25px",
+            }}
+          >
+            <Image
+              style={{
+                border: "hidden",
+                borderRadius: "8px",
+                cursor: "pointer",
+              }}
+              width={400}
+              height={400}
+              src={image}
+              alt="img"
+            />
+            <p
+              style={{
+                color: "white",
+                fontSize: "20px",
+                cursor: "pointer",
+                fontWeight: "100",
+                textAlign: "center",
+              }}
+            >
+              INNER ESSENCE OF MANKIND
+            </p>
+          </Box>
+        </Box>
       </Box>
-      <Stack direction="row" spacing={2}>
-        <Button
-          variant="contained"
-          component="label"
-          onClick={() => {
-            createProduct();
-          }}
-        >
-          Upload
-        </Button>
-        <IconButton
-          color="primary"
-          aria-label="upload picture"
-          component="label"
-        >
-          <input hidden accept="image/*" type="file" />
-
-          <PhotoCamera />
-        </IconButton>
-      </Stack>
-    </div>
+    </Box>
   );
 }
