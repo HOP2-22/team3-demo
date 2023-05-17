@@ -45,18 +45,13 @@ export default function ArtistHeader() {
           src={currentUser?.image}
           className="w-[45px] h-[45px] rounded-full"
         />
-        <button className="h-[45px] w-[100px] text-[18px] text-white rounded-[8px] bg-[#6446EE] ">
+        <button
+          className="h-[45px] w-[100px] text-[18px] text-white rounded-[8px] bg-[#6446EE] "
+          onClick={() => {
+            router.push("/Create");
+          }}>
           Upload
         </button>
-      </div>
-      <div
-        className=""
-        onClick={() => {
-          setIsArtist(false);
-          setIsClient(true);
-          logOut();
-        }}>
-        logout
       </div>
     </div>
   );
