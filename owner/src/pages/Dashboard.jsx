@@ -64,8 +64,6 @@ export default function Dash() {
     });
   };
 
-
-  
   console.log(data);
 
   if (loading) {
