@@ -108,6 +108,12 @@ exports.ChangeProductStatus = async (req, res) => {
 // get products by status
 exports.getProductByStatus = async (req, res) => {
   const { status, limit = 100, page = 1 } = req.query;
+  console.log(
+    status,
+    limit,
+    page,
+    "================================================"
+  );
   try {
     const products = await Product.find({
       status,
