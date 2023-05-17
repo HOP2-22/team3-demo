@@ -8,9 +8,31 @@ const adminSchema = new Schema({
     type: String,
     required: true,
   },
-  Role: { type: String, required: true },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-const admin = mongoose.model("admin", adminSchema);
+adminSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) next();
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
+});
 
-module.exports = admin;
+adminSchema.methods.getJWT = function () {
+  const token = jwt.sign({ id: this._id }, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: process.env.JWT_EXPIRESIN,
+  });
+
+  return token;
+};
+
+adminSchema.methods.checkPassword = async function (password) {
+  return await bcrypt.compare(password, this.password);
+};
+
+const Admin = mongoose.model("admins", adminSchema);
+
+module.exports = Admin;

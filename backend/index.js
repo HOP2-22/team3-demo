@@ -1,35 +1,58 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const cors = require("cors");
-
-const usersRouter = require("./router/userRouter");
-const adminRouter = require("./router/adminRouter");
-const artistRouter = require("./router/artistRouter");
-const productRouter = require("./router/productRouter");
-const cartRouter = require("./router/cartRouter");
-
-const connection = mongoose.connection;
+const colors = require("colors");
 require("dotenv").config();
+
+//router
+const userRouter = require("./router/user");
+const adminRouter = require("./router/admin");
+const artistRouter = require("./router/artist");
+const productRouter = require("./router/product");
+const cartRouter = require("./router/cart");
+
+//middleware
+const errorHandler = require("./middleware/error");
+const connectDB = require("./middleware/DB");
+
 const app = express();
 const PORT = process.env.PORT;
-const URI = process.env.URI;
 
-mongoose.connect(URI);
+connectDB();
 
 app.use(express.json());
 
-app.use(cors());
+let whitelist = ["http://localhost:3000", "http://localhost:3001", undefined];
 
-app.use("/user", usersRouter);
+let corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: "GET,POST,PUT,DELETE",
+  credential: true,
+};
+
+app.use(cors(corsOptions));
+
+app.use("/user", userRouter);
 app.use("/artist", artistRouter);
 app.use("/admin", adminRouter);
+app.use("/product", productRouter);
 app.use("/cart", cartRouter);
 app.use("/product", productRouter);
 
-connection.once("open", () => {
-  console.log("connect MONGODB server");
-});
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(PORT, "listening on port");
+});
+
+process.on("unhandledRejection", (err, promise) => {
+  console.log(`aldaa garjee: ${err.message}`.red.underline);
+  server.close(() => {
+    process.exit(1);
+  });
 });

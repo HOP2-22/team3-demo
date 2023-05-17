@@ -3,24 +3,15 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const cartSchema = new Schema({
-  cardUser: { type: mongoose.Schema.ObjectId, required: true, ref: "users" },
-  // productId: {
-  //   // type: [mongoose.Schema.ObjectId],
-  //   type: String,
-  //   required: true,
-  //   ref: "products",
-  // },
-  color: {
-    type: String,
-    required: true,
+  owner: { type: mongoose.Schema.ObjectId, required: true, ref: "users" },
+  products: {
+    type: [mongoose.Schema.ObjectId],
+    required: false,
+    ref: "products",
   },
-  size: {
-    type: Object,
-    required: true,
-  },
-  count: {
-    type: Number,
-    required: true,
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
   images: {
     type: Array,
@@ -28,4 +19,6 @@ const cartSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("Cart", cartSchema);
+const Cart = mongoose.model("carts", cartSchema);
+
+module.exports = Cart;
