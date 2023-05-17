@@ -9,7 +9,7 @@ const Task = new Schema({
   Role: { type: String, required: true },
   name: { type: String, required: true },
   image: { type: String, required: true },
-  userId: { type: mongoose.Schema.ObjectId, required: true },
+  userId: { type: mongoose.Schema.ObjectId },
 });
 
 module.exports = mongoose.model("User", Task);
