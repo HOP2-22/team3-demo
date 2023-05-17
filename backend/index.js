@@ -24,6 +24,7 @@ app.use("/user", usersRouter);
 app.use("/artist", artistRouter);
 app.use("/admin", adminRouter);
 app.use("/cart", cartRouter);
+app.use("/product", productRouter);
 
 connection.once("open", () => {
   console.log("connect MONGODB server");
