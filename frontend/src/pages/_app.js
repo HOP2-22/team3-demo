@@ -1,15 +1,21 @@
 import "@/styles/globals.css";
-import Layout from "../layout/layout";
-import { Provider } from "@/context/context";
-// import { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
-export default function App({ Component, pageProps }) {
+import { UserProvider } from "@/context/UserContext";
+import { ArtistProvider } from "@/context/Artistcontext";
+import Layout from "@/components/layout/Layout";
+
+const App = ({ Component, pageProps }) => {
   return (
-    <Provider>
-      <Layout>
-        {/* <Toaster position="top-center" reverseOrder={false} /> */}
-        <Component {...pageProps} />
-      </Layout>
-    </Provider>
+    <ArtistProvider>
+      <UserProvider>
+        <Layout>
+          <Toaster position="top-center" reverseOrder={false} />
+          <Component {...pageProps} />
+        </Layout>
+      </UserProvider>
+    </ArtistProvider>
   );
-}
+};
+
+export default App;

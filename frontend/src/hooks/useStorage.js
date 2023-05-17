@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage } from "../pages/firebaseConfig";
+import { storage } from "../firebaseConfig";
 
 export const useStorage = () => {
   const [loading, setLoading] = useState(false);

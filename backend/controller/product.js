@@ -1,4 +1,5 @@
 const Product = require("../model/product");
+const Cart = require("../model/cart");
 const asyncHandler = require("../middleware/asyncHandler");
 
 exports.getProducts = asyncHandler(async (req, res) => {
@@ -124,6 +125,24 @@ exports.updateProduct = asyncHandler(async (req, res) => {
   });
 });
 
+exports.deleteManyProductByName = asyncHandler(async (req, res) => {
+  await Product.deleteMany({ name: req.body.name });
+
+  res.status(200).json({ success: true });
+});
+
+exports.deleteManyProductByNameAndColor = asyncHandler(async (req, res) => {
+  await Product.deleteMany({ name: req.body.name, color: req.body.color });
+
+  res.status(200).json({ success: true });
+});
+
+exports.deleteManyProductByNameAndSize = asyncHandler(async (req, res) => {
+  await Product.deleteMany({ name: req.body.name, size: req.body.size });
+
+  res.status(200).json({ success: true });
+});
+
 exports.deleteProduct = asyncHandler(async (req, res) => {
   const product = await Product.findByIdAndDelete(req.params.id);
 
@@ -138,31 +157,35 @@ exports.DeleteAll = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true });
 });
 
-exports.productStatusUpdate = async (req, res) => {
-  const id = req.params.id;
-  const newStatus = req.body.status;
-  try {
-    const updatedStatus = await Product.findByIdAndUpdate(id, {
-      status: newStatus,
-    });
-    res.status(200).json(updatedStatus);
-  } catch (error) {
-    res.status(400).json({ message: "can't update" });
+exports.buyProduct = asyncHandler(async (req, res) => {
+  const product = await Product.findOne({
+    name: req.body.name,
+    size: req.body.size,
+    color: req.body.color,
+  });
+
+  if (!product) throw new Error("Product not found");
+
+  if (product.count < req.body.count)
+    throw new Error("user wanna buy more than have");
+
+  product.count -= req.body.count;
+
+  const cart = await Cart.findOne({ owner: req.body.userId });
+
+  if (cart.products.includes((item) => item === req.body.userId)) {
+    cart.products.filter((item) => item !== product._id);
+
+    await cart.save();
   }
-};
 
-exports.onlyApproved = async (req, res) => {
-  try {
-    const { query } = req;
+  await product.save();
 
-    console.log(query);
+  res.status(200).json({ success: true, data: product });
+});
 
-    const responsive = await Product.find({ status: "approved", ...query });
+exports.DeleteAll = asyncHandler(async (req, res) => {
+  await Product.deleteMany();
 
-    console.log(responsive);
-
-    res.status(200).json({ success: true, json: responsive });
-  } catch (error) {
-    console.log(error);
-  }
-};
+  res.status(200).json({ success: true });
+});

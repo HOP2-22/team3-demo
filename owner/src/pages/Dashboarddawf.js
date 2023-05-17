@@ -34,7 +34,7 @@ export default function Dash() {
 
   const StatusChange = async ({ id, type }) => {
     console.log(id, type);
-    await axios.patch(`http://localhost:7070/product/StatusUpdate/${id}`, {
+    await axios.patch(`http://localhost:7070/product/${id}`, {
       status: type,
     });
   };
@@ -52,7 +52,8 @@ export default function Dash() {
           lg: "flex",
           xl: "flex",
         },
-      }}>
+      }}
+    >
       <Container maxWidth="xl" sx={{ display: "flex", height: "100%" }}>
         <Box
           sx={{
@@ -65,7 +66,8 @@ export default function Dash() {
               xl: "flex",
             },
             flexDirection: "column",
-          }}>
+          }}
+        >
           <Box
             sx={{
               width: "100%",
@@ -77,14 +79,16 @@ export default function Dash() {
                 lg: "50px",
                 xl: "50px",
               },
-            }}></Box>
+            }}
+          ></Box>
           <Box
             sx={{
               width: "100%",
               paddingLeft: "50px",
               paddingRight: "50px",
               paddingBottom: "50px",
-            }}>
+            }}
+          >
             <Box
               sx={{
                 width: "100%",
@@ -96,9 +100,11 @@ export default function Dash() {
                 alignItems: "center",
                 justifyContent: "space-between",
                 cursor: "pointer",
-              }}>
+              }}
+            >
               <BeenhereTwoToneIcon
-                sx={{ color: "black" }}></BeenhereTwoToneIcon>
+                sx={{ color: "black" }}
+              ></BeenhereTwoToneIcon>
               <Box sx={{ color: "black" }}>Approved</Box>
             </Box>
             <Box
@@ -112,9 +118,11 @@ export default function Dash() {
                 alignItems: "center",
                 justifyContent: "space-between",
                 cursor: "pointer",
-              }}>
+              }}
+            >
               <PendingActionsTwoToneIcon
-                sx={{ color: "black" }}></PendingActionsTwoToneIcon>
+                sx={{ color: "black" }}
+              ></PendingActionsTwoToneIcon>
               <Box sx={{ color: "black" }}>Pending</Box>
             </Box>
             <Box
@@ -127,9 +135,11 @@ export default function Dash() {
                 alignItems: "center",
                 justifyContent: "space-between",
                 cursor: "pointer",
-              }}>
+              }}
+            >
               <BookmarkBorderTwoToneIcon
-                sx={{ color: "black" }}></BookmarkBorderTwoToneIcon>
+                sx={{ color: "black" }}
+              ></BookmarkBorderTwoToneIcon>
               <Box sx={{ color: "black" }}> Orders</Box>
             </Box>
           </Box>
@@ -144,7 +154,8 @@ export default function Dash() {
               xl: "85%",
             },
             height: "100%",
-          }}>
+          }}
+        >
           <Box
             sx={{
               width: "100%",
@@ -160,7 +171,8 @@ export default function Dash() {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-            }}>
+            }}
+          >
             <p style={{ color: "black", fontSize: "30px" }}>Pending board</p>
             <Box sx={{ display: "flex", gap: "20px" }}>
               <Box
@@ -174,12 +186,14 @@ export default function Dash() {
                   alignItems: "center",
                   justifyContent: "center",
                   cursor: "pointer",
-                }}>
+                }}
+              >
                 <NotificationsActiveTwoToneIcon
                   sx={{
                     color: "black",
                     fontSize: "30px",
-                  }}></NotificationsActiveTwoToneIcon>
+                  }}
+                ></NotificationsActiveTwoToneIcon>
               </Box>
               <Box
                 sx={{
@@ -188,7 +202,8 @@ export default function Dash() {
                   backgroundColor: "white",
                   border: "1.5px solid #ADA7A7",
                   borderRadius: "8px",
-                }}>
+                }}
+              >
                 <Image
                   style={{
                     border: "hidden",
@@ -221,7 +236,8 @@ export default function Dash() {
                 lg: "50px",
                 xl: "50px",
               },
-            }}>
+            }}
+          >
             <Box
               sx={{
                 width: "100%",
@@ -231,7 +247,8 @@ export default function Dash() {
                 borderRadius: "10px",
                 display: "flex",
                 flexDirection: "column",
-              }}>
+              }}
+            >
               <Box
                 sx={{
                   backgroundColor: "#edf2f4",
@@ -247,7 +264,8 @@ export default function Dash() {
                   border: "hidden",
                   borderTopLeftRadius: "10px",
                   borderTopRightRadius: "10px",
-                }}>
+                }}
+              >
                 <p style={{ color: "black", width: "100px" }}>Artist Id</p>
                 <p style={{ color: "black", width: "100px" }}>Date</p>
                 <p style={{ color: "black", width: "100px" }}>Artist name</p>
@@ -265,7 +283,8 @@ export default function Dash() {
                   overflow: "hidden",
                   overflowY: "scroll",
                   gap: "10px",
-                }}>
+                }}
+              >
                 {data?.map((dataa, index) => (
                   <Box
                     key={index}
@@ -281,7 +300,8 @@ export default function Dash() {
                       justifyContent: "space-between",
                       alignItems: "center",
                       marginTop: "10px",
-                    }}>
+                    }}
+                  >
                     <p style={{ color: "black", width: "100px" }}>
                       {dataa.owner.username}
                     </p>

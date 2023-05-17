@@ -2,12 +2,11 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { createContext, useEffect, useState } from "react";
 
-export const Context = createContext({});
+export const ArtistContext = createContext({});
 
-export const Provider = (props) => {
-  const { children } = props;
-  const [currentUser, setCurrentUser] = useState(null);
-  const [artistname, setArtistName] = useState();
+export const ArtistProvider = ({ children }) => {
+  const [isArtist, setIsArtist] = useState(false);
+  const [user, setUser] = useState(null);
 
   axios.interceptors.request.use(
     function (config) {
@@ -20,20 +19,50 @@ export const Provider = (props) => {
     }
   );
 
+  const logOut = () => {
+    setUser(null);
+    Cookies.remove("token");
+    push("/");
+  };
+
   useEffect(() => {
     const getUser = async () => {
-      const token = Cookies.get("token");
+      try {
+        const token = Cookies.get("token");
 
-      if (!token) return;
-      const user = Cookies.get("user");
-      const res = await axios.get("http://localhost:7070/user/getUser");
-      setArtistName(res?.data?.user?.name);
-      console.log(user);
+        if (!token) return;
 
-      setCurrentUser(user);
+        const { data } = await axios.get("http://localhost:7070/user/getUser");
+
+        if (data.data.data.exp * 1000 <= Date.now()) {
+          logOut();
+          return;
+        }
+
+        console.log(data?.user);
+
+        setUser(data?.user);
+      } catch (error) {
+        console.log(error);
+      }
     };
+
     getUser();
   }, []);
 
-  return <Context.Provider value={{}}>{children}</Context.Provider>;
+  return (
+    <ArtistContext.Provider
+      value={{
+        setUser,
+        user,
+
+        isArtist,
+        setIsArtist,
+
+        logOut,
+      }}
+    >
+      {children}
+    </ArtistContext.Provider>
+  );
 };

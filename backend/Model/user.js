@@ -1,10 +1,13 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
     email: {
+      unique: true,
       type: String,
       required: [true, "write your email"],
     },
@@ -46,10 +49,14 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-userSchema.methods.getJWT = function () {
-  const token = jwt.sign({ id: this._id }, process.env.ACCESS_TOKEN_SECRET, {
-    expiresIn: process.env.JWT_EXPIRESIN,
-  });
+userSchema.methods.getJWT = function (role) {
+  const token = jwt.sign(
+    { id: this._id, role: role },
+    process.env.ACCESS_TOKEN_KEY,
+    {
+      expiresIn: process.env.JWT_EXPIRESIN,
+    }
+  );
 
   return token;
 };

@@ -14,10 +14,12 @@ exports.checkUser = asyncHandler(async (req, res) => {
 
   if (!data) throw new Error("Error on decode");
 
-  const user = await User.findById(data?.id).populate({
-    path: "cart",
-    populate: "products",
-  });
+  const user = await User.findById(data?.id)
+    .populate({
+      path: "cart",
+      populate: "products",
+    })
+    .populate("cart");
 
   res.status(200).json({ success: true, data: user });
 });
@@ -49,9 +51,8 @@ exports.createUser = asyncHandler(async (req, res) => {
 
   const user = await User.create(req.body);
 
-  await user.populate({ path: "cart", populate: "products" });
-
-  const token = user.getJWT();
+  // await user.populate({ path: "cart", populate: "products" }).populate("cart");
+  const token = user.getJWT("user");
 
   res.status(200).json({ success: true, data: user, token });
 });
@@ -64,7 +65,7 @@ exports.login = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email })
     .select("+password")
     .populate({ path: "cart", populate: "products" })
-    .execPopulate();
+    .populate("cart");
 
   if (!user) throw new Error("wrong your email or password");
 
@@ -76,7 +77,7 @@ exports.login = asyncHandler(async (req, res) => {
 
   delete user.password;
 
-  const token = user.getJWT();
+  const token = user.getJWT("user");
 
   res.status(200).json({ success: true, data: user, token });
 });
