@@ -5,7 +5,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useStorage from "@/hooks/useStorage";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import { IconButton, Stack, Button, Typography, Box } from "@mui/material";
+import { IconButton, Stack, Button, Typography } from "@mui/material";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 export default function SignUp() {
   const [emailSignUp, setEmailSignUpArtist] = useState();
@@ -21,6 +27,10 @@ export default function SignUp() {
   const [imageUrlBg, setImageUrlBg] = useState();
 
   const router = useRouter();
+  const [type, setType] = useState("");
+  const handleChange = (event) => {
+    setType(event.target.value);
+  };
 
   const EmailInput = async (event) => {
     setEmailSignUpArtist(event.target.value);
@@ -66,19 +76,13 @@ export default function SignUp() {
 
   const signUpArtist = async () => {
     if (passwordUserSignUp == checkpassUserSignUp) {
-      console.log(
-        emailSignUp,
-        passwordUserSignUp,
-        username,
-        artistType,
-        imageUrl
-      );
+      console.log(emailSignUp, passwordUserSignUp, username, imageUrl);
       try {
         await axios.post("http://localhost:7070/artist/create", {
           email: emailSignUp,
           password: passwordUserSignUp,
           username: username,
-          type_of: artistType,
+          type_of: type,
           cv: userInfo,
           image: imageUrl,
           bgImg: imageUrlBg,
@@ -104,15 +108,13 @@ export default function SignUp() {
         <Button
           variant="contained"
           component="label"
-          onClick={() => handleBgImg()}
-        >
+          onClick={() => handleBgImg()}>
           Upload
         </Button>
         <IconButton
           color="primary"
           aria-label="upload picture"
-          component="label"
-        >
+          component="label">
           <input
             hidden
             accept="image/*"
@@ -138,8 +140,7 @@ export default function SignUp() {
         <IconButton
           color="primary"
           aria-label="upload picture"
-          component="label"
-        >
+          component="label">
           <input
             hidden
             accept="image/*"
@@ -157,7 +158,7 @@ export default function SignUp() {
 
   return (
     <Box>
-      <div className="w-full  h-[60vh]  mt-[150px] flex flex-col items-center justify-center gap-10">
+      <div className="w-full  h-[60vh]  mt-[150px] flex flex-col items-center py-[650px] justify-center gap-10">
         <ToastContainer />
         <div className="text-[32px] text-[#1b1927]">Бүртгүүлэх</div>
 
@@ -207,26 +208,36 @@ export default function SignUp() {
             />
           </div>
           <div className="flex flex-col gap-2">
-            <p className="px-[20px] text-[16px]">Өөрийн урсгалаа бичнэ үү?</p>
-            <input
-              className="shadow-2xl w-[300px] sm:w-[380px] h-[45px] outline-none rounded-full text-[20px] px-[20px]"
-              placeholder="Оёдолчин"
-              onChange={TypeInput}
-            />
+            <Box sx={{ minWidth: 120 }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">type</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={type}
+                  label="Age"
+                  onChange={handleChange}>
+                  <MenuItem value={"Оёдолчин"}>Оёдолчин</MenuItem>
+                  <MenuItem value={"Гэрэл зурагчин"}>Гэрэл зурагчин</MenuItem>
+                  <MenuItem value={"Зураач"}>Зураач</MenuItem>
+                  <MenuItem value={"График дизайнер"}>График дизайнер</MenuItem>
+                  <MenuItem value={"Гар урлаач"}>Гар урлаач</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
           </div>
-          <Box display="flex">
+          <div className="flex flex-col">
             <UploadImage />
             <img src={imageUrl} alt="image" style={{ width: "10vh" }} />
             <UploadImageBgImg />
             <img src={imageUrlBg} alt="image" style={{ width: "10vh" }} />
-          </Box>
+          </div>
           <div className="flex  gap-2"></div>
           <button
             className="text-[20px] w-[280px] sm:w-[380px] h-[45px] rounded-full bg-[#1b1927] text-white"
             onClick={() => {
               signUpArtist();
-            }}
-          >
+            }}>
             Бүртгүүлэх
           </button>
         </div>

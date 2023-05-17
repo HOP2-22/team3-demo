@@ -14,7 +14,10 @@ function ArtistDetail({ data }) {
 
   return (
     <div className="w-full  bg-gray-500 mt-[70px]">
-      <img className="w-[100%] h-[400px]" src={data.image} />
+      <img
+        className="w-[100%] h-[400px] object:center object:center"
+        src={data.bgImg}
+      />
       <Container maxWidth="xl">
         <div className="w-[100%] border-b-[1px] pb-[30px]">
           <img
