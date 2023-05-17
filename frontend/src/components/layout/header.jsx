@@ -41,13 +41,13 @@ export default function Header() {
 
   return (
     <div className={` ${isClient ? "z-10" : "z-4"} w-full fixed top-0 z-10`}>
-      <div className="flex flex-col bg-white">
+      <div className="flex flex-col" style={{backgroundColor: "#090520"}}>
         <Container
           maxWidth="xl"
           className="flex justify-between h-[80px]  items-center">
           <div className="flex items-center gap-5 md:gap-5 w-[100%]">
             <Link href="/">
-              <div className="text-[30px] font-bold">new space</div>
+              <div className="text-[30px] font-bold" style={{color: "white"}}>New Space</div>
             </Link>
             <input
               className="outline-none h-[40px] w-[60%] md:w-[100%] xl:hidden font-bold"
@@ -58,13 +58,13 @@ export default function Header() {
             <div className="">
               <div className="flex gap-6 text-[18px]">
                 <a href="Merch ">
-                  <div className=" border-b-[1px] flex items-center justify-center">
+                  <div className=" border-b-[1px] flex items-center justify-center"style={{color: "white"}}>
                     MERCH
                   </div>
                 </a>
 
                 <a href="Artist">
-                  <div className=" border-b-[1px] flex items-center justify-center">
+                  <div className=" border-b-[1px] flex items-center justify-center"style={{color: "white"}}>
                     ARTIST
                   </div>
                 </a>
@@ -77,12 +77,12 @@ export default function Header() {
                 <AiOutlineSearch
                   onClick={() => {
                     setSearchClick(!searchClick);
-                  }}
+                  }}color="white"
                 />
                 <SlBasket
                   onClick={() => {
                     router.push("/Basket");
-                  }}
+                  }}color="white"
                 />
                 {currentUser ? (
                   <div
@@ -95,7 +95,7 @@ export default function Header() {
                   </div>
                 ) : (
                   <Link href="/Login">
-                    <AiOutlineUser />
+                    <AiOutlineUser color="white" />
                   </Link>
                 )}
               </div>
@@ -106,7 +106,9 @@ export default function Header() {
                 onClick={() => {
                   logOut();
                   setSeeLogout(false);
-                }}>
+                }}
+                style={{color: "white"}}
+              >
                 Гарах
               </div>
             ) : (

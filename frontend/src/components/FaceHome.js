@@ -1,6 +1,7 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { Avatar } from "@mui/material";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
+import { useRouter } from "next/router";
 
 const gif =
   "https://res.cloudinary.com/urlan/image/upload/v1678349701/geru-store/urban_nomad/ezgif.com-gif-maker_4_d6jzrh.gif";
@@ -14,8 +15,10 @@ export default function Face() {
     loop: {},
   });
 
+  const router = useRouter();
+
   return (
-    <Box sx={{ backgroundColor: "#edf2f4", padding: "24px" }}>
+    <Box sx={{ backgroundColor: "#090520", padding: "24px" }}>
       <Box sx={styles.position}>
         <Stack
           flex={2.5}
@@ -59,7 +62,7 @@ export default function Face() {
         >
           <img
             src={
-              "https://res.cloudinary.com/urlan/image/upload/v1678349701/geru-store/urban_nomad/ezgif.com-gif-maker_4_d6jzrh.gif"
+              "https://i.pinimg.com/originals/3f/2c/15/3f2c15069fd4055ed4f8551f3207010c.gif"
             }
             style={styles.image}
             alt="asdf"
@@ -74,6 +77,7 @@ export default function Face() {
                 md: "55px",
                 lg: "72px",
                 xl: "72px",
+                color: "white",
               },
               fontFamily: "PT Sans Narrow",
               lineHeight: "0.9em",
@@ -86,7 +90,7 @@ export default function Face() {
               <Cursor />
             </span>
           </Box>
-          <Typography sx={{ color: "rgba(0,0,0,.7)" }}>
+          <Typography sx={{ color: "white" }}>
             Хаана ч , хэзээ ч , хэнтэй ч ...
           </Typography>
           <Box sx={styles.paddingtop} variant="text">
@@ -103,17 +107,21 @@ export default function Face() {
             </Box>
           </Box>
           <Box sx={{ paddingTop: "24px", paddingBottom: "24px" }}>
-            <button
-              style={{
+            <Button
+              sx={{
                 width: "100%",
                 padding: "12px",
-                backgroundColor: "black",
                 color: "white",
                 borderRadius: "10px",
               }}
+              color="inherit"
+              variant="outlined"
+              onClick={() => {
+                router.push("/ArtWork");
+              }}
             >
-              Илүү Ихийг
-            </button>
+              Xолбогдох
+            </Button>
           </Box>
         </Stack>
       </Box>
@@ -187,5 +195,6 @@ const styles = {
     alignItems: "center",
     flexDirection: "row",
     cursor: "pointer",
+    color: "white",
   },
 };

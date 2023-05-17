@@ -4,7 +4,7 @@ import CollectionV2 from "../components/collection/CollectionV2";
 import FaceHome from "../components/FaceHome";
 import { useEffect, useState } from "react";
 import Axios from "axios";
-import HomeMerch from "../components/merch/HomeMerch"
+import HomeMerch from "../components/merch/HomeMerch";
 
 export default function Face() {
   const [data, setData] = useState();
@@ -32,112 +32,10 @@ export default function Face() {
   }, []);
 
   return (
-    <Box sx={{ backgroundColor: "#edf2f4", width: "100%", marginTop: "70px" }}>
+    <Box sx={{ backgroundColor: "#090520", width: "100%", marginTop: "70px" }}>
       <Container maxWidth="xl">
         <FaceHome />
-        <Box
-          sx={{
-            marginTop: "32px",
-            padding: {
-              xs: "5px",
-              sm: "5px",
-              md: "10px",
-              lg: "24px",
-              xl: "24px",
-            },
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              paddingTop: "40px",
-              paddingBottom: "40px",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <Box
-                sx={{
-                  fontWeight: "bold",
-                  fontSize: {
-                    xs: "20px",
-                    sm: "20px",
-                    md: "26px",
-                    lg: "36px",
-                    xl: "36px",
-                  },
-                }}
-              >
-                КУРАТОРЫН КОЛЛЕКЦ
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  fontWeight: "bold",
-                  fontSize: {
-                    xs: "20px",
-                    sm: "20px",
-                    md: "26px",
-                    lg: "36px",
-                    xl: "36px",
-                  },
-                }}
-              >
-                ИЛҮҮ ИХИЙГ +
-              </Box>
-            </Box>
-            <Box
-              sx={{
-                paddingTop: "16px",
-                paddingBottom: "16px",
-                width: "100%",
-                boxSizing: "border-box",
-              }}
-            >
-              <Box
-                sx={{
-                  width: "100%",
-                  height: "1px",
-                  bgcolor: "black",
-                  boxSizing: "border-box",
-                }}
-              ></Box>
-            </Box>
-          </Box>
-          <Box
-            sx={{
-              gap: "10px",
-              width: "100%",
-              paddingBottom: {
-                xs: "5px",
-                sm: "5px",
-                md: "30px",
-                lg: "24px",
-                xl: "24px",
-              },
-              paddingTop: {
-                xs: "5px",
-                sm: "5px",
-                md: "30px",
-                lg: "24px",
-                xl: "24px",
-              },
-              paddingLeft: "8px",
-              paddingRight: "8px",
-            }}
-          >
-            {data?.map((card, index) => (
-              <Collection key={index} Image={card.image} />
-            ))}
-          </Box>
-          <HomeMerch />
-        </Box>
+        <HomeMerch />
       </Container>
     </Box>
   );

@@ -4,15 +4,15 @@ export default function BasketCard({ price }) {
   return (
     <Box
       sx={{
-        backgroundColor: "white",
+        backgroundColor: "#090520",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         width: "20%",
         padding: "15px",
         height: "180px",
-        border:"hidden", 
-        borderRadius:"20px"
+        border: "hidden",
+        borderRadius: "20px",
       }}
     >
       <Stack
@@ -21,6 +21,7 @@ export default function BasketCard({ price }) {
           fontSize: "30px",
           alignItems: "center",
           fontWeight: "bold",
+          color: "white",
         }}
       >
         ТАНЫ ТӨЛБӨР
@@ -33,8 +34,10 @@ export default function BasketCard({ price }) {
           paddingBottom: "10px",
         }}
       >
-        <Typography sx={{fontWeight: "lighter"}}>Нийт </Typography>
-        <Typography>{price}</Typography>
+        <Typography sx={{ fontWeight: "lighter", color: "white" }}>
+          Нийт{" "}
+        </Typography>
+        <Typography sx={{ color: "white" }}>{price}</Typography>
       </Box>
       <button
         style={{
@@ -42,7 +45,7 @@ export default function BasketCard({ price }) {
           border: "hidden",
           borderRadius: "5px",
           padding: "8px",
-          color:"white"
+          color: "white",
         }}
       >
         Худалдан авах

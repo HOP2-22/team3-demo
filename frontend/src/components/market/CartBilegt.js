@@ -19,8 +19,9 @@ export default function Cart() {
       sx={{
         width: "100%",
         backgroundColor: "white",
-        border:"hidden", 
-        borderRadius:"20px"
+        border: "hidden",
+        borderRadius: "20px",
+        bgcolor: "#090520",
       }}
     >
       <Box
@@ -35,12 +36,16 @@ export default function Cart() {
         }}
       >
         <Box>
-          <p style={{ fontWeight: "500" }}>Monkey Studio</p>
-          <p style={{ fontWeight: "lighter" }}>Үйлдвэр-с хүргэнэ</p>
+          <p style={{ fontWeight: "500", color: "white" }}>Monkey Studio</p>
+          <p style={{ fontWeight: "lighter", color: "white" }}>
+            Үйлдвэр-с хүргэнэ
+          </p>
         </Box>
         <Box>
-          <p style={{ fontWeight: "500" }}>Маргааш - Мягмар</p>
-          <p style={{ fontWeight: "lighter" }}>(05/13 - 05/16)</p>
+          <p style={{ fontWeight: "500", color: "white" }}>Маргааш - Мягмар</p>
+          <p style={{ fontWeight: "lighter", color: "white" }}>
+            (05/13 - 05/16)
+          </p>
         </Box>
       </Box>
       <Box
@@ -80,27 +85,26 @@ export default function Cart() {
                     fontSize: { xl: "17px", xs: "15px" },
                     fontWeight: "bold",
                     fontSize: "25px",
+                    color: "white",
                   }}
                 >
-                  {" "}
                   {dt.Name}
                 </Typography>
                 <Typography
                   sx={{
                     fontFamily: "PT Sans Narrow",
                     fontSize: { xl: "17px", xs: "15px" },
+                    color: "white",
                   }}
                 >
-                  {" "}
                   Color: {dt.Color}
                 </Typography>
                 <Typography
                   sx={{
                     fontFamily: "PT Sans Narrow",
-                    fontSize: { xl: "17px", xs: "15px" },
+                    fontSize: { xl: "17px", xs: "15px", color: "white" },
                   }}
                 >
-                  {" "}
                   Size: {dt.Size}
                 </Typography>
               </Box>
@@ -113,10 +117,9 @@ export default function Cart() {
             height: "100%",
             display: "flex",
             flexDirection: "column",
-            gap:"20px",
+            gap: "20px",
             justifyContent: "center",
             alignItems: "center",
-
           }}
         >
           <FormControl>
@@ -126,17 +129,18 @@ export default function Cart() {
                 name: "age",
                 id: "uncontrolled-native",
               }}
+              sx={{ bgcolor: "white", borderRadius: "5px" }}
             >
               {CardDt.map((data, ind) => {
                 return (
-                  <option key={ind} value={40}>
+                  <option key={ind} value={40} sx={{ bgcolor: "white" }}>
                     {data.number}
                   </option>
                 );
               })}
             </NativeSelect>
           </FormControl>
-          <Button variant="outlained">
+          <Button variant="outlained" sx={{ color: "white" }}>
             Устгах
             <DeleteIcon fontSize="small" />
           </Button>

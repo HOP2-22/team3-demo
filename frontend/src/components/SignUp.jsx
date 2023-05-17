@@ -28,8 +28,8 @@ const Create = () => {
     }
   };
   return (
-    <div className="mt-[100px] w-full h-[500px] flex items-center justify-center">
-      <div className="flex flex-col items-center gap-[30px]">
+    <div className="mt-[100px] w-full h-[500px] flex items-center justify-center" style={{backgroundColor: "#090520"}}>
+      <div className="flex flex-col items-center gap-[30px]" >
         <p className="text-[32px] font-bold"> Нэвтрэх</p>
         <div className="flex flex-col items-center gap-[20px]">
           <div className="flex flex-col gap-4">

@@ -17,34 +17,44 @@ import BuyCart from "../components/market/BuyCart";
 
 export function Basket() {
   return (
-    <Container sx={styles.cont} maxWidth="xl">
-      <Stack alignItems="center">
-        <Typography
-          sx={{
-            fontFamily: "PT Sans Narrow",
-            fontSize: {
-              xl: "30px",
-              xs: "20px",
-            },
-            fontWeight: "bold",
-            paddingBottom: "40px",
-            paddingTop: "40px",
-          }}
-        >
-          Таны Сагсанд 3 Бүтээгдэхүүн Байна
-        </Typography>
-      </Stack>
-      <Box sx={{ display: "flex", gap: "20px", justifyContent: "center" }}>
-        <Box sx={{width:"50%", display:"flex", gap:"20px", flexDirection:"column"}}>
-          <Cart />
-          <Cart />
-          <Cart />
-          <Cart />
-          <Cart />
+    <Box sx={{ bgcolor: "#090520" }}>
+      <Container sx={styles.cont} maxWidth="xl">
+        <Stack alignItems="center">
+          <Typography
+            sx={{
+              fontFamily: "PT Sans Narrow",
+              fontSize: {
+                xl: "30px",
+                xs: "20px",
+              },
+              fontWeight: "bold",
+              paddingBottom: "40px",
+              paddingTop: "40px",
+              color: "white",
+            }}
+          >
+            Таны Сагсанд 3 Бүтээгдэхүүн Байна
+          </Typography>
+        </Stack>
+        <Box sx={{ display: "flex", gap: "20px", justifyContent: "center" }}>
+          <Box
+            sx={{
+              width: "50%",
+              display: "flex",
+              gap: "20px",
+              flexDirection: "column",
+            }}
+          >
+            <Cart />
+            <Cart />
+            <Cart />
+            <Cart />
+            <Cart />
+          </Box>
+          <BuyCart price={41000} />
         </Box>
-        <BuyCart price={41000} />
-      </Box>
-    </Container>
+      </Container>
+    </Box>
   );
 }
 

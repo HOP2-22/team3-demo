@@ -63,6 +63,7 @@ export default function Merch() {
                   lg: "90px",
                   xl: "96px",
                 },
+                color: "white",
                 fontWeight: "bold",
               }}
             >
@@ -84,7 +85,9 @@ export default function Merch() {
               {count}
             </Box>
           </Box>
-          <Box sx={{ alignSelf: "self-start", fontWeight: "300" }}>
+          <Box
+            sx={{ alignSelf: "self-start", fontWeight: "300", color: "white" }}
+          >
             Илүү мэдрэмжийг. Илүү хялбараар
           </Box>
           <Box
@@ -99,7 +102,7 @@ export default function Merch() {
               sx={{
                 width: "100%",
                 height: "1px",
-                bgcolor: "black",
+                bgcolor: "white",
                 boxSizing: "border-box",
               }}
             ></Box>
@@ -124,7 +127,7 @@ export default function Merch() {
                   display: "flex",
                   flexWrap: "wrap",
                   justifyContent: "space-between",
-                  gap:"10px"
+                  gap: "10px",
                 }}
               >
                 {data?.map((info, index) => {

@@ -83,7 +83,7 @@ export default function Merch() {
   };
 
   return (
-    <Box sx={{ marginTop: "70px" }}>
+    <Box sx={{ marginTop: "70px", backgroundColor: "#090520" }}>
       <Container maxWidth="xl">
         <Box sx={{ width: "100%" }}>
           <Box
@@ -93,7 +93,8 @@ export default function Merch() {
               alignItems: "center",
               paddingTop: "40px",
               paddingBottom: "40px",
-            }}>
+            }}
+          >
             <Box sx={{ display: "flex", alignSelf: "self-start" }}>
               <Box
                 sx={{
@@ -105,7 +106,9 @@ export default function Merch() {
                     xl: "96px",
                   },
                   fontWeight: "bold",
-                }}>
+                  color: "white",
+                }}
+              >
                 MERCH
               </Box>
               <Box
@@ -119,11 +122,18 @@ export default function Merch() {
                     lg: "30px",
                     xl: "36px",
                   },
-                }}>
+                }}
+              >
                 {count}
               </Box>
             </Box>
-            <Box sx={{ alignSelf: "self-start", fontWeight: "300" }}>
+            <Box
+              sx={{
+                alignSelf: "self-start",
+                fontWeight: "300",
+                color: "white",
+              }}
+            >
               Илүү мэдрэмжийг. Илүү хялбараар
             </Box>
             <Box
@@ -132,14 +142,16 @@ export default function Merch() {
                 paddingBottom: "16px",
                 width: "100%",
                 boxSizing: "border-box",
-              }}>
+              }}
+            >
               <Box
                 sx={{
                   width: "100%",
                   height: "1px",
-                  bgcolor: "black",
+                  bgcolor: "white",
                   boxSizing: "border-box",
-                }}></Box>
+                }}
+              ></Box>
             </Box>
           </Box>
           <Box sx={{ display: "flex" }}>
@@ -158,7 +170,8 @@ export default function Merch() {
                 gap: "10px",
                 justifyContent: "space-between",
                 alignItems: "center",
-              }}>
+              }}
+            >
               <Box sx={{ width: "100%" }}>
                 <Box
                   sx={{
@@ -166,7 +179,9 @@ export default function Merch() {
                     display: "flex",
                     flexWrap: "wrap",
                     justifyContent: "space-between",
-                  }}>
+                    color: "white",
+                  }}
+                >
                   {data?.map((info, index) => {
                     return (
                       <Box
@@ -181,7 +196,8 @@ export default function Merch() {
                             lg: "30%",
                             xl: "30%",
                           },
-                        }}>
+                        }}
+                      >
                         <Box sx={{ position: "relative" }}>
                           <CardMedia
                             image={info?.images}
@@ -204,17 +220,21 @@ export default function Merch() {
                             sx={{
                               position: "absolute",
                               top: "8px",
-                            }}></Checkbox>
+                              color: "white",
+                            }}
+                          ></Checkbox>
                         </Box>
                         <Box>
                           <Box
                             sx={{
                               color: "rgb(158, 158, 158)",
                               fontWeight: "bold",
-                            }}>
+                            }}
+                          >
                             {info.type_of}
                           </Box>
-                          <Box sx={{ fontWeight: "bold" }}>
+
+                          <Box sx={{ fontWeight: "bold", color: "white" }}>
                             Title {info.productName}
                           </Box>
                           <Box
@@ -223,14 +243,16 @@ export default function Merch() {
                               paddingBottom: "8px",
                               width: "100%",
                               boxSizing: "border-box",
-                            }}>
+                            }}
+                          >
                             <Box
                               sx={{
                                 width: "100%",
                                 height: "1px",
                                 bgcolor: "black",
                                 boxSizing: "border-box",
-                              }}></Box>
+                              }}
+                            ></Box>
                           </Box>
                           <Box sx={{ fontWeight: "bold" }}>
                             Price : {info.price}
@@ -255,36 +277,55 @@ export default function Merch() {
                   lg: "flex",
                   xl: "flex",
                 },
+                color: "white",
                 flexDirection: "column",
-              }}>
+              }}
+            >
               <Box
                 sx={{
                   top: "20px",
                   position: "sticky",
-                }}>
+                }}
+              >
                 <Box
                   sx={{
                     padding: "10px",
                     fontWeight: "bold",
                     fontSize: "20px",
-                  }}>
+                  }}
+                >
                   Төрлөөр шүүх
                 </Box>
                 <Box sx={{ display: "flex" }}>
                   <Checkbox {...label} onChange={handleClothes} />
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
                     Хувцас
                   </Box>
                 </Box>
                 <Box sx={{ display: "flex" }}>
                   <Checkbox {...label} onChange={handleHandMade} />
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
                     Гар урлал
                   </Box>
                 </Box>
                 <Box sx={{ display: "flex" }}>
                   <Checkbox {...label} onChange={handleMore} />
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
                     Бусад
                   </Box>
                 </Box>
