@@ -27,7 +27,7 @@ export default function Dash() {
   }, [status, page]);
 
   const instance = axios.create({
-    baseURL: `http://localhost:7070/product/status`,
+    baseURL: `http://localhost:7070/product/`,
   });
 
   useEffect(() => {
@@ -49,7 +49,7 @@ export default function Dash() {
   }, [load, fileterPage, filterStatus]);
 
   const StatusChange = async ({ id, type }) => {
-    await axios.patch(`http://localhost:7070/product/StatusUpdate/${id}`, {
+    await axios.patch(`http://localhost:7070/product/${id}`, {
       status: type,
     });
   };
@@ -131,7 +131,7 @@ export default function Dash() {
                 alignItems: "center",
                 justifyContent: "space-between",
                 cursor: "pointer",
-                border:"5px solid #edf2f4",
+                border: "5px solid #edf2f4",
                 borderLeftColor:
                   filterStatus === "approved" ? "Blue" : "transparent",
               }}
@@ -151,7 +151,7 @@ export default function Dash() {
                 alignItems: "center",
                 justifyContent: "space-between",
                 cursor: "pointer",
-                border:"5px solid #edf2f4",
+                border: "5px solid #edf2f4",
                 borderLeftColor:
                   filterStatus === "rejected" ? "Blue" : "transparent",
               }}
@@ -170,7 +170,7 @@ export default function Dash() {
                 alignItems: "center",
                 justifyContent: "space-between",
                 cursor: "pointer",
-                border:"5px solid #edf2f4",
+                border: "5px solid #edf2f4",
                 borderLeftColor:
                   filterStatus === "orders" ? "Blue" : "transparent",
               }}

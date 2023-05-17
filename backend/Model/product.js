@@ -6,7 +6,7 @@ const productSchema = new Schema({
   size: {
     type: String,
     required: true,
-    enum: ["sm", "md", "lg", "xl", "2xl"],
+    enum: ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"],
   },
   color: {
     type: String,

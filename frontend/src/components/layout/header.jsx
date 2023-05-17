@@ -1,20 +1,21 @@
 import { useContext, useEffect, useState } from "react";
-import { Context } from "../../context/context";
-import { AiOutlineSearch, AiOutlineUser } from "react-icons/ai";
-import { SlBasket, SlArrowDown } from "react-icons/sl";
-import { RiArrowDownSFill } from "react-icons/ri";
-import { HiOutlineLogout } from "react-icons/hi";
-import Container from "@mui/material/Container";
-import Search from "./Search";
 import Link from "next/link";
-import Cookies from "js-cookie";
 import { useRouter } from "next/router";
-import { Avatar, Box } from "@mui/material";
+import Container from "@mui/material/Container";
+import { Avatar } from "@mui/material";
 
-export default function Header() {
+import Search from "./Search";
+import { UserContext } from "@/context/UserContext";
+import { ArtistContext } from "@/context/Artistcontext";
+
+import { AiOutlineSearch, AiOutlineUser } from "react-icons/ai";
+import { SlBasket } from "react-icons/sl";
+import { RiArrowDownSFill } from "react-icons/ri";
+
+const Header = () => {
   const [searchClick, setSearchClick] = useState(false);
-  const [burger, setBurger] = useState(false);
-  const { currentUser, setCurrentUser, isClient } = useContext(Context);
+  const { isClient } = useContext(UserContext);
+  const { isArtist, logOut, user } = useContext(ArtistContext);
   const [seeLogout, setSeeLogout] = useState(false);
 
   const router = useRouter();
@@ -31,23 +32,22 @@ export default function Header() {
     return () => window.removeEventListener("resize", resizeFunc);
   }, []);
 
-  const logOut = () => {
-    setCurrentUser(null);
-    Cookies.remove("token");
-    Cookies.remove("user");
-
-    router.push("/");
-  };
-
   return (
-    <div className={` ${isClient ? "z-10" : "z-4"} w-full fixed top-0 z-10`}>
-      <div className="flex flex-col" style={{backgroundColor: "#090520"}}>
+    <div
+      className={` ${
+        isClient || isArtist ? (isClient ? "z-10" : "z-4") : "z-10"
+      } w-full fixed top-0`}
+    >
+      <div className="flex flex-col" style={{ backgroundColor: "#090520" }}>
         <Container
           maxWidth="xl"
-          className="flex justify-between h-[80px]  items-center">
+          className="flex justify-between h-[80px]  items-center"
+        >
           <div className="flex items-center gap-5 md:gap-5 w-[100%]">
             <Link href="/">
-              <div className="text-[30px] font-bold" style={{color: "white"}}>New Space</div>
+              <div className="text-[30px] font-bold" style={{ color: "white" }}>
+                New Space
+              </div>
             </Link>
             <input
               className="outline-none h-[40px] w-[60%] md:w-[100%] xl:hidden font-bold"
@@ -57,17 +57,23 @@ export default function Header() {
           <div className="flex items-center gap-5">
             <div className="">
               <div className="flex gap-6 text-[18px]">
-                <a href="Merch ">
-                  <div className=" border-b-[1px] flex items-center justify-center"style={{color: "white"}}>
+                <Link href="/merch ">
+                  <div
+                    className=" border-b-[1px] flex items-center justify-center"
+                    style={{ color: "white" }}
+                  >
                     MERCH
                   </div>
-                </a>
+                </Link>
 
-                <a href="Artist">
-                  <div className=" border-b-[1px] flex items-center justify-center"style={{color: "white"}}>
+                <Link href="/artist">
+                  <div
+                    className=" border-b-[1px] flex items-center justify-center"
+                    style={{ color: "white" }}
+                  >
                     ARTIST
                   </div>
-                </a>
+                </Link>
               </div>
             </div>
             <div className="hidden xl:flex items-center gap-5">
@@ -77,47 +83,50 @@ export default function Header() {
                 <AiOutlineSearch
                   onClick={() => {
                     setSearchClick(!searchClick);
-                  }}color="white"
+                  }}
+                  color="white"
                 />
                 <SlBasket
                   onClick={() => {
-                    router.push("/Basket");
-                  }}color="white"
+                    router.push("/cart");
+                  }}
+                  color="white"
                 />
-                {currentUser ? (
+                {user ? (
                   <div
                     className="flex items-center gap-[2px] "
                     onClick={() => {
-                      setSeeLogout(!seeLogout);
-                    }}>
-                    <Avatar src={currentUser?.image} />
+                      setSeeLogout((prev) => !prev);
+                    }}
+                  >
+                    <Avatar src={user?.image} />
                     <RiArrowDownSFill className="text-[#1b1927]" />
                   </div>
                 ) : (
-                  <Link href="/Login">
+                  <Link href="/login">
                     <AiOutlineUser color="white" />
                   </Link>
                 )}
               </div>
             </div>
-            {seeLogout ? (
+            {seeLogout && (
               <div
                 className="w-[80px] text-[20px] h-[40px] flex items-center justify-center rounded-[7px] bg-gray-500 mt-[80px] ml-[170px] fixed"
                 onClick={() => {
                   logOut();
                   setSeeLogout(false);
                 }}
-                style={{color: "white"}}
+                style={{ color: "white" }}
               >
                 Гарах
               </div>
-            ) : (
-              <></>
             )}
           </div>
         </Container>
-        {searchClick ? <Search boolean={searchClick} /> : <></>}
+        {searchClick ? <Search searchClick={searchClick} /> : <></>}
       </div>
     </div>
   );
-}
+};
+
+export default Header;

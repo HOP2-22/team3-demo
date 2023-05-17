@@ -54,7 +54,7 @@ exports.createArtist = asyncHandler(async (req, res) => {
 
   await artist.populate({ path: "products" });
 
-  const token = artist.getJWT();
+  const token = artist.getJWT("artist");
 
   res.status(200).json({ success: true, data: artist, token });
 });
@@ -66,8 +66,7 @@ exports.login = asyncHandler(async (req, res) => {
 
   const artist = await Artist.findOne({ email })
     .select("+password")
-    .populate({ path: "products" })
-    .execPopulate();
+    .populate({ path: "products" });
 
   if (!artist) throw new Error("wrong your email or password");
 
@@ -79,7 +78,7 @@ exports.login = asyncHandler(async (req, res) => {
 
   delete artist.password;
 
-  const token = artist.getJWT();
+  const token = artist.getJWT("artist");
 
   res.status(200).json({ success: true, data: artist, token });
 });

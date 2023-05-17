@@ -9,6 +9,7 @@ const artistSchema = new Schema(
     email: {
       type: String,
       required: true,
+      unique: true,
       match: [
         /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
         "your email is not email address",
@@ -35,9 +36,18 @@ const artistSchema = new Schema(
         "Гар урлаач",
       ],
     },
-    cv: { type: String, required: true },
-    image: { type: String, required: true },
-    bgImg: { type: String, required: true },
+    cv: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
+    backgroundImage: {
+      type: String,
+      required: true,
+    },
     createdAt: {
       type: Date,
       default: Date.now,
@@ -53,8 +63,8 @@ artistSchema.pre("save", async function (next) {
   next();
 });
 
-artistSchema.methods.getJWT = function () {
-  const token = jwt.sign({ id: this._id }, process.env.ACCESS_TOKEN_SECRET, {
+artistSchema.methods.getJWT = function (role) {
+  const token = jwt.sign({ id: this._id, role }, process.env.ACCESS_TOKEN_KEY, {
     expiresIn: process.env.JWT_EXPIRESIN,
   });
 

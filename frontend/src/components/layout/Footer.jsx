@@ -1,6 +1,6 @@
 import Container from "@mui/material/Container";
 
-export default function Footer() {
+const Footer = () => {
   return (
     <div className="bg-[#1b1927]  pb-[100px] ">
       <Container>
@@ -53,12 +53,16 @@ export default function Footer() {
               </p>
             </div>
           </div>
-          <div className="text-white text-[30px] font-bold mt-[500px] sm:mt-[50px] md:mt-[250px] md:text-[52px] lg:mt-[200px] xl:mt-[30px] lg:text-[72px]" style={{display: "flex", justifyContent: "center"}}>
-           ONE STEP UP
-           
+          <div
+            className="text-white text-[30px] font-bold mt-[500px] sm:mt-[50px] md:mt-[250px] md:text-[52px] lg:mt-[200px] xl:mt-[30px] lg:text-[72px]"
+            style={{ display: "flex", justifyContent: "center" }}
+          >
+            ONE STEP UP
           </div>
         </div>
       </Container>
     </div>
   );
-}
+};
+
+export default Footer;
