@@ -5,15 +5,14 @@ import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Context } from "@/context/context";
-import { useAuthContext } from "../context/context";
 
 export default function LoginArtist() {
   const router = useRouter();
 
   const [emailArtist, setEmailArtist] = useState();
   const [passwordArtist, setPasswordArtist] = useState();
-  const { setIsClient, setIsArtist, currentUser, setCurrentUser } =
-    useAuthContext();
+  const { setIsClient, setIsArtist, currentUser, setCurrentUser, setArtistId } =
+    useContext(Context);
 
   const EmailInput = async (event) => {
     setEmailArtist(event.target.value);
@@ -35,16 +34,18 @@ export default function LoginArtist() {
       Cookie.set("token", data?.token);
       Cookie.set("user", data?.user.email);
       Cookie.set("role", data?.user.Role);
-
+      setIsClient(false);
+      setIsArtist(true);
+      console.log(data?.user?.id);
       setCurrentUser({
         username: data?.user?.username,
         image: data?.user?.image,
         isArtist: data?.user?.isArtist,
       });
-
+      setArtistId(data?.user?.id);
       toast("Successfully logged in!");
 
-      // router.push("/");
+      router.push("/CreateProduct");
     } catch (error) {
       toast("Password or Email incorrect!");
     }

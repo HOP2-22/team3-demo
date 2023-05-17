@@ -42,6 +42,9 @@ export default function LoginUser() {
       Cookies.set("image", data?.user.image);
       Cookies.set("userId", data?.user._id);
 
+      setIsClient(true);
+      setIsArtist(false);
+
       setCurrentUser({
         username: data?.user?.username,
         image: data?.user?.image,
