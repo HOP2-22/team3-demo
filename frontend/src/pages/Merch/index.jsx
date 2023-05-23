@@ -6,6 +6,7 @@ import { Container, Checkbox, CardMedia } from "@mui/material";
 import { FavoriteBorder, Favorite } from "@mui/icons-material";
 
 const Merch = ({ products }) => {
+  console.log(products)
   const { push } = useRouter();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -23,14 +24,14 @@ const Merch = ({ products }) => {
   };
   const handleClothes = (event) => {
     if (event.target.checked) {
-      router.push({
+      push({
         query: {
           type_of: "Хувцас",
         },
       });
     } else {
       delete query.type_of;
-      router.push({ query: query });
+      push({ query: query });
     }
   };
 
@@ -165,7 +166,7 @@ const Merch = ({ products }) => {
                       >
                         <Box sx={{ position: "relative" }}>
                           <CardMedia
-                            image={product?.images}
+                            image={product?.images?.[0]}
                             sx={{
                               width: "100%",
                               height: {
@@ -200,7 +201,7 @@ const Merch = ({ products }) => {
                           </Box>
 
                           <Box sx={{ fontWeight: "bold", color: "white" }}>
-                            Title {product?.productName}
+                            Title {product?.name}
                           </Box>
                           <Box
                             sx={{
@@ -310,8 +311,6 @@ export async function getServerSideProps() {
     const res = await axios.get(
       "http://localhost:7070/product?status=approved"
     );
-
-    console.log(res.data);
 
     return {
       props: {

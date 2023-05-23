@@ -18,13 +18,14 @@ export default function Home() {
     setPassword(event.target.value);
   };
 
+
   const login = async () => {
     try {
+      console.log("================================================================")
       const res = await axios.post("http://localhost:7070/admin/login", {
         email: email,
         password: password,
       });
-      alert("Login successful");
       alert("Login successful");
       setTimeout(() => {
         router.push("/Dashboard");

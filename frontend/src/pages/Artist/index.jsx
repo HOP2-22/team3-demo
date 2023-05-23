@@ -9,9 +9,13 @@ const Artist = ({ artists }) => {
   const router = useRouter();
   const { push } = useRouter();
 
-  console.log(artists);
 
-  const handleClick = (id) => {};
+
+  const handleClick = (id) => {
+    router.push(
+      `/artist/${id}`)
+      ;
+  };
 
   const handleTailor = (event) => {
     if (event.target.checked) {
@@ -21,10 +25,7 @@ const Artist = ({ artists }) => {
         },
       });
     } else {
-      delete query.type_of;
-      router.push({
-        query: { ...query },
-      });
+
     }
   };
   const handlePhotographer = (event) => {
@@ -35,10 +36,7 @@ const Artist = ({ artists }) => {
         },
       });
     } else {
-      delete query.type_of;
-      router.push({
-        query: { ...query },
-      });
+
     }
   };
 
@@ -50,10 +48,7 @@ const Artist = ({ artists }) => {
         },
       });
     } else {
-      delete query.type_of;
-      router.push({
-        query: { ...query },
-      });
+
     }
   };
   const handleGraphic = (event) => {
@@ -64,10 +59,7 @@ const Artist = ({ artists }) => {
         },
       });
     } else {
-      delete query.type_of;
-      router.push({
-        query: { ...query },
-      });
+
     }
   };
   const handleCraftsman = (event) => {
@@ -78,15 +70,12 @@ const Artist = ({ artists }) => {
         },
       });
     } else {
-      delete query.type_of;
-      router.push({
-        query: { ...query },
-      });
+
     }
   };
 
   return (
-    <Box sx={{ marginTop: "70px", marginBottom: "100px", bgcolor: "#090520" }}>
+    <Box sx={{ marginTop: "70px", paddingBottom: "150px", bgcolor: "#090520" }}>
       <Container maxWidth="xl">
         <Box>
           <Box
@@ -192,8 +181,7 @@ const Artist = ({ artists }) => {
               {artists?.map((artist, index) => (
                 <div
                   className="w-[360px] h-[360px] border-2"
-                  onClick={() => push(`/artist/${artist?._id}`)}
-                >
+                  onClick={() => handleClick(artist.id)}>
                   <div className="w-[100%] h-[100%]  flex items-center flex-col ">
                     <img src={artist?.image} className="w-[100%] h-[40%]" />
                     <img
@@ -303,8 +291,8 @@ const Artist = ({ artists }) => {
             </Box>
           </Box>
         </Box>
-      </Container>
-    </Box>
+      </Container >
+    </Box >
   );
 };
 
@@ -315,8 +303,7 @@ export async function getServerSideProps(ctx) {
 
   try {
     const res = await axios.get(
-      `http://localhost:7070/artist/?${
-        query.type_of ? `type_of=${query.type_of}` : ""
+      `http://localhost:7070/artist/?${query.type_of ? `type_of=${query.type_of}` : ""
       }`
     );
 

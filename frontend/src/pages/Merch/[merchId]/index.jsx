@@ -1,5 +1,5 @@
 import { Box, Container, Typography } from "@mui/material";
-import SwiperCard from "../components/SwiperCard";
+import SwiperCard from "../../../components/SwiperCard";
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
@@ -11,8 +11,10 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import TextField from "@mui/material/TextField";
+import { useRouter } from "next/router";
 
 const ProductDetail = ({ product, sizes }) => {
+  const router = useRouter
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
 
@@ -23,6 +25,8 @@ const ProductDetail = ({ product, sizes }) => {
         color: selectedColor,
         size: selectedSize,
       });
+
+
     } catch (error) {
       console.log(error);
     }
@@ -82,8 +86,8 @@ const ProductDetail = ({ product, sizes }) => {
               },
             }}
           >
-            <div className="w-[690px] h-[690px] ">
-              <img src={product?.images} />
+            <div className="w-[500px] h-[690px] ">
+              <img src={product?.images?.[0]} />
             </div>
           </Box>
           <Box
@@ -268,7 +272,7 @@ export async function getServerSideProps(context) {
     const res = await axios.get(
       `http://localhost:7070/product/${context.query.merchId}`
     );
-
+    console.log(res)
     return {
       props: {
         product: res.data.data,

@@ -34,9 +34,8 @@ const Header = () => {
 
   return (
     <div
-      className={` ${
-        isClient || isArtist ? (isClient ? "z-10" : "z-4") : "z-10"
-      } w-full fixed top-0`}
+      className={` ${isClient || isArtist ? (isClient ? "z-10" : "z-4") : "z-10"
+        } w-full fixed top-0`}
     >
       <div className="flex flex-col" style={{ backgroundColor: "#090520" }}>
         <Container
@@ -49,15 +48,12 @@ const Header = () => {
                 New Space
               </div>
             </Link>
-            <input
-              className="outline-none h-[40px] w-[60%] md:w-[100%] xl:hidden font-bold"
-              placeholder="Мэрч, Артист, Коллекц хайх ..."
-            />
+
           </div>
           <div className="flex items-center gap-5">
             <div className="">
               <div className="flex gap-6 text-[18px]">
-                <Link href="/merch ">
+                <Link href="/Merch ">
                   <div
                     className=" border-b-[1px] flex items-center justify-center"
                     style={{ color: "white" }}
@@ -66,7 +62,7 @@ const Header = () => {
                   </div>
                 </Link>
 
-                <Link href="/artist">
+                <Link href="/Artist">
                   <div
                     className=" border-b-[1px] flex items-center justify-center"
                     style={{ color: "white" }}

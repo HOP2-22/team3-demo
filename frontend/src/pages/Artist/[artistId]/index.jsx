@@ -6,27 +6,32 @@ import Checkbox from "@mui/material/Checkbox";
 import CardMedia from "@mui/material/CardMedia";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
+import { useRouter } from "next/router";
 
-const ArtistDetail = ({ artist }) => {
+const ArtistDetail = ({ data }) => {
+  console.log(data)
+  const router = useRouter();
+
+
   return (
     <div className="w-full  bg-gray-500 mt-[70px]">
       <img
         className="w-[100%] h-[400px] object:center object:center"
-        src={artist.bgImg}
+        src=""
       />
       <Container maxWidth="xl">
         <div className="w-[100%] border-b-[1px] pb-[30px]">
           <img
             className="w-[200px] h-[200px] rounded-full border-[10px] mt-[-100px] relative z-2"
-            src={artist.image}
+            src=""
           />
-          <p className="text-[50px] font-bold">{artist?.name}</p>
-          <p>{artist.type_of}</p>
+          <p className="text-[50px] font-bold">{data?.name}</p>
+          <p>{data.type_of}</p>
         </div>
         <div>
           <div className="w-[100%] border-b-[1px]">
             <p className="text-[90px] font-bold">Bio</p>
-            <p>{artist.cv}</p>
+            <p>{data.cv}</p>
           </div>
         </div>
         <div>
@@ -41,7 +46,7 @@ const ArtistDetail = ({ artist }) => {
                 justifyContent: "space-between",
               }}
             >
-              {artist?.products?.map((product, index) => {
+              {data?.products?.map((product, index) => {
                 return (
                   <Box
                     key={index}
@@ -59,7 +64,7 @@ const ArtistDetail = ({ artist }) => {
                   >
                     <Box sx={{ position: "relative" }}>
                       <CardMedia
-                        image="https://i.pinimg.com/564x/ac/85/7f/ac857f3e95191797f908869707752ca1.jpg"
+                        image={product?.products?.images[0]}
                         sx={{
                           width: "100%",
                           height: {
@@ -124,7 +129,8 @@ const ArtistDetail = ({ artist }) => {
 export default ArtistDetail;
 
 export async function getServerSideProps(context) {
-  const id = context.query.artist;
+  const id = context.query.artistId;
+  console.log(id)
 
   try {
     const res = await axios.get(`http://localhost:7070/artist/${id}`);

@@ -28,7 +28,11 @@ exports.createAdmin = asyncHandler(async (req, res) => {
       message: `${req.body.email} бүртгэлтэй байна`,
     });
 
-  const admin = await Admin.create(req.body);
+  const admin = await Admin.create({
+    email: req.body.email,
+    password: req.body.password
+  });
+  console.log(req.body)
 
   const token = admin.getJWT();
 
