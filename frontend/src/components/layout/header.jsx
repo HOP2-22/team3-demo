@@ -53,7 +53,7 @@ const Header = () => {
           <div className="flex items-center gap-5">
             <div className="">
               <div className="flex gap-6 text-[18px]">
-                <Link href="/Merch ">
+                <Link href="/merch ">
                   <div
                     className=" border-b-[1px] flex items-center justify-center"
                     style={{ color: "white" }}
@@ -62,7 +62,7 @@ const Header = () => {
                   </div>
                 </Link>
 
-                <Link href="/Artist">
+                <Link href="/artist">
                   <div
                     className=" border-b-[1px] flex items-center justify-center"
                     style={{ color: "white" }}

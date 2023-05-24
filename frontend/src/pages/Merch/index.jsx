@@ -7,19 +7,19 @@ import { FavoriteBorder, Favorite } from "@mui/icons-material";
 
 const Merch = ({ products }) => {
   console.log(products)
-  const { push } = useRouter();
+  const { push, query } = useRouter();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   const handleHandMade = (event) => {
     if (event.target.checked) {
-      router.push({
+      push({
         query: {
           type_of: "Гар урлал",
         },
       });
     } else {
       delete query.type_of;
-      router.push({ query: query });
+      push({ query: query });
     }
   };
   const handleClothes = (event) => {
@@ -37,14 +37,14 @@ const Merch = ({ products }) => {
 
   const handleMore = (event) => {
     if (event.target.checked) {
-      router.push({
+      push({
         query: {
           type_of: "Бусад",
         },
       });
     } else {
       delete query.type_of;
-      router.push({ query: query });
+      push({ query: query });
     }
   };
 
@@ -306,10 +306,14 @@ const Merch = ({ products }) => {
 
 export default Merch;
 
-export async function getServerSideProps() {
+export async function getServerSideProps(ctx) {
+  const query = ctx.query;
+
+
   try {
     const res = await axios.get(
-      "http://localhost:7070/product?status=approved"
+      `http://localhost:7070/product?status=approved&${query.type_of ? `type_of=${query.type_of}` : ""
+      }`
     );
 
     return {
