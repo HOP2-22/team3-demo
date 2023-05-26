@@ -7,14 +7,14 @@ import Layout from "@/components/layout/Layout";
 
 const App = ({ Component, pageProps }) => {
   return (
-    <ArtistProvider>
-      <UserProvider>
-        <Layout>
-          <Toaster position="top-center" reverseOrder={false} />
-          <Component {...pageProps} />
-        </Layout>
-      </UserProvider>
-    </ArtistProvider>
+
+    <UserProvider>
+      <Layout>
+        <Toaster position="top-center" reverseOrder={false} />
+        <Component {...pageProps} />
+      </Layout>
+    </UserProvider>
+
   );
 };
 
