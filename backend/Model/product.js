@@ -10,7 +10,7 @@ const productSchema = new Schema({
   },
   color: {
     type: String,
-    required: [true, "ongoo ogno vv"],
+    enum: ["Хар", "Улаан", "Шар" ,"Цэнхэр" , "Ногоон" ,"Цагаан" ,"Ягаан"],
   },
   count: {
     type: Number,

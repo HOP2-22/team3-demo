@@ -18,6 +18,14 @@ const app = express();
 const PORT = process.env.PORT;
 
 connectDB();
+// "bcrypt": "^5.1.0",
+// "colors": "^1.4.0",
+// "cors": "^2.8.5",
+// "dotenv": "^16.0.3",
+// "express": "^4.18.2",
+// "jsonwebtoken": "^9.0.0",
+// "mongoose": "^7.2.0",
+// "nodemon": "^2.0.22"
 
 app.use(express.json());
 

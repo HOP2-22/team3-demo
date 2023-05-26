@@ -41,10 +41,9 @@
 import { Box } from "@mui/material";
 import Image from "next/image";
 
-import Gif from "../../images/cover-photo.gif";
 
 const Add_merch = () => {
-  const add_merch = () => {};
+  const add_merch = () => { };
 
   return (
     <Box
@@ -115,7 +114,7 @@ const Add_merch = () => {
               }}
               width={400}
               height={400}
-              src={Gif}
+              src=""
               alt="img"
             />
             <p
@@ -151,7 +150,7 @@ const Add_merch = () => {
               }}
               width={400}
               height={400}
-              src={Gif}
+              src=""
               alt="img"
             />
             <p
