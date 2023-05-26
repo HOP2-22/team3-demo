@@ -2,6 +2,15 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
+// "bcrypt": "^5.1.0",
+// "colors": "^1.4.0",
+// "cors": "^2.8.5",
+// "dotenv": "^16.0.3",
+// "express": "^4.18.2",
+// "jsonwebtoken": "^9.0.0",
+// "mongoose": "^7.2.1",
+// "nodemon": "^2.0.22"
+
 const productSchema = new Schema({
   size: {
     type: String,
@@ -10,7 +19,7 @@ const productSchema = new Schema({
   },
   color: {
     type: String,
-    enum: ["Хар", "Улаан", "Шар" ,"Цэнхэр" , "Ногоон" ,"Цагаан" ,"Ягаан"],
+    enum: ["Хар", "Улаан", "Шар", "Цэнхэр", "Ногоон", "Цагаан", "Ягаан"],
   },
   count: {
     type: Number,
@@ -22,9 +31,9 @@ const productSchema = new Schema({
     required: true,
   },
   descriptions: {
-    type: [String],
+    type: String,
   },
-  images: { type: [String] },
+  images: { type: String },
   price: {
     type: Number,
     required: [true, "vnee ogno vv"],
