@@ -185,7 +185,6 @@ exports.buyProduct = asyncHandler(async (req, res) => {
 });
 
 exports.DeleteAll = asyncHandler(async (req, res) => {
-  console.log("======================================");
   await Product.deleteMany();
 
   res.status(200).json({ success: true });

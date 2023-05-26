@@ -15,9 +15,8 @@ const ArtistLogin = () => {
     password: "",
   });
 
-  const { setIsArtist, setUser, user } = useContext(ArtistContext);
 
-  const { setIsClient } = useContext(UserContext);
+  const { setIsArtist, setArtist, setIsClient } = useContext(UserContext);
 
   const emailHandler = async (event) => {
     setForm({ ...form, email: event.target.value });
@@ -47,7 +46,7 @@ const ArtistLogin = () => {
       setIsClient(false);
       setIsArtist(true);
 
-      setUser(data?.user);
+      setArtist(data?.user);
 
       toast.success("Successfully logged in!");
 

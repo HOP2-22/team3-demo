@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 import { UserContext } from "@/context/UserContext";
-import { ArtistContext } from "@/context/Artistcontext";
 
 const Login = () => {
   const [form, setForm] = useState({
@@ -15,8 +14,13 @@ const Login = () => {
   });
   const { push } = useRouter();
 
-  const { setIsClient } = useContext(UserContext);
-  const { setUser, setIsArtist } = useContext(ArtistContext);
+  const {
+    isClient,
+    setIsClient,
+    isArtist,
+    setIsArtist,
+    setUser,
+  } = useContext(UserContext);
 
   const emailHandler = async (event) => {
     setForm({ ...form, email: event.target.value });
@@ -46,7 +50,7 @@ const Login = () => {
 
       setIsClient(true);
       setIsArtist(false);
-
+      console.log(data.data);
       setUser(data.data);
 
       setForm({

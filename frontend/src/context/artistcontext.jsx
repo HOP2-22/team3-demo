@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { createContext, useEffect, useState } from "react";
-import { useRouter } from "Next/router"
+import { useRouter } from 'next/router';
 
 export const ArtistContext = createContext({});
 
