@@ -51,7 +51,7 @@ const ArtistLogin = () => {
 
       toast.success("Successfully logged in!");
 
-      push("/");
+      push("/add_merch");
     } catch (error) {
       toast.error("Password or Email incorrect!");
     }

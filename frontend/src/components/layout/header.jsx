@@ -53,16 +53,19 @@ const Header = () => {
           <div className="flex items-center gap-5">
             <div className="">
               <div className="flex gap-6 text-[18px]">
-                <Link href="/merch ">
+                {/* <Link href="/Merch"> */}
                   <div
                     className=" border-b-[1px] flex items-center justify-center"
                     style={{ color: "white" }}
+                    onClick={()=>{
+                      router.push("/Merch");
+                    }}
                   >
                     MERCH
                   </div>
-                </Link>
+                {/* </Link> */}
 
-                <Link href="/artist">
+                <Link href="/Artist">
                   <div
                     className=" border-b-[1px] flex items-center justify-center"
                     style={{ color: "white" }}

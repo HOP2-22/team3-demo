@@ -1,12 +1,16 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { createContext, useEffect, useState } from "react";
+import { useRouter } from "Next/router"
 
 export const ArtistContext = createContext({});
 
 export const ArtistProvider = ({ children }) => {
   const [isArtist, setIsArtist] = useState(false);
   const [user, setUser] = useState(null);
+
+  const router = useRouter()
+  const { push } = router
 
   axios.interceptors.request.use(
     function (config) {

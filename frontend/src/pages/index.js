@@ -126,7 +126,7 @@ export default function Home({ products }) {
                         {products?.map((product, index) => {
                           return (
                             <Box
-                              onClick={() => push(`/merch/${product?._id}`)}
+                              onClick={() => push(`/Merch/${product?._id}`)}
                               key={index}
                               sx={{
                                 marginBottom: "50px",
