@@ -13,6 +13,7 @@ import useStorage from "@/hooks/useStorage";
 import axios from "axios";
 import { UserContext } from "@/context/UserContext";
 import { useContext } from "react";
+import { toast } from "react-hot-toast";
 
 export default function createMerch() {
   const { artist } = useContext(UserContext);
@@ -27,6 +28,7 @@ export default function createMerch() {
   const [warning, setWarning] = useState();
   const [size, setSize] = useState();
   const [caretip, setCaretip] = useState();
+  const [uploadimg, setUploadImg] = useState(false);
 
   const imageHandler = async () => {
     try {
@@ -34,24 +36,24 @@ export default function createMerch() {
       const res = await handleUpload(image);
       console.log(res);
       setImage(res);
+      toast.success("successfully uploaded");
+      setUploadImg(true);
     } catch (error) {
       console.log(error);
     }
   };
 
   const create = async () => {
-    console.log(
-      artist.id,
-      size,
-      name,
-      color,
-      size,
-      price,
-      image,
-      count,
-      warning,
-      caretip
-    );
+    if (!artist) return toast("ta ehleed newternuu");
+    if (size == null) return toast.error(`size field is empty`);
+    if (name == null) return toast.error(`name field is empty`);
+    if (color == null) return toast.error(`color field is empty`);
+    if (price == null) return toast.error(`price field is empty`);
+    if (count == null) return toast.error(`count field is empty`);
+    if (des == null) return toast.error(`descriptions field is empty`);
+    if (image == null) return toast.error(`image field is empty`);
+    if (warning == null) return toast.error(`warning field is empty`);
+    if (caretip == null) return toast.error(`caretip field is empty`);
     try {
       const done = await axios.post("http://localhost:7070/product", {
         size: size,
@@ -65,23 +67,23 @@ export default function createMerch() {
         owner: artist.id,
         caretip: caretip,
       });
-      alert("is done");
+      toast.success("is done");
     } catch (error) {}
   };
 
-  const UploadImage = () => {
-    return (
-      <Stack direction="row" alignItems="center" spacing={2}>
-        <Button
-          variant="contained"
-          component="label"
-          onClick={() => imageHandler()}
-        >
-          Upload
-        </Button>
-      </Stack>
-    );
-  };
+  // const UploadImage = () => {
+  //   return (
+  //     <Stack direction="row" alignItems="center" spacing={2}>
+  //       <Button
+  //         variant="contained"
+  //         component="label"
+  //         onClick={() => imageHandler()}
+  //       >
+  //         Upload
+  //       </Button>
+  //     </Stack>
+  //   );
+  // };
 
   const handleColor = (event) => {
     setColor(event.target.value);
@@ -195,29 +197,38 @@ export default function createMerch() {
             }}
           />
           <div className="flex flex-col gap-[10px]">
-            <p className="text-gray-500">Select image</p>
+            <p className="text-gray-500">Select image</p> {}
             <div className="w-[100%] flex flex-col items-center justify-center gap-[10px]">
-              <div className="w-full py-[200px] border-2 border-blue-500 drop-shadow-2xl rounded-[7px] flex flex-col items-center justify-center">
-                <div className=" drop-shadow-2xl rounded-full flex items-center justify-center">
-                  <IconButton
-                    color="primary"
-                    aria-label="upload picture"
-                    component="label"
-                  >
-                    <input
-                      hidden
-                      accept="image/*"
-                      type="file"
-                      onChange={(el) => {
-                        setImage(el.target.files[0]);
-                      }}
-                    />
+              {uploadimg ? (
+                <>
+                  <img src={image} />
+                </>
+              ) : (
+                <>
+                  <div className="w-full py-[200px] border-2 border-blue-500 drop-shadow-2xl rounded-[7px] flex flex-col items-center justify-center">
+                    <div className=" drop-shadow-2xl rounded-full flex items-center justify-center">
+                      <IconButton
+                        color="primary"
+                        aria-label="upload picture"
+                        component="label"
+                      >
+                        <input
+                          hidden
+                          accept="image/*"
+                          type="file"
+                          onChange={(el) => {
+                            setImage(el.target.files[0]);
+                          }}
+                        />
 
-                    <PhotoCamera />
-                    <Typography>Зургаа сонгоно уу?</Typography>
-                  </IconButton>
-                </div>
-              </div>
+                        <PhotoCamera />
+                        <Typography>Зургаа сонгоно уу?</Typography>
+                      </IconButton>
+                    </div>
+                  </div>
+                </>
+              )}
+
               <Button
                 variant="contained"
                 component="label"
@@ -227,16 +238,15 @@ export default function createMerch() {
               </Button>
             </div>
           </div>
-          <div style={{ display: "flex" }}>
-            <img src={image} alt="image" style={{ width: "10vh" }} />
-          </div>
-          <p
+          <div style={{ display: "flex" }}></div>
+          <button
+            className="text-white rounded-[10px] w-[200px] text-[20px] px-[10px] py-[20px] bg-blue-500"
             onClick={() => {
               create();
             }}
           >
-            sdfsdfsdfsdfsdfsdfsfs
-          </p>
+            Create new merch
+          </button>
         </div>
       </Container>
     </div>

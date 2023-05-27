@@ -93,7 +93,7 @@ const Header = () => {
                           router.push("Merch");
                         }}
                       >
-                        sdhfhsh
+                        Merch
                       </div>
                       {/* </Link> */}
 
@@ -114,18 +114,13 @@ const Header = () => {
                     <div className="bg-gray-500 w-[1px] h-[35px] "></div>
 
                     <div className="flex gap-3 text-[20px] items-center font-bold">
-                      <AiOutlineSearch
+                      {/* <AiOutlineSearch
                         onClick={() => {
                           setSearchClick(!searchClick);
                         }}
                         color="white"
-                      />
-                      <SlBasket
-                        onClick={() => {
-                          router.push("/cart");
-                        }}
-                        color="white"
-                      />
+                      /> */}
+
                       {user ? (
                         <div
                           className="flex items-center gap-[2px] "
@@ -138,7 +133,10 @@ const Header = () => {
                         </div>
                       ) : (
                         <Link href="/login">
-                          <AiOutlineUser color="white" />
+                          <div className="flex justify-center items-center gap-2 border-[1px] px-[20px] border-gray-300 text-[20px] py-[5px] rounded-[7px]">
+                            <p className="text-white">Login</p>
+                            <AiOutlineUser color="white" />
+                          </div>
                         </Link>
                       )}
                     </div>

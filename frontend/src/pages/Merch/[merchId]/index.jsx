@@ -16,12 +16,10 @@ import { toast } from "react-hot-toast";
 import { UserContext } from "@/context/UserContext";
 
 const ProductDetail = ({ product, sizes }) => {
-  const { user } = useContext(UserContext);
-  console.log(user);
   console.log(product);
-  console.log(sizes);
+  const { user, setProductIfo } = useContext(UserContext);
 
-  const router = useRouter;
+  const { router, push } = useRouter();
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectCount, setSelectedCount] = useState(0);
@@ -29,15 +27,16 @@ const ProductDetail = ({ product, sizes }) => {
   const addToCart = async () => {
     if (!user) {
       toast.error("ta exled newternuu");
+      return;
     }
     try {
-      await axios.post(`http://localhost:7070/cart/${user?.user_id}`, {
-        name: product.name,
+      setProductIfo({
+        image: product.images,
         color: selectedColor,
         size: selectedSize,
         count: selectCount,
       });
-      alert("Product");
+      push(`/Merch/${product._id}/buy`);
     } catch (error) {
       console.log(error);
     }
@@ -48,7 +47,7 @@ const ProductDetail = ({ product, sizes }) => {
       <Container maxWidth="xl">
         <div className=" flex gap-[2%]">
           <div className="w-[49%] h-[700px]">
-            <img src={product?.images[0]} />
+            <img src={product?.images} />
           </div>
           <div className=" w-[49%] flex flex-col gap-[10px]">
             <div>
@@ -60,20 +59,22 @@ const ProductDetail = ({ product, sizes }) => {
               <div className="flex gap-6">
                 {sizes?.map((size, index) => {
                   return (
-                    <div>
-                      <button
-                        className="px-2 py-[6px] bg-gray-400 rounded-[7px] w-[50px] flex justify-center"
-                        onClick={() => {
-                          setSelectedSize((prev) => {
-                            if (prev == size.size) {
-                              return null;
-                            }
-                            return size.size;
-                          });
-                        }}
-                      >
-                        {size.size}
-                      </button>
+                    <div className="w-[7%] flex  flex-col items-start">
+                      <div>
+                        <button
+                          className="px-2 py-[6px] bg-gray-400 rounded-[7px] w-[50px] flex justify-center"
+                          onClick={() => {
+                            setSelectedSize((prev) => {
+                              if (prev == size.size) {
+                                return null;
+                              }
+                              return size.size;
+                            });
+                          }}
+                        >
+                          {size.size}
+                        </button>
+                      </div>
                       {selectedSize == size.size && (
                         <>
                           <div className="flex gap-6">
@@ -102,29 +103,27 @@ const ProductDetail = ({ product, sizes }) => {
                 })}
               </div>
             </div>
+            <div>
+              <p className="font-bold">Боломжит үлдэгдэл {product?.count}</p>
+            </div>
             <div className="">
-              <p className="font-bold">too shirheg</p>
+              <p className="font-bold">Хэдийг захиалах</p>
               <input
+                className="border-[1px] rounded-[7px] w-[300px] h-[50px] text-[25px] px-[10px]"
+                type="number"
                 onChange={(e) => {
                   setSelectedCount(e.target.value);
                 }}
               />
             </div>
-            <div className="">
-              <p className="font-bold">Color</p>
-              <p>{product?.color}</p>
-            </div>
-            <div>
-              <p className="font-bold">count</p>
-              <p>Тоо ширхэг сонгох {product?.count}</p>
-            </div>
+
             <button
               className="bg-[#cd1e3b] text-white w-[100%] h-[40px] rounded-[7px]"
               onClick={() => {
                 addToCart();
               }}
             >
-              Сагсанд хийх
+              Худалдаж авах
             </button>
             <div>
               <p className="font-bold">Бүтээлийн тайлбар</p>

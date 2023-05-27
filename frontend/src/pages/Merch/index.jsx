@@ -166,7 +166,7 @@ const Merch = ({ products }) => {
                       >
                         <Box sx={{ position: "relative" }}>
                           <CardMedia
-                            image={product?.images?.[0]}
+                            image={product?.images}
                             sx={{
                               width: "100%",
                               height: {

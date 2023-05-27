@@ -31,22 +31,22 @@ const HomeDetail = () => {
           <Cursor />
         </span>
       </Box>
-      <Typography sx={{ color: "white" }}>
-        Хаана ч , хэзээ ч , хэнтэй ч ...
-      </Typography>
-      <Box sx={styles.paddingtop} variant="text">
-        <Box sx={styles.padding}>
-          <Typography>Хамтарсан уран бүтээлчид:</Typography>
-          <Box
-            sx={{
-              paddingLeft: "16px",
-              paddingRight: "16px",
-            }}
-          >
-            <Avatar src="https://res.cloudinary.com/urlan/image/upload/v1675159396/geru-store/khongorzul/328598489_1163549884324212_1668282332485989101_n_1_1_wduowu.jpg" />
-          </Box>
-        </Box>
+      {/* <div>
+        <p>Бидэнтэй хамтран ажиллах уран бүтээлчийг бид хайж байна.</p>
+      </div> */}
+
+      <Box>
+        <p className="text-white text-[25px] pt-[20px]">
+          Бидэнтэй хамтран ажиллах уран бүтээлчийг2 бид хайж байна.
+        </p>
+        <Box
+          sx={{
+            paddingLeft: "16px",
+            paddingRight: "16px",
+          }}
+        ></Box>
       </Box>
+
       <Box sx={{ paddingTop: "24px", paddingBottom: "24px" }}>
         <Button
           sx={{

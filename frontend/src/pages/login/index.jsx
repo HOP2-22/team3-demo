@@ -56,7 +56,7 @@ const Login = () => {
         password: "",
       });
 
-      // push("/");
+      push("/");
 
       toast.success("login successful");
     } catch (error) {

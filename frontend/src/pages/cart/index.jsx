@@ -1,12 +1,10 @@
 import { useContext } from "react";
 import { Box, Container, Stack, Typography } from "@mui/material";
 
-import { ArtistContext } from "@/context/Artistcontext";
 import BuyCart from "@/components/market/BuyCart";
 
 const Cart = () => {
-  const { user } = useContext(ArtistContext);
-
+  return <></>;
   return (
     <Box sx={{ bgcolor: "#090520" }}>
       <Container sx={styles.cont} maxWidth="xl">
