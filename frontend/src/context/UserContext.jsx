@@ -29,13 +29,13 @@ export const UserProvider = ({ children }) => {
       try {
         const { data } = await axios.get("http://localhost:7070/user/getUser");
 
-        if (data.data.data.exp * 1000 <= Date.now()) {
-          logOut();
-          return;
-        }
+        //exp gj bhguenshd
+        // if (data.data.data.exp * 1000 <= Date.now()) {
+        //   logOut();
+        //   return;
+        // }
 
-        console.log(data?.user);
-
+        // console.log(data.data);
         setUser(data?.user);
       } catch (error) {
         console.log(error);

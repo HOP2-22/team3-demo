@@ -14,10 +14,9 @@ import TextField from "@mui/material/TextField";
 import { useRouter } from "next/router";
 
 const ProductDetail = ({ product, sizes }) => {
-
   console.log(product);
 
-  const router = useRouter
+  const router = useRouter;
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
 
@@ -28,8 +27,6 @@ const ProductDetail = ({ product, sizes }) => {
         color: selectedColor,
         size: selectedSize,
       });
-
-
     } catch (error) {
       console.log(error);
     }
@@ -57,9 +54,11 @@ const ProductDetail = ({ product, sizes }) => {
             </div>
             <div>
               <p className="font-bold">count</p>
-              <p>Тоо ширхэг сонгох  {product.count}</p>
+              <p>Тоо ширхэг сонгох {product.count}</p>
             </div>
-            <button className="bg-[#cd1e3b] text-white w-[100%] h-[40px] rounded-[7px]">Сагсанд хийх</button>
+            <button className="bg-[#cd1e3b] text-white w-[100%] h-[40px] rounded-[7px]">
+              Сагсанд хийх
+            </button>
             <div>
               <p className="font-bold">Бүтээлийн тайлбар</p>
               <p>{product.descriptions[0]}</p>
@@ -86,7 +85,7 @@ export async function getServerSideProps(context) {
     const res = await axios.get(
       `http://localhost:7070/product/${context.query.merchId}`
     );
-    console.log(res)
+    console.log(res);
     return {
       props: {
         product: res.data.data,

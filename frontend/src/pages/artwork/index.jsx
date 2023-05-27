@@ -11,6 +11,7 @@ const Artwork = () => {
     <Box
       sx={{
         marginTop: "75px",
+        backgroundColor: "#090520",
       }}
     >
       <Container>
@@ -19,7 +20,8 @@ const Artwork = () => {
           sx={{
             paddingTop: "50px",
             width: "100%",
-            borderTop: "1px black solid",
+            borderTop: "1px white solid",
+            color: "white",
           }}
         >
           <ImageList variant="masonry" cols={3} gap={10}>
