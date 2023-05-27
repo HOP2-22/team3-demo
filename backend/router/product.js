@@ -29,6 +29,6 @@ router.delete("/deleteByNameAndSize", deleteManyProductByNameAndSize);
 
 router.delete("/deleteAll", DeleteAll);
 router.route("/:id").get(getProduct).patch(updateProduct).delete(deleteProduct);
-router.patch("/status/:_id", ChangeProductStatus);
+router.patch("/status/:id", ChangeProductStatus);
 
 module.exports = router;

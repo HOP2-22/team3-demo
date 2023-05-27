@@ -12,10 +12,13 @@ import { useRouter } from "next/router";
 
 export default function Dash() {
   const isapprove = async ({ dataa }) => {
-    console.log(dataa._id);
-
-    const { data } = axios.patch(
-      `http://localhost:7070/product/status/${dataa._id}`
+    console.log(dataa);
+    const neww = "approved";
+    const { status } = axios.patch(
+      `http://localhost:7070/product/status/${dataa._id}`,
+      {
+        newStatus: neww,
+      }
     );
   };
 
