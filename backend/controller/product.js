@@ -100,7 +100,8 @@ exports.ChangeProductStatus = async (req, res) => {
   const newStatus = req.body.status;
   console.log(2);
   try {
-    const updatedStatus = await Product.findByIdAndUpdate(_id, {
+    const updatedStatus = await Product.findByIdAndUpdate({
+      _id,
       status: newStatus,
     });
     res.status(200).json(updatedStatus);
