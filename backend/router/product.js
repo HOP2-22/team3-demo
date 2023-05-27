@@ -14,12 +14,12 @@ const {
   deleteManyProductByNameAndColor,
   deleteManyProductByNameAndSize,
   buyProduct,
+  updateStatus,
 } = require("../controller/product");
 
 const router = express.Router();
 
 router.route("/").get(getProducts).post(createProduct);
-
 
 router.post("/buy", buyProduct);
 
@@ -29,5 +29,6 @@ router.delete("/deleteByNameAndSize", deleteManyProductByNameAndSize);
 
 router.delete("/deleteAll", DeleteAll);
 router.route("/:id").get(getProduct).patch(updateProduct).delete(deleteProduct);
+router.patch("/status/:id", updateStatus);
 
 module.exports = router;

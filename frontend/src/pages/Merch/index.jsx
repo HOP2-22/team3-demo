@@ -6,7 +6,7 @@ import { Container, Checkbox, CardMedia } from "@mui/material";
 import { FavoriteBorder, Favorite } from "@mui/icons-material";
 
 const Merch = ({ products }) => {
-  console.log(products)
+  console.log(products);
   const { push, query } = useRouter();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -151,7 +151,7 @@ const Merch = ({ products }) => {
                   {products?.map((product, index) => {
                     return (
                       <Box
-                        onClick={() => push(`/merch/${product?._id}`)}
+                        onClick={() => push(`Merch/${product?._id}`)}
                         key={index}
                         sx={{
                           marginBottom: "50px",
@@ -309,10 +309,10 @@ export default Merch;
 export async function getServerSideProps(ctx) {
   const query = ctx.query;
 
-
   try {
     const res = await axios.get(
-      `http://localhost:7070/product?status=approved&${query.type_of ? `type_of=${query.type_of}` : ""
+      `http://localhost:7070/product?status=approved&${
+        query.type_of ? `type_of=${query.type_of}` : ""
       }`
     );
 

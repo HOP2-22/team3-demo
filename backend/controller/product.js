@@ -93,6 +93,18 @@ exports.createProduct = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, data: preProduct });
 });
 
+exports.updateStatus = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const status = req.body.status;
+    const updatedstatus = await Product.findByIdAndUpdate({
+      id,
+      status: status,
+    });
+    res.status(200).json({ success: true, data: updatedstatus });
+  } catch (error) {}
+};
+
 exports.updateProduct = asyncHandler(async (req, res) => {
   const id = req.params.id;
   const item = req.body;

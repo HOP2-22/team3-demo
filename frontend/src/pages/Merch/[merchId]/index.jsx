@@ -16,30 +16,28 @@ import { toast } from "react-hot-toast";
 import { UserContext } from "@/context/UserContext";
 
 const ProductDetail = ({ product, sizes }) => {
-
   const { user } = useContext(UserContext);
   console.log(user);
   console.log(product);
   console.log(sizes);
 
-  const router = useRouter
+  const router = useRouter;
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectCount, setSelectedCount] = useState(0);
 
   const addToCart = async () => {
     if (!user) {
-      toast.error("ta exled newternuu")
-    } try {
+      toast.error("ta exled newternuu");
+    }
+    try {
       await axios.post(`http://localhost:7070/cart/${user?.user_id}`, {
         name: product.name,
         color: selectedColor,
         size: selectedSize,
-        count: selectCount
+        count: selectCount,
       });
-      alert("Product")
-
-
+      alert("Product");
     } catch (error) {
       console.log(error);
     }
@@ -60,47 +58,57 @@ const ProductDetail = ({ product, sizes }) => {
             <div>
               <p className="font-bold">size</p>
               <div className="flex gap-6">
-                {sizes.map((size, index) => {
+                {sizes?.map((size, index) => {
                   return (
                     <div>
-                      <button className="px-2 py-[6px] bg-gray-400 rounded-[7px] w-[50px] flex justify-center"
+                      <button
+                        className="px-2 py-[6px] bg-gray-400 rounded-[7px] w-[50px] flex justify-center"
                         onClick={() => {
                           setSelectedSize((prev) => {
                             if (prev == size.size) {
-                              return null
-
+                              return null;
                             }
-                            return size.size
-
-
-                          })
-                        }} >{size.size}</button>
-                      {selectedSize == size.size && (<><div className="flex gap-6">
-                        {size.colors.map((color, index) => {
-                          return <button className="px-2 py-[6px] bg-gray-400 rounded-[7px] w-[50px] flex justify-center"
-                            onClick={() => {
-                              setSelectedColor((prev) => {
-                                if (prev == color.color) {
-                                  return null
-
-                                }
-                                return color?.color
-
-
-                              })
-                            }} >{color?.color}</button>
-                        })}</div></>)}
+                            return size.size;
+                          });
+                        }}
+                      >
+                        {size.size}
+                      </button>
+                      {selectedSize == size.size && (
+                        <>
+                          <div className="flex gap-6">
+                            {size.colors.map((color, index) => {
+                              return (
+                                <button
+                                  className="px-2 py-[6px] bg-gray-400 rounded-[7px] w-[50px] flex justify-center"
+                                  onClick={() => {
+                                    setSelectedColor((prev) => {
+                                      if (prev == color.color) {
+                                        return null;
+                                      }
+                                      return color?.color;
+                                    });
+                                  }}
+                                >
+                                  {color?.color}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </>
+                      )}
                     </div>
-
-                  )
+                  );
                 })}
               </div>
             </div>
             <div className="">
               <p className="font-bold">too shirheg</p>
-              <input onChange={(e) => {
-                setSelectedCount(e.target.value)
-              }} />
+              <input
+                onChange={(e) => {
+                  setSelectedCount(e.target.value);
+                }}
+              />
             </div>
             <div className="">
               <p className="font-bold">Color</p>
@@ -108,12 +116,16 @@ const ProductDetail = ({ product, sizes }) => {
             </div>
             <div>
               <p className="font-bold">count</p>
-              <p>Тоо ширхэг сонгох  {product?.count}</p>
+              <p>Тоо ширхэг сонгох {product?.count}</p>
             </div>
-            <button className="bg-[#cd1e3b] text-white w-[100%] h-[40px] rounded-[7px]"
+            <button
+              className="bg-[#cd1e3b] text-white w-[100%] h-[40px] rounded-[7px]"
               onClick={() => {
-                addToCart()
-              }}>Сагсанд хийх</button>
+                addToCart();
+              }}
+            >
+              Сагсанд хийх
+            </button>
             <div>
               <p className="font-bold">Бүтээлийн тайлбар</p>
               <p>{product?.descriptions[0]}</p>
@@ -140,7 +152,7 @@ export async function getServerSideProps(context) {
     const res = await axios.get(
       `http://localhost:7070/product/${context.query.merchId}`
     );
-    console.log(res)
+    console.log(res);
     return {
       props: {
         product: res.data.data,

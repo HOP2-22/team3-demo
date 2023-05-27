@@ -7,14 +7,10 @@ import { useRouter } from "next/router";
 const Artist = ({ artists }) => {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const router = useRouter();
-  const { push } = useRouter();
-
-
+  const { push, query } = useRouter();
 
   const handleClick = (id) => {
-    router.push(
-      `/artist/${id}`)
-      ;
+    router.push(`/Artist/${id}`);
   };
 
   const handleTailor = (event) => {
@@ -25,7 +21,8 @@ const Artist = ({ artists }) => {
         },
       });
     } else {
-
+      delete query.type_of;
+      push({ query: query });
     }
   };
   const handlePhotographer = (event) => {
@@ -36,7 +33,8 @@ const Artist = ({ artists }) => {
         },
       });
     } else {
-
+      delete query.type_of;
+      push({ query: query });
     }
   };
 
@@ -48,7 +46,8 @@ const Artist = ({ artists }) => {
         },
       });
     } else {
-
+      delete query.type_of;
+      push({ query: query });
     }
   };
   const handleGraphic = (event) => {
@@ -59,7 +58,8 @@ const Artist = ({ artists }) => {
         },
       });
     } else {
-
+      delete query.type_of;
+      push({ query: query });
     }
   };
   const handleCraftsman = (event) => {
@@ -70,7 +70,14 @@ const Artist = ({ artists }) => {
         },
       });
     } else {
-
+      delete query.type_of;
+      push({ query: query });
+    }
+  };
+  const handleAll = (event) => {
+    {
+      delete query.type_of;
+      push({ query: query });
     }
   };
 
@@ -181,7 +188,8 @@ const Artist = ({ artists }) => {
               {artists?.map((artist, index) => (
                 <div
                   className="w-[360px] h-[360px] border-2"
-                  onClick={() => handleClick(artist.id)}>
+                  onClick={() => handleClick(artist.id)}
+                >
                   <div className="w-[100%] h-[100%]  flex items-center flex-col ">
                     <img src={artist?.image} className="w-[100%] h-[40%]" />
                     <img
@@ -254,7 +262,7 @@ const Artist = ({ artists }) => {
                   Төрлөөр шүүх
                 </Box>
                 <Box sx={{ display: "flex", color: "white" }}>
-                  <Checkbox {...label} />
+                  <Checkbox {...label} onChange={handleAll} />
                   <Box sx={{ display: "flex", alignItems: "center" }}>Бүгд</Box>
                 </Box>
                 <Box sx={{ display: "flex", color: "white" }}>
@@ -291,8 +299,8 @@ const Artist = ({ artists }) => {
             </Box>
           </Box>
         </Box>
-      </Container >
-    </Box >
+      </Container>
+    </Box>
   );
 };
 
@@ -303,7 +311,8 @@ export async function getServerSideProps(ctx) {
 
   try {
     const res = await axios.get(
-      `http://localhost:7070/artist/?${query.type_of ? `type_of=${query.type_of}` : ""
+      `http://localhost:7070/artist/?${
+        query.type_of ? `type_of=${query.type_of}` : ""
       }`
     );
 

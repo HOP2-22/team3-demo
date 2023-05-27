@@ -11,6 +11,14 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 export default function Dash() {
+  const isapprove = async ({ dataa }) => {
+    console.log(dataa._id);
+
+    const { data } = axios.patch(
+      `http://localhost:7070/product/status/${dataa._id}`
+    );
+  };
+
   const { push, query } = useRouter();
 
   const [data, setData] = useState();
@@ -350,18 +358,7 @@ export default function Dash() {
                       </p>
                       <Box sx={{ display: "flex", alignItems: "center" }}>
                         <Checkbox
-                          onClick={(e) => {
-                            setLoad(!load);
-                            e.target.checked
-                              ? StatusChange({
-                                  id: dataa._id,
-                                  type: "approved",
-                                })
-                              : StatusChange({
-                                  id: dataa._id,
-                                  type: "rejected",
-                                });
-                          }}
+                          onClick={() => isapprove({ dataa })}
                           checked={dataa.status == "approved" ? true : false}
                         />
                       </Box>
