@@ -93,7 +93,7 @@ const Header = () => {
                           router.push("Merch");
                         }}
                       >
-                        Merch
+                        MERCH
                       </div>
                       {/* </Link> */}
 

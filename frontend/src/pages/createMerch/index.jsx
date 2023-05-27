@@ -28,6 +28,7 @@ export default function createMerch() {
   const [warning, setWarning] = useState();
   const [size, setSize] = useState();
   const [caretip, setCaretip] = useState();
+  const [istype, setType] = useState();
   const [uploadimg, setUploadImg] = useState(false);
 
   const imageHandler = async () => {
@@ -54,6 +55,7 @@ export default function createMerch() {
     if (image == null) return toast.error(`image field is empty`);
     if (warning == null) return toast.error(`warning field is empty`);
     if (caretip == null) return toast.error(`caretip field is empty`);
+    if (istype == null) return toast.error(`type field is empty`);
     try {
       const done = await axios.post("http://localhost:7070/product", {
         size: size,
@@ -66,6 +68,7 @@ export default function createMerch() {
         warning: warning,
         owner: artist.id,
         caretip: caretip,
+        type_of: istype,
       });
       toast.success("is done");
     } catch (error) {}
@@ -84,6 +87,9 @@ export default function createMerch() {
   //     </Stack>
   //   );
   // };
+  const handleTypes = (event) => {
+    setType(event.target.value);
+  };
 
   const handleColor = (event) => {
     setColor(event.target.value);
@@ -154,6 +160,20 @@ export default function createMerch() {
               setCount(e.target.value);
             }}
           />
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">type</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={istype}
+              label="Color"
+              onChange={handleTypes}
+            >
+              <MenuItem value={"Хувцас"}>Хувцас</MenuItem>
+              <MenuItem value={"Гар урлал"}>Гар урлал</MenuItem>
+              <MenuItem value={"Бусад"}>Бусад</MenuItem>\
+            </Select>
+          </FormControl>
 
           <TextField
             id="outlined-basic"

@@ -11,13 +11,17 @@ import { Checkbox, CardMedia } from "@mui/material";
 import { FavoriteBorder, Favorite } from "@mui/icons-material";
 
 export default function Home({ products }) {
-
-  const { push } = useRouter()
+  const { push } = useRouter();
 
   return (
     <>
       <Box
-        sx={{ backgroundColor: "#090520", width: "100%", paddingBottom: "100px", paddingTop: "100px" }}
+        sx={{
+          backgroundColor: "#090520",
+          width: "100%",
+          paddingBottom: "100px",
+          paddingTop: "100px",
+        }}
       >
         <Container maxWidth="xl">
           <Box sx={styles.position}>
@@ -130,6 +134,8 @@ export default function Home({ products }) {
                               key={index}
                               sx={{
                                 marginBottom: "50px",
+                                border: "1px solid white",
+
                                 width: {
                                   xs: "45%",
                                   sm: "45%",
@@ -141,7 +147,7 @@ export default function Home({ products }) {
                             >
                               <Box sx={{ position: "relative" }}>
                                 <CardMedia
-                                  image={product?.images?.[0]}
+                                  image={product?.images}
                                   sx={{
                                     width: "100%",
                                     height: {
@@ -154,7 +160,6 @@ export default function Home({ products }) {
                                     cursor: "pointer",
                                   }}
                                 />
-
                               </Box>
                               <Box>
                                 <Box
@@ -166,8 +171,14 @@ export default function Home({ products }) {
                                   {product?.type_of}
                                 </Box>
 
-                                <Box sx={{ fontWeight: "bold", color: "white" }}>
-                                  Title {product?.name}
+                                <Box
+                                  sx={{
+                                    fontWeight: "bold",
+                                    color: "white",
+                                    paddingLeft: "10px",
+                                  }}
+                                >
+                                  {product?.name}
                                 </Box>
                                 <Box
                                   sx={{
@@ -186,7 +197,12 @@ export default function Home({ products }) {
                                     }}
                                   ></Box>
                                 </Box>
-                                <Box sx={{ fontWeight: "bold" }}>
+                                <Box
+                                  sx={{
+                                    fontWeight: "bold",
+                                    paddingLeft: "10px",
+                                  }}
+                                >
                                   Price : {product?.price}
                                 </Box>
                               </Box>
@@ -196,7 +212,6 @@ export default function Home({ products }) {
                       </Box>
                     </Box>
                   </Box>
-
                 </Box>
               </Box>
             </Container>

@@ -1,12 +1,15 @@
 import React from "react";
 import { Avatar, Box, Button, Stack, Typography } from "@mui/material";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
+import { useRouter } from "next/router";
 
 const HomeDetail = () => {
   const [text] = useTypewriter({
     words: ["Home", "Back"],
     loop: {},
   });
+
+  const { router, push } = useRouter();
 
   return (
     <Stack sx={styles.texts}>
@@ -58,7 +61,7 @@ const HomeDetail = () => {
           color="inherit"
           variant="outlined"
           onClick={() => {
-            router.push("/ArtWork");
+            push("/login");
           }}
         >
           Xолбогдох

@@ -169,7 +169,7 @@ const ArtistSignUp = () => {
   return (
     <Box>
       <div
-        className="w-full h-[190px]  py-[650px]  flex flex-col items-center  justify-center gap-10"
+        className="w-full  py-[650px] px-[100px]  flex flex-col items-center   gap-10"
         style={{ backgroundColor: "#090520" }}
       >
         <div className="text-[32px] text-white">Бүртгүүлэх</div>

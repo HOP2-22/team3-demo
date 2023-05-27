@@ -52,6 +52,7 @@ const productSchema = new Schema({
   type_of: {
     type: "string",
     enum: ["Хувцас", "Гар урлал", "Бусад"],
+    required: true,
   },
 
   owner: {

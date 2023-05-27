@@ -65,7 +65,7 @@ const Login = () => {
   };
   return (
     <div
-      className="w-full  h-[60vh]   py-[650px] flex flex-col items-center justify-center gap-10"
+      className="w-full   px-[100px]  py-[650px] flex flex-col items-center gap-10"
       style={{ backgroundColor: "#090520" }}
     >
       <div className="text-[32px] text-[white]">Нэвтрэх</div>

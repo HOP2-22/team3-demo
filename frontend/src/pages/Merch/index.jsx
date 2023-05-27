@@ -47,6 +47,12 @@ const Merch = ({ products }) => {
       push({ query: query });
     }
   };
+  const handleAll = (event) => {
+    {
+      delete query.type_of;
+      push({ query: query });
+    }
+  };
 
   return (
     <Box sx={{ marginTop: "70px", backgroundColor: "#090520" }}>

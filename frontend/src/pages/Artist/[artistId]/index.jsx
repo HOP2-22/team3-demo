@@ -9,16 +9,12 @@ import Favorite from "@mui/icons-material/Favorite";
 import { useRouter } from "next/router";
 
 const ArtistDetail = ({ data }) => {
-  console.log(data)
+  console.log(data);
   const router = useRouter();
 
-
   return (
-    <div className="w-full  bg-gray-500 mt-[70px]">
-      <img
-        className="w-[100%] h-[400px] object:center object:center"
-        src=""
-      />
+    <div className="w-full  bg-gray-500 px-[70px]">
+      <img className="w-[100%] h-[400px] object:center object:center" src="" />
       <Container maxWidth="xl">
         <div className="w-[100%] border-b-[1px] pb-[30px]">
           <img
@@ -130,7 +126,7 @@ export default ArtistDetail;
 
 export async function getServerSideProps(context) {
   const id = context.query.artistId;
-  console.log(id)
+  console.log(id);
 
   try {
     const res = await axios.get(`http://localhost:7070/artist/${id}`);

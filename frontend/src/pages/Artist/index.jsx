@@ -82,7 +82,7 @@ const Artist = ({ artists }) => {
   };
 
   return (
-    <Box sx={{ marginTop: "70px", paddingBottom: "150px", bgcolor: "#090520" }}>
+    <Box sx={{ marginTop: "70px", paddingBottom: "100px", bgcolor: "#090520" }}>
       <Container maxWidth="xl">
         <Box>
           <Box
