@@ -14,10 +14,11 @@ import { RiArrowDownSFill } from "react-icons/ri";
 
 const Header = () => {
   const [searchClick, setSearchClick] = useState(false);
-  const { isClient, setIsClient, user, setUser, setArtist, setIsArtist } = useContext(UserContext);
+  const { isClient, setIsClient, user, artist, setUser, setArtist, setIsArtist } = useContext(UserContext);
   const [seeLogout, setSeeLogout] = useState(false);
   const push = useRouter()
   const router = useRouter()
+
 
   useEffect(() => {
     const resizeFunc = () => {
@@ -155,11 +156,14 @@ const Header = () => {
           className="w-full h-[80px] fixed flex justify-between px-[50px] items-center top-0 z-6 bg-[#0A061C] "
         >
           <div className="text-white text-[30px] font-bold">new space</div>
-          <div className="flex gap-[20px]">
+          <div className="flex gap-[20px] items-center justify-center">
 
             <div className="flex  gap-[10px]">
-              <img src={user?.image} className="w-[45px] h-[45px] rounded-full" />
-              <button className="h-[45px] w-[100px] text-[18px] text-white rounded-[8px] bg-[#6446EE] ">
+              <img src={artist?.image} className="w-[45px] h-[45px] rounded-full" />
+              <button className="h-[45px] w-[100px] text-[18px] text-white rounded-[8px] bg-[#6446EE] "
+                onClick={() => {
+                  router.push('/createMerch')
+                }}>
                 Upload
               </button>
             </div>

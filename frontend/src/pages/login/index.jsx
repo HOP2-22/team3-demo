@@ -14,14 +14,7 @@ const Login = () => {
   });
   const { push } = useRouter();
 
-  const {
-    user,
-    isClient,
-    setIsClient,
-    isArtist,
-    setIsArtist,
-    setUser,
-  } = useContext(UserContext);
+  const { setIsClient, setIsArtist, setUser } = useContext(UserContext);
 
   const emailHandler = async (event) => {
     setForm({ ...form, email: event.target.value });
@@ -47,7 +40,7 @@ const Login = () => {
         password: form?.password,
       });
       Cookie.set("token", data?.token);
-      Cookie.set("user_id", data?.data?.id)
+      Cookie.set("user_id", data?.data?.id);
 
       setIsClient(true);
       setIsArtist(false);
@@ -55,7 +48,7 @@ const Login = () => {
       setUser({
         username: data?.data?.name,
         image: data?.data?.image,
-        user_id: data?.data?.id
+        user_id: data?.data?.id,
       });
 
       setForm({
@@ -70,7 +63,6 @@ const Login = () => {
       toast.error("login error");
     }
   };
-  console.log(user);
   return (
     <div
       className="w-full  h-[60vh]   py-[650px] flex flex-col items-center justify-center gap-10"
@@ -118,7 +110,7 @@ const Login = () => {
         </button>
       </div>
     </div>
-  )
+  );
 };
 
 export default Login;

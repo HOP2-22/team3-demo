@@ -14,7 +14,6 @@ const ArtistLogin = () => {
     password: "",
   });
 
-
   const { setIsArtist, setArtist, setIsClient } = useContext(UserContext);
 
   const emailHandler = async (event) => {
@@ -40,17 +39,15 @@ const ArtistLogin = () => {
         password: form?.password,
       });
 
-      console.log(data);
-
       Cookie.set("token", data?.token);
 
       setIsClient(false);
       setIsArtist(true);
 
-      // setArtist({
-      //   username: data?.data?.name,
-      //   user_id: data?.data?.id
-      // });
+      setArtist({
+        image: data.data.image,
+        id: data.data.id,
+      });
 
       toast.success("Successfully logged in!");
 
