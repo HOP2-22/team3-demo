@@ -65,6 +65,19 @@ const ArtistSignUp = () => {
     }
   };
 
+  //uuciluucil uugn beln blgj ughig hussim cdhgunde
+  //createpost dr bicih gsn haigd oldgueee sorrii
+
+  // useEffect(() => {
+  //   document.addEventListener("keyup", onkey, true);
+  // }, []);
+
+  // const onkey = async (event) => {
+  //   if (event.keyCode === 13 && event.code === "Enter") {
+  //     login();
+  //   }
+  // };
+
   const signUpArtist = async () => {
     if (form.email.length === 0) return toast.error(`email field is empty`);
     if (form.password.length === 0)

@@ -28,15 +28,15 @@ const Login = () => {
   //nguu enter drhr shud login hiigddg function herg blnbh gj bdlo
   //ghd nguu login hiigdehgu bgaa zasaj cddguee trns bish blj bga tinth
 
-  useEffect(() => {
-    document.addEventListener("keyup", onkey, true);
-  }, []);
+  // useEffect(() => {
+  //   document.addEventListener("keyup", onkey, true);
+  // }, []);
 
-  const onkey = async (event) => {
-    if (event.keyCode === 13 && event.code === "Enter") {
-      login();
-    }
-  };
+  // const onkey = async (event) => {
+  //   if (event.keyCode === 13 && event.code === "Enter") {
+  //     login();
+  //   }
+  // };
 
   const login = async () => {
     if (form.email.length === 0) {

@@ -53,8 +53,7 @@ const Header = () => {
           <div className="flex items-center gap-5">
             <div className="">
               <div className="flex gap-6 text-[18px]">
-                {/* uugn router push ashigly gj bdsi ghd bugdinhn nerig index blgcn blhr blh eshig mddgue */}
-                <Link href="/merch">
+                <Link href="/Merch">
                   <div
                     className=" border-b-[1px] flex items-center justify-center"
                     style={{ color: "white" }}

@@ -1,24 +1,16 @@
 import React from "react";
 import axios from "axios";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import Checkbox from "@mui/material/Checkbox";
-import CardMedia from "@mui/material/CardMedia";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
-import Favorite from "@mui/icons-material/Favorite";
+import { Box, Container, Checkbox, CardMedia } from "@mui/material";
+import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import { useRouter } from "next/router";
 
 const ArtistDetail = ({ data }) => {
-  console.log(data)
+  console.log(data);
   const router = useRouter();
-
 
   return (
     <div className="w-full  bg-gray-500 mt-[70px]">
-      <img
-        className="w-[100%] h-[400px] object:center object:center"
-        src=""
-      />
+      <img className="w-[100%] h-[400px] object:center object:center" src="" />
       <Container maxWidth="xl">
         <div className="w-[100%] border-b-[1px] pb-[30px]">
           <img
@@ -65,6 +57,7 @@ const ArtistDetail = ({ data }) => {
                     <Box sx={{ position: "relative" }}>
                       <CardMedia
                         image={product?.products?.images[0]}
+                        component="img"
                         sx={{
                           width: "100%",
                           height: {
@@ -130,7 +123,7 @@ export default ArtistDetail;
 
 export async function getServerSideProps(context) {
   const id = context.query.artistId;
-  console.log(id)
+  console.log(id);
 
   try {
     const res = await axios.get(`http://localhost:7070/artist/${id}`);

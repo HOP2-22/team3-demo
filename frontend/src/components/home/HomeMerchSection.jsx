@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import { Container, Checkbox, CardMedia } from "@mui/material";
 
 const HomeMerchSection = ({ products }) => {
-
   console.log(products);
 
   return (
@@ -128,6 +127,7 @@ const HomeMerchSection = ({ products }) => {
                         <Box sx={{ position: "relative" }}>
                           <CardMedia
                             image={product?.images?.[0]}
+                            component="img"
                             sx={{
                               width: "100%",
                               height: {
@@ -140,7 +140,6 @@ const HomeMerchSection = ({ products }) => {
                               cursor: "pointer",
                             }}
                           />
-
                         </Box>
                         <Box>
                           <Box
@@ -181,7 +180,6 @@ const HomeMerchSection = ({ products }) => {
                   })}
                 </Box>
               </Box>
-
             </Box>
           </Box>
         </Box>

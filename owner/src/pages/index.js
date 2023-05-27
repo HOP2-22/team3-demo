@@ -18,10 +18,11 @@ export default function Home() {
     setPassword(event.target.value);
   };
 
-
   const login = async () => {
     try {
-      console.log("================================================================")
+      console.log(
+        "================================================================"
+      );
       const res = await axios.post("http://localhost:7070/admin/login", {
         email: email,
         password: password,
@@ -69,7 +70,8 @@ export default function Home() {
               className="text-white bg-[#007ae5] w-[230px] h-[30px] rounded-full"
               onClick={() => {
                 login();
-              }}>
+              }}
+            >
               Нэвтрэх
             </button>
           </div>

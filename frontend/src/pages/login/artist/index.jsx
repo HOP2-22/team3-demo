@@ -26,6 +26,17 @@ const ArtistLogin = () => {
   const passwordHandler = async (event) => {
     setForm({ ...form, password: event.target.value });
   };
+  //enigc gsn martwa
+
+  // useEffect(() => {
+  //   document.addEventListener("keyup", onkey, true);
+  // }, []);
+
+  // const onkey = async (event) => {
+  //   if (event.keyCode === 13 && event.code === "Enter") {
+  //     login();
+  //   }
+  // };
 
   const login = async () => {
     try {
