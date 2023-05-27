@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Box, Container, Stack, Typography } from "@mui/material";
 
-import { ArtistContext } from "@/context/Artistcontext";
+// import { ArtistContext } from "@/context/Artistcontext";
 import BuyCart from "@/components/market/BuyCart";
 
 const Cart = () => {

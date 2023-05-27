@@ -5,11 +5,8 @@ import Cookies from "js-cookie";
 export const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
-
   const [isClient, setIsClient] = useState(true);
   const [isArtist, setIsArtist] = useState(false);
-
-
 
   const [user, setUser] = useState("");
   console.log(user + "is user");
@@ -17,9 +14,21 @@ export const UserProvider = ({ children }) => {
 
   console.log(artist + "is artist");
 
+  useEffect(() => {
+    try {
+      //exp gj bhguenshd
+      // if (data.data.data.exp * 1000 <= Date.now()) {
+      //   logOut();
+      //   return;
+      // }
 
-
-
+      // console.log(data.data);
+      setUser(data?.user);
+    } catch (error) {
+      console.log(error);
+    }
+    getUser();
+  }, []);
 
   return (
     <UserContext.Provider
@@ -31,7 +40,7 @@ export const UserProvider = ({ children }) => {
         user,
         setUser,
         artist,
-        setArtist
+        setArtist,
       }}
     >
       {children}

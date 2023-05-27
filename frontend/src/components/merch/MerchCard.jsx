@@ -21,6 +21,7 @@ const MerchCard = ({ data }) => {
       <Box sx={{ position: "relative" }}>
         <CardMedia
           image={data?.images}
+          component="img"
           sx={{
             width: "100%",
             height: {

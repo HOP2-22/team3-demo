@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import useStorage from "@/hooks/useStorage";
@@ -106,6 +106,17 @@ const Signup = () => {
       }
     } else {
       toast.error("Password does not match!");
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keyup", onkey, true);
+  }, []);
+
+  const onkey = async (event) => {
+    console.log(event);
+    if (event.keyCode === 13 && event.code === "Enter") {
+      signup();
     }
   };
 

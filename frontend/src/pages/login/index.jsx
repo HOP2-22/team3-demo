@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Cookie from "js-cookie";
 import axios from "axios";
 import Link from "next/link";
@@ -23,6 +23,19 @@ const Login = () => {
     setForm({ ...form, password: event.target.value });
   };
 
+  //nguu enter drhr shud login hiigddg function herg blnbh gj bdlo
+  //ghd nguu login hiigdehgu bgaa zasaj cddguee trns bish blj bga tinth
+
+  // useEffect(() => {
+  //   document.addEventListener("keyup", onkey, true);
+  // }, []);
+
+  // const onkey = async (event) => {
+  //   if (event.keyCode === 13 && event.code === "Enter") {
+  //     login();
+  //   }
+  // };
+
   const login = async () => {
     if (form.email.length === 0) {
       return toast.error("write your email address");
@@ -34,6 +47,9 @@ const Login = () => {
 
     try {
       //end aldaa baigaa tul yanzlaarai
+
+      //hamgi bagadaa pass ni 8 baih ystoi gsn blhr alda grcjao
+      // trns bish zuerbnao
 
       const { data } = await axios.post("http://localhost:7070/user/login", {
         email: form?.email,
@@ -61,6 +77,7 @@ const Login = () => {
       toast.success("login successful");
     } catch (error) {
       toast.error("login error");
+      console.log(error);
     }
   };
   return (
