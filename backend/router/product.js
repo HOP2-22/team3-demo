@@ -14,7 +14,7 @@ const {
   deleteManyProductByNameAndColor,
   deleteManyProductByNameAndSize,
   buyProduct,
-  updateStatus,
+  ChangeProductStatus,
 } = require("../controller/product");
 
 const router = express.Router();
@@ -29,6 +29,6 @@ router.delete("/deleteByNameAndSize", deleteManyProductByNameAndSize);
 
 router.delete("/deleteAll", DeleteAll);
 router.route("/:id").get(getProduct).patch(updateProduct).delete(deleteProduct);
-router.patch("/status/:id", updateStatus);
+router.patch("/status/:_id", ChangeProductStatus);
 
 module.exports = router;

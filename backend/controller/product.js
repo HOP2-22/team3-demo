@@ -93,16 +93,20 @@ exports.createProduct = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, data: preProduct });
 });
 
-exports.updateStatus = async (req, res) => {
+exports.ChangeProductStatus = async (req, res) => {
+  console.log(req.params);
+  console.log(1);
+  const _id = req.params._id;
+  const newStatus = req.body.status;
+  console.log(2);
   try {
-    const id = req.params.id;
-    const status = req.body.status;
-    const updatedstatus = await Product.findByIdAndUpdate({
-      id,
-      status: status,
+    const updatedStatus = await Product.findByIdAndUpdate(_id, {
+      status: newStatus,
     });
-    res.status(200).json({ success: true, data: updatedstatus });
-  } catch (error) {}
+    res.status(200).json(updatedStatus);
+  } catch (error) {
+    res.status(400).json({ message: "can't update" });
+  }
 };
 
 exports.updateProduct = asyncHandler(async (req, res) => {
