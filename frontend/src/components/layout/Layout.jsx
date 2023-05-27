@@ -2,7 +2,6 @@ import Head from "next/head";
 
 import Header from "./Header";
 import Footer from "./Footer";
-import ArtistHeader from "./ArtistHeader";
 import HeaderHidden from "./HeaderHidden";
 
 const Layout = ({ children }) => {
@@ -17,7 +16,6 @@ const Layout = ({ children }) => {
       <div className="w-full h-full flex flex-col justify-between">
         <div className="flex flex-col">
           <Header />
-          <ArtistHeader />
         </div>
 
         {children}

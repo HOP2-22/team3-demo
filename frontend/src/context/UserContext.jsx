@@ -12,6 +12,7 @@ export const UserProvider = ({ children }) => {
 
 
   const [user, setUser] = useState("");
+  console.log(user + "is user");
   const [artist, setArtist] = useState("");
 
 

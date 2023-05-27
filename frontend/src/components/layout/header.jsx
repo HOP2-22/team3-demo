@@ -75,21 +75,25 @@ const Header = () => {
                       className=" border-b-[1px] flex items-center justify-center"
                       style={{ color: "white" }}
                       onClick={() => {
-                        router.push("/Merch");
+                        console.log("is working");
+                        router.push("/merch");
                       }}
                     >
-                      MERCH
+                      sdhfhsh
                     </div>
                     {/* </Link> */}
 
-                    <Link href="/Artist">
-                      <div
-                        className=" border-b-[1px] flex items-center justify-center"
-                        style={{ color: "white" }}
-                      >
-                        ARTIST
-                      </div>
-                    </Link>
+                    {/* <Link href="/artist"> */}
+                    <div
+                      onClick={() => {
+                        router.push("/artist");
+                      }}
+                      className=" border-b-[1px] flex items-center justify-center"
+                      style={{ color: "white" }}
+                    >
+                      ARTIST
+                    </div>
+                    {/* </Link> */}
                   </div>
                 </div>
                 <div className="hidden xl:flex items-center gap-5">
@@ -151,23 +155,26 @@ const Header = () => {
           className="w-full h-[80px] fixed flex justify-between px-[50px] items-center top-0 z-6 bg-[#0A061C] "
         >
           <div className="text-white text-[30px] font-bold">new space</div>
-          <div className="flex  gap-[10px]">
-            <img src={user?.image} className="w-[45px] h-[45px] rounded-full" />
-            <button className="h-[45px] w-[100px] text-[18px] text-white rounded-[8px] bg-[#6446EE] ">
-              Upload
-            </button>
-          </div>
-          <div
-            className=""
-            onClick={() => {
-              setArtist(null);
-              Cookies.remove("token");
-              setIsClient(true)
-              router.push("/login");
-              setIsArtist(false)
-            }}
-          >
-            logout
+          <div className="flex gap-[20px]">
+
+            <div className="flex  gap-[10px]">
+              <img src={user?.image} className="w-[45px] h-[45px] rounded-full" />
+              <button className="h-[45px] w-[100px] text-[18px] text-white rounded-[8px] bg-[#6446EE] ">
+                Upload
+              </button>
+            </div>
+            <div
+              className="text-white"
+              onClick={() => {
+                setArtist(null);
+                Cookies.remove("token");
+                setIsClient(true)
+                router.push("/login");
+                setIsArtist(false)
+              }}
+            >
+              logout
+            </div>
           </div>
         </div></>}
     </>

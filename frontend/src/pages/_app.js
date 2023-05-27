@@ -2,7 +2,6 @@ import "@/styles/globals.css";
 import { Toaster } from "react-hot-toast";
 
 import { UserProvider } from "@/context/UserContext";
-import { ArtistProvider } from "@/context/Artistcontext";
 import Layout from "@/components/layout/Layout";
 
 const App = ({ Component, pageProps }) => {

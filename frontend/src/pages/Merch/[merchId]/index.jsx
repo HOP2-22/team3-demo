@@ -13,12 +13,12 @@ import "swiper/css/thumbs";
 import TextField from "@mui/material/TextField";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
-import { ArtistContext } from "@/context/ArtistContext";
+import { UserContext } from "@/context/UserContext";
 
 const ProductDetail = ({ product, sizes }) => {
 
-  const { user } = useContext(ArtistContext);
-
+  const { user } = useContext(UserContext);
+  console.log(user);
   console.log(product);
   console.log(sizes);
 
@@ -31,8 +31,7 @@ const ProductDetail = ({ product, sizes }) => {
     if (!user) {
       toast.error("ta exled newternuu")
     } try {
-
-      await axios.post(`http://localhost:7070/cart/${user?._id}`, {
+      await axios.post(`http://localhost:7070/cart/${user?.user_id}`, {
         name: product.name,
         color: selectedColor,
         size: selectedSize,

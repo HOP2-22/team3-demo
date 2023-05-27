@@ -4,7 +4,6 @@ import Cookie from "js-cookie";
 import { useRouter } from "next/router";
 
 import { UserContext } from "@/context/UserContext";
-import { ArtistContext } from "@/context/Artistcontext";
 import { toast } from "react-hot-toast";
 
 const ArtistLogin = () => {
@@ -41,12 +40,17 @@ const ArtistLogin = () => {
         password: form?.password,
       });
 
+      console.log(data);
+
       Cookie.set("token", data?.token);
 
       setIsClient(false);
       setIsArtist(true);
 
-      setArtist(data?.user);
+      // setArtist({
+      //   username: data?.data?.name,
+      //   user_id: data?.data?.id
+      // });
 
       toast.success("Successfully logged in!");
 

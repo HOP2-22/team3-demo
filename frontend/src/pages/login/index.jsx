@@ -15,6 +15,7 @@ const Login = () => {
   const { push } = useRouter();
 
   const {
+    user,
     isClient,
     setIsClient,
     isArtist,
@@ -45,27 +46,31 @@ const Login = () => {
         email: form?.email,
         password: form?.password,
       });
-
       Cookie.set("token", data?.token);
+      Cookie.set("user_id", data?.data?.id)
 
       setIsClient(true);
       setIsArtist(false);
-      console.log(data.data);
-      setUser(data.data);
+
+      setUser({
+        username: data?.data?.name,
+        image: data?.data?.image,
+        user_id: data?.data?.id
+      });
 
       setForm({
         email: "",
         password: "",
       });
 
-      push("/");
+      // push("/");
 
       toast.success("login successful");
     } catch (error) {
       toast.error("login error");
     }
   };
-
+  console.log(user);
   return (
     <div
       className="w-full  h-[60vh]   py-[650px] flex flex-col items-center justify-center gap-10"
@@ -113,7 +118,7 @@ const Login = () => {
         </button>
       </div>
     </div>
-  );
+  )
 };
 
 export default Login;
