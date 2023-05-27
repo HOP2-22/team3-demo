@@ -16,6 +16,7 @@ import { useContext } from "react";
 
 export default function createMerch() {
   const { artist } = useContext(UserContext);
+  console.log(artist);
   const { handleUpload } = useStorage();
   const [name, setName] = useState();
   const [color, setColor] = useState("");
@@ -40,15 +41,16 @@ export default function createMerch() {
 
   const create = async () => {
     console.log(
+      artist.id,
       size,
       name,
       color,
+      size,
       price,
-      count,
-      des,
       image,
+      count,
       warning,
-      artist.id
+      caretip
     );
     try {
       const done = await axios.post("http://localhost:7070/product", {
@@ -58,9 +60,10 @@ export default function createMerch() {
         price: price,
         count: count,
         descriptions: des,
-        image: image,
+        images: image,
         warning: warning,
         owner: artist.id,
+        caretip: caretip,
       });
       alert("is done");
     } catch (error) {}
@@ -142,6 +145,7 @@ export default function createMerch() {
             id="outlined-basic"
             label="count"
             variant="outlined"
+            type="number"
             color="info"
             sx={{ width: "100%" }}
             onChange={(e) => {
@@ -164,6 +168,7 @@ export default function createMerch() {
             label="price"
             variant="outlined"
             color="info"
+            type="number"
             sx={{ width: "100%" }}
             onChange={(e) => {
               setPrice(e.target.value);

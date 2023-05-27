@@ -22,7 +22,9 @@ exports.checkAdmin = asyncHandler(async (req, res) => {
 exports.createAdmin = asyncHandler(async (req, res) => {
   const checkEmail = await Admin.findOne({ email: req.body.email });
 
-  if (checkEmail !== null)
+  console.log(checkEmail);
+
+  if (checkEmail)
     return res.status(200).json({
       success: false,
       message: `${req.body.email} бүртгэлтэй байна`,
@@ -30,9 +32,9 @@ exports.createAdmin = asyncHandler(async (req, res) => {
 
   const admin = await Admin.create({
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
   });
-  console.log(req.body)
+  console.log(req.body);
 
   const token = admin.getJWT();
 

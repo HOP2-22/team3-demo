@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const Schema = mongoose.Schema;
 
@@ -26,7 +28,7 @@ adminSchema.pre("save", async function (next) {
 });
 
 adminSchema.methods.getJWT = function () {
-  const token = jwt.sign({ id: this._id }, process.env.ACCESS_TOKEN_SECRET, {
+  const token = jwt.sign({ id: this._id }, process.env.ACCESS_TOKEN_KEY, {
     expiresIn: process.env.JWT_EXPIRESIN,
   });
 

@@ -39,8 +39,8 @@ const Login = () => {
         email: form?.email,
         password: form?.password,
       });
+      console.log(data);
       Cookie.set("token", data?.token);
-      Cookie.set("user_id", data?.data?.id);
 
       setIsClient(true);
       setIsArtist(false);
