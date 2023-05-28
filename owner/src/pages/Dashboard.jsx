@@ -11,22 +11,20 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 export default function Dash() {
-  const isapprove = async ({ dataa }) => {
-    console.log(dataa);
-    const neww = "approved";
-    const { status } = axios.patch(
-      `http://localhost:7070/product/status/${dataa._id}`,
-      {
-        newStatus: neww,
-      }
-    );
+  const isapprove = async (id) => {
+    try {
+      const res = await axios.patch(`http://localhost:7070/product/${id}`, {
+        status: "approved",
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const { push, query } = useRouter();
 
   const [data, setData] = useState();
 
-  console.log(query);
   const approved = (event) => {
     if (event.target.checked) {
       push({
@@ -345,23 +343,23 @@ export default function Dash() {
                       }}
                     >
                       <p style={{ color: "black", width: "100px" }}>
-                        {dataa?.owner?.username}
+                        {dataa?.owner?._id.slice(0, 10)}
                       </p>
                       <p style={{ color: "black", width: "100px" }}>
-                        {dataa?.Date?.slice(0, 10)}
+                        {dataa?.createdAt?.slice(0, 10)}
                       </p>
                       <p style={{ color: "black", width: "100px" }}>
-                        {dataa?.ownerName}
+                        {dataa?.owner?.name}
                       </p>
                       <p style={{ color: "black", width: "100px" }}>
-                        {dataa?.productName}
+                        {dataa?.name}
                       </p>
                       <p style={{ color: "black", width: "100px" }}>
                         {dataa?.price}
                       </p>
                       <Box sx={{ display: "flex", alignItems: "center" }}>
                         <Checkbox
-                          onClick={() => isapprove({ dataa })}
+                          onClick={() => isapprove(dataa._id)}
                           checked={dataa.status == "approved" ? true : false}
                         />
                       </Box>
