@@ -68,21 +68,17 @@ exports.createProduct = asyncHandler(async (req, res) => {
   //   howManyProductsAdded: "howManyProductsAdded";
   //   color: "color";
   // }
-  console.log("1");
 
   const preProduct = await Product.findOne({
     name: req.body.name,
     size: req.body.size,
     color: req.body.color,
   });
-  console.log("2");
   if (!preProduct) {
     console.log(req.body);
     const product = await Product.create(req.body);
-    console.log("3");
     return res.status(200).json({ success: true, data: product });
   }
-  console.log("4");
   if (!req.body.howManyProductsAdded)
     throw new Error("already created product with this size color name");
 
