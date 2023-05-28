@@ -171,7 +171,7 @@ export default function createMerch() {
             >
               <MenuItem value={"Хувцас"}>Хувцас</MenuItem>
               <MenuItem value={"Гар урлал"}>Гар урлал</MenuItem>
-              <MenuItem value={"Бусад"}>Бусад</MenuItem>\
+              <MenuItem value={"Бусад"}>Бусад</MenuItem>
             </Select>
           </FormControl>
 

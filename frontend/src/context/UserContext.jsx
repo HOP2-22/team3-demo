@@ -14,6 +14,8 @@ export const UserProvider = ({ children }) => {
 
   const [productIfo, setProductIfo] = useState();
 
+  const [productByArtist, setProdByArtist] = useState([]);
+
   return (
     <UserContext.Provider
       value={{
@@ -27,6 +29,8 @@ export const UserProvider = ({ children }) => {
         setArtist,
         productIfo,
         setProductIfo,
+        productByArtist,
+        setProdByArtist,
       }}
     >
       {children}
