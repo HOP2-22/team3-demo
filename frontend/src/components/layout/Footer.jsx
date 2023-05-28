@@ -1,8 +1,8 @@
 import Container from "@mui/material/Container";
 
-const Footer = () => {
+export default function Footer() {
   return (
-    <div className="bg-[#1b1927]  pb-[100px] ">
+    <div className="bg-[#1b1927] mb-[60px] pb-[100px] md:pb-[60px] ">
       <Container>
         <div className="flex flex-col ">
           <div className="w-full grid grid-cols-12 h-[500px] pt-[50px] md:pt-[150px] gap-y-[50px]">
@@ -53,16 +53,13 @@ const Footer = () => {
               </p>
             </div>
           </div>
-          <div
-            className="text-white text-[30px] font-bold mt-[500px] sm:mt-[50px] md:mt-[250px] md:text-[52px] lg:mt-[200px] xl:mt-[30px] lg:text-[72px]"
-            style={{ display: "flex", justifyContent: "center" }}
-          >
-            ONE STEP UP
+          <div className="text-white text-[30px] font-bold mt-[500px] sm:mt-[50px] md:mt-[250px] md:text-[52px] lg:mt-[200px] xl:mt-[30px] lg:text-[72px]">
+            ENJOY YOUR
+            <span className="text-red-500">UNIQUENESS</span>
+            🤟
           </div>
         </div>
       </Container>
     </div>
   );
-};
-
-export default Footer;
+}
